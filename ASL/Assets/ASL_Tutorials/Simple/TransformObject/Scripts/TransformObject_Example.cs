@@ -70,9 +70,12 @@ namespace SimpleDemos
         }
 
         /*For more examples go to:
-        * https://uwb-arsandbox.github.io/ASL/ASLDocumentation/Help/html/d900897e-ff57-8629-2242-59572d40152f.htm Position
-        * https://uwb-arsandbox.github.io/ASL/ASLDocumentation/Help/html/aa3f986b-f78a-70ed-e40a-4d7e59f937b4.htm Rotation
-        * https://uwb-arsandbox.github.io/ASL/ASLDocumentation/Help/html/e57d4b70-fd4a-2612-62f2-fdbb5afb6aae.htm Scale
+        * https://uwb-arsandbox.github.io/ASL_Master/ASLDocumentation/Help/html/acebc264-2747-4f28-2795-228d3987b271.htm Increment Position
+		* https://uwb-arsandbox.github.io/ASL_Master/ASLDocumentation/Help/html/d900897e-ff57-8629-2242-59572d40152f.htm Set Position
+		* https://uwb-arsandbox.github.io/ASL_Master/ASLDocumentation/Help/html/102a5051-9188-6b98-1246-cbd696f1a7b4.htm Increment Rotation
+        * https://uwb-arsandbox.github.io/ASL_Master/ASLDocumentation/Help/html/aa3f986b-f78a-70ed-e40a-4d7e59f937b4.htm Set Rotation
+		* https://uwb-arsandbox.github.io/ASL_Master/ASLDocumentation/Help/html/99692a5a-7445-c708-2989-91042f818737.htm Increment Scale
+        * https://uwb-arsandbox.github.io/ASL_Master/ASLDocumentation/Help/html/e57d4b70-fd4a-2612-62f2-fdbb5afb6aae.htm Set Scale
         */
 
         /// <summary>
