@@ -1,6 +1,6 @@
 This is version 1 of the upgraded Augmented Space Library (ASL). It is being built with Unity 2019.2.7f and GameSparks (https://www.gamesparks.com/). 
 
-Documentation for this framework can be found here: https://uwb-arsandbox.github.io/ASL/ The first page of website is shown below.
+Documentation for this framework can be found here: https://uwb-arsandbox.github.io/ASL_Master/ASLDocumentation/Help/index.html The first page of website is shown below.
 
 <html>
 	<head></head>
