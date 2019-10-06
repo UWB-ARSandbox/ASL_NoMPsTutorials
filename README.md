@@ -11,7 +11,7 @@ Documentation for this framework can be found here: https://uwb-arsandbox.github
 			<p>The steps to install and setup ASL are as follows:
 				<ul>				
 					<li>
-						<p><strong>Download ASL</strong> - Download this project and open it in Unity 2019.2.7f (other verisions should work but are not guaranteed).</p>
+						<p><strong>Download ASL</strong> - Download this project and open it in Unity 2019.2.7f (other verisions should work but are not guaranteed). If you have packages errors then you can solve this by continuing into Unity and then once open, go to Help->Reset Packages to defaults. This should resolve any package errors.</p>
 					</li>
 					<li>
 						<p><strong>Setup GameSparks</strong> - Locate "GameSparksSettings" in GameSparks/Resources. Then enter and save the following information.</p>
