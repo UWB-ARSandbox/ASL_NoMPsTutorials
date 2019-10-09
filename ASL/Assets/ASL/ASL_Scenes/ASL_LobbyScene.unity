@@ -96,7 +96,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 522ad94e338cf264e91aa8b176b42b4a,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -330,7 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47d62d52bbd2e914bbdc6bc6c70766ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StartingScene: CreateObject_Example
+  m_StartingScene: Mp1
 --- !u!224 &58685336
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1277,7 +1278,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 723893226}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999804
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3882,7 +3883,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00000012187542}
+  m_AnchoredPosition: {x: 0, y: -0.000021588698}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1218653162

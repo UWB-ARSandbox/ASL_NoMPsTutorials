@@ -14,7 +14,7 @@
 				<para>The steps to install and setup ASL are as follows:</para>
 				<list class="bullet">
 					<listItem>
-						<legacyBold>Download ASL</legacyBold> - Download this project and open it in Unity 2019.2.7f (other verisions should work but are not guaranteed).
+						<legacyBold>Download ASL</legacyBold> - Download this project and open it in Unity 2019.2.8f1 (other verisions should work but are not guaranteed). If you have packages errors, then make sure you are using Unity 2019.2.8f1 or higher. If that still does not resolve your package issues, then  continue into Unity and then go to Help->Reset Packages to defaults. This should resolve any package errors.
 					</listItem>
 						<legacyBold>Setup GameSparks</legacyBold> - Locate "GameSparksSettings" in GameSparks/Resources. Then enter and save the following information.
 						<list class="bullet">

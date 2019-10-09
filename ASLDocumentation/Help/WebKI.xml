@@ -148,8 +148,8 @@
   </HelpKINode>
   <HelpKINode Title="CreateObject_Example.ClaimRecoveryFunction method" Url="html/89f79f9e-9d0a-6ea6-4cbc-3394d9f6d225.htm" />
   <HelpKINode Title="CreateObject_Example.CreateObject_Example constructor">
-    <HelpKINode Title="CreateObject_Example Constructor " Url="html/a1a5e14e-1df1-9c0e-14e7-2626f40e4ffa.htm" />
     <HelpKINode Title="CreateObject_Example Constructor " Url="html/cde68866-6c84-4fff-3333-3acb387bf94d.htm" />
+    <HelpKINode Title="CreateObject_Example Constructor " Url="html/a1a5e14e-1df1-9c0e-14e7-2626f40e4ffa.htm" />
   </HelpKINode>
   <HelpKINode Title="CreateObject_Example.MyFloatsFunction method" Url="html/52d8dec2-1392-5d6b-32b7-960156eedad7.htm" />
   <HelpKINode Title="CreateObject_Example.m_CreateObject field" Url="html/400a57ab-12b1-aa8b-15b8-3068f4a92b6b.htm" />
@@ -340,8 +340,8 @@
   <HelpKINode Title="LoadStartScene enumeration member" Url="html/96eb67a5-01e6-5860-87a8-0bc81c5032f1.htm" />
   <HelpKINode Title="LobbyManager class">
     <HelpKINode Title="LobbyManager Class" Url="html/a2f86c0b-46b2-73c2-2b3d-f3f197a61b25.htm" />
-    <HelpKINode Title="constructor" Url="html/a92e2b50-ad02-a087-efaa-6e92f80b86dc.htm" />
     <HelpKINode Title="constructor" Url="html/a44b2e40-b777-46a5-5a55-ff0c279e4450.htm" />
+    <HelpKINode Title="constructor" Url="html/a92e2b50-ad02-a087-efaa-6e92f80b86dc.htm" />
     <HelpKINode Title="fields" Url="html/93567d2e-a9a1-7afc-0517-9e38c27ddeb4.htm" />
     <HelpKINode Title="methods" Url="html/875e67b5-1afe-2552-99cb-dad271ccb080.htm" />
   </HelpKINode>
@@ -598,8 +598,8 @@
   <HelpKINode Title="PrimitiveType enumeration member" Url="html/f5c07d8c-aa5a-eccf-f969-394f503180fd.htm" />
   <HelpKINode Title="QuickConnect class">
     <HelpKINode Title="QuickConnect Class" Url="html/ad0fb96a-1130-bbc2-eef9-a7a7588ce258.htm" />
-    <HelpKINode Title="constructor" Url="html/cb7b119e-0e32-4b28-6cfa-46df1113d5a6.htm" />
     <HelpKINode Title="constructor" Url="html/3ec72849-0a1e-b5c6-8bad-2be1f6f668c5.htm" />
+    <HelpKINode Title="constructor" Url="html/cb7b119e-0e32-4b28-6cfa-46df1113d5a6.htm" />
     <HelpKINode Title="fields" Url="html/77fefa61-a1e8-bc61-961f-c06ff92aac57.htm" />
     <HelpKINode Title="methods" Url="html/4d2d997c-7b26-4768-6262-cf093ac1e64a.htm" />
   </HelpKINode>
@@ -610,8 +610,8 @@
   <HelpKINode Title="QuickConnect.m_StaticRoomName field" Url="html/33813c4b-551f-6490-a779-a70665e15fca.htm" />
   <HelpKINode Title="QuickConnect.m_StaticStartingScene field" Url="html/b40ee526-682f-332c-bbbc-f30ca1fabd72.htm" />
   <HelpKINode Title="QuickConnect.QuickConnect constructor">
-    <HelpKINode Title="QuickConnect Constructor " Url="html/cb7b119e-0e32-4b28-6cfa-46df1113d5a6.htm" />
     <HelpKINode Title="QuickConnect Constructor " Url="html/3ec72849-0a1e-b5c6-8bad-2be1f6f668c5.htm" />
+    <HelpKINode Title="QuickConnect Constructor " Url="html/cb7b119e-0e32-4b28-6cfa-46df1113d5a6.htm" />
   </HelpKINode>
   <HelpKINode Title="randomCreationTime field" Url="html/8315a4a9-e1b9-838a-22ea-b25065ff1af2.htm" />
   <HelpKINode Title="randomDeletionTime field" Url="html/6444813e-7d95-730f-c13c-805407a34ae7.htm" />
