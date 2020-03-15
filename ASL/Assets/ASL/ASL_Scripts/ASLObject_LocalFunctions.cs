@@ -1,5 +1,11 @@
-﻿using GameSparks.RT;
+﻿using Aws.GameLift.Realtime.Command;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace ASL
 {
@@ -13,6 +19,12 @@ namespace ASL
         /// <summary>How long a claim can be held for this object. This gets set every time a player claims an object</summary>
         private float m_ClaimTime = 0;
 
+        /// <summary>
+        /// Flag indicating if this ASL object has been used to set/send a cloud anchor. Since cloud anchors are asynchronous, this prevents an ASL object from
+        /// potentially being used set to multiple anchors and causing errors once those anchors are created
+        /// </summary>
+        private bool m_HaventSetACloudAnchor;
+
         /// <summary>Function that is executed upon object initialization</summary>
         private void Awake()
         {
@@ -20,6 +32,15 @@ namespace ASL
             m_Mine = false;
             m_OutStandingClaims = false;
             m_OutstandingClaimCallbackCount = 0;
+        }
+
+        /// <summary>Function that is executed upon object start</summary>
+        private void Start()
+        {
+            //All GS Upload messages will be channeled through GetUploadMessage
+            //UploadCompleteMessage.Listener += GetUploadMessage;
+            m_ResolvedCloudAnchor = false;
+            m_HaventSetACloudAnchor = false;
         }
 
         /// <summary>
@@ -37,11 +58,12 @@ namespace ASL
                 {
                     m_ReleaseFunction?.Invoke(gameObject); //If user wants to do something before object is released - let them do so
                     _LocallyRemoveReleaseCallback();
-                    using (RTData data = RTData.Get())
-                    {
-                        data.SetString((int)GameController.DataCode.Id, m_Id);
-                        GameSparksManager.Instance().GetRTSession().SendData((int)GameSparksManager.OpCode.ReleaseClaimToServer, GameSparksRT.DeliveryIntent.RELIABLE, data);
-                    }
+
+                    byte[] id = Encoding.ASCII.GetBytes(m_Id);
+                    RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.ReleaseClaimToServer, id, Aws.GameLift.Realtime.Types.DeliveryIntent.Reliable, 
+                                                                                        GameLiftManager.GetInstance().m_GroupId, GameLiftManager.GetInstance().m_ServerId);
+                    GameLiftManager.GetInstance().m_Client.SendMessage(message);
+
                     m_Mine = false; //Release                    
                 }
             }
@@ -80,10 +102,19 @@ namespace ASL
         /// This function should NOT be called by the user as it will only update the local player, it will not update all players. Sets the anchor point for this ASL Object. 
         /// This function is used when an incoming packet from the relay server needs to update the anchor point of this objects. 
         /// </summary>
-        /// <param name="_anchorPoint">The new anchor point for this object</param>
-        public void _LocallySetAnchorPoint(string _anchorPoint)
+        /// <param name="_anchorId">The new anchor id for this object</param>
+        public void _LocallySetAnchorID(string _anchorId)
         {
-            m_AnchorPoint = _anchorPoint;
+            m_AnchorID = _anchorId;
+        }
+
+        /// <summary>
+        /// Locally sets the flag that allows this object to continue processing the cloud anchor
+        /// </summary>
+        /// <param name="_cloudAnchorResolved">Flag indicating if all clients have resolved this cloud anchor</param>
+        public void _LocallySetCloudAnchorResolved(bool _cloudAnchorResolved)
+        {
+            m_ResolvedCloudAnchor = _cloudAnchorResolved;
         }
 
         /// <summary>
@@ -141,5 +172,15 @@ namespace ASL
         {
             m_ReleaseFunction = null;
         }
+
+        /// <summary>
+        /// This function will only update the local player, not all players. It sets the function to be called after an image as been downloaded from the server
+        /// </summary>
+        /// <param name="_postDownloadFunction">The function to execute after the passed in Texture2D is downloaded from the server</param>
+        public void _LocallySetPostDownloadFunction(PostDownloadFunction _postDownloadFunction)
+        {
+            m_PostDownloadFunction = _postDownloadFunction;
+        }
+
     }
 }

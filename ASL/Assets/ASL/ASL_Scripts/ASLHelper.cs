@@ -1,13 +1,22 @@
-﻿using GameSparks.RT;
+﻿using Aws.GameLift.Realtime.Command;
+using GoogleARCore;
+using GoogleARCore.CrossPlatform;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 namespace ASL
 {
     /// <summary>
     /// Provides functions pertaining to ASL to be called by the user but not linked to any specific object
+    /// https://codelabs.developers.google.com/codelabs/arcore-cloud-anchors/index.html#4
+    /// https://developers.google.com/ar/develop/developer-guides/anchors
+    /// https://developers.google.com/ar/develop/unity/cloud-anchors/quickstart-unity-android
+    /// https://developers.google.com/ar/develop/unity/cloud-anchors/overview-unity
     /// </summary>
     public static class ASLHelper
     {
@@ -15,6 +24,29 @@ namespace ASL
         /// A dictionary containing all of the ASLObjects in a scene
         /// </summary>
         static public Dictionary<string, ASLObject> m_ASLObjects = new Dictionary<string, ASLObject>();
+
+        /// <summary>A struct that contains information about the CloudAnchor to allow it to be stored in Cloud Anchors dictionary (m_CloudAnchors)</summary>
+        public struct CloudAnchor
+        {
+            XPAnchor anchor;
+            bool worldOrigin;
+
+            /// <summary>
+            /// Function used to assign the XPAnchor and worldOrigin variables
+            /// </summary>
+            /// <param name="_anchor">The anchor to be created</param>
+            /// <param name="_worldOrigin">Flag indicating if this anchor is the world origin or not</param>
+            public CloudAnchor(XPAnchor _anchor, bool _worldOrigin)
+            {
+                anchor = _anchor;
+                worldOrigin = _worldOrigin;
+            }
+        }
+
+        /// <summary>
+        /// A dictionary containing all of the Cloud Anchors in a scene
+        /// </summary>
+        static public Dictionary<string, CloudAnchor> m_CloudAnchors = new Dictionary<string, CloudAnchor>();
 
         #region Instantiation
 
@@ -68,7 +100,7 @@ namespace ASL
         /// </code></example>
         static public void InstanitateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID)
         {
-            SendSpawnPrimitive(_type, _position, _rotation, _parentID);
+            SendSpawnPrimitive(_type, _position, _rotation, _parentID ?? "");
         }
 
         /// <summary>
@@ -88,15 +120,14 @@ namespace ASL
         ///     //https://docs.microsoft.com/en-us/dotnet/api/system.type.assemblyqualifiedname?view=netframework-4.8#System_Type_AssemblyQualifiedName
         ///     ASL.ASLHelper.InstanitateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id, "MyNamespace.MyComponent"); 
         ///     
-        ///     //Note: If you need to add more than 1 component to an object, use the AddComponent ASL function after this object is created via an after creation function
-        ///     //To do so, you will need to use the instantiatedGameObjectClassName and InstantiatedGameObjectFunctionName parameters as well. 
+        ///     //Note: If you need to add more than 1 component to an object, you will need to use the _aslGameObjectCreatedCallbackInfo parameter as well. 
         ///     //See those instantiation overload options for more details
         /// }
         /// </code>
         ///</example>
         static public void InstanitateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName)
         {
-            SendSpawnPrimitive(_type, _position, _rotation, _parentID, _componentAssemblyQualifiedName);
+            SendSpawnPrimitive(_type, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "");
         }
 
         /// <summary>
@@ -107,17 +138,14 @@ namespace ASL
         /// <param name="_rotation">The rotation orientation of the object to be instantiated</param>
         /// <param name="_parentID">The id or name of the parent object for this instantiated object</param>
         /// <param name="_componentAssemblyQualifiedName">The full name of the component to be added to this object upon creation.</param>
-        /// <param name="_instantiatedGameObjectClassName">This is the name of the class that contains your function that you want to be executed after this object is instantiated</param>
-        /// <param name="_instantiatedGameObjectFunctionName">This is the name of the function that you want to be executed after this object is instantiated</param>
+        /// <param name="_aslGameObjectCreatedCallbackInfo">This is the function that you want to be called after object creation</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
-        ///     //Where gameObject is the parent of the object that is being created here
+        ///     //Where gameObject is the parent of the object that is being created here and "MyNamespace.MyClass" is an example of a component you want to add
         ///     ASL.ASLHelper.InstanitateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id,
         ///     "MyNamespace.MyClass",
-        ///     GetType().Namespace + "." + GetType().Name, "MyUponInstantiationFunction"); //'GetType().Namespace + "." + GetType().Name' automatically returns the name space and class 
-        ///     //name of the file your code is in. You can manually enter these values if you want, but this saves you the trouble of changing your 
-        ///     //value if you ever change your name space or class names
+        ///     MyUponInstantiationFunction);
         /// }
         /// public static void MyUponInstantiationFunction(GameObject _myGameObject)
         /// {
@@ -126,10 +154,10 @@ namespace ASL
         /// 
         /// </code></example>
         static public void InstanitateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
-            string _instantiatedGameObjectClassName,
-            string _instantiatedGameObjectFunctionName)
+            ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo)
         {
-            SendSpawnPrimitive(_type, _position, _rotation, _parentID, _componentAssemblyQualifiedName, _instantiatedGameObjectClassName, _instantiatedGameObjectFunctionName);
+            SendSpawnPrimitive(_type, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "", 
+                _aslGameObjectCreatedCallbackInfo?.Method?.ReflectedType?.ToString() ?? "", _aslGameObjectCreatedCallbackInfo?.Method?.Name ?? "");
         }
 
         /// <summary>
@@ -140,23 +168,16 @@ namespace ASL
         /// <param name="_rotation">The rotation orientation of the object to be instantiated</param>
         /// <param name="_parentID">The id or name of the parent object for this instantiated object</param>
         /// <param name="_componentAssemblyQualifiedName">The full name of the component to be added to this object upon creation.</param>
-        /// <param name="_instantiatedGameObjectClassName">This is the name of the class that contains your function that you want to be executed after this object is instantiated. 
-        /// This parameter is now optional. If you use this parameter you must also provide _instantiatedGameObjectFunctionName</param>
-        /// <param name="_instantiatedGameObjectFunctionName">This is the name of the function that you want to be executed after this object is instantiated.
-        /// This parameter is not optional. If you use this parameter you must also provide _instantiatedGameObjectClassName </param>
-        /// <param name="_claimRecoveryClassName">This is the name of the class that contains your function that you want to be executed if a claim for this object is ever rejected.
-        /// This parameter is optional. If you use this parameter you must also provide _claimRecoveryFunctionName</param>
-        /// <param name="_claimRecoveryFunctionName">This is the name of the function that you want to be executed if a claim for this object is ever rejected.
-        /// This parameter is optional. If you use this parameter you must also provide _claimRecoveryClassName</param>
+        /// <param name="_aslGameObjectCreatedCallbackInfo">This is the function that you want to be called after object creation</param>
+        /// <param name="_aslClaimCancelledRecoveryFunctionInfo">This is the function that you want to be called whenever a claim is rejected/cancelled</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
-        ///     //Where gameObject is the parent of the object that is being created here
+        ///     //Where gameObject is the parent of the object that is being created here and "MyNamespace.MyClass" is an example of a component you want to add
         ///     ASL.ASLHelper.InstanitateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id,
         ///     "MyNamespace.MyClass",
-        ///     GetType().Namespace + "." + GetType().Name, "MyUponInstantiationFunction", GetType().Namespace + "." + GetType().Name, "MyClaimRejectedFunction"); //'GetType().Namespace + "." + GetType().Name' automatically returns the name space and class 
-        ///     //name of the file your code is in. You can manually enter these values if you want, but this saves you the trouble of changing your 
-        ///     //value if you ever change your name space or class names
+        ///     MyUponInstantiationFunction, 
+        ///     MyClaimRejectedFunction); 
         ///  }
         /// public static void MyUponInstantiationFunction(GameObject _myGameObject)
         /// {
@@ -170,12 +191,12 @@ namespace ASL
         /// }
         /// </code></example>
         static public void InstanitateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
-            string _instantiatedGameObjectClassName = "",
-            string _instantiatedGameObjectFunctionName = "",
-            string _claimRecoveryClassName = "",
-            string _claimRecoveryFunctionName = "")
+            ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo,
+            ASLObject.ClaimCancelledRecoveryCallback _aslClaimCancelledRecoveryFunctionInfo)
         {
-            SendSpawnPrimitive(_type, _position, _rotation, _parentID, _componentAssemblyQualifiedName, _instantiatedGameObjectClassName, _instantiatedGameObjectFunctionName, _claimRecoveryClassName, _claimRecoveryFunctionName);
+            SendSpawnPrimitive(_type, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "",
+                _aslGameObjectCreatedCallbackInfo?.Method?.ReflectedType?.ToString() ?? "", _aslGameObjectCreatedCallbackInfo?.Method?.Name ?? "",
+                _aslClaimCancelledRecoveryFunctionInfo?.Method?.ReflectedType?.ToString() ?? "", _aslClaimCancelledRecoveryFunctionInfo?.Method?.Name ?? "");
         }
 
         /// <summary>
@@ -186,28 +207,19 @@ namespace ASL
         /// <param name="_rotation">The rotation orientation of the object to be instantiated</param>
         /// <param name="_parentID">The id or name of the parent object for this instantiated object</param>
         /// <param name="_componentAssemblyQualifiedName">The full name of the component to be added to this object upon creation.</param>
-        /// <param name="_instantiatedGameObjectClassName">This is the name of the class that contains your function that you want to be executed after this object is instantiated. 
-        /// This parameter is not optional to remove ambiguity. However, you can pass in an empty string if you don't need to do anything upon creation.</param>
-        /// <param name="_instantiatedGameObjectFunctionName">This is the name of the function that you want to be executed after this object is instantiated.
-        /// This parameter is not optional to remove ambiguity. However, you can pass in an empty string if you don't need to do anything upon creation.</param>
-        /// <param name="_claimRecoveryClassName">This is the name of the class that contains your function that you want to be executed if a claim for this object is ever rejected.
-        /// This parameter is optional. If you use this parameter you must also provide _claimRecoveryFunctionName</param>
-        /// <param name="_claimRecoveryFunctionName">This is the name of the function that you want to be executed if a claim for this object is ever rejected.
-        /// This parameter is optional. If you use this parameter you must also provide _claimRecoveryClassName</param>
-        /// <param name="_sendFloatClassName">This is the name of the class that contains your function that you want to be executed whenever you use the 
-        /// <see cref="ASLObject.SendFloat4(float[])"/> function. This parameter is optional. If you use this parameter you must also provide _sendFloatFunctionName</param>
-        /// <param name="_sendFloatFunctionName">This is the name of the function that you want to be executed whenever you use the <see cref="ASLObject.SendFloat4(float[])"/> function.
-        /// This parameter is optional. If you use this parameter you must also provide _sendFloatClassName</param>
+        /// <param name="_aslGameObjectCreatedCallbackInfo">This is the function that you want to be called after object creation</param>
+        /// <param name="_aslClaimCancelledRecoveryFunctionInfo">This is the function that you want to be called whenever a claim is rejected/cancelled</param>
+        /// <param name="_aslFloatFunctionInfo">This is the name of the function that you want to be executed whenever you use the 
+        /// <see cref="ASLObject.SendFloat4(float[])"/> function.</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
-        ///     //Where gameObject is the parent of the object that is being created here
+        ///     //Where gameObject is the parent of the object that is being created here and "MyNamespace.MyClass" is an example of a component you want to add
         ///     ASL.ASLHelper.InstanitateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id,
         ///     "MyNamespace.MyClass",
-        ///     GetType().Namespace + "." + GetType().Name, "MyUponInstantiationFunction", GetType().Namespace + "." + GetType().Name, "MyClaimRejectedFunction",
-        ///     GetType().Namespace + "." + GetType().Name, "MySendFloatFunction"); //'GetType().Namespace + "." + GetType().Name' automatically returns the name space and class 
-        ///     //name of the file your code is in. You can manually enter these values if you want, but this saves you the trouble of changing your 
-        ///     //value if you ever change your name space or class names
+        ///     MyUponInstantiationFunction, 
+        ///     MyClaimRejectedFunction,
+        ///     MySendFloatFunction); 
         /// }
         /// public static void MyUponInstantiationFunction(GameObject _myGameObject)
         /// {
@@ -233,15 +245,14 @@ namespace ASL
         /// }
         /// </code></example>
         static public void InstanitateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
-            string _instantiatedGameObjectClassName,
-            string _instantiatedGameObjectFunctionName,
-            string _claimRecoveryClassName = "",
-            string _claimRecoveryFunctionName = "",
-            string _sendFloatClassName = "",
-            string _sendFloatFunctionName = "")
+            ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo,
+            ASLObject.ClaimCancelledRecoveryCallback _aslClaimCancelledRecoveryFunctionInfo,
+            ASLObject.FloatCallback _aslFloatFunctionInfo)
         {
-            SendSpawnPrimitive(_type, _position, _rotation, _parentID, _componentAssemblyQualifiedName, _instantiatedGameObjectClassName, _instantiatedGameObjectFunctionName, 
-                _claimRecoveryClassName, _claimRecoveryFunctionName, _sendFloatClassName, _sendFloatFunctionName);
+            SendSpawnPrimitive(_type, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "", 
+                _aslGameObjectCreatedCallbackInfo?.Method?.ReflectedType.ToString() ?? "", _aslGameObjectCreatedCallbackInfo?.Method?.Name ?? "",
+                _aslClaimCancelledRecoveryFunctionInfo?.Method?.ReflectedType?.ToString() ?? "", _aslClaimCancelledRecoveryFunctionInfo?.Method?.Name ?? "",
+                _aslFloatFunctionInfo?.Method?.ReflectedType?.ToString() ?? "", _aslFloatFunctionInfo?.Method?.Name ?? "");
         }
 
         #endregion
@@ -293,7 +304,7 @@ namespace ASL
         /// </code></example>
         static public void InstanitateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID)
         {
-            SendSpawnPrefab(_prefabName, _position, _rotation, _parentID);
+            SendSpawnPrefab(_prefabName, _position, _rotation, _parentID ?? "");
         }
 
         /// <summary>
@@ -321,7 +332,7 @@ namespace ASL
         ///</example>
         static public void InstanitateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName)
         {
-            SendSpawnPrefab(_prefabName, _position, _rotation, _parentID, _componentAssemblyQualifiedName);
+            SendSpawnPrefab(_prefabName, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "");
         }
 
         /// <summary>
@@ -332,17 +343,14 @@ namespace ASL
         /// <param name="_rotation">The rotation orientation of the object to be instantiated</param>
         /// <param name="_parentID">The id or name of the parent object for this instantiated object</param>
         /// <param name="_componentAssemblyQualifiedName">The full name of the component to be added to this object upon creation.</param>
-        /// <param name="_instantiatedGameObjectClassName">This is the name of the class that contains your function that you want to be executed after this object is instantiated.</param>
-        /// <param name="_instantiatedGameObjectFunctionName">This is the name of the function that you want to be executed after this object is instantiated.</param>
+        /// <param name="_aslGameObjectCreatedCallbackInfo">This is the function that you want to be called after object creation</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
-        ///     //Where gameObject is the parent of the object that is being created here
+        ///     //Where gameObject is the parent of the object that is being created here and "MyNamespace.MyClass" is an example of a component you want to add
         ///     ASL.ASLHelper.InstanitateASLObject("MyPrefab", new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id,
         ///     "MyNamespace.MyClass",
-        ///     GetType().Namespace + "." + GetType().Name, "MyUponInstantiationFunction"); //'GetType().Namespace + "." + GetType().Name' automatically returns the name space and class 
-        ///     //name of the file your code is in. You can manually enter these values if you want, but this saves you the trouble of changing your 
-        ///     //value if you ever change your name space or class names
+        ///     MyUponInstantiationFunction); 
         /// }
         /// public static void MyUponInstantiationFunction(GameObject _myGameObject)
         /// {
@@ -351,10 +359,10 @@ namespace ASL
         /// 
         /// </code></example>
         static public void InstanitateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
-            string _instantiatedGameObjectClassName,
-            string _instantiatedGameObjectFunctionName)
+            ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo)
         {
-            SendSpawnPrefab(_prefabName, _position, _rotation, _parentID, _componentAssemblyQualifiedName, _instantiatedGameObjectClassName, _instantiatedGameObjectFunctionName);
+            SendSpawnPrefab(_prefabName, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "", 
+                _aslGameObjectCreatedCallbackInfo?.Method?.ReflectedType?.ToString() ?? "", _aslGameObjectCreatedCallbackInfo?.Method?.Name ?? "");
         }
 
         /// <summary>
@@ -365,24 +373,16 @@ namespace ASL
         /// <param name="_rotation">The rotation orientation of the object to be instantiated</param>
         /// <param name="_parentID">The id or name of the parent object for this instantiated object</param>
         /// <param name="_componentAssemblyQualifiedName">The full name of the component to be added to this object upon creation.</param>
-        /// <param name="_instantiatedGameObjectClassName">This is the name of the class that contains your function that you want to be executed after this object is instantiated. 
-        /// This parameter is now optional. If you use this parameter you must also provide _instantiatedGameObjectFunctionName</param>
-        /// <param name="_instantiatedGameObjectFunctionName">This is the name of the function that you want to be executed after this object is instantiated.
-        /// This parameter is not optional. If you use this parameter you must also provide _instantiatedGameObjectClassName </param>
-        /// <param name="_claimRecoveryClassName">This is the name of the class that contains your function that you want to be executed if a claim for this object is ever rejected.
-        /// This parameter is optional. If you use this parameter you must also provide _claimRecoveryFunctionName</param>
-        /// <param name="_claimRecoveryFunctionName">This is the name of the function that you want to be executed if a claim for this object is ever rejected.
-        /// This parameter is optional. If you use this parameter you must also provide _claimRecoveryClassName</param>
+        /// <param name="_aslGameObjectCreatedCallbackInfo">This is the function that you want to be called after object creation</param>
+        /// <param name="_aslClaimCancelledRecoveryFunctionInfo">This is the function that you want to be called whenever a claim is rejected/cancelled</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
-        ///     //Where gameObject is the parent of the object that is being created here
+        ///     //Where gameObject is the parent of the object that is being created here and "MyNamespace.MyClass" is an example of a component you want to add
         ///     ASL.ASLHelper.InstanitateASLObject("MyPrefab", new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id,
         ///     "MyNamespace.MyClass",
-        ///     GetType().Namespace + "." + GetType().Name, "MyUponInstantiationFunction", GetType().Namespace + "." + GetType().Name, "MyClaimRejectedFunction");
-        ///     //'GetType().Namespace + "." + GetType().Name' automatically returns the name space and class 
-        ///     //name of the file your code is in. You can manually enter these values if you want, but this saves you the trouble of changing your 
-        ///     //value if you ever change your name space or class names
+        ///     MyUponInstantiationFunction,
+        ///     MyClaimRejectedFunction);
         ///  }
         /// public static void MyUponInstantiationFunction(GameObject _myGameObject)
         /// {
@@ -397,12 +397,12 @@ namespace ASL
         /// 
         /// </code></example>
         static public void InstanitateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
-            string _instantiatedGameObjectClassName = "",
-            string _instantiatedGameObjectFunctionName = "",
-            string _claimRecoveryClassName = "",
-            string _claimRecoveryFunctionName = "")
+            ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo,
+            ASLObject.ClaimCancelledRecoveryCallback _aslClaimCancelledRecoveryFunctionInfo)
         {
-            SendSpawnPrefab(_prefabName, _position, _rotation, _parentID, _componentAssemblyQualifiedName, _instantiatedGameObjectClassName, _instantiatedGameObjectFunctionName, _claimRecoveryClassName, _claimRecoveryFunctionName);
+            SendSpawnPrefab(_prefabName, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "", 
+                _aslGameObjectCreatedCallbackInfo?.Method?.ReflectedType?.ToString() ?? "", _aslGameObjectCreatedCallbackInfo?.Method?.Name ?? "",
+                _aslClaimCancelledRecoveryFunctionInfo?.Method?.ReflectedType?.ToString() ?? "", _aslClaimCancelledRecoveryFunctionInfo?.Method?.Name ?? "");
         }
 
         /// <summary>
@@ -413,37 +413,28 @@ namespace ASL
         /// <param name="_rotation">The rotation orientation of the object to be instantiated</param>
         /// <param name="_parentID">The id or name of the parent object for this instantiated object</param>
         /// <param name="_componentAssemblyQualifiedName">The full name of the component to be added to this object upon creation.</param>
-        /// <param name="_instantiatedGameObjectClassName">This is the name of the class that contains your function that you want to be executed after this object is instantiated. 
-        /// This parameter is now optional. If you use this parameter you must also provide _instantiatedGameObjectFunctionName</param>
-        /// <param name="_instantiatedGameObjectFunctionName">This is the name of the function that you want to be executed after this object is instantiated.
-        /// This parameter is not optional to remove ambiguity. However, you can pass in an empty string if you don't need to do anything upon creation.</param>
-        /// <param name="_claimRecoveryClassName">This is the name of the class that contains the function you want to be executed if a claim for this object is ever rejected.
-        /// This parameter is optional. If you use this parameter you must also provide _claimRecoveryClassName</param>
-        /// /// <param name="_claimRecoveryFunctionName">This is the name of the function that you want to be executed if a claim for this object is ever rejected.
-        /// This parameter is optional. If you use this parameter you must also provide _claimRecoveryClassName</param>
-        /// <param name="_sendFloatClassName">This is the name of the class that contains your function that you want to be executed whenever you use the 
-        /// <see cref="ASLObject.SendFloat4(float[])"/> function. This parameter is optional. If you use this parameter you must also provide _sendFloatFunctionName</param>
-        /// <param name="_sendFloatFunctionName">This is the name of the function that you want to be executed whenever you use the <see cref="ASLObject.SendFloat4(float[])"/> function.
-        /// This parameter is optional. If you use this parameter you must also provide _sendFloatClassName</param>
-        /// /// <example><code>
+        /// <param name="_aslGameObjectCreatedCallbackInfo">This is the function that you want to be called after object creation</param>
+        /// <param name="_aslClaimCancelledRecoveryFunctionInfo">This is the function that you want to be called whenever a claim is rejected/cancelled</param>
+        /// <param name="_aslFloatFunctionInfo">This is the name of the function that you want to be executed whenever you use the 
+        /// <see cref="ASLObject.SendFloat4(float[])"/> function.</param>
+        /// <example><code>
         /// void SomeFunction()
         /// {
-        ///     //Where gameObject is the parent of the object that is being created here
+        ///     //Where gameObject is the parent of the object that is being created here and "MyNamespace.MyClass" is an example of a component you want to add
         ///     ASL.ASLHelper.InstanitateASLObject("MyPrefab", new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id,
         ///     "MyNamespace.MyClass",
-        ///     GetType().Namespace + "." + GetType().Name, "MyUponInstantiationFunction", GetType().Namespace + "." + GetType().Name, "MyClaimRejectedFunction",
-        ///     GetType().Namespace + "." + GetType().Name, "MySendFloatFunction"); //'GetType().Namespace + "." + GetType().Name' automatically returns the name space and class 
-        ///     //name of the file your code is in. You can manually enter these values if you want, but this saves you the trouble of changing your 
-        ///     //value if you ever change your name space or class names
+        ///     MyUponInstantiationFunction
+        ///     MyClaimRejectedFunction,
+        ///     MySendFloatFunction);
         /// }
         /// public static void MyUponInstantiationFunction(GameObject _myGameObject)
         /// {
         ///     Debug.Log("Caller-Object ID: " + _myGameObject.GetComponent&lt;ASL.ASLObject&gt;().m_Id);
-        /// _myGameObject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
-        /// {
-        ///     float[] myFloats = new float[] { 1.1f, 2.5f, 3.4f, 4.9f };
-        ///     _myGameObject.GetComponent&lt;ASL.ASLObject&gt;().SendFloat4(myFloats);
-        /// });
+        ///     _myGameObject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
+        ///     {
+        ///         float[] myFloats = new float[] { 1.1f, 2.5f, 3.4f, 4.9f };
+        ///         _myGameObject.GetComponent&lt;ASL.ASLObject&gt;().SendFloat4(myFloats);
+        ///     });
         /// }
         /// 
         /// public static void MyClaimRejectedFunction(string _id, int _cancelledCallbacks)
@@ -461,22 +452,20 @@ namespace ASL
         /// 
         /// </code></example>
         static public void InstanitateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
-            string _instantiatedGameObjectClassName,
-            string _instantiatedGameObjectFunctionName,
-            string _claimRecoveryClassName = "",
-            string _claimRecoveryFunctionName = "",
-            string _sendFloatClassName = "",
-            string _sendFloatFunctionName = "")
+            ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo,
+            ASLObject.ClaimCancelledRecoveryCallback _aslClaimCancelledRecoveryFunctionInfo,
+            ASLObject.FloatCallback _aslFloatFunctionInfo)
         {
-            SendSpawnPrefab(_prefabName, _position, _rotation, _parentID, _componentAssemblyQualifiedName, _instantiatedGameObjectClassName, _instantiatedGameObjectFunctionName, 
-                _claimRecoveryClassName, _claimRecoveryFunctionName, _sendFloatClassName, _sendFloatFunctionName);
+            SendSpawnPrefab(_prefabName, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "", 
+                _aslGameObjectCreatedCallbackInfo?.Method?.ReflectedType?.ToString() ?? "", _aslGameObjectCreatedCallbackInfo?.Method?.Name ?? "",
+                _aslClaimCancelledRecoveryFunctionInfo?.Method?.ReflectedType?.ToString() ?? "", _aslClaimCancelledRecoveryFunctionInfo?.Method?.Name ?? "",
+                _aslFloatFunctionInfo?.Method?.ReflectedType?.ToString() ?? "", _aslFloatFunctionInfo?.Method?.Name ?? "");
         }
 
 
         #endregion
 
         #endregion
-
 
         /// <summary>
         /// Sends a packet out to all players to spawn an object based upon a prefab
@@ -497,22 +486,29 @@ namespace ASL
             string _claimRecoveryClassName = "", string _claimRecoveryFunctionName = "", string _sendFloatClassName = "", string _sendFloatFunctionName = "")
         {
             string guid = Guid.NewGuid().ToString();
-            using (RTData data = RTData.Get())
-            {
-                data.SetString((int)GameController.DataCode.Id, guid);
-                data.SetInt((int)GameController.DataCode.PrimitiveType, (int)_type);
-                data.SetVector3((int)GameController.DataCode.LocalPosition, _position);
-                data.SetVector4((int)GameController.DataCode.LocalRotation, new Vector4(_rotation.x, _rotation.y, _rotation.z, _rotation.w));
-                data.SetString((int)GameController.DataCode.ParentId, _parentID);
-                data.SetString((int)GameController.DataCode.ComponentName, _componentAssemblyQualifiedName);
-                data.SetString((int)GameController.DataCode.InstantiatedGameObjectClassName, _instantiatedGameObjectClassName);
-                data.SetString((int)GameController.DataCode.InstantiatedGameObjectFunctionName, _instantiatedGameObjectFunctionName);
-                data.SetString((int)GameController.DataCode.ClaimRecoveryClassName, _claimRecoveryClassName);
-                data.SetString((int)GameController.DataCode.ClaimRecoveryFunctionName, _claimRecoveryFunctionName);
-                data.SetString((int)GameController.DataCode.SendFloatClassName, _sendFloatClassName);
-                data.SetString((int)GameController.DataCode.SendFloatFunctionName, _sendFloatFunctionName);
-                GameSparksManager.Instance().GetRTSession().SendData((int)GameSparksManager.OpCode.SpawnPrimitive, GameSparksRT.DeliveryIntent.RELIABLE, data);
-            }
+
+            byte[] id = Encoding.ASCII.GetBytes(guid);
+            byte[] position = GameLiftManager.GetInstance().ConvertVector3ToByteArray(new Vector3(_position.x, _position.y, _position.z));
+            byte[] rotation = GameLiftManager.GetInstance().ConvertVector4ToByteArray(new Vector4(_rotation.x, _rotation.y, _rotation.z, _rotation.w));
+            byte[] primitiveType = GameLiftManager.GetInstance().ConvertIntToByteArray((int)_type);
+            byte[] parentID = Encoding.ASCII.GetBytes(_parentID);
+            byte[] componentAssemblyQualifiedName = Encoding.ASCII.GetBytes(_componentAssemblyQualifiedName);
+            byte[] instantiatedGameObjectClassName = Encoding.ASCII.GetBytes(_instantiatedGameObjectClassName);
+            byte[] instantiatedGameObjectFunctionName = Encoding.ASCII.GetBytes(_instantiatedGameObjectFunctionName);
+            byte[] claimRecoveryClassName = Encoding.ASCII.GetBytes(_claimRecoveryClassName);
+            byte[] claimRecoveryFunctionName = Encoding.ASCII.GetBytes(_claimRecoveryFunctionName);
+            byte[] sendFloatClassName = Encoding.ASCII.GetBytes(_sendFloatClassName);
+            byte[] sendFloatFunctionName = Encoding.ASCII.GetBytes(_sendFloatFunctionName);
+            byte[] peerId = Encoding.ASCII.GetBytes(GameLiftManager.GetInstance().m_PeerId.ToString());
+
+
+            byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, position, rotation, primitiveType, parentID, componentAssemblyQualifiedName, instantiatedGameObjectClassName,
+                                                         instantiatedGameObjectFunctionName, claimRecoveryClassName, claimRecoveryFunctionName, sendFloatClassName, sendFloatFunctionName, peerId);
+
+
+            RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.SpawnPrimitive, payload, Aws.GameLift.Realtime.Types.DeliveryIntent.Reliable, 
+                                                                                GameLiftManager.GetInstance().m_GroupId, GameLiftManager.GetInstance().m_ServerId);
+            GameLiftManager.GetInstance().m_Client.SendMessage(message);
         }
 
         /// <summary>
@@ -533,24 +529,30 @@ namespace ASL
             string _claimRecoveryClassName = "", string _claimRecoveryFunctionName = "", string _sendFloatClassName = "", string _sendFloatFunctionName = "")
         {
             string guid = Guid.NewGuid().ToString();
-            using (RTData data = RTData.Get())
-            {
-                data.SetString((int)GameController.DataCode.Id, guid);
-                data.SetString((int)GameController.DataCode.PrefabName, _prefabName);
-                data.SetVector3((int)GameController.DataCode.LocalPosition, _position);
-                data.SetVector4((int)GameController.DataCode.LocalRotation, new Vector4(_rotation.x, _rotation.y, _rotation.z, _rotation.w));
-                data.SetString((int)GameController.DataCode.ParentId, _parentID);
-                data.SetString((int)GameController.DataCode.ComponentName, _componentAssemblyQualifiedName);
-                data.SetString((int)GameController.DataCode.InstantiatedGameObjectClassName, _instantiatedGameObjectClassName);
-                data.SetString((int)GameController.DataCode.InstantiatedGameObjectFunctionName, _instantiatedGameObjectFunctionName);
-                data.SetString((int)GameController.DataCode.ClaimRecoveryClassName, _claimRecoveryClassName);
-                data.SetString((int)GameController.DataCode.ClaimRecoveryFunctionName, _claimRecoveryFunctionName);
-                data.SetString((int)GameController.DataCode.SendFloatClassName, _sendFloatClassName);
-                data.SetString((int)GameController.DataCode.SendFloatFunctionName, _sendFloatFunctionName);
-                GameSparksManager.Instance().GetRTSession().SendData((int)GameSparksManager.OpCode.SpawnPrefab, GameSparksRT.DeliveryIntent.RELIABLE, data);
-            }
-        }
 
+            byte[] id = Encoding.ASCII.GetBytes(guid);
+            byte[] position = GameLiftManager.GetInstance().ConvertVector3ToByteArray(new Vector3(_position.x, _position.y, _position.z));
+            byte[] rotation = GameLiftManager.GetInstance().ConvertVector4ToByteArray(new Vector4(_rotation.x, _rotation.y, _rotation.z, _rotation.w));
+            byte[] prefabName = Encoding.ASCII.GetBytes(_prefabName);
+            byte[] parentID = Encoding.ASCII.GetBytes(_parentID);
+            byte[] componentAssemblyQualifiedName = Encoding.ASCII.GetBytes(_componentAssemblyQualifiedName);
+            byte[] instantiatedGameObjectClassName = Encoding.ASCII.GetBytes(_instantiatedGameObjectClassName);
+            byte[] instantiatedGameObjectFunctionName = Encoding.ASCII.GetBytes(_instantiatedGameObjectFunctionName);
+            byte[] claimRecoveryClassName = Encoding.ASCII.GetBytes(_claimRecoveryClassName);
+            byte[] claimRecoveryFunctionName = Encoding.ASCII.GetBytes(_claimRecoveryFunctionName);
+            byte[] sendFloatClassName = Encoding.ASCII.GetBytes(_sendFloatClassName);
+            byte[] sendFloatFunctionName = Encoding.ASCII.GetBytes(_sendFloatFunctionName);
+            byte[] peerId = Encoding.ASCII.GetBytes(GameLiftManager.GetInstance().m_PeerId.ToString());
+
+
+            byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, position, rotation, prefabName, parentID, componentAssemblyQualifiedName, instantiatedGameObjectClassName,
+                                                         instantiatedGameObjectFunctionName, claimRecoveryClassName, claimRecoveryFunctionName, sendFloatClassName, sendFloatFunctionName, peerId);
+
+            RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.SpawnPrefab, payload, Aws.GameLift.Realtime.Types.DeliveryIntent.Reliable,
+                                                                                GameLiftManager.GetInstance().m_GroupId, GameLiftManager.GetInstance().m_ServerId);
+            GameLiftManager.GetInstance().m_Client.SendMessage(message);
+
+        }
 
         /// <summary>
         /// Change scene for all players. This function is called by a user. 
@@ -564,12 +566,94 @@ namespace ASL
         /// </code></example>
         public static void SendAndSetNewScene(string _sceneName)
         {
-            using (RTData data = RTData.Get())
-            {
-                data.SetString((int)GameController.DataCode.SceneName, _sceneName);
-                GameSparksManager.Instance().GetRTSession().SendData((int)GameSparksManager.OpCode.LoadScene, GameSparksRT.DeliveryIntent.RELIABLE, data);
-            }
+            byte[] scene = Encoding.ASCII.GetBytes(_sceneName);
+            RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.LoadScene, scene);
+            GameLiftManager.GetInstance().m_Client.SendMessage(message);
         }
+
+        /// <summary>
+        /// Creates an ARCore Cloud Anchor at the location the user tapped and passed into it. This function can be used to set the world origin or just a normal cloud anchor.
+        /// It is advisable to only have 1 user in your application set cloud anchors.
+        /// </summary>
+        /// <param name="_hitResults">Holds information about where the user tapped on the screen. This variable should be created using the ARWorldOriginHelper Raycast method </param>
+        /// <param name="_anchorObjectPrefab">The ASL object you want to have located at the cloud anchor. If you don't want any object to be located at the cloud anchor, you can pass in null.
+        /// Doing so will create an empty gameobject - thus making it invisible to users</param>
+        /// <param name="_myPostCreateCloudAnchorFunction">This is the function you want to call after a cloud anchor has successfully been created. Only the user that called this function
+        /// will execute this function - it is not sent to other users. This is a good way to move or create objects after a cloud anchor has been created.</param>
+        /// <param name="_waitForAllUsersToResolve">This determines if users should wait to setup (and if they are the caller of this function, to execute the _myPostCreateCloudAnchorFunction)
+        /// the cloud anchor once they receive and find it, or if they should wait for all users to receive and find it first before executing anything. The default is to wait for all users
+        /// and is the suggested value as not waiting as the potential to cause synchronization problems.</param>
+        /// <param name="_setWorldOrigin">This determines if this cloud anchor should be used to set the world origin for all users or not. If you are setting the world origin, you should do
+        /// so right away in your app and as the first (if you have more than 1) cloud anchor created. You should never set the world origin more than once.</param>
+        public static void CreateARCoreCloudAnchor(TrackableHit _hitResults, ASLObject _anchorObjectPrefab = null, ASLObject.PostCreateCloudAnchorFunction _myPostCreateCloudAnchorFunction = null, 
+            bool _waitForAllUsersToResolve = true, bool _setWorldOrigin = true)
+        {
+            if (_anchorObjectPrefab != null) 
+            {
+                if (!_anchorObjectPrefab.m_Mine)
+                {
+                    Debug.LogError("You must claim the ASL object before setting it as an anchor");
+                    return;
+                }
+            }
+
+            //Create local anchor at hit location
+            Anchor localAnchor = _hitResults.Trackable.CreateAnchor(_hitResults.Pose);
+            localAnchor.name = "Local anchor created when creating cloud anchor";
+            //Create CLoud anchor
+            XPSession.CreateCloudAnchor(localAnchor).ThenAction(result =>
+            {
+                //If failed to host
+                if (result.Response != CloudServiceResponse.Success) 
+                {
+                    Debug.LogError("Failed to host Cloud Anchor: " + result.Response);
+                    return; //Break out
+                }
+                //Successful:
+                Debug.Log("Successfully created and saved Cloud Anchor: " + result.Anchor.CloudId);
+
+                if (_anchorObjectPrefab == null)
+                {
+                    //Uncomment the line below to aid in visual debugging (helps display the cloud anchor)
+                    //_anchorObjectPrefab = GameObject.CreatePrimitive(PrimitiveType.Cube).AddComponent<ASLObject>(); //if null, then create empty game object               
+                    _anchorObjectPrefab = new GameObject().AddComponent<ASLObject>();
+                    _anchorObjectPrefab._LocallySetAnchorID(result.Anchor.CloudId); //Add ASLObject component to this anchor and set its anchor id variable
+                    _anchorObjectPrefab._LocallySetID(result.Anchor.CloudId); //Locally set the id of this object to be that of the anchor id (which is unique)
+
+                    //Add this anchor object to our ASL dictionary using the anchor id as its key. All users will do this once they resolve this cloud anchor to ensure they still in sync.
+                    m_ASLObjects.Add(result.Anchor.CloudId, _anchorObjectPrefab.GetComponent<ASLObject>());
+                    //_anchorObjectPrefab.GetComponent<Material>().color = Color.magenta;
+                    _anchorObjectPrefab.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f); //Set scale to be 4 cm
+                }
+                else
+                {
+                    _anchorObjectPrefab.GetComponent<ASLObject>()._LocallySetAnchorID(result.Anchor.CloudId); //Set anchor id variable
+                    _anchorObjectPrefab.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f); //Set scale to be 5 cm
+                }
+              
+                //Send Resolve packet using _anchorObjectPrefab 
+                _anchorObjectPrefab.GetComponent<ASLObject>().SendCloudAnchorToResolve(_setWorldOrigin, _waitForAllUsersToResolve);
+
+                if (_waitForAllUsersToResolve)
+                {
+                    byte[] id = Encoding.ASCII.GetBytes(_anchorObjectPrefab.m_Id);
+                    RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.ResolvedCloudAnchor, id);
+                    GameLiftManager.GetInstance().m_Client.SendMessage(message);
+
+                    _anchorObjectPrefab.StartWaitForAllUsersToResolveCloudAnchor(result, _setWorldOrigin, _myPostCreateCloudAnchorFunction, _hitResults);
+                }
+                else //Don't wait for users to know about this cloud anchor
+                {
+                    _anchorObjectPrefab.GetComponent<ASLObject>()._LocallySetCloudAnchorResolved(true);
+                    _anchorObjectPrefab.StartWaitForAllUsersToResolveCloudAnchor(result, _setWorldOrigin, _myPostCreateCloudAnchorFunction, _hitResults);
+                }
+            });
+
+        }
+
+
+
+
 
     }
 }
