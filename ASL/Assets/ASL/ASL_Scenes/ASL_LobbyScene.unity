@@ -3157,18 +3157,6 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: AR_CSS451_Mp2
-      m_Image: {fileID: 0}
-    - m_Text: AR_CSS451_Mp2_Shadows
-      m_Image: {fileID: 0}
-    - m_Text: CSS451_Mp1
-      m_Image: {fileID: 0}
-    - m_Text: CSS451_Mp2
-      m_Image: {fileID: 0}
-    - m_Text: CSS451_Mp3
-      m_Image: {fileID: 0}
-    - m_Text: CSS385_Mp2
-      m_Image: {fileID: 0}
     - m_Text: StressTest_150_ASLObjects
       m_Image: {fileID: 0}
     - m_Text: StressTest_CreateDelete
@@ -4975,7 +4963,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: AR_CSS451_Mp2
+  m_Text: StressTest_150_ASLObjects
 --- !u!222 &1522670409
 CanvasRenderer:
   m_ObjectHideFlags: 0
