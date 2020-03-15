@@ -50,7 +50,7 @@ namespace SimpleDemos
                 {
                     //Creates a cube at a random location with a normal rotation orientation
                     ASL.ASLHelper.InstanitateASLObject(PrimitiveType.Cube,
-                        new Vector3(Random.Range(-2, 2), Random.Range(0, 2), Random.Range(-2, 2)),
+                        new Vector3(Random.Range(-2f, 2f), Random.Range(0f, 2f), Random.Range(-2f, 2f)),
                         Quaternion.identity);
                 }
                 else if (m_CreateObject == ObjectToCreate.SimplePrefab)
@@ -59,7 +59,7 @@ namespace SimpleDemos
                     //a normal rotation orientation. Note that this prefab must be the specified (above)
                     //folder location in order to be found and spawned.
                     ASL.ASLHelper.InstanitateASLObject("_ASL_ExamplePrefab",
-                        new Vector3(Random.Range(-2, 2), Random.Range(0, 2), Random.Range(-2, 2)),
+                        new Vector3(Random.Range(-2f, 2f), Random.Range(0f, 2f), Random.Range(-2f, 2f)),
                         Quaternion.identity);
                 }
                 else if (m_CreateObject == ObjectToCreate.FullPrimitive)
@@ -73,10 +73,11 @@ namespace SimpleDemos
                     //As GetType grabs 'this' (where this code was written) namespace and class name. Also note that the assembly part for adding a component (the part after the comma)
                     //does not need to be included when the component you are adding is your own script - but the namespace is still needed
                     ASL.ASLHelper.InstanitateASLObject(PrimitiveType.Sphere,
-                        new Vector3(Random.Range(-2, 2), Random.Range(0, 2), Random.Range(-2, 2)), Quaternion.identity, "", "UnityEngine.Rigidbody,UnityEngine",
-                        GetType().Namespace + "." + GetType().Name, "WhatToDoWithMyGameObjectNowThatItIsCreated",
-                        GetType().Namespace + "." + GetType().Name, "ClaimRecoveryFunction",
-                        GetType().Namespace + "." + GetType().Name, "MyFloatsFunction");
+                        new Vector3(Random.Range(-2f, 2f), Random.Range(0f, 2f), Random.Range(-2f, 2f)), Quaternion.identity, "", "UnityEngine.Rigidbody,UnityEngine",
+                        WhatToDoWithMyGameObjectNowThatItIsCreated,
+                        ClaimRecoveryFunction,
+                        MyFloatsFunction);
+
                 }
                 else if (m_CreateObject == ObjectToCreate.FullPrefab)
                 {
@@ -90,10 +91,10 @@ namespace SimpleDemos
                     //(where this code was written) namespace and class name. Also note that the assembly part for adding a component (the part after the comma)
                     //does not need to be included when the component you are adding is your own script - but the namespace is still needed
                     ASL.ASLHelper.InstanitateASLObject("_ASL_ExamplePrefab",
-                        new Vector3(Random.Range(-2, 2), Random.Range(0, 2), Random.Range(-2, 2)), Quaternion.identity, "", "UnityEngine.Rigidbody,UnityEngine",
-                        GetType().Namespace + "." + GetType().Name, "WhatToDoWithMyOtherGameObjectNowThatItIsCreated",
-                        GetType().Namespace + "." + GetType().Name, "ClaimRecoveryFunction",
-                        GetType().Namespace + "." + GetType().Name, "MyFloatsFunction");
+                        new Vector3(Random.Range(-2f, 2f), Random.Range(0f, 2f), Random.Range(-2f, 2f)), Quaternion.identity, "", "UnityEngine.Rigidbody,UnityEngine",
+                        WhatToDoWithMyOtherGameObjectNowThatItIsCreated,
+                        ClaimRecoveryFunction,
+                        MyFloatsFunction);
                 }
 
                 m_SpawnObject = false; //Reset to false to prevent multiple unwanted spawns
