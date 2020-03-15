@@ -306,8 +306,7 @@ namespace ASL
             /// <param name="_packet">The packet from the relay server containing the ID of what ASL Object to delete</param>
             public void DeleteObject(DataReceivedEventArgs _packet)
             {
-                (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string id = Encoding.Default.GetString(_packet.Data);
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
                     ASLHelper.m_ASLObjects.Remove(id);
