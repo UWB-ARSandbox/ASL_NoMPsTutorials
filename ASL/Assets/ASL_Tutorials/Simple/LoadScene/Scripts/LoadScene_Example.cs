@@ -15,7 +15,11 @@ namespace SimpleDemos
         /// <summary> Initialize scene to load string</summary>
         private void Start()
         {
-            m_SceneToLoad = "TransformObject_Example";
+            if (string.IsNullOrEmpty(m_SceneToLoad))
+            {
+                Debug.Log("No scene specified. Choosing one for you.");
+                m_SceneToLoad = "CSS451_Mp2";
+            }
         }
 
         /* For more examples go to https://uwb-arsandbox.github.io/ASL/ */
