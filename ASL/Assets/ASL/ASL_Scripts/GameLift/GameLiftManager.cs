@@ -1,4 +1,5 @@
-﻿#define ASL_DEBUG
+﻿//Used to help debug incoming packets and other misc. GameLift features. Uncomment to turn on
+//#define ASL_DEBUG
 using Amazon;
 using Amazon.CognitoIdentity;
 using Amazon.Lambda;
