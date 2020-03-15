@@ -38,3 +38,7 @@ sysinfo.txt
 *.unitypackage
 
 ASL/Assets/ASL/Library/GameSparks/Resources/GameSparksSettings.asset
+ASL/Assets/ASL/Library/AzureSpatialAnchors.SDK/Resources/SpatialAnchorConfig.asset
+ASL/ProjectSettings/ARCoreProjectSettings.json
+ASL/EXE-Android/ASL.apk.aab
+ASL/EXE-Android/ASL_Shadows.apk.aab

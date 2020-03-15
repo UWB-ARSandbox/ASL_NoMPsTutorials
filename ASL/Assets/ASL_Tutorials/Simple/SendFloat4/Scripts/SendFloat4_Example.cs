@@ -36,7 +36,16 @@ namespace SimpleDemos
             {
                 m_ObjectToSendFloats.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
                 {
-                    Debug.Log(m_MyFloats.ToString());
+                    string floats = "Floats sent: ";
+                    for (int i = 0; i < m_MyFloats.Length; i++)
+                    {
+                        floats += m_MyFloats[i].ToString();
+                        if (m_MyFloats.Length - 1 != i)
+                        {
+                            floats += ", ";
+                        }
+                    }
+                    Debug.Log(floats);
                     m_ObjectToSendFloats.GetComponent<ASL.ASLObject>().SendFloat4(m_MyFloats);
                 });
                 m_SendFloat = false;
@@ -50,6 +59,16 @@ namespace SimpleDemos
         /// <param name="_id">The id of the object that called <see cref="ASL.ASLObject.SendFloat4(float[])"/></param>
         public static void MyFloatFunction(string _id, float[] _myFloats)
         {
+            string floats = "Floats received: ";
+            for (int i = 0; i < _myFloats.Length; i++)
+            {
+                floats += _myFloats[i].ToString();
+                if (_myFloats.Length - 1 != i)
+                {
+                    floats += ", ";
+                }
+            }
+            Debug.Log(floats);
             //The following is a hypothetical switch that a user could create. While we are sending values in this example
             //We aren't actually sending what the comments in the case statement are saying (e.g., we aren't sending a player's
             //score.) We are simply giving an example of what could be sent using this switch method. If the user only has
@@ -86,7 +105,7 @@ namespace SimpleDemos
                     }
                         break;
                 default:
-                    Debug.Log("This example does not do anything for m_MyFloats[3] above 5");
+                    Debug.Log("This example does not do anything specific for m_MyFloats[3] above 5");
                     break;
             }
         }

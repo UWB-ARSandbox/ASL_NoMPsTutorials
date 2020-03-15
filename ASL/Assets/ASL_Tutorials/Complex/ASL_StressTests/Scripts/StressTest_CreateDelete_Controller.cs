@@ -52,8 +52,7 @@ namespace StressTesting
         {
             //Instantiate an object at a random position with no parent and a canceled claim recovery function attached to it
             ASL.ASLHelper.InstanitateASLObject(PrimitiveType.Cube, GetRandomVector(),
-                Quaternion.identity, "", "", "", "",
-                GetType().Namespace + "." + GetType().Name, "CanceledClaimRecovery");
+                Quaternion.identity, "", "", null, CanceledClaimRecovery);
 
             randomCreationTime = Random.Range(1500, 2500); //Chose a new random time to create the next object
             creationTimer = 0; //Reset the creation timer
