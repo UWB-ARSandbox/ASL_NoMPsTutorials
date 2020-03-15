@@ -1,24 +1,11 @@
 ﻿//Used to help debug incoming packets and other misc. GameLift features. Uncomment to turn on
 //#define ASL_DEBUG
-using Amazon;
-using Amazon.CognitoIdentity;
-using Amazon.Lambda;
-using Amazon.Lambda.Model;
-//using Aws.GameLift.Realtime.Command;
 using Aws.GameLift.Realtime.Event;
 using Aws.GameLift.Realtime;
-//using Aws.GameLift.Realtime.Types;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
-using System.Net.NetworkInformation;
-using System.Linq;
-using System.IO;
-using Amazon.Runtime;
-using System.Net;
 using Aws.GameLift.Realtime.Command;
 using Aws.GameLift.Realtime.Types;
 

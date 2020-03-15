@@ -4,10 +4,8 @@ using Amazon;
 using Amazon.CognitoIdentity;
 using Amazon.Lambda;
 using Amazon.Lambda.Model;
-//using Aws.GameLift.Realtime.Command;
 using Aws.GameLift.Realtime.Event;
 using Aws.GameLift.Realtime;
-//using Aws.GameLift.Realtime.Types;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,16 +14,11 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Net.NetworkInformation;
 using System.Linq;
-using System.IO;
-using Amazon.Runtime;
-using System.Net;
 using Aws.GameLift.Realtime.Command;
 using Aws.GameLift.Realtime.Types;
 using UnityEngine.SceneManagement;
-//using UnityEditor;
 using System.Text.RegularExpressions;
 using UnityEditor;
-using System.Threading.Tasks;
 
 namespace ASL
 {
