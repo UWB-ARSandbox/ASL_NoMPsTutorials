@@ -1,4 +1,4 @@
-﻿//Used to help debug connection issues and other misc. GameLift features. Uncomment to turn on
+﻿//Used for help debug GameLift connection issues and other misc. GameLift potential problems. Uncomment to turn on
 //#define ASL_DEBUG
 using Amazon;
 using Amazon.CognitoIdentity;
@@ -273,7 +273,6 @@ namespace ASL
 
             }
 
-
             /// <summary>
             /// Sets the UI panel to be displayed to the user
             /// </summary>
@@ -542,7 +541,8 @@ namespace ASL
                 InvokeRequest request = new InvokeRequest
                 {
                     FunctionName = "QuickConnect",
-                    Payload = "{\"MatchName\" : \"" + QuickConnect.m_StaticRoomName + "\"," + "\"Username\" : \"" + GetInstance().m_Username + "\"}",
+                    Payload = "{\"MatchName\" : \"" + QuickConnect.m_StaticRoomName + "\"," + "\"Username\" : \"" + GetInstance().m_Username
+                            + "\"," + "\"scene\" : \"" + QuickConnect.m_StaticStartingScene + "\"}",
                     InvocationType = InvocationType.RequestResponse
                 };
 
