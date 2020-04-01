@@ -23,10 +23,17 @@
 
 namespace ASL
 {
+    using System.Collections;
     using System.Collections.Generic;
-    using GoogleARCore;
-    using GoogleARCore.Examples.Common;
+    #if UNITY_ANDROID || UNITY_IOS
+    using UnityEngine.XR.ARFoundation;
+    using UnityEngine.XR.ARSubsystems;
+    using Google.XR.ARCoreExtensions;
+    #endif
     using UnityEngine;
+    using System.Text;
+    using Aws.GameLift.Realtime.Command;
+    using System;
 
     /// <summary>
     /// A helper script to set the apparent world origin of ARCore through applying an offset to the
@@ -43,7 +50,7 @@ namespace ASL
         /// SIngleton for this class
         /// </summary>
         /// <returns>Singleton to be used anywhere</returns>
-        public static ARWorldOriginHelper Instance()
+        public static ARWorldOriginHelper GetInstance()
         {
             if (m_Instance != null)
             {
@@ -69,17 +76,6 @@ namespace ASL
         public Transform ARCoreDeviceTransform;
 
         /// <summary>
-        /// A prefab for tracking and visualizing detected planes.
-        /// </summary>
-        public GameObject DetectedPlanePrefab;
-
-        /// <summary>
-        /// A list to hold new planes ARCore began tracking in the current frame. This object is
-        /// used across the application to avoid per-frame allocations.
-        /// </summary>
-        private List<DetectedPlane> m_NewPlanes = new List<DetectedPlane>();
-
-        /// <summary>
         /// A list to hold the planes ARCore began tracking before the WorldOrigin was placed.
         /// </summary>
         private List<GameObject> m_PlanesBeforeOrigin = new List<GameObject>();
@@ -95,46 +91,55 @@ namespace ASL
         /// </summary>
         private Transform m_AnchorTransform;
 
+        #if UNITY_ANDROID || UNITY_IOS
+        /// <summary>
+        /// The AR Session - is a part of the ARHolder object
+        /// </summary>
+        public ARSession m_ARSession;
+
+        /// <summary>
+        /// The AR Raycast Manager - is a part of the ARHolder object
+        /// </summary>
+        public ARRaycastManager m_RaycastManager;
+
+        /// <summary>
+        /// The AR Anchor Manager - is a part of the ARHolder object
+        /// </summary>
+        public ARAnchorManager m_ARAnchorManager;
+
+        /// <summary>
+        /// The AR Plane Manager - is a part of the ARHolder object
+        /// </summary>
+        public ARPlaneManager m_ARPlaneManager;
+#endif
         /// <summary>
         /// Called on class start
         /// </summary>
         private void Start()
         {
-            Instance().ARCoreDeviceTransform = ARCoreDeviceTransform;
-            Instance().DetectedPlanePrefab = DetectedPlanePrefab;
-        }
+            GetInstance().ARCoreDeviceTransform = ARCoreDeviceTransform;
+            #if UNITY_ANDROID || UNITY_IOS
+            m_ARPlaneManager.planesChanged += _planesChanged;
+#endif
 
-        /// <summary>
-        /// The Unity Update() method.
-        /// </summary>
-        public void Update()
+        }
+        #if UNITY_ANDROID || UNITY_IOS
+        private void _planesChanged(ARPlanesChangedEventArgs obj)
         {
-            // Check that motion tracking is tracking.
-            if (Session.Status != SessionStatus.Tracking)
+            if (obj.added?.Count > 0)
             {
-                return;
-            }
-
-            Pose worldPose = _WorldToAnchorPose(Pose.identity);
-
-            // Iterate over planes found in this frame and instantiate corresponding GameObjects to
-            // visualize them.
-            Session.GetTrackables<DetectedPlane>(m_NewPlanes, TrackableQueryFilter.New);
-            for (int i = 0; i < m_NewPlanes.Count; i++)
-            {
-                // Instantiate a plane visualization prefab and set it to track the new plane. The
-                // transform is set to the origin with an identity rotation since the mesh for our
-                // prefab is updated in Unity World coordinates.
-                GameObject planeObject = Instantiate(
-                    DetectedPlanePrefab, worldPose.position, worldPose.rotation, transform);
-                planeObject.GetComponent<DetectedPlaneVisualizer>().Initialize(m_NewPlanes[i]);
-
-                if (!m_IsOriginPlaced)
+                foreach (ARPlane _newPlane in obj.added)
                 {
-                    m_PlanesBeforeOrigin.Add(planeObject);
+                    if (!m_IsOriginPlaced)
+                    {
+                        m_PlanesBeforeOrigin.Add(_newPlane.gameObject);
+                    }
                 }
+
             }
-        }
+
+        }    
+#endif
 
         /// <summary>
         /// Sets the apparent world origin of ARCore through applying an offset to the ARCoreDevice
@@ -146,7 +151,7 @@ namespace ASL
         public void SetWorldOrigin(Transform anchorTransform)
         {
             // Each client will store the anchorTransform, and will have to move the ARCoreDevice
-            // (and therefore also it's FirstPersonCamera child) and update other trakced poses
+            // (and therefore also it's FirstPersonCamera child) and update other tracked poses
             // (planes, anchors, etc.) so that they appear in the same position in the real world.
             if (m_IsOriginPlaced)
             {
@@ -171,33 +176,68 @@ namespace ASL
             }
         }
 
+
+            #if UNITY_ANDROID || UNITY_IOS
         /// <summary>
-        /// Performs a raycast against physical objects being tracked by ARCore. This function wraps
-        /// <c>Frame.Raycast</c> to add the necessary offset if the WorldOrigin is moved when a
-        /// Cloud Anchor is placed.
-        /// Output the closest hit from the camera.
-        /// Note that the Unity's screen coordinate (0, 0) starts from bottom left.
+        /// Helper function to perform an AR Raycast for the user
         /// </summary>
-        /// <param name="x">Horizontal touch position in Unity's screen coordiante.</param>
-        /// <param name="y">Vertical touch position in Unity's screen coordiante.</param>
-        /// <param name="filter">A filter bitmask where each set bit in
-        /// <see cref="TrackableHitFlags"/>
-        /// represents a category of raycast hits the method call should consider valid.</param>
-        /// <param name="hitResult">A <see cref="TrackableHit"/> that will be set if the raycast is
-        /// successful.</param>
-        /// <returns><c>true</c> if the raycast had a hit, otherwise <c>false</c>.</returns>
-        public bool Raycast(float x, float y, TrackableHitFlags filter, out TrackableHit hitResult)
+        /// <param name="_touchPosition">Where the user touched</param>
+        /// <param name="hitPose">The location of the impact</param>
+        /// <param name="_trackableType">The type of trackable to look for</param>
+        /// <returns>True if they hit a trackable that fits the specified trackable type</returns>
+        public bool Raycast(Vector2 _touchPosition, out Pose hitPose, TrackableType _trackableType)
         {
-            bool foundHit = Frame.Raycast(x, y, filter, out hitResult);
+            //OLD: float x, float y, TrackableHitFlags filter, out TrackableHit hitResult
+            List<ARRaycastHit> hitResults = new List<ARRaycastHit>();
+            m_RaycastManager.Raycast(_touchPosition, hitResults, _trackableType);
+
+            bool foundHit = hitResults.Count > 0;
+            //hitResult = new ARRaycastHit();
+            hitPose = new Pose();
             if (foundHit)
             {
-                Pose worldPose = _WorldToAnchorPose(hitResult.Pose);
-                TrackableHit newHit = new TrackableHit(
-                    worldPose, hitResult.Distance, hitResult.Flags, hitResult.Trackable);
-                hitResult = newHit;
+                Pose worldPose = _WorldToAnchorPose(hitResults[0].pose);
+                //ARRaycastHit newHit = new ARRaycastHit(new XRRaycastHit(hitResults[0].trackableId, worldPose, hitResults[0].distance, _trackableType), 
+                //                                        hitResults[0].distance, null); //Last parameter may be wrong 
+                                                                                                        //"The Transform that transforms from session space to world space"
+                hitPose = worldPose;
             }
 
             return foundHit;
+        }
+#endif
+        /// <summary>
+        /// Helper function to perform an AR Raycast for the user - by default uses TrackableType.PlaneWithinPolygon which is the most common
+        /// </summary>
+        /// <param name="_touchPosition">Where the user touched</param>
+        /// <param name="hitPose">The location of the impact</param>
+        /// <returns>True if they hit a trackable that fits the specified trackable type</returns>
+        public bool Raycast(Vector2 _touchPosition, out Pose hitPose)
+        {
+#if UNITY_ANDROID || UNITY_IOS
+            TrackableType trackableType = TrackableType.PlaneWithinPolygon
+            //OLD: float x, float y, TrackableHitFlags filter, out TrackableHit hitResult
+            List<ARRaycastHit> hitResults = new List<ARRaycastHit>();
+            m_RaycastManager.Raycast(_touchPosition, hitResults, _trackableType);
+
+            bool foundHit = hitResults.Count > 0;
+            //hitResult = new ARRaycastHit();
+            hitPose = new Pose();
+            if (foundHit)
+            {
+                Pose worldPose = _WorldToAnchorPose(hitResults[0].pose);
+                //ARRaycastHit newHit = new ARRaycastHit(new XRRaycastHit(hitResults[0].trackableId, worldPose, hitResults[0].distance, _trackableType), 
+                //                                        hitResults[0].distance, null); //Last parameter may be wrong 
+                //"The Transform that transforms from session space to world space"
+                hitPose = worldPose;
+            }
+            return foundHit;
+#else
+            Debug.LogError("Can only AR Raycast on mobile devices");
+            hitPose = new Pose();
+            return false;
+#endif
+
         }
 
         /// <summary>
@@ -221,5 +261,74 @@ namespace ASL
 
             return new Pose(position, rotation);
         }
+
+#if UNITY_ANDROID || UNITY_IOS
+        /// <summary>
+        /// Waits for the cloud anchor to be created so it can then send it's information to other users
+        /// </summary>
+        /// <param name="_cloudAnchor">The cloud anchor that is being created</param>
+        /// <param name="_hitResult">The location where it was created</param>
+        /// <param name="_anchorObjectPrefab">The object that will be attached to the cloud anchor</param>
+        /// <param name="_myPostCreateCloudAnchorFunction">The function to call after creating the cloud anchor</param>
+        /// <param name="_waitForAllUsersToResolve">Flag indicating to wait or not for all users to resolve before calling the post create function</param>
+        /// <param name="_setWorldOrigin">Flag indicating to set this cloud anchor as the world origin or not</param>
+        /// <returns>Nothing - just waits until the cloud anchor succeeds or fails</returns>
+        public IEnumerator WaitForCloudAnchorToBeCreated(ARCloudAnchor _cloudAnchor, Pose _hitResult, ASLObject _anchorObjectPrefab = null, 
+            ASLObject.PostCreateCloudAnchorFunction _myPostCreateCloudAnchorFunction = null,
+            bool _waitForAllUsersToResolve = true, bool _setWorldOrigin = true)
+        {
+            while (_cloudAnchor.cloudAnchorState == CloudAnchorState.TaskInProgress)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+            
+            if (_cloudAnchor.cloudAnchorState == CloudAnchorState.Success)
+            {
+                //Successful:
+                Debug.Log("Successfully Resolved cloud anchor: " + _cloudAnchor.cloudAnchorId + " for object: " + _anchorObjectPrefab?.m_Id);
+                if (_anchorObjectPrefab == null)
+                {
+                    //Uncomment the line below to aid in visual debugging (helps display the cloud anchor)
+                    //_anchorObjectPrefab = GameObject.CreatePrimitive(PrimitiveType.Cube).AddComponent<ASLObject>(); //if null, then create empty game object               
+                    _anchorObjectPrefab = new GameObject().AddComponent<ASLObject>();
+                    _anchorObjectPrefab._LocallySetAnchorID(_cloudAnchor.cloudAnchorId); //Add ASLObject component to this anchor and set its anchor id variable
+
+                    _anchorObjectPrefab._LocallySetID(Guid.NewGuid().ToString()); //Locally set the id of this object to a new id
+
+                    //Add this anchor object to our ASL dictionary using the anchor id as its key. All users will do this once they resolve this cloud anchor to ensure they still in sync.
+                    ASLHelper.m_ASLObjects.Add(_anchorObjectPrefab.m_Id, _anchorObjectPrefab.GetComponent<ASLObject>());
+                    //_anchorObjectPrefab.GetComponent<Material>().color = Color.magenta;
+                    _anchorObjectPrefab.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f); //Set scale to be 5 cm
+                }
+                else
+                {
+                    _anchorObjectPrefab.GetComponent<ASLObject>()._LocallySetAnchorID(_cloudAnchor.cloudAnchorId); //Set anchor id variable
+                    _anchorObjectPrefab.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f); //Set scale to be 5 cm
+                }
+                //Send Resolve packet using _anchorObjectPrefab 
+                _anchorObjectPrefab.GetComponent<ASLObject>().SendCloudAnchorToResolve(_setWorldOrigin, _waitForAllUsersToResolve);
+
+                Debug.Log("Wait: " + _waitForAllUsersToResolve);
+
+                if (_waitForAllUsersToResolve)
+                {
+                    byte[] id = Encoding.ASCII.GetBytes(_anchorObjectPrefab.m_Id);
+                    RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.ResolvedCloudAnchor, id);
+                    GameLiftManager.GetInstance().m_Client.SendMessage(message);
+
+                    _anchorObjectPrefab.StartWaitForAllUsersToResolveCloudAnchor(_cloudAnchor, _setWorldOrigin, _myPostCreateCloudAnchorFunction, _hitResult);
+                }
+                else //Don't wait for users to know about this cloud anchor
+                {
+                    _anchorObjectPrefab.GetComponent<ASLObject>()._LocallySetCloudAnchorResolved(true);
+                    _anchorObjectPrefab.StartWaitForAllUsersToResolveCloudAnchor(_cloudAnchor, _setWorldOrigin, _myPostCreateCloudAnchorFunction, _hitResult);
+                }
+            }
+            else
+            {
+                Debug.LogError("Failed to host Cloud Anchor " + _cloudAnchor.name + " " + _cloudAnchor.cloudAnchorState.ToString());
+            }        
+        }
+#endif
     }
 }

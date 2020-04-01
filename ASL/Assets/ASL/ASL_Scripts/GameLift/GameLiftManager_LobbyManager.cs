@@ -1,5 +1,5 @@
 ﻿//Used for help debug GameLift connection issues and other misc. GameLift potential problems. Uncomment to turn on
-//#define ASL_DEBUG
+#define ASL_DEBUG
 using Amazon;
 using Amazon.CognitoIdentity;
 using Amazon.Lambda;
@@ -19,6 +19,8 @@ using Aws.GameLift.Realtime.Types;
 using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
 using UnityEditor;
+using System.Net;
+using System.Net.Sockets;
 
 namespace ASL
 {
@@ -36,7 +38,7 @@ namespace ASL
             private Button m_BackButton;
 
             //Informational text for user that appears in the bottom left of the screen
-            
+
             /// <summary>The name of the user</summary>
             private Text m_UsernameText;
 
@@ -159,6 +161,9 @@ namespace ASL
             /// <summary>Error text displayed to the user when an error occurs</summary>
             public Text m_ErrorText;
 
+            /// <summary>The UDP listening port number for Android devices</summary>
+            private int m_AndroidUDPListeningPort = 33400;
+
             /// <summary>
             /// This function starts the scene by assigning all UI elements and is manually called by GameLiftManager's Start function as 
             /// this class is not a MonoBehavior class and can't be.
@@ -172,9 +177,14 @@ namespace ASL
                     m_SceneName = QuickConnect.m_StaticStartingScene;
                 }
                 else
-                {                   
+                {
                     m_SceneName = "";
                 }
+
+#if UNITY_ANDROID
+                CheckPorts();
+#endif
+
             }
 
             /// <summary>
@@ -328,9 +338,9 @@ namespace ASL
             /// </summary>
             private void GetAvailableScenes()
             {
-                #if UNITY_EDITOR
+#if UNITY_EDITOR
                 m_AvailableScenes.options.Clear();
-                int availableScenes = SceneManager.sceneCountInBuildSettings;            
+                int availableScenes = SceneManager.sceneCountInBuildSettings;
                 for (int i = 0; i < availableScenes; i++)
                 {
                     string lastPartOfPath = Regex.Match(EditorBuildSettings.scenes[i].path, "\\/\\w*.unity").Value;
@@ -348,8 +358,8 @@ namespace ASL
                 m_AvailableScenes.value = 0; // optional
                 m_AvailableScenes.Select(); // optional
                 m_AvailableScenes.RefreshShownValue(); // this is the key
-                #else
-                #endif
+#else
+#endif
 
             }
 
@@ -367,7 +377,7 @@ namespace ASL
                 {
                     invokeResponse = await _client.InvokeAsync(_request);
                 }
-                catch(Exception _exception)
+                catch (Exception _exception)
                 {
                     Debug.LogError(invokeResponse.FunctionError + _exception);
                     GetInstance().QForMainThread(AddErrorText, invokeResponse.FunctionError + _exception.ToString());
@@ -392,9 +402,8 @@ namespace ASL
                             }
                             else
                             {
-                                m_LoginButton.interactable = false;
+                                GetInstance().QForMainThread(ChangeInteractablility, m_LoginButton, false);
                                 GetInstance().QForMainThread(QuickConnectMatch);
-
                             }
 
                         }
@@ -405,7 +414,7 @@ namespace ASL
 #endif
                             GetInstance().QForMainThread(AddErrorText, "Username already in use. Try another.");
                             GetInstance().QForMainThread(UpdateConnectionStatusText, "Error - Invalid username.");
-                            m_LoginButton.interactable = true;
+                            GetInstance().QForMainThread(ChangeInteractablility, m_LoginButton, true);
                         }
                     }
                 }
@@ -417,9 +426,9 @@ namespace ASL
             /// </summary>
             private void CheckUsernameAvailability()
             {
-                #if ASL_DEBUG
+#if ASL_DEBUG
                 Debug.Log("Checking username availability...");
-                #endif
+#endif
 
                 if (string.IsNullOrEmpty(m_UsernameInputField.text))
                 {
@@ -428,8 +437,8 @@ namespace ASL
                 }
 
                 /***///AWSConfigs.AWSRegion = "us-west-2"; // Your region here
-                /***///AWSConfigs.HttpClient = AWSConfigs.HttpClientOption.UnityWebRequest;
-                    // paste this in from the Amazon Cognito Identity Pool console
+                     /***///AWSConfigs.HttpClient = AWSConfigs.HttpClientOption.UnityWebRequest;
+                          // paste this in from the Amazon Cognito Identity Pool console
                 CognitoAWSCredentials credentials = new CognitoAWSCredentials(
                     "us-west-2:548832a2-6238-46c2-b6a1-6e8870549a81", // Identity pool ID
                     RegionEndpoint.USWest2 // Region
@@ -485,7 +494,8 @@ namespace ASL
                     Debug.LogError(invokeResponse.FunctionError + _exception);
 #endif
                     GetInstance().QForMainThread(AddErrorText, invokeResponse.FunctionError + _exception.ToString());
-                    QuickConnect.m_StaticQuickStart = false; //connect old way if quick connect fails
+                    GetInstance().QForMainThread(SetQuickConnectFlag, false); //connect old way if quick connect fails
+
                 }
                 if (invokeResponse != null)
                 {
@@ -499,7 +509,7 @@ namespace ASL
 #if (ASL_DEBUG)
                             Debug.Log($"Error in Lambda: {payload}");
 #endif
-                            
+
                             if (Regex.IsMatch(payload.ToString(), "FleetCapacityExceededException"))
                             {
                                 GetInstance().QForMainThread(AddErrorText, "ASL currently does not have the capacity for another Game Session. Scaling up fleet to make room. " +
@@ -508,9 +518,9 @@ namespace ASL
                             else
                             {
                                 GetInstance().QForMainThread(AddErrorText, $"Error in Lambda: {payload}");
-                                QuickConnect.m_StaticQuickStart = false; //connect old way if quick connect fails                                
+                                GetInstance().QForMainThread(SetQuickConnectFlag, false); //connect old way if quick connect fails                               
                             }
-                            m_LoginButton.interactable = true;
+                            GetInstance().QForMainThread(ChangeInteractablility, m_LoginButton, true);
                         }
                         else
                         {
@@ -566,7 +576,7 @@ namespace ASL
                 {
                     Debug.LogError(invokeResponse.FunctionError + _exception);
                     GetInstance().QForMainThread(AddErrorText, invokeResponse.FunctionError + _exception.ToString());
-                    m_StartHostingButton.interactable = true;
+                    GetInstance().QForMainThread(ChangeInteractablility, m_StartHostingButton, true);
                 }
                 if (invokeResponse != null)
                 {
@@ -580,8 +590,16 @@ namespace ASL
 #if (ASL_DEBUG)
                             Debug.Log($"Error in Lambda: {payload}");
 #endif
-                            GetInstance().QForMainThread(AddErrorText, $"Error in Lambda: {payload}");
-                            m_StartHostingButton.interactable = true;
+                            if (Regex.IsMatch(payload.ToString(), "FleetCapacityExceededException"))
+                            {
+                                GetInstance().QForMainThread(AddErrorText, "ASL currently does not have the capacity for another Game Session. Scaling up fleet to make room. " +
+                                    "Please try again in approximately 5 minutes.");
+                            }
+                            else
+                            {
+                                GetInstance().QForMainThread(AddErrorText, $"Error in Lambda: {payload}");                              
+                            }
+                            GetInstance().QForMainThread(ChangeInteractablility, m_StartHostingButton, true);
                         }
                         else
                         {
@@ -603,14 +621,14 @@ namespace ASL
                 if (string.IsNullOrEmpty(m_RoomNameInputField.text))
                 {
                     GetInstance().QForMainThread(AddErrorText, "Room name cannot be empty.");
-                    m_StartHostingButton.interactable = true;
+                    GetInstance().QForMainThread(ChangeInteractablility, m_StartHostingButton, true);
                     return;
                 }
 
                 m_SceneName = m_AvailableScenes.options[m_AvailableScenes.value].text;
 
                 /***///AWSConfigs.AWSRegion = "us-west-2"; // Your region here
-                /***///AWSConfigs.HttpClient = AWSConfigs.HttpClientOption.UnityWebRequest;
+                     /***///AWSConfigs.HttpClient = AWSConfigs.HttpClientOption.UnityWebRequest;
                           // paste this in from the Amazon Cognito Identity Pool console
                 CognitoAWSCredentials credentials = new CognitoAWSCredentials(
                     "us-west-2:9dc2d6b8-58a0-4f0a-9369-b83c5c5e796a", // Identity pool ID
@@ -622,8 +640,8 @@ namespace ASL
                 InvokeRequest request = new InvokeRequest
                 {
                     FunctionName = "HostGameSession",
-                    Payload = "{" + "\"username\" : \"" + GetInstance().m_Username  + "\"," 
-                                + "\"name\" : \"" + m_RoomNameInputField.text + "-" + m_SceneName  + "\"," + "\"scene\" : \"" + m_SceneName + "\"}",
+                    Payload = "{" + "\"username\" : \"" + GetInstance().m_Username + "\","
+                                + "\"name\" : \"" + m_RoomNameInputField.text + "-" + m_SceneName + "\"," + "\"scene\" : \"" + m_SceneName + "\"}",
                     InvocationType = InvocationType.RequestResponse
                 };
                 InvokeHostLambda(client, request);
@@ -662,7 +680,7 @@ namespace ASL
                 //"System.Security.Authentication.AuthenticationException: A call to SSPI failed, see inner exception. 
                 //---> Mono.Security.Interface.TlsException: Handshake failed - error code: 
                 //UNITYTLS_INTERNAL_ERROR, verify result: UNITYTLS_X509VERIFY_NOT_DONE"   
-                
+
                 //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 //ServicePointManager.ServerCertificateValidationCallback = delegate {return true;};
 
@@ -670,19 +688,23 @@ namespace ASL
                 ClientConfiguration clientConfiguration = new ClientConfiguration();
 
                 //clientConfiguration.ConnectionType = ConnectionType.RT_OVER_WSS_DTLS_TLS12; //Still working on getting this to work
-            
+
                 GetInstance().m_Client = new Client(clientConfiguration);
                 GetInstance().m_Client.ConnectionOpen += new EventHandler(GetInstance().OnOpenEvent);
                 GetInstance().m_Client.ConnectionClose += new EventHandler(GetInstance().OnCloseEvent);
                 GetInstance().m_Client.DataReceived += new EventHandler<DataReceivedEventArgs>(GetInstance().OnDataReceived);
                 GetInstance().m_Client.ConnectionError += new EventHandler<Aws.GameLift.Realtime.Event.ErrorEventArgs>(GetInstance().OnConnectionErrorEvent);
 
+
+                //Run one test at a time
+                //Try stress tests to see packets
+
 #if UNITY_ANDROID
-                int UDPListenPort = 33400;
+                int UDPListenPort = m_AndroidUDPListeningPort;                
 #else
                 int UDPListenPort = FindAvailableUDPPort(DEFAULT_UDP_PORT, DEFAULT_UDP_PORT + 100); //33400 - 33500 - Function does not work on Android.
 #endif
-                
+
                 if (UDPListenPort == -1)
                 {
 #if ASL_DEBUG
@@ -730,6 +752,7 @@ namespace ASL
             private int FindAvailableUDPPort(int firstPort, int lastPort)
             {
                 var UDPEndPoints = IPGlobalProperties.GetIPGlobalProperties().GetActiveUdpListeners();
+
                 List<int> usedPorts = new List<int>();
                 usedPorts.AddRange(from n in UDPEndPoints where n.Port >= firstPort && n.Port <= lastPort select n.Port);
                 usedPorts.Sort();
@@ -766,7 +789,7 @@ namespace ASL
                     {
                         var payload = Encoding.ASCII.GetString(invokeResponse.Payload.ToArray()) + "\n";
                         var gameSessionObj = JsonUtility.FromJson<GameSessionObjectCollection>(payload);
-                        DestroyMatchOptions();
+                        GetInstance().QForMainThread(DestroyMatchOptions);
                         foreach (var _gameSession in gameSessionObj.GameSessions)
                         {
                             if (_gameSession.Name == null)
@@ -844,7 +867,6 @@ namespace ASL
                 }
                 catch (Exception _exception)
                 {
-                    Debug.LogError(invokeResponse.FunctionError + _exception);
                     GetInstance().QForMainThread(AddErrorText, invokeResponse.FunctionError + _exception.ToString());
                 }
                 if (invokeResponse != null)
@@ -916,7 +938,7 @@ namespace ASL
             {
                 m_ErrorText.text = _errorText;
             }
-            
+
             /// <summary>
             /// Clears any error text
             /// </summary>
@@ -933,7 +955,7 @@ namespace ASL
             {
                 m_ConnectionStatusText.text = "Connection Status: " + _connectionStatus;
             }
-            
+
             /// <summary>
             /// Updates the username of the user based on the username they selected
             /// </summary>
@@ -1010,7 +1032,7 @@ namespace ASL
             /// </summary>
             private void ReadyUp()
             {
-                RTMessage message = GetInstance().CreateRTMessage(OpCode.PlayerReady, Encoding.ASCII.GetBytes(m_SceneName), DeliveryIntent.Reliable, GetInstance().m_GroupId, GetInstance().m_ServerId);
+                RTMessage message = GetInstance().CreateRTMessage(OpCode.PlayerReady, Encoding.ASCII.GetBytes(m_SceneName));
                 GetInstance().m_Client.SendMessage(message);
             }
 
@@ -1027,6 +1049,25 @@ namespace ASL
             }
 
             /// <summary>
+            /// Allows a button's interactability to be changed on the main Unity thread
+            /// </summary>
+            /// <param name="_buttonToChange">The button to change</param>
+            /// <param name="_value">The value determining the button's interactability</param>
+            private void ChangeInteractablility(Button _buttonToChange, bool _value)
+            {
+                _buttonToChange.interactable = _value;
+            }
+
+            /// <summary>
+            /// Changes the value of the QuickConnect flag
+            /// </summary>
+            /// <param name="_value">the new value of that boolean</param>
+            private void SetQuickConnectFlag( bool _value)
+            {
+                QuickConnect.m_StaticQuickStart = _value;
+            }
+
+            /// <summary>
             /// Is called to update any new comers of who this user is
             /// </summary>
             private void UpdateNewComer()
@@ -1040,6 +1081,56 @@ namespace ASL
             }
 
             /// <summary>
+            /// Looks for an available port for the android device to use by attempting a connection to it
+            /// </summary>
+            private void CheckPorts()
+            {
+                UdpClient testClient = new UdpClient(m_AndroidUDPListeningPort);
+                try
+                {
+                    testClient.Connect("www.contoso.com", m_AndroidUDPListeningPort);
+                    if (testClient.Client.Connected)
+                    {
+#if ASL_DEBUG
+                        Debug.Log("Connection available on port: " + m_AndroidUDPListeningPort);
+#endif
+                        testClient.Close();
+                        m_LoginButton.interactable = true;
+                    }
+                    else
+                    {
+                        m_LoginButton.interactable = false;
+#if ASL_DEBUG
+                        Debug.Log("Failed to connect on port: " + m_AndroidUDPListeningPort);
+#endif
+                        m_AndroidUDPListeningPort++;
+                        if (m_AndroidUDPListeningPort > 33500)
+                        {
+                            AddErrorText("Could not find an available port to use. Please restart device.");
+                            return;
+                        }
+                        CheckPorts();
+                    }
+                }
+                catch (Exception _error)
+                {
+#if ASL_DEBUG
+                    Debug.LogError(_error);
+#endif
+                    AddErrorText(_error.ToString());
+                    m_AndroidUDPListeningPort++;
+                    if (m_AndroidUDPListeningPort > 33500)
+                    {
+#if ASL_DEBUG
+                        AddErrorText("Could not find an available port to use. Please restart device. " + _error.ToString());
+#endif
+                        return;
+                    }
+                    CheckPorts();
+                }
+            }
+
+            /// <summary>
             /// Is called when a player joins the match
             /// </summary>
             /// <param name="_packet">The packet containing information about the server</param>
@@ -1047,7 +1138,7 @@ namespace ASL
             {
                 string data = Encoding.Default.GetString(_packet.Data);
                 string[] parts = data.Split(':');
-                GetInstance().m_PeerId = _packet.Sender; //As only sender receives this message, we can assign the local player's peerId this way
+                GetInstance().m_PeerId = int.Parse(parts[2]);
                 if (!int.TryParse(parts[0], out int tmpId))
                 {
                     GetInstance().m_ServerId = -1; //The typical ServerId
@@ -1068,7 +1159,7 @@ namespace ASL
                 GetInstance().m_Players.Add(GetInstance().m_PeerId, GetInstance().m_Username);
 
             }
-          
+
             /// <summary>
             /// Updates the lobby screen to show any new players
             /// </summary>
@@ -1127,7 +1218,6 @@ namespace ASL
                 }
                 catch (Exception _exception)
                 {
-                    Debug.LogError(invokeResponse.FunctionError + _exception);
                     GetInstance().QForMainThread(AddErrorText, invokeResponse.FunctionError + _exception.ToString());
                 }
                 if (invokeResponse != null)
@@ -1151,7 +1241,7 @@ namespace ASL
                 CognitoAWSCredentials credentials = new CognitoAWSCredentials(
                     "us-west-2:19f43248-f4e9-435d-891c-d695ffcf8149", // Identity pool ID
                     RegionEndpoint.USWest2 // Region
-                );             
+                );
 
                 AmazonLambdaClient client = new AmazonLambdaClient(credentials, RegionEndpoint.USWest2);
                 InvokeRequest request = new InvokeRequest
@@ -1175,6 +1265,14 @@ namespace ASL
 
                 m_ChatHistoryText.text += "\n" + parts[0] + ":" + parts[1];
 
+            }
+
+            //Resets the lobby to the original login screen in case something happened
+            public void Reset()
+            {
+                SetCorrectUIPanel(CurrentLoginStage.Login);
+                AddErrorText("Connection timed out.");
+                m_LoginButton.interactable = true;
             }
 
         }

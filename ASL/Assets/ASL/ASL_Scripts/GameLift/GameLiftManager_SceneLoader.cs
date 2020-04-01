@@ -1,22 +1,8 @@
-﻿using Amazon;
-using Amazon.CognitoIdentity;
-using Amazon.Lambda;
-using Amazon.Lambda.Model;
-//using Aws.GameLift.Realtime.Command;
-using Aws.GameLift.Realtime.Event;
-using Aws.GameLift.Realtime;
-//using Aws.GameLift.Realtime.Types;
-using System;
-using System.Collections.Generic;
+﻿using Aws.GameLift.Realtime.Event;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using System.Net.NetworkInformation;
-using System.Linq;
-using System.IO;
-using Amazon.Runtime;
-using System.Net;
 using Aws.GameLift.Realtime.Command;
 using Aws.GameLift.Realtime.Types;
 using UnityEngine.SceneManagement;
@@ -84,7 +70,7 @@ namespace ASL
                         if (!m_Loaded)
                         {
                             m_Loaded = true; //Prevent multiple packets from sending unnecessarily
-                            RTMessage message = GetInstance().CreateRTMessage(OpCode.LaunchScene, Encoding.ASCII.GetBytes(""), DeliveryIntent.Reliable, GetInstance().m_GroupId, GetInstance().m_ServerId);
+                            RTMessage message = GetInstance().CreateRTMessage(OpCode.LaunchScene, Encoding.ASCII.GetBytes(""));
                             GetInstance().m_Client.SendMessage(message);
                         }
                         //Change to text to inform user that they are now waiting on others

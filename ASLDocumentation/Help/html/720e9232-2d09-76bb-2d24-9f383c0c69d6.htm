@@ -20,14 +20,10 @@
             Converts a pose from Unity world space to Anchor-relative space.
             </div></td></tr><tr data="private;declared;notNetfw;"><td><img src="../icons/privmethod.gif" alt="Private method" title="Private method" /></td><td><a href="8a05f38f-0a51-d1c4-2fa9-58ff8ef2947c.htm">Awake</a></td><td><div class="summary">
             Called when class first initialized
-            </div></td></tr><tr data="public;static;declared;notNetfw;"><td><img src="../icons/pubmethod.gif" alt="Public method" title="Public method" /><img src="../icons/static.gif" alt="Static member" title="Static member" /></td><td><a href="3550dfe6-7e8c-47a7-fe45-63ab7892b379.htm">Instance</a></td><td><div class="summary">
+            </div></td></tr><tr data="public;static;declared;notNetfw;"><td><img src="../icons/pubmethod.gif" alt="Public method" title="Public method" /><img src="../icons/static.gif" alt="Static member" title="Static member" /></td><td><a href="5d18606f-73e2-3a61-6d7b-b351a7fac80d.htm">GetInstance</a></td><td><div class="summary">
             SIngleton for this class
-            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="e2fde4ac-bd4e-81d3-5f6d-ce9437bb3e50.htm">Raycast</a></td><td><div class="summary">
-            Performs a raycast against physical objects being tracked by ARCore. This function wraps
-            <span class="code">Frame.Raycast</span> to add the necessary offset if the WorldOrigin is moved when a
-            Cloud Anchor is placed.
-            Output the closest hit from the camera.
-            Note that the Unity's screen coordinate (0, 0) starts from bottom left.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="1dd2a640-558e-e91c-82bd-08120e48c24b.htm">Raycast</a></td><td><div class="summary">
+            Helper function to perform an AR Raycast for the user - by default uses TrackableType.PlaneWithinPolygon which is the most common
             </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="51419232-9c0e-103b-7634-daf91f899540.htm">SetWorldOrigin</a></td><td><div class="summary">
             Sets the apparent world origin of ARCore through applying an offset to the ARCoreDevice
             (and therefore also it's FirstPersonCamera child), so that the Origin of Unity's World
@@ -35,22 +31,15 @@
             Cloud Anchor is either hosted or resolved.
             </div></td></tr><tr data="private;declared;notNetfw;"><td><img src="../icons/privmethod.gif" alt="Private method" title="Private method" /></td><td><a href="c9e113d4-80c7-011b-385a-028d2acee4ff.htm">Start</a></td><td><div class="summary">
             Called on class start
-            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="bbdec072-a866-9b52-bcdb-e41a70ba4165.htm">Update</a></td><td><div class="summary">
-            The Unity Update() method.
             </div></td></tr></table><a href="#PageHeader">Top</a></div><div class="collapsibleAreaRegion"><span class="collapsibleRegionTitle" onclick="SectionExpandCollapse('ID5RB')" onkeypress="SectionExpandCollapse_CheckKey('ID5RB', event)" tabindex="0"><img id="ID5RBToggle" class="collapseToggle" src="../icons/SectionExpanded.png" />Fields</span></div><div id="ID5RBSection" class="collapsibleSection"><table class="members" id="fieldList"><tr><th class="iconColumn">
 								 
 							</th><th>Name</th><th>Description</th></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubfield.gif" alt="Public field" title="Public field" /></td><td><a href="ecef8581-a715-aba5-dfa1-cfb4f44bb393.htm">ARCoreDeviceTransform</a></td><td><div class="summary">
             The transform of the ARCore Device.
-            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubfield.gif" alt="Public field" title="Public field" /></td><td><a href="941ccee3-4f58-f2f6-7b2e-15d15abefa1d.htm">DetectedPlanePrefab</a></td><td><div class="summary">
-            A prefab for tracking and visualizing detected planes.
             </div></td></tr><tr data="private;declared;notNetfw;"><td><img src="../icons/privfield.gif" alt="Private field" title="Private field" /></td><td><a href="d7d822d5-bf51-c50d-dd8e-8c3a8276656b.htm">m_AnchorTransform</a></td><td><div class="summary">
             The Transform of the Anchor object representing the World Origin.
             </div></td></tr><tr data="private;static;declared;notNetfw;"><td><img src="../icons/privfield.gif" alt="Private field" title="Private field" /><img src="../icons/static.gif" alt="Static member" title="Static member" /></td><td><a href="48a392d7-5bd1-d146-4244-f21bfca1c204.htm">m_Instance</a></td><td /></tr><tr data="private;declared;notNetfw;"><td><img src="../icons/privfield.gif" alt="Private field" title="Private field" /></td><td><a href="77647bcd-3b5e-584d-cd14-a776a1c52a7b.htm">m_IsOriginPlaced</a></td><td><div class="summary">
             Indicates whether the Origin of the new World Coordinate System, i.e. the Cloud Anchor,
             was placed.
-            </div></td></tr><tr data="private;declared;notNetfw;"><td><img src="../icons/privfield.gif" alt="Private field" title="Private field" /></td><td><a href="d6dccd6a-5eaf-7367-341a-af57459dcd5d.htm">m_NewPlanes</a></td><td><div class="summary">
-            A list to hold new planes ARCore began tracking in the current frame. This object is
-            used across the application to avoid per-frame allocations.
             </div></td></tr><tr data="private;declared;notNetfw;"><td><img src="../icons/privfield.gif" alt="Private field" title="Private field" /></td><td><a href="5aefb73c-5f5a-dbb0-d2c8-0a5ff97d4460.htm">m_PlanesBeforeOrigin</a></td><td><div class="summary">
             A list to hold the planes ARCore began tracking before the WorldOrigin was placed.
             </div></td></tr></table><a href="#PageHeader">Top</a></div><div class="collapsibleAreaRegion" id="seeAlsoSection"><span class="collapsibleRegionTitle" onclick="SectionExpandCollapse('ID6RB')" onkeypress="SectionExpandCollapse_CheckKey('ID6RB', event)" tabindex="0"><img id="ID6RBToggle" class="collapseToggle" src="../icons/SectionExpanded.png" />See Also</span></div><div id="ID6RBSection" class="collapsibleSection"><h4 class="subHeading">Reference</h4><div class="seeAlsoStyle"><a href="09796c35-2037-51d7-e5b0-27caaf204c40.htm">ASL Namespace</a></div></div></div></div><div id="pageFooter" class="pageFooter"> </div></body></html>

@@ -41,18 +41,19 @@
     </DocumentationSources>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="ASL" isDocumented="True">All the ASL features and how they can be used throughout your project.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="GameSparks.Platforms" isDocumented="False" />
-<NamespaceSummaryItem name="Mps" isDocumented="False" />
-<NamespaceSummaryItem name="SimpleDemos" isDocumented="True">Simple demo applications to help the user understand key ASL features.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="SimpleJson2" isDocumented="False" />
-<NamespaceSummaryItem name="StressTesting" isDocumented="True">More complex demos that are meant to stress test ASL, its capabilities, and the machines it runs on.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="(global)" isDocumented="False" />
-<NamespaceSummaryItem name="SimpleJson2.Reflection" isDocumented="False" />
-<NamespaceSummaryItem name="GoogleARCore" isDocumented="False" />
-<NamespaceSummaryItem name="GoogleARCore.CrossPlatform" isDocumented="False" />
-<NamespaceSummaryItem name="GoogleARCore.Examples.Common" isDocumented="False" />
-<NamespaceSummaryItem name="GoogleARCoreInternal" isDocumented="False" />
-<NamespaceSummaryItem name="GoogleARCoreInternal.CrossPlatform" isDocumented="False" /></NamespaceSummaries>
+      <NamespaceSummaryItem name="GameSparks.Platforms" isDocumented="False" />
+      <NamespaceSummaryItem name="Mps" isDocumented="False" />
+      <NamespaceSummaryItem name="SimpleDemos" isDocumented="True">Simple demo applications to help the user understand key ASL features.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="SimpleJson2" isDocumented="False" />
+      <NamespaceSummaryItem name="StressTesting" isDocumented="True">More complex demos that are meant to stress test ASL, its capabilities, and the machines it runs on.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="(global)" isDocumented="False" />
+      <NamespaceSummaryItem name="SimpleJson2.Reflection" isDocumented="False" />
+      <NamespaceSummaryItem name="GoogleARCore" isDocumented="False" />
+      <NamespaceSummaryItem name="GoogleARCore.CrossPlatform" isDocumented="False" />
+      <NamespaceSummaryItem name="GoogleARCore.Examples.Common" isDocumented="False" />
+      <NamespaceSummaryItem name="GoogleARCoreInternal" isDocumented="False" />
+      <NamespaceSummaryItem name="GoogleARCoreInternal.CrossPlatform" isDocumented="False" />
+    </NamespaceSummaries>
     <VisibleItems>Internals, Privates, PrivateFields, Protected, ProtectedInternalAsProtected</VisibleItems>
     <HelpTitle>Augmented Space Library %28ASL%29 Documentation</HelpTitle>
     <HelpFileVersion>1.0.0.0</HelpFileVersion>

@@ -60,8 +60,7 @@ namespace ASL
                     _LocallyRemoveReleaseCallback();
 
                     byte[] id = Encoding.ASCII.GetBytes(m_Id);
-                    RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.ReleaseClaimToServer, id, Aws.GameLift.Realtime.Types.DeliveryIntent.Reliable, 
-                                                                                        GameLiftManager.GetInstance().m_GroupId, GameLiftManager.GetInstance().m_ServerId);
+                    RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.ReleaseClaimToServer, id);
                     GameLiftManager.GetInstance().m_Client.SendMessage(message);
 
                     m_Mine = false; //Release                    

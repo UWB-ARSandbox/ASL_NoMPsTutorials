@@ -57,8 +57,10 @@ var OpCode = Object.freeze(
 	"ResolveAnchorId":33,
 	"ResolvedCloudAnchor":34,
 	"AnchorIDUpdate":35,
-	"LobbyTextMessage":36
-
+	"LobbyTextMessage":36,
+	"SendStringTest":1001,
+	"SendIntTest":1002,
+	"SendFloatArrayTest":1000
 });
 
 function Player(peerId, readyState, ownedASLObjects, requestedNewObjectId)
@@ -83,6 +85,7 @@ var ASLObjects = {};
 var ASLObjectSyncHolder = [];
 const ID_LENGTH = 36;
 const ID_START_LOCATION_WHEN_CREATED_BY_USER = 14*4; //14 numbers appear before the ID appears in packet, 4 is the size of an int
+const ID_START_LOCATION_WHEN_CREATED_FOR_CLOUD_ANCHOR = 6*4 //6 numbers appear before the ID appears in the packet, 4 is the size of an int
 var MatchStarted = false;
 var InitialScene = "";
 var ASLObjectsSynchronizedAtSceneLoad = 0;
@@ -139,8 +142,8 @@ function onPlayerConnect(connectMsg) {
 function onPlayerAccepted(player) {
     // This player was accepted -- let's send them a message
 
-	const message = session.newTextGameMessage(OpCode.PlayerJoinedMatch, player.peerId, 
-						session.getServerId() + ":" + session.getAllPlayersGroupId()); //Get server Id and group Id for all users
+	const message = session.newTextGameMessage(OpCode.PlayerJoinedMatch, session.getServerId(), 
+						session.getServerId() + ":" + session.getAllPlayersGroupId() + ":" + player.peerId); //Get server Id and group Id for all users
 	session.sendReliableMessage(message, player.peerId);
     activePlayers++;
 	
@@ -488,6 +491,22 @@ function onMessage(gameMessage)
 		}
 		case OpCode.ResolveAnchorId:
 		{			
+			//Look at id of object, if we don't have id on server side, then a new obkect was created for this anchor id and we need to add its id
+			var decodedMessage = UnpackPayload(gameMessage.payload);
+			//Get ID and new owner from payload
+			var id = "";
+			//split on ':' to find id and newOwner
+			for (let i = ID_START_LOCATION_WHEN_CREATED_FOR_CLOUD_ANCHOR; i < ID_LENGTH + ID_START_LOCATION_WHEN_CREATED_FOR_CLOUD_ANCHOR; i++)
+			{
+				id += decodedMessage.charAt(i);
+			}
+			
+			if (ASLObjects[id] == null)
+			{
+				ASLObjects[id] = new ASLObject(id, "server", "0");
+			}
+			
+		
 			const outMessage = session.newTextGameMessage(OpCode.ResolveAnchorId, session.getServerId(), gameMessage.payload);
 			session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());			
 			break;
@@ -507,6 +526,24 @@ function onMessage(gameMessage)
 		case OpCode.LobbyTextMessage:
 		{
 			const outMessage = session.newTextGameMessage(OpCode.LobbyTextMessage, session.getServerId(), gameMessage.payload);
+			session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
+			break;
+		}
+		case OpCode.SendStringTest:
+		{
+			const outMessage = session.newTextGameMessage(OpCode.SendStringTest, session.getServerId(), gameMessage.payload);
+			session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
+			break;
+		}
+		case OpCode.SendIntTest:
+		{
+			const outMessage = session.newTextGameMessage(OpCode.SendIntTest, session.getServerId(), gameMessage.payload);
+			session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
+			break;
+		}
+		case OpCode.SendFloatArrayTest:
+		{
+			const outMessage = session.newTextGameMessage(OpCode.SendFloatArrayTest, session.getServerId(), gameMessage.payload);
 			session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 			break;
 		}
@@ -611,7 +648,7 @@ function SetRequestedNewObjectIdToFalse()
 {
 	for (let i = 0; i < Players.length; i++)
 	{
-		Players[i]['requestedNewObjectId'] = false;
+		Players[i].requestedNewObjectId = false;
 	}
 }
 
@@ -619,7 +656,7 @@ function SetReadyStateToFalse()
 {
 	for (let i = 0; i < Players.length; i++)
 	{
-		Players[i]['readyState'] = false;
+		Players[i].readyState = false;
 	}
 }
 
@@ -628,9 +665,9 @@ function GetLowestPeerId()
 	var lowest = 5000; //Random high number
 	for (let i = 0; i < Players.length; i++)
 	{
-		if (Players[i]['peerId'] < lowest)
+		if (Players[i].peerId < lowest)
 		{
-			lowest = Players[i]['peerId'];
+			lowest = Players[i].peerId;
 		}
 	}
 	return lowest;

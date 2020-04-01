@@ -2,36 +2,33 @@
 <HelpTOC>
 
   <HelpTOCNode Title="Start Page" Url="html/16d360d9-1284-4cae-b7c9-c114d2c074ee.htm" />
-  <HelpTOCNode Id="1e53ce7c-9594-4820-8ee1-9ede89f3c445" Title="Version History" Url="html/177310fb-8abd-4b2b-98db-60d540b7ca2f.htm">
+  <HelpTOCNode Id="ceefe004-9591-4d24-aa75-2f60040c4db1" Title="Version History" Url="html/177310fb-8abd-4b2b-98db-60d540b7ca2f.htm">
     <HelpTOCNode Title="Version 1.0.0.0" Url="html/78cc44cf-a21e-4e00-b939-5c44e0cceeec.htm" />
   </HelpTOCNode>
-  <HelpTOCNode Id="ac9423a7-0cde-4dcd-82a2-3eeed9b5190c" Title="ASL" Url="html/09796c35-2037-51d7-e5b0-27caaf204c40.htm">
-    <HelpTOCNode Id="bdd52468-5b55-4111-bef1-8b8a36fc3ff1" Title="ARWorldOriginHelper Class" Url="html/720e9232-2d09-76bb-2d24-9f383c0c69d6.htm">
+  <HelpTOCNode Id="76644f0e-458b-4e3e-8919-5dda95100641" Title="ASL" Url="html/09796c35-2037-51d7-e5b0-27caaf204c40.htm">
+    <HelpTOCNode Id="52531d3a-45c7-4bf2-b66e-6d4595188f7b" Title="ARWorldOriginHelper Class" Url="html/720e9232-2d09-76bb-2d24-9f383c0c69d6.htm">
       <HelpTOCNode Title="ARWorldOriginHelper Constructor " Url="html/06136fa4-9531-aecb-b462-0d29577204ba.htm" />
-      <HelpTOCNode Id="940380b7-2e6a-4ba2-8b02-8f62a3f334bd" Title="ARWorldOriginHelper Methods" Url="html/3fa6d052-62fc-7ead-426d-58c69313175a.htm">
+      <HelpTOCNode Id="c93745aa-b4ed-42fc-b663-71ff39149e87" Title="ARWorldOriginHelper Methods" Url="html/3fa6d052-62fc-7ead-426d-58c69313175a.htm">
         <HelpTOCNode Title="_WorldToAnchorPose Method " Url="html/1848c73e-f463-acc4-63f4-5d5bbac32781.htm" />
         <HelpTOCNode Title="Awake Method " Url="html/8a05f38f-0a51-d1c4-2fa9-58ff8ef2947c.htm" />
-        <HelpTOCNode Title="Instance Method " Url="html/3550dfe6-7e8c-47a7-fe45-63ab7892b379.htm" />
-        <HelpTOCNode Title="Raycast Method " Url="html/e2fde4ac-bd4e-81d3-5f6d-ce9437bb3e50.htm" />
+        <HelpTOCNode Title="GetInstance Method " Url="html/5d18606f-73e2-3a61-6d7b-b351a7fac80d.htm" />
+        <HelpTOCNode Title="Raycast Method " Url="html/1dd2a640-558e-e91c-82bd-08120e48c24b.htm" />
         <HelpTOCNode Title="SetWorldOrigin Method " Url="html/51419232-9c0e-103b-7634-daf91f899540.htm" />
         <HelpTOCNode Title="Start Method " Url="html/c9e113d4-80c7-011b-385a-028d2acee4ff.htm" />
-        <HelpTOCNode Title="Update Method " Url="html/bbdec072-a866-9b52-bcdb-e41a70ba4165.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="c78370cb-0c2a-4ba6-8239-cfccec00ce0a" Title="ARWorldOriginHelper Fields" Url="html/eae0096e-77f4-c6dd-f68a-51aa2fb85019.htm">
+      <HelpTOCNode Id="342e3989-1c0d-4eca-99fa-ba1499548dc3" Title="ARWorldOriginHelper Fields" Url="html/eae0096e-77f4-c6dd-f68a-51aa2fb85019.htm">
         <HelpTOCNode Title="ARCoreDeviceTransform Field" Url="html/ecef8581-a715-aba5-dfa1-cfb4f44bb393.htm" />
-        <HelpTOCNode Title="DetectedPlanePrefab Field" Url="html/941ccee3-4f58-f2f6-7b2e-15d15abefa1d.htm" />
         <HelpTOCNode Title="m_AnchorTransform Field" Url="html/d7d822d5-bf51-c50d-dd8e-8c3a8276656b.htm" />
         <HelpTOCNode Title="m_Instance Field" Url="html/48a392d7-5bd1-d146-4244-f21bfca1c204.htm" />
         <HelpTOCNode Title="m_IsOriginPlaced Field" Url="html/77647bcd-3b5e-584d-cd14-a776a1c52a7b.htm" />
-        <HelpTOCNode Title="m_NewPlanes Field" Url="html/d6dccd6a-5eaf-7367-341a-af57459dcd5d.htm" />
         <HelpTOCNode Title="m_PlanesBeforeOrigin Field" Url="html/5aefb73c-5f5a-dbb0-d2c8-0a5ff97d4460.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="eba16381-033c-4406-9c96-1c41abdaa6aa" Title="ASLHelper Class" Url="html/2fda13af-1c46-636d-8a7f-593759a34ce1.htm">
+    <HelpTOCNode Id="13350b35-6823-47fb-9eff-22134682e222" Title="ASLHelper Class" Url="html/2fda13af-1c46-636d-8a7f-593759a34ce1.htm">
       <HelpTOCNode Title="ASLHelper Constructor " Url="html/5f3c389d-253a-06d4-f164-202267c154ff.htm" />
-      <HelpTOCNode Id="11a4b841-bac5-4fcd-859f-67de6adc8a05" Title="ASLHelper Methods" Url="html/68dd6d08-791c-27a8-c2a5-cbe26f3b2cf9.htm">
-        <HelpTOCNode Title="CreateARCoreCloudAnchor Method " Url="html/29233fad-47f1-f06d-9c52-2e6fd8d3f82c.htm" />
-        <HelpTOCNode Id="02a1b90d-7237-4cf6-88d7-7626efa6bb7a" Title="InstanitateASLObject Method " Url="html/42817a33-30fe-ef51-9ddf-4f852502a2de.htm">
+      <HelpTOCNode Id="bb7be61b-49d2-40cf-9814-decf0e4f28ff" Title="ASLHelper Methods" Url="html/68dd6d08-791c-27a8-c2a5-cbe26f3b2cf9.htm">
+        <HelpTOCNode Title="CreateARCoreCloudAnchor Method " Url="html/48d9a415-a7f6-c4a0-ab24-0e28118d4c95.htm" />
+        <HelpTOCNode Id="f40ff037-7cbc-4e38-8985-572e68743804" Title="InstanitateASLObject Method " Url="html/42817a33-30fe-ef51-9ddf-4f852502a2de.htm">
           <HelpTOCNode Title="InstanitateASLObject Method (String, Vector3, Quaternion)" Url="html/e748bdce-4f37-0b8e-6627-626f682d93d0.htm" />
           <HelpTOCNode Title="InstanitateASLObject Method (PrimitiveType, Vector3, Quaternion)" Url="html/578cee8e-cfe9-d52d-f829-18e6f37b5f8c.htm" />
           <HelpTOCNode Title="InstanitateASLObject Method (String, Vector3, Quaternion, String)" Url="html/8757fe00-e294-92c4-a6b5-119b5657df9d.htm" />
@@ -49,21 +46,15 @@
         <HelpTOCNode Title="SendSpawnPrefab Method " Url="html/dd87e550-8530-301d-da53-16d2672c39c0.htm" />
         <HelpTOCNode Title="SendSpawnPrimitive Method " Url="html/f913d622-cd43-ac83-651e-fb23c0a014fd.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="5267512e-5ec2-4d98-8de6-be32a4259cbc" Title="ASLHelper Fields" Url="html/26f8aa8d-d01a-57ab-7452-40a73c05a89d.htm">
+      <HelpTOCNode Id="ab58aa05-6010-43e5-bc27-0bc5185813a6" Title="ASLHelper Fields" Url="html/26f8aa8d-d01a-57ab-7452-40a73c05a89d.htm">
         <HelpTOCNode Title="m_ASLObjects Field" Url="html/777306e9-1c08-765b-6c93-3360fafbe52b.htm" />
         <HelpTOCNode Title="m_CloudAnchors Field" Url="html/171f1135-354a-4b10-f77f-3e1e7bac8921.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="6898386c-85c7-482c-8dc9-57cd5a53ca04" Title="ASLHelper.CloudAnchor Structure" Url="html/6c77c159-4743-dcaa-2894-55cb55fe593e.htm">
-      <HelpTOCNode Title="ASLHelper.CloudAnchor Constructor " Url="html/2b9d5a06-d204-e513-7ee5-7e1e6c5f2739.htm" />
-      <HelpTOCNode Id="a7ebcba9-28fc-4fb3-9669-df8e2667c860" Title="CloudAnchor Fields" Url="html/3e6b39bb-e71f-46de-930f-1089f594bfe9.htm">
-        <HelpTOCNode Title="anchor Field" Url="html/81e692c4-8ebf-954e-95f0-5bd2c67b61f1.htm" />
-        <HelpTOCNode Title="worldOrigin Field" Url="html/844f298b-e13c-b0fb-04cc-89fff69dc83b.htm" />
-      </HelpTOCNode>
-    </HelpTOCNode>
-    <HelpTOCNode Id="8781d7e8-89ca-422a-b3c1-72ac0da61bfd" Title="ASLObject Class" Url="html/497eaa4a-ea2a-d664-e3e1-09645537db2f.htm">
+    <HelpTOCNode Title="ASLHelper.CloudAnchor Structure" Url="html/6c77c159-4743-dcaa-2894-55cb55fe593e.htm" />
+    <HelpTOCNode Id="d6813f27-0d39-4133-845b-75506c08bba4" Title="ASLObject Class" Url="html/497eaa4a-ea2a-d664-e3e1-09645537db2f.htm">
       <HelpTOCNode Title="ASLObject Constructor " Url="html/5409ece7-a8ea-a696-f59a-8c696dd04a6b.htm" />
-      <HelpTOCNode Id="a17d470d-5e8c-4e5f-8fac-655d5bf0053f" Title="ASLObject Properties" Url="html/56a14137-efca-e95f-87d9-d25bbc8ef134.htm">
+      <HelpTOCNode Id="b1f74b4d-11aa-4672-aac5-9a3744c718df" Title="ASLObject Properties" Url="html/56a14137-efca-e95f-87d9-d25bbc8ef134.htm">
         <HelpTOCNode Title="m_AnchorID Property " Url="html/b3489405-1262-ef44-cd32-e8aca4bf06c2.htm" />
         <HelpTOCNode Title="m_ASLGameObjectCreatedCallback Property " Url="html/c4d80dd7-841b-3123-9056-b20a5e681c6c.htm" />
         <HelpTOCNode Title="m_ClaimCallback Property " Url="html/30473d72-a20f-cb2f-c47c-6a6ebde553b7.htm" />
@@ -73,12 +64,11 @@
         <HelpTOCNode Title="m_Mine Property " Url="html/11ba13fe-0e11-e8d3-28bc-c6cdf10972e2.htm" />
         <HelpTOCNode Title="m_OutstandingClaimCallbackCount Property " Url="html/c8ca33e2-0c98-5142-17ed-1814e8033578.htm" />
         <HelpTOCNode Title="m_OutStandingClaims Property " Url="html/531264e9-f98f-2f5d-21b2-5255950d1116.htm" />
-        <HelpTOCNode Title="m_PostCreateCloudAnchorFunction Property " Url="html/24e1405f-0f0f-fcc1-b8b9-ee2dc396b4c2.htm" />
         <HelpTOCNode Title="m_PostDownloadFunction Property " Url="html/888a0056-c6fa-5f1d-d94a-2f5e3814802f.htm" />
         <HelpTOCNode Title="m_ReleaseFunction Property " Url="html/b172320b-71d4-7061-ed67-d3965c0441d5.htm" />
         <HelpTOCNode Title="m_ResolvedCloudAnchor Property " Url="html/2648303b-2757-b399-66d9-4b93c153c913.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="b888bbed-0eb0-4a29-9885-c9e10a02e867" Title="ASLObject Methods" Url="html/e46e2630-6e6a-00a0-f1d9-bfefec2a4fbc.htm">
+      <HelpTOCNode Id="b892bc24-58ce-4c55-a3b3-561a5e61eb00" Title="ASLObject Methods" Url="html/e46e2630-6e6a-00a0-f1d9-bfefec2a4fbc.htm">
         <HelpTOCNode Title="_LocallyRemoveClaimCallbacks Method " Url="html/adc77de3-99f1-2b0d-dea7-55d2e5d62bef.htm" />
         <HelpTOCNode Title="_LocallyRemoveReleaseCallback Method " Url="html/9de9a16c-6d50-4655-f941-0d0d9cdb83a2.htm" />
         <HelpTOCNode Title="_LocallySetAnchorID Method " Url="html/68786a9a-e27c-63cd-4c90-8df2ea273036.htm" />
@@ -112,11 +102,9 @@
         <HelpTOCNode Title="SendCloudAnchorToResolve Method " Url="html/d90e3672-9ffe-4c53-67f9-a030a5e827ad.htm" />
         <HelpTOCNode Title="SendFloat4 Method " Url="html/5a174bc7-f1fe-c49a-b81d-4ad397ffb286.htm" />
         <HelpTOCNode Title="Start Method " Url="html/c641f4c9-aaf9-8042-0ada-7eeb91a6cf02.htm" />
-        <HelpTOCNode Title="StartWaitForAllUsersToResolveCloudAnchor Method " Url="html/4e3d6548-8d00-b9c3-d193-af190439e77c.htm" />
         <HelpTOCNode Title="Update Method " Url="html/bc83c554-603b-8506-d8d9-cd8f864a6918.htm" />
-        <HelpTOCNode Title="WaitForAllUsersToResolveCloudAnchor Method " Url="html/6ac9a93b-896c-b272-1045-8aea3bdd6aea.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="985a8340-11d8-4429-8d18-3967abc27a74" Title="ASLObject Fields" Url="html/b66937ef-a080-ef07-cc3e-5e9671312686.htm">
+      <HelpTOCNode Id="3e9cc5ec-7ae0-4ac8-8baf-8c5dd09cd6fe" Title="ASLObject Fields" Url="html/b66937ef-a080-ef07-cc3e-5e9671312686.htm">
         <HelpTOCNode Title="m_ClaimReleaseTimer Field" Url="html/ca131130-0929-f779-4141-baf43ee3f155.htm" />
         <HelpTOCNode Title="m_ClaimTime Field" Url="html/a810164f-df06-991a-681a-4c8ce194f8ae.htm" />
         <HelpTOCNode Title="m_HaventSetACloudAnchor Field" Url="html/be22362c-6300-e5ee-44b3-84a5585a7c74.htm" />
@@ -129,9 +117,9 @@
     <HelpTOCNode Title="ASLObject.PostCreateCloudAnchorFunction Delegate" Url="html/50bf7bb1-a819-7d6d-7bf9-e8ead73bccdf.htm" />
     <HelpTOCNode Title="ASLObject.PostDownloadFunction Delegate" Url="html/5d811963-82af-65f1-17ff-40807070e7d6.htm" />
     <HelpTOCNode Title="ASLObject.ReleaseFunction Delegate" Url="html/2932299d-8ac2-05b8-49ed-5133415d8666.htm" />
-    <HelpTOCNode Id="9511a2d5-a8a5-4a4d-845d-f029f865dbcf" Title="ASLSliderWithEcho Class" Url="html/61b04ba6-1b5f-530c-bccf-dedca841ae5b.htm">
+    <HelpTOCNode Id="11cadd04-8df9-4321-8135-9dc57d4ea0be" Title="ASLSliderWithEcho Class" Url="html/61b04ba6-1b5f-530c-bccf-dedca841ae5b.htm">
       <HelpTOCNode Title="ASLSliderWithEcho Constructor " Url="html/b7ea3516-e216-ba90-3f0b-7382a42137d5.htm" />
-      <HelpTOCNode Id="ebef54c1-88b6-4065-bcbd-238e586f1264" Title="ASLSliderWithEcho Methods" Url="html/d9f52c81-730d-576a-343e-6bedc59cdd51.htm">
+      <HelpTOCNode Id="a6ee5faa-4cf8-489b-a7d1-93b8495cac21" Title="ASLSliderWithEcho Methods" Url="html/d9f52c81-730d-576a-343e-6bedc59cdd51.htm">
         <HelpTOCNode Title="FunctionToCallWhenSliderIsChangedByAUser Method " Url="html/8e3200bd-db41-b67d-f2c0-81cfd5d378ed.htm" />
         <HelpTOCNode Title="GetOldSliderValue Method " Url="html/8c9490a5-0ad9-7506-ff80-a58adcdd3a82.htm" />
         <HelpTOCNode Title="GetSliderValue Method " Url="html/fc4cd9ac-c5f3-30a0-2f42-8cbc93708cb2.htm" />
@@ -144,7 +132,7 @@
         <HelpTOCNode Title="Start Method " Url="html/e4fd7dbe-2ff7-2e94-25e2-abcc7868c2c4.htm" />
         <HelpTOCNode Title="UpdateSlider Method " Url="html/48ead5d9-2fdf-e031-eb09-cb1cb08702e4.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="c306ded9-f34e-4894-8c76-f62d93547ce5" Title="ASLSliderWithEcho Fields" Url="html/ad0bbc65-c346-3880-971d-755b59b4a625.htm">
+      <HelpTOCNode Id="a1c48294-6c7a-42aa-8627-a9375ab1b932" Title="ASLSliderWithEcho Fields" Url="html/ad0bbc65-c346-3880-971d-755b59b4a625.htm">
         <HelpTOCNode Title="m_OldSliderValue Field" Url="html/3f031e45-6a1a-45ef-b2db-1646db8a3887.htm" />
         <HelpTOCNode Title="mCallBack Field" Url="html/ac2a0938-95b5-20e1-758c-d3f178bc9bbe.htm" />
         <HelpTOCNode Title="TheEcho Field" Url="html/0494a0f8-f762-c907-9064-4e5d140f112b.htm" />
@@ -153,9 +141,9 @@
       </HelpTOCNode>
     </HelpTOCNode>
     <HelpTOCNode Title="ASLSliderWithEcho.SliderCallbackDelegate Delegate" Url="html/1b15a0fa-65c1-4b9d-a560-e63ea90aa44f.htm" />
-    <HelpTOCNode Id="a7e9115e-404d-4c74-b3e0-1ae0f1b848c9" Title="GameLiftManager Class" Url="html/005a7152-9786-573d-eab7-8c3a6c8ce488.htm">
+    <HelpTOCNode Id="5b440988-a3ba-4152-b429-263ff89e5e66" Title="GameLiftManager Class" Url="html/005a7152-9786-573d-eab7-8c3a6c8ce488.htm">
       <HelpTOCNode Title="GameLiftManager Constructor " Url="html/d31c05b5-7180-bb6c-26fe-d5f90ba873d4.htm" />
-      <HelpTOCNode Id="ce816d9e-c366-4c3a-85a3-7e417609408a" Title="GameLiftManager Properties" Url="html/6ff30087-b8d3-a5a8-b2c9-de593078c14a.htm">
+      <HelpTOCNode Id="390d2eb1-a05b-40d5-9519-e956cc76c5a0" Title="GameLiftManager Properties" Url="html/6ff30087-b8d3-a5a8-b2c9-de593078c14a.htm">
         <HelpTOCNode Title="m_Client Property " Url="html/ad2488c0-cefc-9828-5e31-b41d56a417cf.htm" />
         <HelpTOCNode Title="m_GameSessionName Property " Url="html/a5c0f178-7026-4200-39ee-2fb6086c798f.htm" />
         <HelpTOCNode Title="m_GroupId Property " Url="html/b1bbdddc-1585-e184-7259-2d119273c09d.htm" />
@@ -163,11 +151,11 @@
         <HelpTOCNode Title="m_ServerId Property " Url="html/f72b1e33-bdec-613d-63d5-2564a01e6871.htm" />
         <HelpTOCNode Title="m_Username Property " Url="html/865ee0c6-47c7-60e4-1274-eef4cd8d7d87.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="3e430e53-3ebf-463f-8f34-7294efef25c7" Title="GameLiftManager Methods" Url="html/f91eb944-8d79-c5eb-8981-ac0989954583.htm">
+      <HelpTOCNode Id="d3445e85-9ee9-49b0-b713-3a9cde46346a" Title="GameLiftManager Methods" Url="html/f91eb944-8d79-c5eb-8981-ac0989954583.htm">
         <HelpTOCNode Title="AddPlayerToList Method " Url="html/9dff615b-37ad-e0ea-887d-5942a084beea.htm" />
         <HelpTOCNode Title="AmLowestPeer Method " Url="html/3cd9ef89-7ec6-cf6f-b81f-c4ef7a89575c.htm" />
         <HelpTOCNode Title="Awake Method " Url="html/f5591e15-e7b8-519c-d49b-0a69c808180a.htm" />
-        <HelpTOCNode Id="f79aa980-a5ab-4598-b56d-137600cabee9" Title="CombineByteArrays Method " Url="html/68ffa79b-90ab-8e92-fa96-9cba35f1c5ac.htm">
+        <HelpTOCNode Id="aa7f8eca-f651-4911-84d7-e9c530d54f92" Title="CombineByteArrays Method " Url="html/68ffa79b-90ab-8e92-fa96-9cba35f1c5ac.htm">
           <HelpTOCNode Title="CombineByteArrays Method (Byte[], Byte[])" Url="html/1a7a2e8c-6b08-09d4-a695-5070b5a4a11a.htm" />
           <HelpTOCNode Title="CombineByteArrays Method (Byte[], Byte[], Byte[])" Url="html/6455bae2-aae3-f43f-1f45-202e21330700.htm" />
           <HelpTOCNode Title="CombineByteArrays Method (Byte[], Byte[], Byte[], Byte[])" Url="html/18a322b9-0db2-9c09-f64e-262e755b0195.htm" />
@@ -185,12 +173,13 @@
         <HelpTOCNode Title="DisconnectFromServer Method " Url="html/4f83b649-ccca-0ef1-e639-f6893e70af89.htm" />
         <HelpTOCNode Title="GetInstance Method " Url="html/34c5fa97-360b-dc5b-66ae-606611b2c40a.htm" />
         <HelpTOCNode Title="GetLowestPeerId Method " Url="html/7a44eaca-4d87-dcf6-ac8c-494151531483.htm" />
+        <HelpTOCNode Title="OnApplicationPause Method " Url="html/396ffe7c-9a55-2a82-b55e-642ef5c5c966.htm" />
         <HelpTOCNode Title="OnApplicationQuit Method " Url="html/951cae70-9ddf-06cd-a7a9-ed564b2ed021.htm" />
         <HelpTOCNode Title="OnCloseEvent Method " Url="html/c42a7a21-e2bc-1399-16e5-cb89dc281f37.htm" />
         <HelpTOCNode Title="OnConnectionErrorEvent Method " Url="html/56680e2f-bc6b-fc21-460d-7352c4167e5a.htm" />
         <HelpTOCNode Title="OnDataReceived Method " Url="html/3998142a-d52b-3f60-a62b-a200caeea3c2.htm" />
         <HelpTOCNode Title="OnOpenEvent Method " Url="html/b76596b7-a76b-f4bd-3aa3-c696e445d14b.htm" />
-        <HelpTOCNode Id="fef8d707-2da0-470f-a931-84d4092b4214" Title="QForMainThread Method " Url="html/ce361c6b-78c7-c3c6-aa48-b58998e5cc31.htm">
+        <HelpTOCNode Id="19f454ac-8955-44a0-a998-1561ce8b06ba" Title="QForMainThread Method " Url="html/ce361c6b-78c7-c3c6-aa48-b58998e5cc31.htm">
           <HelpTOCNode Title="QForMainThread Method (Action)" Url="html/b038b647-9c81-157e-19f3-b2462bab0c06.htm" />
           <HelpTOCNode Title="QForMainThread(T1) Method (Action(T1), T1)" Url="html/44ef7b8e-1c66-536f-64bb-cd1b77bb13a7.htm" />
           <HelpTOCNode Title="QForMainThread(T1, T2) Method (Action(T1, T2), T1, T2)" Url="html/709b7787-6368-9335-5db1-2d256434c86e.htm" />
@@ -205,7 +194,7 @@
         <HelpTOCNode Title="Start Method " Url="html/2b2ac892-812e-37ff-5c56-2c5af004c79b.htm" />
         <HelpTOCNode Title="Update Method " Url="html/863bf114-7049-75ff-4c76-97e805359ec1.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="95cf8d0a-32cc-4867-9000-ace53d1f2725" Title="GameLiftManager Fields" Url="html/f57de331-9d6d-95b7-e01e-b451264e6e7b.htm">
+      <HelpTOCNode Id="0fcf94fd-bb2e-43db-97c1-6416ccbe34fd" Title="GameLiftManager Fields" Url="html/f57de331-9d6d-95b7-e01e-b451264e6e7b.htm">
         <HelpTOCNode Title="m_GameController Field" Url="html/37a1d144-83ac-8c37-2d5b-32212acab2d7.htm" />
         <HelpTOCNode Title="m_Instance Field" Url="html/d1b936e7-2a0c-9d5b-3c87-7fd2bd3dcbdb.htm" />
         <HelpTOCNode Title="m_LobbyManager Field" Url="html/a781dedf-5312-00e8-6faf-36df70fd6504.htm" />
@@ -214,9 +203,9 @@
         <HelpTOCNode Title="m_SceneLoader Field" Url="html/e77bcb74-1c5c-b8af-26fd-57d4c75e95b8.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="ec494d26-797f-4eaa-a18c-8b164e368a65" Title="GameLiftManager.GameController Class" Url="html/dc7fd40a-375c-0174-f5e9-56dbc3dd5f27.htm">
+    <HelpTOCNode Id="a483ed3e-d16b-4e70-a0cc-4045e6fe5ad8" Title="GameLiftManager.GameController Class" Url="html/dc7fd40a-375c-0174-f5e9-56dbc3dd5f27.htm">
       <HelpTOCNode Title="GameLiftManager.GameController Constructor " Url="html/9ca1a6b1-94e9-9943-2ad2-d6407d4ef0b6.htm" />
-      <HelpTOCNode Id="18a94076-9200-4ee0-9b58-10114c633831" Title="GameController Methods" Url="html/976b5a6a-b700-0eb7-ff97-8ecd3175fe15.htm">
+      <HelpTOCNode Id="9faaeaf4-2377-4598-a80c-66627190f5e1" Title="GameController Methods" Url="html/976b5a6a-b700-0eb7-ff97-8ecd3175fe15.htm">
         <HelpTOCNode Title="AllClientsFinishedResolvingCloudAnchor Method " Url="html/efe7f6e9-051e-cb7d-66a3-cd348931e07e.htm" />
         <HelpTOCNode Title="ConvertByteArrayIntoBool Method " Url="html/32e8c96b-d87a-a133-2c9c-f15f511549df.htm" />
         <HelpTOCNode Title="ConvertByteArrayIntoFloatArray Method " Url="html/b8f649b5-1f83-ed27-2a2c-f1e32cc6f6d3.htm" />
@@ -241,7 +230,6 @@
         <HelpTOCNode Title="RejectClaim Method " Url="html/9a79902d-684f-e2ef-b1b5-74c804b54b01.htm" />
         <HelpTOCNode Title="ReleaseClaimedObject Method " Url="html/b6a8bfff-bcc8-6a1f-dad5-0b1fcb99308f.htm" />
         <HelpTOCNode Title="ResolveAnchorId Method " Url="html/6c49e53d-5ba8-1d2d-3f8e-b609fc12d7dc.htm" />
-        <HelpTOCNode Title="ResolveCloudAnchor Method " Url="html/9d8e7bb5-f632-869c-0531-fed6c454d63a.htm" />
         <HelpTOCNode Title="SentFloats Method " Url="html/99ee5eab-5375-ebfa-92e1-b4f71af41d32.htm" />
         <HelpTOCNode Title="SetAnchorID Method " Url="html/3a6c270b-3c43-111a-943d-2ef87dce3258.htm" />
         <HelpTOCNode Title="SetLocalPosition Method " Url="html/d650e638-5208-2fbc-ed0b-c324620fbb12.htm" />
@@ -260,16 +248,16 @@
         <HelpTOCNode Title="Start Method " Url="html/c4945e9e-a953-dcb9-2009-f5fa56817470.htm" />
         <HelpTOCNode Title="SyncronizeID Method " Url="html/9c5619de-6ff5-ba97-d9ef-70285936c1a4.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="6b092575-80a7-418b-b2d1-67bd5c270c9d" Title="GameController Fields" Url="html/9cd65884-5fd7-c412-47da-fd64e92ee100.htm">
+      <HelpTOCNode Id="561830f7-7d6f-4c7c-9665-7c3541d5f4c1" Title="GameController Fields" Url="html/9cd65884-5fd7-c412-47da-fd64e92ee100.htm">
         <HelpTOCNode Title="m_ObjectIDAssignedCount Field" Url="html/6cae6229-cb4d-dc7f-f9d3-eb3b55b39218.htm" />
         <HelpTOCNode Title="m_PauseCanvas Field" Url="html/65b19074-0a2e-0983-672e-0268d94b3029.htm" />
         <HelpTOCNode Title="m_PauseText Field" Url="html/78b8a855-8697-12fb-9cd8-b702eb372fbb.htm" />
         <HelpTOCNode Title="ReceivedTexture2Ds Field" Url="html/34f1bf8b-dded-aabc-6d2b-16bca33ae39d.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="e6c8a638-d7a1-43a7-aa0e-835f75d9fe2d" Title="GameLiftManager.GameSessionObject Class" Url="html/97e07638-01ab-c3e3-2b47-9fe75bfb1613.htm">
+    <HelpTOCNode Id="03261ea0-9d08-4de1-b76e-684c1d271958" Title="GameLiftManager.GameSessionObject Class" Url="html/97e07638-01ab-c3e3-2b47-9fe75bfb1613.htm">
       <HelpTOCNode Title="GameLiftManager.GameSessionObject Constructor " Url="html/c34546c4-0c4d-dfad-e71f-56dec56f4ccd.htm" />
-      <HelpTOCNode Id="ddbd4981-e9e5-4c7c-a6cc-86e732308250" Title="GameSessionObject Fields" Url="html/437811d4-4f2e-a542-355f-a168e023cd96.htm">
+      <HelpTOCNode Id="6893200a-2598-42a6-a3be-4041bb0395b1" Title="GameSessionObject Fields" Url="html/437811d4-4f2e-a542-355f-a168e023cd96.htm">
         <HelpTOCNode Title="CurrentPlayerSessionCount Field" Url="html/bc8bcd2e-6b87-9712-62a8-d97a3d483abe.htm" />
         <HelpTOCNode Title="GameSessionId Field" Url="html/c5b4f331-5a72-6e95-d9b8-f261404341c0.htm" />
         <HelpTOCNode Title="IpAddress Field" Url="html/4000c11d-af92-3fa9-36d5-7512dcf6453b.htm" />
@@ -278,23 +266,25 @@
         <HelpTOCNode Title="Port Field" Url="html/d006f796-ab78-ac81-6b44-dd1640339a1a.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="ea68c949-251a-47a6-9579-67aa5867a0fd" Title="GameLiftManager.GameSessionObjectCollection Class" Url="html/b696b746-661c-dcdc-7622-1cdc50ae8e14.htm">
+    <HelpTOCNode Id="90d8678b-18c5-482c-b53f-a37d0b731773" Title="GameLiftManager.GameSessionObjectCollection Class" Url="html/b696b746-661c-dcdc-7622-1cdc50ae8e14.htm">
       <HelpTOCNode Title="GameLiftManager.GameSessionObjectCollection Constructor " Url="html/9731a0be-79cc-8f80-d897-9db6b596a31f.htm" />
-      <HelpTOCNode Id="2c0635c1-b6b1-48b4-b0ec-05d803c28110" Title="GameSessionObjectCollection Fields" Url="html/f68fee57-403e-8408-a41b-79c5f32f8e9a.htm">
+      <HelpTOCNode Id="ef593a90-1985-4cd0-8928-d0b91757fd6d" Title="GameSessionObjectCollection Fields" Url="html/f68fee57-403e-8408-a41b-79c5f32f8e9a.htm">
         <HelpTOCNode Title="GameSessions Field" Url="html/ad90cf0b-2b38-3313-ca53-c5767b718691.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="4add707f-3898-42fe-8ff5-dc1bd4ed5a08" Title="GameLiftManager.LobbyManager Class" Url="html/a0196c11-776f-3c51-e73d-415188c651c7.htm">
+    <HelpTOCNode Id="1083ea2d-fc49-4950-8173-64cfde74b45e" Title="GameLiftManager.LobbyManager Class" Url="html/a0196c11-776f-3c51-e73d-415188c651c7.htm">
       <HelpTOCNode Title="GameLiftManager.LobbyManager Constructor " Url="html/045a7213-250a-8257-af70-00d0bba7c493.htm" />
-      <HelpTOCNode Id="d76d46cb-ec92-4b81-8447-4246599846e4" Title="LobbyManager Properties" Url="html/ae69561e-062f-fb49-ad65-4fb68028cc9c.htm">
+      <HelpTOCNode Id="d86400f8-ef23-4b03-8738-a4911b634311" Title="LobbyManager Properties" Url="html/ae69561e-062f-fb49-ad65-4fb68028cc9c.htm">
         <HelpTOCNode Title="m_SceneName Property " Url="html/db2fc285-bdba-1c76-fe22-d5d65148e9f5.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="1f15fc16-efee-4911-af54-57611337dd29" Title="LobbyManager Methods" Url="html/5b4f5290-ee5e-5a7f-b1e2-cecd77f785b9.htm">
+      <HelpTOCNode Id="39a865ad-c0b1-48f2-9665-c22186d4ea8f" Title="LobbyManager Methods" Url="html/5b4f5290-ee5e-5a7f-b1e2-cecd77f785b9.htm">
         <HelpTOCNode Title="ActionConnectToServer Method " Url="html/778fbe15-fd7d-76c6-cfcb-86cda21600a6.htm" />
         <HelpTOCNode Title="AddErrorText Method " Url="html/5a9a6e06-fcd6-bdd7-210b-ba80081a16d4.htm" />
         <HelpTOCNode Title="AddPlayerToMatch Method " Url="html/65d3bd75-c192-36b8-6d30-8aaa13732680.htm" />
         <HelpTOCNode Title="AddPotentialSession Method " Url="html/c7c49570-f5c9-2bb3-0ef9-f17b42433544.htm" />
         <HelpTOCNode Title="AllowReadyUp Method " Url="html/0185a36c-f5ee-93ae-0107-c2fdcbc681d9.htm" />
+        <HelpTOCNode Title="ChangeInteractablility Method " Url="html/e07d4f2e-3de6-37c1-74dd-d8ef4109733c.htm" />
+        <HelpTOCNode Title="CheckPorts Method " Url="html/5a6530b6-d9ea-8f93-6732-47c3b3ee57ea.htm" />
         <HelpTOCNode Title="CheckUsernameAvailability Method " Url="html/d793a26e-dd4f-3527-de45-580918571486.htm" />
         <HelpTOCNode Title="ChooseToFindSessions Method " Url="html/4e49527c-3170-34b6-9be4-805d39e5a43f.htm" />
         <HelpTOCNode Title="ChooseToHostSession Method " Url="html/b16d0a9e-d1cd-c646-5178-ab1d167598d3.htm" />
@@ -318,10 +308,12 @@
         <HelpTOCNode Title="QuickConnectMatch Method " Url="html/b91e264f-8663-50ec-b5d0-09a6e7404599.htm" />
         <HelpTOCNode Title="ReadyUp Method " Url="html/a10d3fc4-8971-3ce3-3a9a-5be8f080ad0c.htm" />
         <HelpTOCNode Title="RemoveErrorText Method " Url="html/4bb675a6-cefe-308c-da1b-edf78d9056b5.htm" />
+        <HelpTOCNode Title="Reset Method " Url="html/7d73bc8d-514b-b783-bd5d-aed7ccfbd1dd.htm" />
         <HelpTOCNode Title="SearchForSessions Method " Url="html/2d31cfe3-8072-a4c3-33c7-bbe6d66b8d1a.htm" />
         <HelpTOCNode Title="SeePreviousUIScreen Method " Url="html/ab2b2f67-d826-ede3-dbf0-bc6ab752cf69.htm" />
         <HelpTOCNode Title="SetCorrectUIPanel Method " Url="html/635c5325-6a80-0eca-1d5c-98efdda3df58.htm" />
         <HelpTOCNode Title="SetGameName Method " Url="html/cd4e0f2b-4100-19de-429e-37c1cf3ed53c.htm" />
+        <HelpTOCNode Title="SetQuickConnectFlag Method " Url="html/b9d8c990-3089-dd2b-08bd-1caadbf6accf.htm" />
         <HelpTOCNode Title="Start Method " Url="html/3b5393fc-af40-f773-1cc1-b87fffa7e749.htm" />
         <HelpTOCNode Title="UpdateChatLog Method " Url="html/993bcaa0-c269-a398-c544-1cbc93bc4702.htm" />
         <HelpTOCNode Title="UpdateConnectionStatusText Method " Url="html/d36c4abc-c1f8-c293-4280-03927e5a6242.htm" />
@@ -330,8 +322,9 @@
         <HelpTOCNode Title="UpdateOtherUsers Method " Url="html/d30ea636-5555-52a0-bb0f-edfeac4c4d64.htm" />
         <HelpTOCNode Title="UpdateUsername Method " Url="html/217844b0-ea61-dec2-ad00-6cae9889e611.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="4c32efb2-90b7-4cbf-97da-4faeab4c1468" Title="LobbyManager Fields" Url="html/4b099f56-a686-0e6b-8b57-29f3f89cfc87.htm">
+      <HelpTOCNode Id="147c537e-86a8-4de1-9623-bd649502ae7d" Title="LobbyManager Fields" Url="html/4b099f56-a686-0e6b-8b57-29f3f89cfc87.htm">
         <HelpTOCNode Title="DEFAULT_UDP_PORT Field" Url="html/c4cffa83-e311-7633-9db5-e7c154291ba4.htm" />
+        <HelpTOCNode Title="m_AndroidUDPListeningPort Field" Url="html/9c101b6f-8995-fb56-0368-84c8ec903c10.htm" />
         <HelpTOCNode Title="m_AvailableScenes Field" Url="html/a61f1636-28ce-bb6f-0db5-43eb0dc5c201.htm" />
         <HelpTOCNode Title="m_AvailableSessionsScreen Field" Url="html/b25ae442-19c2-9955-73c1-5e2dae722ac3.htm" />
         <HelpTOCNode Title="m_BackButton Field" Url="html/a99fa8a8-3bc1-b41b-7b9c-7f30eb1e6450.htm" />
@@ -366,9 +359,9 @@
     </HelpTOCNode>
     <HelpTOCNode Title="GameLiftManager.LobbyManager.CurrentLoginStage Enumeration" Url="html/c3be05ad-3b86-218e-38d3-3ef26583aca4.htm" />
     <HelpTOCNode Title="GameLiftManager.OpCode Enumeration" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-    <HelpTOCNode Id="f3496993-1bd7-4b5c-aecc-086c8a17fc59" Title="GameLiftManager.PlayerSessionObject Class" Url="html/6105fd7f-bf04-2204-196a-881e793d25b3.htm">
+    <HelpTOCNode Id="f5ae6090-360c-4b14-bce4-ca238a181cab" Title="GameLiftManager.PlayerSessionObject Class" Url="html/6105fd7f-bf04-2204-196a-881e793d25b3.htm">
       <HelpTOCNode Title="GameLiftManager.PlayerSessionObject Constructor " Url="html/b213f1fb-2854-376a-0f18-0be3b362db42.htm" />
-      <HelpTOCNode Id="8aadbf40-3509-44dd-807e-109ee105a654" Title="PlayerSessionObject Fields" Url="html/60885aaa-5080-fbf0-9aa6-2a30b86300e1.htm">
+      <HelpTOCNode Id="1118a889-d4ee-411c-9ee7-1d39f6fddb57" Title="PlayerSessionObject Fields" Url="html/60885aaa-5080-fbf0-9aa6-2a30b86300e1.htm">
         <HelpTOCNode Title="CreationTime Field" Url="html/1c69861d-93fc-4810-f10a-69e301491e26.htm" />
         <HelpTOCNode Title="DnsName Field" Url="html/41a7cfce-162a-434d-ab2d-0a6758355d2c.htm" />
         <HelpTOCNode Title="FleetId Field" Url="html/f480bd97-4372-7327-3c87-87c0045d955e.htm" />
@@ -382,26 +375,41 @@
         <HelpTOCNode Title="Status Field" Url="html/2505f672-3478-5ef9-7562-3790f6d39e0d.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="c971e6c2-5e1c-4c4f-94cc-4431b4e46d27" Title="GameLiftManager.SceneLoader Class" Url="html/e8d7b2d6-aebd-8a92-17b5-9ea77ea9f66e.htm">
+    <HelpTOCNode Id="b2ed5403-d73e-44f5-9357-a235943da3a0" Title="GameLiftManager.SceneLoader Class" Url="html/e8d7b2d6-aebd-8a92-17b5-9ea77ea9f66e.htm">
       <HelpTOCNode Title="GameLiftManager.SceneLoader Constructor " Url="html/98c64530-2047-d965-03d3-fb22b6815b1b.htm" />
-      <HelpTOCNode Id="523a7dcc-ed34-4399-a5ea-f5264d333e5f" Title="SceneLoader Methods" Url="html/099a98b1-a42a-8580-0665-218904baf833.htm">
+      <HelpTOCNode Id="d9919dad-424b-4516-91bc-8f48fe3a5566" Title="SceneLoader Methods" Url="html/099a98b1-a42a-8580-0665-218904baf833.htm">
         <HelpTOCNode Title="AsyncSceneLoader Method " Url="html/f79e3e47-1476-bd15-62ba-827abb1b3e37.htm" />
         <HelpTOCNode Title="LaunchScene Method " Url="html/a4d17bc3-a8be-9d0f-ab11-5e52bffd0dd1.htm" />
         <HelpTOCNode Title="LoadScene Method " Url="html/4cb0979c-9122-58ee-deb1-92161e09acfa.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="c4cdd46b-2928-438a-ad83-1ea322c8887e" Title="SceneLoader Fields" Url="html/ef5ea29c-8c5d-c451-407e-8723ae1fcb08.htm">
+      <HelpTOCNode Id="71ba9a28-f32b-4eaf-b11e-8eb77416517b" Title="SceneLoader Fields" Url="html/ef5ea29c-8c5d-c451-407e-8723ae1fcb08.htm">
         <HelpTOCNode Title="m_AllPlayersLoaded Field" Url="html/e751abef-b42f-6bf2-44df-481ad866ab8d.htm" />
         <HelpTOCNode Title="m_Loaded Field" Url="html/57759c1a-6d85-86fc-a52c-28e1bbbe2b5b.htm" />
         <HelpTOCNode Title="m_LoadingProgressTest Field" Url="html/1a655c14-a856-f17d-c044-d2c130bea760.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="ced00eb0-ec4d-41fa-9bb0-e10a7c8da9bc" Title="QuickConnect Class" Url="html/ad0fb96a-1130-bbc2-eef9-a7a7588ce258.htm">
+    <HelpTOCNode Id="bdab8ab3-221e-4a5f-ad15-58f71a1da3be" Title="InstantiateARIfConnected Class" Url="html/5ba0af2c-637b-43df-f747-984c16f7cb56.htm">
+      <HelpTOCNode Title="InstantiateARIfConnected Constructor " Url="html/7361bdd3-a0d2-6422-a0e2-4e73ff8c4e55.htm" />
+      <HelpTOCNode Id="5a99e228-a2d9-457e-8ace-5ed5bdc3d03e" Title="InstantiateARIfConnected Methods" Url="html/d771b3d2-805b-9218-d46f-626e7cf8f81e.htm">
+        <HelpTOCNode Title="Awake Method " Url="html/8f11774c-adb7-dd40-175d-d07b00ff7b2f.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="e36978e9-3362-41d3-8eb0-a2c61ac0ebef" Title="InstantiateMRTKIfConnected Class" Url="html/82e448bc-5c8a-a36a-4991-e15ae35fd8d2.htm">
+      <HelpTOCNode Title="InstantiateMRTKIfConnected Constructor " Url="html/2998c296-7191-8cca-3756-c8ee8420d62d.htm" />
+      <HelpTOCNode Id="b1066bf5-a4ba-46c5-8a5f-c4f33eebbee9" Title="InstantiateMRTKIfConnected Methods" Url="html/e3b08416-7876-5b67-dca0-3d0ee3f2136c.htm">
+        <HelpTOCNode Title="Awake Method " Url="html/833f9a3c-b0ee-2d4c-9a68-8f742cb98eee.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="6e19704e-8580-4baf-bcd9-046715e97f24" Title="InstantiateMRTKIfConnected Fields" Url="html/56509463-b0b0-d6f4-6d5b-59e6af7e21f1.htm">
+        <HelpTOCNode Title="m_DefaultXRSDKConfigurationProfile Field" Url="html/d8c6a895-c3e0-810f-2183-b2adec3c30fe.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="566383e2-0b27-487a-a479-60a586158b42" Title="QuickConnect Class" Url="html/ad0fb96a-1130-bbc2-eef9-a7a7588ce258.htm">
       <HelpTOCNode Title="QuickConnect Constructor " Url="html/cb7b119e-0e32-4b28-6cfa-46df1113d5a6.htm" />
       <HelpTOCNode Title="QuickConnect Constructor " Url="html/3ec72849-0a1e-b5c6-8bad-2be1f6f668c5.htm" />
-      <HelpTOCNode Id="ff8933f3-995a-4d61-b444-497095ca6387" Title="QuickConnect Methods" Url="html/4d2d997c-7b26-4768-6262-cf093ac1e64a.htm">
+      <HelpTOCNode Id="f4464da6-e8da-418d-abbc-94c1d24d46f0" Title="QuickConnect Methods" Url="html/4d2d997c-7b26-4768-6262-cf093ac1e64a.htm">
         <HelpTOCNode Title="Awake Method " Url="html/1132dc6f-9546-493f-81cd-1fa2c39bdde5.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="97b06a7e-7610-449b-9eb7-5763509fe69a" Title="QuickConnect Fields" Url="html/77fefa61-a1e8-bc61-961f-c06ff92aac57.htm">
+      <HelpTOCNode Id="ccc12c29-c8ae-4279-a092-d808b48a7fec" Title="QuickConnect Fields" Url="html/77fefa61-a1e8-bc61-961f-c06ff92aac57.htm">
         <HelpTOCNode Title="m_RoomName Field" Url="html/b8539267-e0b2-ee8e-2405-bd27f71ac735.htm" />
         <HelpTOCNode Title="m_StartingScene Field" Url="html/8780875c-e4e0-3eff-d90a-f5becb8ab5e0.htm" />
         <HelpTOCNode Title="m_StaticQuickStart Field" Url="html/d25b2189-783d-383f-c7f2-38dce00affea.htm" />
@@ -410,33 +418,33 @@
       </HelpTOCNode>
     </HelpTOCNode>
   </HelpTOCNode>
-  <HelpTOCNode Id="06896cf5-3c43-4a1f-bb23-8c9b98283bad" Title="SimpleDemos" Url="html/27f31e9d-144b-6ea0-62ec-d4b1a0500aa5.htm">
-    <HelpTOCNode Id="c81428e9-a202-4cd4-b32d-d940a6c6ad7c" Title="ARCloudAnchor_Example Class" Url="html/161a58fe-64b2-a55c-def4-80af47071110.htm">
+  <HelpTOCNode Id="a809d97f-7468-48ac-95a4-65a3043270a1" Title="SimpleDemos" Url="html/27f31e9d-144b-6ea0-62ec-d4b1a0500aa5.htm">
+    <HelpTOCNode Id="1b7a0142-582d-446d-8d8f-a0aff464d645" Title="ARCloudAnchor_Example Class" Url="html/161a58fe-64b2-a55c-def4-80af47071110.htm">
       <HelpTOCNode Title="ARCloudAnchor_Example Constructor " Url="html/cda21d9a-cd9e-fbab-da45-74c22904fd30.htm" />
-      <HelpTOCNode Id="40dfcf17-967c-4859-961a-bf54a7b1a476" Title="ARCloudAnchor_Example Methods" Url="html/dc58bada-a672-d8e1-eff3-413d7425321e.htm">
+      <HelpTOCNode Id="22b0d2cf-52af-4fda-9006-48c151a7d48b" Title="ARCloudAnchor_Example Methods" Url="html/dc58bada-a672-d8e1-eff3-413d7425321e.htm">
         <HelpTOCNode Title="Update Method " Url="html/63041f7c-53ab-1eee-4d2a-c843d109f416.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="b324d9de-4595-4962-903c-c9f5930ff5a8" Title="ARCloudAnchor_Example Fields" Url="html/ab4c6f9b-8835-18a4-c6ce-d7378c56dd38.htm">
+      <HelpTOCNode Id="e1a153df-65a8-4c5b-b217-4d6253c133ce" Title="ARCloudAnchor_Example Fields" Url="html/ab4c6f9b-8835-18a4-c6ce-d7378c56dd38.htm">
         <HelpTOCNode Title="m_ObjectToPairWithCloudAnchor Field" Url="html/4a9f939d-1215-578f-49f4-89668940c10f.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="29c200bc-25ae-4a76-ab00-d851fc1e3ff7" Title="ColorObject_Example Class" Url="html/0bc57725-b3a4-9b75-9035-53e420d1add2.htm">
+    <HelpTOCNode Id="2926df4d-3beb-437a-aecd-565cb4f73fe1" Title="ColorObject_Example Class" Url="html/0bc57725-b3a4-9b75-9035-53e420d1add2.htm">
       <HelpTOCNode Title="ColorObject_Example Constructor " Url="html/d0f9a33e-2085-01d8-baa6-7ac85363151e.htm" />
-      <HelpTOCNode Id="2f2b611d-0dad-4ed1-8eb2-370f69ed544e" Title="ColorObject_Example Methods" Url="html/dba6b453-4ae6-544a-d087-771d77c81852.htm">
+      <HelpTOCNode Id="60a59363-e346-47cd-b475-1b9b93759251" Title="ColorObject_Example Methods" Url="html/dba6b453-4ae6-544a-d087-771d77c81852.htm">
         <HelpTOCNode Title="Start Method " Url="html/c2ba1f21-60b6-72da-7da2-849c21d1023b.htm" />
         <HelpTOCNode Title="Update Method " Url="html/3f1124c0-01b2-335e-2119-2a1b5ec4d751.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="5dc61c63-8c2f-4cee-a36a-b2813f997f82" Title="ColorObject_Example Fields" Url="html/055b22d4-4d5d-9087-ec50-f0d9304eafc2.htm">
+      <HelpTOCNode Id="f1d03502-e5a4-412e-856d-302480a86935" Title="ColorObject_Example Fields" Url="html/055b22d4-4d5d-9087-ec50-f0d9304eafc2.htm">
         <HelpTOCNode Title="m_MyColor Field" Url="html/8cc06847-2d60-fbb5-1b61-261ebcc6145b.htm" />
         <HelpTOCNode Title="m_MyObjectToColor Field" Url="html/b4ddd833-6f24-48df-4553-381f434cb168.htm" />
         <HelpTOCNode Title="m_OpponentsColor Field" Url="html/e9aa6019-0eb5-a486-81b5-7542b3ab2fee.htm" />
         <HelpTOCNode Title="m_SendColor Field" Url="html/b7c4a6b1-65d6-03a9-a267-8e3471448ddd.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="d647dbbe-cfce-4295-8f3b-5c9f2e73de52" Title="CreateObject_Example Class" Url="html/52166d2e-5c1e-52fa-b822-67aef32ead30.htm">
+    <HelpTOCNode Id="151e3660-f159-4b0a-9997-633a93bce138" Title="CreateObject_Example Class" Url="html/52166d2e-5c1e-52fa-b822-67aef32ead30.htm">
       <HelpTOCNode Title="CreateObject_Example Constructor " Url="html/a1a5e14e-1df1-9c0e-14e7-2626f40e4ffa.htm" />
       <HelpTOCNode Title="CreateObject_Example Constructor " Url="html/cde68866-6c84-4fff-3333-3acb387bf94d.htm" />
-      <HelpTOCNode Id="102977d6-a04e-4c9c-991b-64d47db9beb5" Title="CreateObject_Example Methods" Url="html/2eaf37e9-f6c0-67cb-036b-5e8370f38eb4.htm">
+      <HelpTOCNode Id="f3491eb3-fbed-4741-bb5c-de1335747023" Title="CreateObject_Example Methods" Url="html/2eaf37e9-f6c0-67cb-036b-5e8370f38eb4.htm">
         <HelpTOCNode Title="ClaimRecoveryFunction Method " Url="html/89f79f9e-9d0a-6ea6-4cbc-3394d9f6d225.htm" />
         <HelpTOCNode Title="MyFloatsFunction Method " Url="html/52d8dec2-1392-5d6b-32b7-960156eedad7.htm" />
         <HelpTOCNode Title="Start Method " Url="html/8abd30f0-55ad-d596-74f0-9e9660e01663.htm" />
@@ -444,7 +452,7 @@
         <HelpTOCNode Title="WhatToDoWithMyGameObjectNowThatItIsCreated Method " Url="html/10c3ffb2-01f7-8768-7349-6b0f175a66ed.htm" />
         <HelpTOCNode Title="WhatToDoWithMyOtherGameObjectNowThatItIsCreated Method " Url="html/1ae69bee-df3b-7476-52da-a19e4bf1e39c.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="48a748f3-5a34-4509-9a5a-c3f3f15449d6" Title="CreateObject_Example Fields" Url="html/2315d8c7-e8d5-b566-27c6-942acc20f9ee.htm">
+      <HelpTOCNode Id="0c5c8641-ea8d-40eb-b117-1b99b36d9abe" Title="CreateObject_Example Fields" Url="html/2315d8c7-e8d5-b566-27c6-942acc20f9ee.htm">
         <HelpTOCNode Title="m_CreateObject Field" Url="html/400a57ab-12b1-aa8b-15b8-3068f4a92b6b.htm" />
         <HelpTOCNode Title="m_HandleToFreshObjects Field" Url="html/3147f070-2527-81d2-ff42-a39c77e7ec65.htm" />
         <HelpTOCNode Title="m_RotationHolder Field" Url="html/86c7d5e6-0197-acc4-d169-fd3eb4e3ef3b.htm" />
@@ -452,82 +460,82 @@
       </HelpTOCNode>
     </HelpTOCNode>
     <HelpTOCNode Title="CreateObject_Example.ObjectToCreate Enumeration" Url="html/24a8e4a8-29ae-09b9-5351-f4ad40782b3a.htm" />
-    <HelpTOCNode Id="888011e4-b108-4ed4-9cbd-2f43d450a605" Title="DeleteObject_Example Class" Url="html/d33892d3-e409-54c0-06a6-93d1077ffbab.htm">
+    <HelpTOCNode Id="e5022f6b-a58f-46a8-bdc6-474635ecbae9" Title="DeleteObject_Example Class" Url="html/d33892d3-e409-54c0-06a6-93d1077ffbab.htm">
       <HelpTOCNode Title="DeleteObject_Example Constructor " Url="html/bc827ab2-fa4e-97b4-73fc-1e3eaa118e1d.htm" />
-      <HelpTOCNode Id="1ba21849-664e-4995-9639-2dc16c531301" Title="DeleteObject_Example Methods" Url="html/808e76ed-cb0a-6573-ab63-129034c4283c.htm">
+      <HelpTOCNode Id="fe52dacb-0dc2-4b37-a67e-c1d841fc504b" Title="DeleteObject_Example Methods" Url="html/808e76ed-cb0a-6573-ab63-129034c4283c.htm">
         <HelpTOCNode Title="Update Method " Url="html/76f23db1-dd65-ac0c-65c9-63e21a749e70.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="e43e3c44-0e55-4629-bdba-de208d127a81" Title="DeleteObject_Example Fields" Url="html/4469f624-8913-e57c-451f-41d7c709f3de.htm">
+      <HelpTOCNode Id="6e600a83-56f6-4e1c-8de8-9ffbbb7bdff4" Title="DeleteObject_Example Fields" Url="html/4469f624-8913-e57c-451f-41d7c709f3de.htm">
         <HelpTOCNode Title="m_Delete Field" Url="html/6380e5e2-a881-a297-1e9b-2b9516c5b3ae.htm" />
         <HelpTOCNode Title="m_MyObjectToDelete Field" Url="html/38b7980a-a1c7-8b77-6c0c-93c6d0466b0d.htm" />
         <HelpTOCNode Title="m_Reset Field" Url="html/66cda744-9200-c969-e020-0482e363400b.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="606c9237-52fd-48f0-ba1b-d1561f250ca1" Title="LoadScene_Example Class" Url="html/ec579016-f731-cb21-93fc-3cdabd0cc231.htm">
+    <HelpTOCNode Id="dbb8612c-622e-460e-b2de-2012098455f5" Title="LoadScene_Example Class" Url="html/ec579016-f731-cb21-93fc-3cdabd0cc231.htm">
       <HelpTOCNode Title="LoadScene_Example Constructor " Url="html/b86804eb-45d4-8ec4-32ac-def67ee5f983.htm" />
-      <HelpTOCNode Id="a9c5c6c1-57a6-4865-bb51-ffaceb360431" Title="LoadScene_Example Methods" Url="html/37cbc28b-ef11-09bd-e3f2-dd4c64b039a3.htm">
+      <HelpTOCNode Id="4c9d8e10-c3f2-46e3-8410-022d6b38b2be" Title="LoadScene_Example Methods" Url="html/37cbc28b-ef11-09bd-e3f2-dd4c64b039a3.htm">
         <HelpTOCNode Title="Start Method " Url="html/8b9c18e3-deec-e6a1-59db-87b86919808d.htm" />
         <HelpTOCNode Title="Update Method " Url="html/1066d6c7-dd75-0cdf-b692-5b3a2cfae2c0.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="a82892a5-a80f-4235-b907-50771b79aaf8" Title="LoadScene_Example Fields" Url="html/a0a4cd02-14c0-d219-411d-c9d02de0104b.htm">
+      <HelpTOCNode Id="e78a3dbe-7e96-4943-a061-134d04e1c54d" Title="LoadScene_Example Fields" Url="html/a0a4cd02-14c0-d219-411d-c9d02de0104b.htm">
         <HelpTOCNode Title="m_LoadScene Field" Url="html/a58b4e90-ef0a-3157-e694-1710a4848a26.htm" />
         <HelpTOCNode Title="m_SceneToLoad Field" Url="html/6fca7006-dab2-e0c4-da94-40395e32d9d3.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="e17e1792-4bb7-45cb-aff5-db33fbc20732" Title="ObjectToClaim_Example Class" Url="html/60391928-ddd0-bd5c-0fed-511795ab51c2.htm">
+    <HelpTOCNode Id="97d7771f-b3db-47e8-b221-89a58a8e1c78" Title="ObjectToClaim_Example Class" Url="html/60391928-ddd0-bd5c-0fed-511795ab51c2.htm">
       <HelpTOCNode Title="ObjectToClaim_Example Constructor " Url="html/dde88d74-59fc-1932-7e8a-71b68bfcf825.htm" />
-      <HelpTOCNode Id="d6aa8b9b-ee99-41e0-8fab-b445c6e9bf64" Title="ObjectToClaim_Example Methods" Url="html/a1a32def-01fc-c056-152c-e4456c8a119a.htm">
+      <HelpTOCNode Id="2b273e56-95d1-4ad1-ba44-964780207ffa" Title="ObjectToClaim_Example Methods" Url="html/a1a32def-01fc-c056-152c-e4456c8a119a.htm">
         <HelpTOCNode Title="Update Method " Url="html/78c26ceb-e355-3754-93ca-b2a07ed6778d.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="2b1922a6-7058-46e5-a265-231b67cdb3c1" Title="ObjectToClaim_Example Fields" Url="html/becbf1f2-e55f-3f41-1141-1d7509e92a4d.htm">
+      <HelpTOCNode Id="960b73df-59f9-4c57-8107-52b68b21306c" Title="ObjectToClaim_Example Fields" Url="html/becbf1f2-e55f-3f41-1141-1d7509e92a4d.htm">
         <HelpTOCNode Title="m_ObjectToClaim Field" Url="html/5eeabde9-a877-049d-7976-bf860dec366d.htm" />
         <HelpTOCNode Title="SendClaim Field" Url="html/606571c1-4c62-b7a0-5ca4-0046b4e455df.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="b98f13a4-91ab-4866-bad9-5d4abe68b359" Title="Send2DTexture_Example Class" Url="html/5549f0d7-7d2c-ef93-f893-861bfaa6b7ee.htm">
+    <HelpTOCNode Id="e34e501c-5cbd-466a-ad3b-947ff3fe27f9" Title="Send2DTexture_Example Class" Url="html/5549f0d7-7d2c-ef93-f893-861bfaa6b7ee.htm">
       <HelpTOCNode Title="Send2DTexture_Example Constructor " Url="html/3f072707-406c-c73d-8183-a2a608c2ff8e.htm" />
-      <HelpTOCNode Id="3c17583d-e2ce-49f9-93af-76c6c8fc1037" Title="Send2DTexture_Example Methods" Url="html/b69543bf-896c-b5b5-422f-ec62b63e8260.htm">
+      <HelpTOCNode Id="7df3da37-532a-4536-9d2f-a65324190566" Title="Send2DTexture_Example Methods" Url="html/b69543bf-896c-b5b5-422f-ec62b63e8260.htm">
         <HelpTOCNode Title="ChangeSpriteTexture Method " Url="html/931853e1-ab98-c6a6-998c-ca5fef2fc1f5.htm" />
         <HelpTOCNode Title="SendAndChangeTexture Method " Url="html/44747c2f-d76f-87f8-5209-d1b15fcd4fab.htm" />
         <HelpTOCNode Title="Start Method " Url="html/face0260-38da-9a27-a039-0f637dd19b42.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="7317e82f-fdef-4587-95d8-8689ae1e850d" Title="Send2DTexture_Example Fields" Url="html/7b5248d1-2675-86bf-dc8c-a46f0c289d6c.htm">
+      <HelpTOCNode Id="d3aff0df-9654-4e94-be56-c6e3293a5c69" Title="Send2DTexture_Example Fields" Url="html/7b5248d1-2675-86bf-dc8c-a46f0c289d6c.htm">
         <HelpTOCNode Title="_MyASLObject Field" Url="html/93486a40-66e5-7bf5-0765-5ca20ea6cf54.htm" />
         <HelpTOCNode Title="_SendTextureButton Field" Url="html/eb413922-a2ee-ec61-fb3f-31c3baf343ff.htm" />
         <HelpTOCNode Title="_StartingTexture Field" Url="html/3d36040e-7b25-5299-18cc-9302ed7a8f30.htm" />
         <HelpTOCNode Title="_TextureToSend Field" Url="html/195873f0-68c8-393e-165b-f923761834a8.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="4943fde0-ac36-4c5f-b99f-0b7c297203c2" Title="SendFloat4_Example Class" Url="html/bd5f3241-70c4-ed34-6d53-570d49e856dd.htm">
+    <HelpTOCNode Id="ad735e53-5295-4013-9103-1e2879a0bf85" Title="SendFloat4_Example Class" Url="html/bd5f3241-70c4-ed34-6d53-570d49e856dd.htm">
       <HelpTOCNode Title="SendFloat4_Example Constructor " Url="html/ca17f563-fe9f-7923-44d5-37b34dc96e1c.htm" />
-      <HelpTOCNode Id="69b8c50a-ced1-4a91-b708-945fb4a5b103" Title="SendFloat4_Example Methods" Url="html/52a3cffb-a023-156e-e0fd-ce087caad809.htm">
+      <HelpTOCNode Id="f68912d4-c9d8-4611-bf19-3766d6f71f2d" Title="SendFloat4_Example Methods" Url="html/52a3cffb-a023-156e-e0fd-ce087caad809.htm">
         <HelpTOCNode Title="MyFloatFunction Method " Url="html/1e54027b-aceb-da10-3595-e74768960702.htm" />
         <HelpTOCNode Title="Start Method " Url="html/1697bf65-8d73-d751-2f4a-fe5d9e02f729.htm" />
         <HelpTOCNode Title="Update Method " Url="html/f82ce027-5dd3-2a3a-46a7-1eca2af87be5.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="bd977643-027d-4de2-90fa-db5ccbf394eb" Title="SendFloat4_Example Fields" Url="html/701262dd-c6ed-c419-1d30-b1220b750622.htm">
+      <HelpTOCNode Id="7eb73805-7010-4c41-a7c4-86a938e262cf" Title="SendFloat4_Example Fields" Url="html/701262dd-c6ed-c419-1d30-b1220b750622.htm">
         <HelpTOCNode Title="m_MyFloats Field" Url="html/c93873f1-402f-149b-9412-b6ba5c54a40d.htm" />
         <HelpTOCNode Title="m_ObjectToSendFloats Field" Url="html/2601bf02-397f-f16f-3e0d-71358535635f.htm" />
         <HelpTOCNode Title="m_SendFloat Field" Url="html/4807edac-a6c6-1b49-f811-ceb8f2f9942c.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="1db04632-8d4e-49b9-b5e1-e60a9f02f9c4" Title="SliderController Class" Url="html/fe656880-8646-1694-67ad-6ce034c6f5a1.htm">
+    <HelpTOCNode Id="5c2e77e5-5fcb-4a7c-bc79-d5a208a75bb3" Title="SliderController Class" Url="html/fe656880-8646-1694-67ad-6ce034c6f5a1.htm">
       <HelpTOCNode Title="SliderController Constructor " Url="html/a93a721a-8608-acb9-234b-c8d3f7cfeed7.htm" />
-      <HelpTOCNode Id="2e7fff15-8212-43c1-99ba-78e92d52d087" Title="SliderController Methods" Url="html/d9b9f80c-165f-e9cc-2cb4-9ca45b99c4eb.htm">
+      <HelpTOCNode Id="8c296ceb-ff35-4c1c-aadc-369e1ca2f3f6" Title="SliderController Methods" Url="html/d9b9f80c-165f-e9cc-2cb4-9ca45b99c4eb.htm">
         <HelpTOCNode Title="FunctionToCallAfterChangingSlider Method " Url="html/334d9b03-c54f-f20f-5c65-439f25551bb7.htm" />
         <HelpTOCNode Title="Start Method " Url="html/2ca35e6d-c6b3-1d9f-1c22-4e7d8bd4421d.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="b487d486-b3ab-4e0e-b153-7bdeca5a6396" Title="SliderController Fields" Url="html/817d9c4f-598e-6693-ad77-26bf90d07245.htm">
+      <HelpTOCNode Id="b322bd1f-ecd8-4f32-ba36-e6e242cacd28" Title="SliderController Fields" Url="html/817d9c4f-598e-6693-ad77-26bf90d07245.htm">
         <HelpTOCNode Title="m_ExampleSlider Field" Url="html/c4e4df47-ce66-cbd4-0d2d-c6ec9413b3fd.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="378ed706-3761-4662-9ea3-2a1b3d0169eb" Title="TransformObjectViaLocalSpace_Example Class" Url="html/4a9d1f25-26f9-5766-8d51-b948cb114c70.htm">
+    <HelpTOCNode Id="db2e6e6a-b8b1-417d-b884-d5583281b0dd" Title="TransformObjectViaLocalSpace_Example Class" Url="html/4a9d1f25-26f9-5766-8d51-b948cb114c70.htm">
       <HelpTOCNode Title="TransformObjectViaLocalSpace_Example Constructor " Url="html/91c5f2d7-de41-c94d-deab-b70abb79e592.htm" />
-      <HelpTOCNode Id="63ad2d09-3701-4a1e-9f01-2fe90ad43c7e" Title="TransformObjectViaLocalSpace_Example Methods" Url="html/724dc572-9305-02e9-84d7-fd1cc5ca1568.htm">
+      <HelpTOCNode Id="180670ad-9868-4b87-8574-7237ca1b5b89" Title="TransformObjectViaLocalSpace_Example Methods" Url="html/724dc572-9305-02e9-84d7-fd1cc5ca1568.htm">
         <HelpTOCNode Title="Start Method " Url="html/4ddc172c-60f9-b0b9-9022-142669560fb2.htm" />
         <HelpTOCNode Title="Update Method " Url="html/08c4cd97-af31-c491-d80f-ff67d1f8237e.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="f2d87da9-f19b-417e-9789-88383c0993eb" Title="TransformObjectViaLocalSpace_Example Fields" Url="html/cd9fbe2f-9376-021e-0da0-9c2fab25c98a.htm">
+      <HelpTOCNode Id="9d245083-453a-4b1f-97fc-565f1caef3bb" Title="TransformObjectViaLocalSpace_Example Fields" Url="html/cd9fbe2f-9376-021e-0da0-9c2fab25c98a.htm">
         <HelpTOCNode Title="m_AdditiveMovementAmount Field" Url="html/d01dfee7-2daf-70d8-1773-71a401035fb0.htm" />
         <HelpTOCNode Title="m_AdditiveScaleAmount Field" Url="html/e5c13eb8-fa7c-a954-67b9-163f38412916.htm" />
         <HelpTOCNode Title="m_Angle Field" Url="html/915ec4ae-ae94-87e8-d83e-d7260373c955.htm" />
@@ -542,13 +550,13 @@
       </HelpTOCNode>
     </HelpTOCNode>
     <HelpTOCNode Title="TransformObjectViaLocalSpace_Example.RotationAxis Enumeration" Url="html/a585e7a6-bfc4-e40c-9cf4-9e72127b0264.htm" />
-    <HelpTOCNode Id="815c5a54-ae96-4afc-a2c8-92c62be131f8" Title="TransformObjectViaWorldSpace_Example Class" Url="html/aeb62cca-02d7-4d54-c363-100c2866a02b.htm">
+    <HelpTOCNode Id="3e321210-f9e8-4c82-a486-73d2bd3e925d" Title="TransformObjectViaWorldSpace_Example Class" Url="html/aeb62cca-02d7-4d54-c363-100c2866a02b.htm">
       <HelpTOCNode Title="TransformObjectViaWorldSpace_Example Constructor " Url="html/5c280859-b09e-8f47-5afc-eb7e8ec64576.htm" />
-      <HelpTOCNode Id="6bd89dbc-5565-404b-bea7-7d71fc4fd006" Title="TransformObjectViaWorldSpace_Example Methods" Url="html/dd1864f8-a077-a870-bed6-bfd5c469bad8.htm">
+      <HelpTOCNode Id="54819f69-0978-47cc-96e1-e70c6def4bf3" Title="TransformObjectViaWorldSpace_Example Methods" Url="html/dd1864f8-a077-a870-bed6-bfd5c469bad8.htm">
         <HelpTOCNode Title="Start Method " Url="html/e709993f-3578-2168-c532-a54b372a29ee.htm" />
         <HelpTOCNode Title="Update Method " Url="html/377857d0-ed46-f0b8-8eff-2ed5c84cbe70.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="b42fa690-725b-41fb-ad62-0d621f165270" Title="TransformObjectViaWorldSpace_Example Fields" Url="html/c48a5260-3e35-f742-a0f8-a52b4c5fa3f6.htm">
+      <HelpTOCNode Id="142f9b17-f3b8-4d5a-9056-29f00c57e62c" Title="TransformObjectViaWorldSpace_Example Fields" Url="html/c48a5260-3e35-f742-a0f8-a52b4c5fa3f6.htm">
         <HelpTOCNode Title="m_AdditiveMovementAmount Field" Url="html/3306645a-202f-bd36-7bb6-87c062a26a47.htm" />
         <HelpTOCNode Title="m_AdditiveScaleAmount Field" Url="html/b2967dc9-61c1-031e-2447-4593e0866fd6.htm" />
         <HelpTOCNode Title="m_Angle Field" Url="html/a2cc2d06-4261-c558-08fc-3df10ca94f0b.htm" />
@@ -564,10 +572,10 @@
     </HelpTOCNode>
     <HelpTOCNode Title="TransformObjectViaWorldSpace_Example.RotationAxis Enumeration" Url="html/1f092ded-072e-c551-4c51-3d8ea9d3c2a3.htm" />
   </HelpTOCNode>
-  <HelpTOCNode Id="9d661b47-6954-40a0-aab4-66e684654258" Title="StressTesting" Url="html/c8a96a2c-ec7b-0aa3-7062-ab742efdcbfe.htm">
-    <HelpTOCNode Id="7c6db9a4-b2a1-4aa9-a508-d30bca1c4a28" Title="StressTest_150_ASLObjects_Controller Class" Url="html/412b6c4a-faa4-5a20-c298-afe6bc4b2a31.htm">
+  <HelpTOCNode Id="114c8911-e371-4f12-aa0b-831e2e93a190" Title="StressTesting" Url="html/c8a96a2c-ec7b-0aa3-7062-ab742efdcbfe.htm">
+    <HelpTOCNode Id="73c09e8d-ac2b-407a-84ec-165dfe301c2d" Title="StressTest_150_ASLObjects_Controller Class" Url="html/412b6c4a-faa4-5a20-c298-afe6bc4b2a31.htm">
       <HelpTOCNode Title="StressTest_150_ASLObjects_Controller Constructor " Url="html/2839abc5-4b2d-6322-0934-0191ecb0b553.htm" />
-      <HelpTOCNode Id="7df50c99-d2f9-4fa1-8e7c-fe0fc9f16bea" Title="StressTest_150_ASLObjects_Controller Methods" Url="html/3ce0170e-de46-de7e-6489-fc79a3f75b00.htm">
+      <HelpTOCNode Id="73368e7f-03d8-415e-9290-10a7f72a1c8f" Title="StressTest_150_ASLObjects_Controller Methods" Url="html/3ce0170e-de46-de7e-6489-fc79a3f75b00.htm">
         <HelpTOCNode Title="LMBSelect Method " Url="html/1bbb0626-eb48-70bb-8e05-61537c4a41cf.htm" />
         <HelpTOCNode Title="Move Method " Url="html/3456db95-d8f8-cbaf-2008-71d3799ddc03.htm" />
         <HelpTOCNode Title="OnRelease Method " Url="html/9a389825-22bc-d1c8-d461-8243101abd63.htm" />
@@ -576,35 +584,35 @@
         <HelpTOCNode Title="Start Method " Url="html/4ac8a6ad-fce0-42ef-764c-00d011414e03.htm" />
         <HelpTOCNode Title="Update Method " Url="html/d5662ef7-f900-01ea-2c65-efeb2f34c30a.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="3782d0d9-9656-435b-bf68-f948bd192572" Title="StressTest_150_ASLObjects_Controller Fields" Url="html/7f289ff5-5c5d-bbfe-35e5-a3393c4ee0c5.htm">
+      <HelpTOCNode Id="debbbe40-5acb-492b-899e-c18d322f18a8" Title="StressTest_150_ASLObjects_Controller Fields" Url="html/7f289ff5-5c5d-bbfe-35e5-a3393c4ee0c5.htm">
         <HelpTOCNode Title="m_MainCamera Field" Url="html/cd1c729c-846d-a98c-1ac4-749a66246c05.htm" />
         <HelpTOCNode Title="m_SelectedObject Field" Url="html/dfeca40c-d594-3c8f-1c14-09c0bf44c937.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="2bc1bd8b-794c-4047-a2d0-2b261ec2c608" Title="StressTest_150_ASLObjects_ObjectColorSupport Class" Url="html/4a3c6c5b-07e7-620f-727d-2f5da12fa85e.htm">
+    <HelpTOCNode Id="a1e5bb06-4374-4cfe-9e66-472de0856380" Title="StressTest_150_ASLObjects_ObjectColorSupport Class" Url="html/4a3c6c5b-07e7-620f-727d-2f5da12fa85e.htm">
       <HelpTOCNode Title="StressTest_150_ASLObjects_ObjectColorSupport Constructor " Url="html/40c6a616-4d53-c2df-5833-4877be4cfbd5.htm" />
-      <HelpTOCNode Id="9b62158c-6605-460c-9cf6-2955a2b6261e" Title="StressTest_150_ASLObjects_ObjectColorSupport Methods" Url="html/2ae8c937-c32b-ac67-1873-baae396013cc.htm">
+      <HelpTOCNode Id="6e327b49-2768-4ed0-b2fe-46564960e9d7" Title="StressTest_150_ASLObjects_ObjectColorSupport Methods" Url="html/2ae8c937-c32b-ac67-1873-baae396013cc.htm">
         <HelpTOCNode Title="Start Method " Url="html/9f41d432-e361-51a1-3c05-ab5fed09e74b.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="e6384f5d-fc93-41c5-aaa4-9535a0667543" Title="StressTest_150_ASLObjects_ObjectColorSupport Fields" Url="html/4f11eb12-1331-6f54-26c4-d7e651951cc2.htm">
+      <HelpTOCNode Id="e8501644-1954-4275-9dc6-c2d47f2654bf" Title="StressTest_150_ASLObjects_ObjectColorSupport Fields" Url="html/4f11eb12-1331-6f54-26c4-d7e651951cc2.htm">
         <HelpTOCNode Title="m_MyObjectOriginalColor Field" Url="html/f3266eb6-fc9d-cdec-78ba-cc90910569c1.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="d258c185-fdfc-4ae6-93e4-0cfe13859bf1" Title="StressTest_ButtonManager Class" Url="html/5d6c9d54-ce99-e108-1b09-77c5d12581f1.htm">
+    <HelpTOCNode Id="38e1e153-3fc6-4c50-a058-a2f1e2b71c92" Title="StressTest_ButtonManager Class" Url="html/5d6c9d54-ce99-e108-1b09-77c5d12581f1.htm">
       <HelpTOCNode Title="StressTest_ButtonManager Constructor " Url="html/7f8333f3-8d5d-e10c-d311-2929a3f20b92.htm" />
-      <HelpTOCNode Id="768e3f96-5568-46d6-bb65-9146db04ebf5" Title="StressTest_ButtonManager Methods" Url="html/c9a790cc-07cd-c444-1833-8dd3e13b0cf9.htm">
+      <HelpTOCNode Id="4bb873d1-9389-4d4f-8c13-472a25fd9458" Title="StressTest_ButtonManager Methods" Url="html/c9a790cc-07cd-c444-1833-8dd3e13b0cf9.htm">
         <HelpTOCNode Title="DeleteObject Method " Url="html/c87dd6d2-6713-ec6b-da8f-e00eac625cde.htm" />
         <HelpTOCNode Title="Start Method " Url="html/719315c9-7daf-7a76-abf3-7761040c60b9.htm" />
         <HelpTOCNode Title="StopAllClients Method " Url="html/fc43acd9-8b86-623d-ee15-310f56fe2649.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="6662fc91-6659-4a98-97c2-599b1fdbb440" Title="StressTest_ButtonManager Fields" Url="html/d344a6d1-1a7c-f783-5faa-579e9ec73573.htm">
+      <HelpTOCNode Id="6ebcb49e-d9f5-4435-8ae4-8927a194c5eb" Title="StressTest_ButtonManager Fields" Url="html/d344a6d1-1a7c-f783-5faa-579e9ec73573.htm">
         <HelpTOCNode Title="mDeleteButton Field" Url="html/3ee3c8ac-62e4-928d-0c78-6b0e33cf0522.htm" />
         <HelpTOCNode Title="mStopAll Field" Url="html/11881c88-3689-244e-6d2b-7003ec0bfa4a.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="7cf12fc0-f993-4bce-bcba-2bdd367c3e41" Title="StressTest_CreateDelete_Controller Class" Url="html/68f0a861-cf40-4d42-a1eb-c9699be2bd81.htm">
+    <HelpTOCNode Id="255e78ab-3374-40bf-abce-fc07a2e7793c" Title="StressTest_CreateDelete_Controller Class" Url="html/68f0a861-cf40-4d42-a1eb-c9699be2bd81.htm">
       <HelpTOCNode Title="StressTest_CreateDelete_Controller Constructor " Url="html/b1f4cb46-de04-8848-e1df-3ccbc117570c.htm" />
-      <HelpTOCNode Id="851d7143-270d-41ee-bbb4-d5eb2e42fff5" Title="StressTest_CreateDelete_Controller Methods" Url="html/a433a458-1250-b8dc-a4c0-9336cac4af32.htm">
+      <HelpTOCNode Id="e7a96fa8-1a10-401e-95b4-2ded3b710f89" Title="StressTest_CreateDelete_Controller Methods" Url="html/a433a458-1250-b8dc-a4c0-9336cac4af32.htm">
         <HelpTOCNode Title="CanceledClaimRecovery Method " Url="html/f0eda345-dae5-92f1-14ef-0cc154884ef8.htm" />
         <HelpTOCNode Title="DeleteObject Method " Url="html/ce2f95f4-f087-858e-dfc4-af68b35d490c.htm" />
         <HelpTOCNode Title="GetRandomVector Method " Url="html/9054dbf9-a23d-0924-5b77-e9173774b9c2.htm" />
@@ -612,7 +620,7 @@
         <HelpTOCNode Title="SpawnObject Method " Url="html/745e4753-a544-981e-8f74-0a35f8eea7e9.htm" />
         <HelpTOCNode Title="Update Method " Url="html/f1c514d9-8473-0cc2-a44c-2db0f16226fd.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="54748e45-93df-4a54-828c-4a0fa760d982" Title="StressTest_CreateDelete_Controller Fields" Url="html/d27c90f8-0372-beeb-317a-8940b2b9e9b0.htm">
+      <HelpTOCNode Id="d4f43477-76e4-432c-a813-6001a269b3f4" Title="StressTest_CreateDelete_Controller Fields" Url="html/d27c90f8-0372-beeb-317a-8940b2b9e9b0.htm">
         <HelpTOCNode Title="creationTimer Field" Url="html/d53eabb9-5db4-9f98-77ab-398937e856e4.htm" />
         <HelpTOCNode Title="deletionTimer Field" Url="html/2d590069-2325-16c6-1fb3-26c1f8f1b752.htm" />
         <HelpTOCNode Title="moveTimer Field" Url="html/a9b3a240-9143-52eb-d95f-9c693dd22a6f.htm" />
@@ -621,16 +629,16 @@
         <HelpTOCNode Title="randomMoveTime Field" Url="html/50db78c9-480f-eb1d-15db-9d2aa40ece50.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="5bda0f3c-5c92-4a37-88dc-3afb12295090" Title="StressTest_FightOverFiveObjectsController Class" Url="html/6dc2aced-8059-f89e-4320-d82a650127e8.htm">
+    <HelpTOCNode Id="b0cec459-7dbc-4955-9815-27fcfb84b72f" Title="StressTest_FightOverFiveObjectsController Class" Url="html/6dc2aced-8059-f89e-4320-d82a650127e8.htm">
       <HelpTOCNode Title="StressTest_FightOverFiveObjectsController Constructor " Url="html/0dfb597b-e111-fc56-89b9-7aedb8d0064e.htm" />
-      <HelpTOCNode Id="2f44c0f1-2057-4bed-b3b2-e5f35423819c" Title="StressTest_FightOverFiveObjectsController Methods" Url="html/6bee62c3-a10f-a14e-cd97-5baaf6755184.htm">
+      <HelpTOCNode Id="e8b4e533-9910-43c9-8484-ae51d4ca7bf6" Title="StressTest_FightOverFiveObjectsController Methods" Url="html/6bee62c3-a10f-a14e-cd97-5baaf6755184.htm">
         <HelpTOCNode Title="GetRandomVector Method " Url="html/101e0134-60b1-94de-a777-cfa1ad69264f.htm" />
         <HelpTOCNode Title="RandomlyMoveAnObject Method " Url="html/e45523d2-4f3d-03f0-f5d1-c9aac5de09c6.htm" />
         <HelpTOCNode Title="Start Method " Url="html/0430d30a-38ae-7afd-f630-ed5ca5e1607a.htm" />
         <HelpTOCNode Title="StopClients Method " Url="html/46165203-5faf-d677-6fb9-abb20b83a019.htm" />
         <HelpTOCNode Title="Update Method " Url="html/e43f0859-b0fb-b1b0-15a2-184dd4c53b1d.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="76bd9763-f635-4a7d-bc58-cbaa4279db09" Title="StressTest_FightOverFiveObjectsController Fields" Url="html/e55bfa99-0426-9890-8bc3-8041f533561c.htm">
+      <HelpTOCNode Id="ffe6fb2b-ec98-4458-bb24-d8c1e8e866d8" Title="StressTest_FightOverFiveObjectsController Fields" Url="html/e55bfa99-0426-9890-8bc3-8041f533561c.htm">
         <HelpTOCNode Title="objectNumber Field" Url="html/d9c7ad23-d0a0-d1b0-ebd2-f8890b972f64.htm" />
         <HelpTOCNode Title="randomTime Field" Url="html/84c4dac4-8044-0a20-1a24-b9b55ecaf597.htm" />
         <HelpTOCNode Title="StopTest Field" Url="html/e0f1866c-1a32-ba85-fab1-fa6d38cbf315.htm" />
@@ -638,14 +646,14 @@
         <HelpTOCNode Title="timer Field" Url="html/ba65c42a-a307-fb79-7188-4f529841a77b.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="e72ad54b-7018-4845-9ecd-0dfce92141f4" Title="StressTest_FightOverFiveObjectsGUIController Class" Url="html/7d521f45-d7f4-0d1b-4d98-7b8fc0632f81.htm">
+    <HelpTOCNode Id="1b121af8-72f6-453e-bf1f-9c511690afb1" Title="StressTest_FightOverFiveObjectsGUIController Class" Url="html/7d521f45-d7f4-0d1b-4d98-7b8fc0632f81.htm">
       <HelpTOCNode Title="StressTest_FightOverFiveObjectsGUIController Constructor " Url="html/16b3fb9f-434e-7c5a-767a-73de72a48a8c.htm" />
-      <HelpTOCNode Id="cc650fd6-197c-4365-b8b1-a0178d6a35ab" Title="StressTest_FightOverFiveObjectsGUIController Methods" Url="html/ee785502-0d69-ba45-a695-d987c752c94f.htm">
+      <HelpTOCNode Id="7c3cb816-e09a-43a5-997b-c18f7b868236" Title="StressTest_FightOverFiveObjectsGUIController Methods" Url="html/ee785502-0d69-ba45-a695-d987c752c94f.htm">
         <HelpTOCNode Title="Start Method " Url="html/1c950b27-87ab-8dff-7a61-682e99a3211b.htm" />
         <HelpTOCNode Title="Update Method " Url="html/76ccc4a8-76a2-4f04-fe0c-bb72b3847c7b.htm" />
         <HelpTOCNode Title="UpdatePositionText Method " Url="html/ba5a5116-8fc5-9242-4d72-984b57ab67aa.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="2183cda2-f4b1-45da-8035-722d0d8c4191" Title="StressTest_FightOverFiveObjectsGUIController Fields" Url="html/d9b193c1-53df-3a64-aae1-cc88efb055eb.htm">
+      <HelpTOCNode Id="27925b06-e213-4096-bbb2-561ea3afd10c" Title="StressTest_FightOverFiveObjectsGUIController Fields" Url="html/d9b193c1-53df-3a64-aae1-cc88efb055eb.htm">
         <HelpTOCNode Title="Capsule Field" Url="html/6a8ceeaf-ce12-375d-d275-5daf6738b5eb.htm" />
         <HelpTOCNode Title="Child Field" Url="html/bab2274e-38f7-aeaa-4556-de196c0f0dcf.htm" />
         <HelpTOCNode Title="Cube Field" Url="html/4b256bea-84e3-877b-0c32-27781f45aafd.htm" />

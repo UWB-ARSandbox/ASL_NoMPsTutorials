@@ -54,11 +54,7 @@
             </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="9724fe4f-8feb-f73c-e373-d128af946191.htm">ConvertVector3ToByteArray</a></td><td><div class="summary">
             Converts a vector3 variable into a byte array
             </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="de18bd31-9d85-514d-b22f-94fca21031ba.htm">ConvertVector4ToByteArray</a></td><td><div class="summary">
-            It should be noted that the order in which a packet is created matters.
-            The order should be as follows so that it can be decoded properly. Amount of data pieces (e.g., 2), the lengths in bytes of these data pieces (e.g., 4,4), 
-            and the data themselves converted to byte format (e.g., 4,4). The Combing functions found here automatically add this meta data for you.
-            If you follow how ASLObject functions already create these data packets then you will be following 
-            the correct formatting. The important thing to remember is that however you encode a packet, you must remember to decode in the same manner.
+            Converts a Vector4 variable into a byte array
             </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="aadb386c-fa2b-2fd2-c9d7-179eb7709369.htm">CreateRTMessage</a></td><td><div class="summary">
             Creates an RealTime message to be sent to other users
             </div></td></tr><tr data="private;declared;notNetfw;"><td><img src="../icons/privmethod.gif" alt="Private method" title="Private method" /></td><td><a href="4fbd4eee-4af2-93cb-6a5f-ace16f66c257.htm">DestroyLobbyManager</a></td><td><div class="summary">
@@ -67,7 +63,10 @@
             Disconnects the user from the GameLift servers if they are connected
             </div></td></tr><tr data="public;static;declared;notNetfw;"><td><img src="../icons/pubmethod.gif" alt="Public method" title="Public method" /><img src="../icons/static.gif" alt="Static member" title="Static member" /></td><td><a href="34c5fa97-360b-dc5b-66ae-606611b2c40a.htm">GetInstance</a></td><td><div class="summary">
             Used to get the Singleton instance of the GameLiftManager class
-            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="7a44eaca-4d87-dcf6-ac8c-494151531483.htm">GetLowestPeerId</a></td><td><div class="summary">Returns the current lowest peerID value out of all the currently connected players</div></td></tr><tr data="private;declared;notNetfw;"><td><img src="../icons/privmethod.gif" alt="Private method" title="Private method" /></td><td><a href="951cae70-9ddf-06cd-a7a9-ed564b2ed021.htm">OnApplicationQuit</a></td><td><div class="summary">
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="7a44eaca-4d87-dcf6-ac8c-494151531483.htm">GetLowestPeerId</a></td><td><div class="summary">Returns the current lowest peerID value out of all the currently connected players</div></td></tr><tr data="private;declared;notNetfw;"><td><img src="../icons/privmethod.gif" alt="Private method" title="Private method" /></td><td><a href="396ffe7c-9a55-2a82-b55e-642ef5c5c966.htm">OnApplicationPause</a></td><td><div class="summary">
+            Used to make sure Android devices can disconnect from the GameLift servers. This function will quit the application when it loses focus
+            e.g., when you exit the app to the home screen. Doing so is a good thing and prevents hanging connections.
+            </div></td></tr><tr data="private;declared;notNetfw;"><td><img src="../icons/privmethod.gif" alt="Private method" title="Private method" /></td><td><a href="951cae70-9ddf-06cd-a7a9-ed564b2ed021.htm">OnApplicationQuit</a></td><td><div class="summary">
             Called when an application quits, ensuring the user cleanly exits the GameLift server
             </div></td></tr><tr data="private;declared;notNetfw;"><td><img src="../icons/privmethod.gif" alt="Private method" title="Private method" /></td><td><a href="c42a7a21-e2bc-1399-16e5-cb89dc281f37.htm">OnCloseEvent</a></td><td><div class="summary">
             An AWS listener function that is called when a connection is ended with GameLift

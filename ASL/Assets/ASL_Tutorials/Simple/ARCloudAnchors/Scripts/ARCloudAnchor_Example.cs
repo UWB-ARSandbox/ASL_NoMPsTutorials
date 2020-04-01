@@ -1,25 +1,13 @@
-﻿using GoogleARCore;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
-#if UNITY_EDITOR
-// NOTE:
-// - InstantPreviewInput does not support `deltaPosition`.
-// - InstantPreviewInput does not support input from
-//   multiple simultaneous screen touches.
-// - InstantPreviewInput might miss frames. A steady stream
-//   of touch events across frames while holding your finger
-//   on the screen is not guaranteed.
-// - InstantPreviewInput does not generate Unity UI event system
-//   events from device touches. Use mouse/keyboard in the editor
-//   instead.
-using Input = GoogleARCore.InstantPreviewInput;
-#endif
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 
 namespace SimpleDemos
 {
+    /// <summary> A simple demo showcasing how Cloud Anchors can be spawned</summary>
     public class ARCloudAnchor_Example : MonoBehaviour
     {
         /// <summary>
@@ -47,15 +35,9 @@ namespace SimpleDemos
                 return;
             }
 
-            TrackableHit arcoreHitResult = new TrackableHit();
-            Pose? m_LastHitPose = null;
+            Pose m_LastHitPose;
 
-            // Raycast against the location the player touched to search for planes.
-            if (ASL.ARWorldOriginHelper.Instance().Raycast(touch.position.x, touch.position.y,
-                    TrackableHitFlags.PlaneWithinPolygon, out arcoreHitResult))
-            {
-                m_LastHitPose = arcoreHitResult.Pose;
-            }
+            ASL.ARWorldOriginHelper.GetInstance().Raycast(Input.GetTouch(0).position, out m_LastHitPose);
 
             // If there was a successful hit
             //If we haven't set a cloud anchor yet && we are the Host -> then we can set a cloud anchor
@@ -66,7 +48,7 @@ namespace SimpleDemos
                 m_ObjectToPairWithCloudAnchor.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
                 {
                     //Hit result, ASLObject to follow anchor (by becoming a child at (0,0,0), function to call after creation, sync start or not, set world origin or not 
-                    ASL.ASLHelper.CreateARCoreCloudAnchor(arcoreHitResult, m_ObjectToPairWithCloudAnchor.GetComponent<ASL.ASLObject>(), null, true, true);
+                    ASL.ASLHelper.CreateARCoreCloudAnchor(m_LastHitPose, m_ObjectToPairWithCloudAnchor.GetComponent<ASL.ASLObject>(), null, true, false);
                 });
                 
             }

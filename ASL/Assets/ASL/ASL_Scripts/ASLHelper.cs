@@ -1,12 +1,11 @@
 ﻿using Aws.GameLift.Realtime.Command;
-using GoogleARCore;
-using GoogleARCore.CrossPlatform;
+#if UNITY_ANDROID || UNITY_IOS
+using UnityEngine.XR.ARFoundation;
+using Google.XR.ARCoreExtensions;
+#endif
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using UnityEngine;
 
 namespace ASL
@@ -28,7 +27,8 @@ namespace ASL
         /// <summary>A struct that contains information about the CloudAnchor to allow it to be stored in Cloud Anchors dictionary (m_CloudAnchors)</summary>
         public struct CloudAnchor
         {
-            XPAnchor anchor;
+#if UNITY_ANDROID || UNITY_IOS
+            ARCloudAnchor anchor;
             bool worldOrigin;
 
             /// <summary>
@@ -36,11 +36,12 @@ namespace ASL
             /// </summary>
             /// <param name="_anchor">The anchor to be created</param>
             /// <param name="_worldOrigin">Flag indicating if this anchor is the world origin or not</param>
-            public CloudAnchor(XPAnchor _anchor, bool _worldOrigin)
+            public CloudAnchor(ARCloudAnchor _anchor, bool _worldOrigin)
             {
                 anchor = _anchor;
                 worldOrigin = _worldOrigin;
             }
+#endif
         }
 
         /// <summary>
@@ -48,6 +49,12 @@ namespace ASL
         /// </summary>
         static public Dictionary<string, CloudAnchor> m_CloudAnchors = new Dictionary<string, CloudAnchor>();
 
+#if UNITY_ANDROID || UNITY_IOS
+        /// <summary>
+        /// Used to spawn cloud anchors
+        /// </summary>
+        static private ARCloudAnchor m_ARCloudAnchor;
+#endif
         #region Instantiation
 
         #region Primitive Instantiation
@@ -255,9 +262,9 @@ namespace ASL
                 _aslFloatFunctionInfo?.Method?.ReflectedType?.ToString() ?? "", _aslFloatFunctionInfo?.Method?.Name ?? "");
         }
 
-        #endregion
+#endregion
 
-        #region Prefab Instantiation
+#region Prefab Instantiation
 
         /// <summary>
         /// Create an ASL Object
@@ -463,9 +470,9 @@ namespace ASL
         }
 
 
-        #endregion
+#endregion
 
-        #endregion
+#endregion
 
         /// <summary>
         /// Sends a packet out to all players to spawn an object based upon a prefab
@@ -506,8 +513,7 @@ namespace ASL
                                                          instantiatedGameObjectFunctionName, claimRecoveryClassName, claimRecoveryFunctionName, sendFloatClassName, sendFloatFunctionName, peerId);
 
 
-            RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.SpawnPrimitive, payload, Aws.GameLift.Realtime.Types.DeliveryIntent.Reliable, 
-                                                                                GameLiftManager.GetInstance().m_GroupId, GameLiftManager.GetInstance().m_ServerId);
+            RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.SpawnPrimitive, payload);
             GameLiftManager.GetInstance().m_Client.SendMessage(message);
         }
 
@@ -548,8 +554,7 @@ namespace ASL
             byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, position, rotation, prefabName, parentID, componentAssemblyQualifiedName, instantiatedGameObjectClassName,
                                                          instantiatedGameObjectFunctionName, claimRecoveryClassName, claimRecoveryFunctionName, sendFloatClassName, sendFloatFunctionName, peerId);
 
-            RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.SpawnPrefab, payload, Aws.GameLift.Realtime.Types.DeliveryIntent.Reliable,
-                                                                                GameLiftManager.GetInstance().m_GroupId, GameLiftManager.GetInstance().m_ServerId);
+            RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.SpawnPrefab, payload);
             GameLiftManager.GetInstance().m_Client.SendMessage(message);
 
         }
@@ -585,9 +590,15 @@ namespace ASL
         /// and is the suggested value as not waiting as the potential to cause synchronization problems.</param>
         /// <param name="_setWorldOrigin">This determines if this cloud anchor should be used to set the world origin for all users or not. If you are setting the world origin, you should do
         /// so right away in your app and as the first (if you have more than 1) cloud anchor created. You should never set the world origin more than once.</param>
-        public static void CreateARCoreCloudAnchor(TrackableHit _hitResults, ASLObject _anchorObjectPrefab = null, ASLObject.PostCreateCloudAnchorFunction _myPostCreateCloudAnchorFunction = null, 
+        public static void CreateARCoreCloudAnchor(Pose _hitResults, ASLObject _anchorObjectPrefab = null, ASLObject.PostCreateCloudAnchorFunction _myPostCreateCloudAnchorFunction = null, 
             bool _waitForAllUsersToResolve = true, bool _setWorldOrigin = true)
         {
+#if UNITY_ANDROID || UNITY_IOS
+            if (m_ARCloudAnchor != null)
+            {
+                Debug.LogError("You can only resolve 1 Cloud Anchor at a time. " + m_ARCloudAnchor.name + " is currently being resolved...");
+                return;
+            }
             if (_anchorObjectPrefab != null) 
             {
                 if (!_anchorObjectPrefab.m_Mine)
@@ -596,59 +607,30 @@ namespace ASL
                     return;
                 }
             }
+            Debug.Log("Creating the cloud anchor now...");
 
             //Create local anchor at hit location
-            Anchor localAnchor = _hitResults.Trackable.CreateAnchor(_hitResults.Pose);
+            ARAnchor localAnchor = ARWorldOriginHelper.GetInstance().m_ARAnchorManager.AddAnchor(_hitResults);
             localAnchor.name = "Local anchor created when creating cloud anchor";
+
             //Create CLoud anchor
-            XPSession.CreateCloudAnchor(localAnchor).ThenAction(result =>
+            m_ARCloudAnchor = ARWorldOriginHelper.GetInstance().m_ARAnchorManager.HostCloudAnchor(localAnchor);
+
+            if (m_ARCloudAnchor == null)
             {
-                //If failed to host
-                if (result.Response != CloudServiceResponse.Success) 
-                {
-                    Debug.LogError("Failed to host Cloud Anchor: " + result.Response);
-                    return; //Break out
-                }
-                //Successful:
-                Debug.Log("Successfully created and saved Cloud Anchor: " + result.Anchor.CloudId);
+                Debug.LogError("Failed to create a cloud anchor.");
+                return;
+            }
 
-                if (_anchorObjectPrefab == null)
-                {
-                    //Uncomment the line below to aid in visual debugging (helps display the cloud anchor)
-                    //_anchorObjectPrefab = GameObject.CreatePrimitive(PrimitiveType.Cube).AddComponent<ASLObject>(); //if null, then create empty game object               
-                    _anchorObjectPrefab = new GameObject().AddComponent<ASLObject>();
-                    _anchorObjectPrefab._LocallySetAnchorID(result.Anchor.CloudId); //Add ASLObject component to this anchor and set its anchor id variable
-                    _anchorObjectPrefab._LocallySetID(result.Anchor.CloudId); //Locally set the id of this object to be that of the anchor id (which is unique)
+            ARWorldOriginHelper.GetInstance().StartCoroutine(ARWorldOriginHelper.GetInstance().WaitForCloudAnchorToBeCreated(m_ARCloudAnchor, _hitResults,
+                _anchorObjectPrefab, _myPostCreateCloudAnchorFunction, 
+                _waitForAllUsersToResolve, _setWorldOrigin));
 
-                    //Add this anchor object to our ASL dictionary using the anchor id as its key. All users will do this once they resolve this cloud anchor to ensure they still in sync.
-                    m_ASLObjects.Add(result.Anchor.CloudId, _anchorObjectPrefab.GetComponent<ASLObject>());
-                    //_anchorObjectPrefab.GetComponent<Material>().color = Color.magenta;
-                    _anchorObjectPrefab.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f); //Set scale to be 4 cm
-                }
-                else
-                {
-                    _anchorObjectPrefab.GetComponent<ASLObject>()._LocallySetAnchorID(result.Anchor.CloudId); //Set anchor id variable
-                    _anchorObjectPrefab.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f); //Set scale to be 5 cm
-                }
-              
-                //Send Resolve packet using _anchorObjectPrefab 
-                _anchorObjectPrefab.GetComponent<ASLObject>().SendCloudAnchorToResolve(_setWorldOrigin, _waitForAllUsersToResolve);
-
-                if (_waitForAllUsersToResolve)
-                {
-                    byte[] id = Encoding.ASCII.GetBytes(_anchorObjectPrefab.m_Id);
-                    RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.ResolvedCloudAnchor, id);
-                    GameLiftManager.GetInstance().m_Client.SendMessage(message);
-
-                    _anchorObjectPrefab.StartWaitForAllUsersToResolveCloudAnchor(result, _setWorldOrigin, _myPostCreateCloudAnchorFunction, _hitResults);
-                }
-                else //Don't wait for users to know about this cloud anchor
-                {
-                    _anchorObjectPrefab.GetComponent<ASLObject>()._LocallySetCloudAnchorResolved(true);
-                    _anchorObjectPrefab.StartWaitForAllUsersToResolveCloudAnchor(result, _setWorldOrigin, _myPostCreateCloudAnchorFunction, _hitResults);
-                }
-            });
-
+            //Reset
+            m_ARCloudAnchor = null;
+#else
+            Debug.LogError("Can only create cloud anchors on mobile devices.");
+#endif
         }
 
 

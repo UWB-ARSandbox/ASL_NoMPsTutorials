@@ -1,5 +1,5 @@
-﻿//Used to help debug incoming packets and other misc. GameLift features. Uncomment to turn on
-//#define ASL_DEBUG
+﻿//Used for help debug GameLift packet issues and other misc. GameLift potential problems.
+#define ASL_DEBUG
 using Aws.GameLift.Realtime.Event;
 using Aws.GameLift.Realtime;
 using System;
@@ -214,7 +214,7 @@ namespace ASL
             else
             {
 #if (ASL_DEBUG)
-                Debug.LogError("GSM| GameSparkManager not initialized.");
+                Debug.LogError("GameLift not initialized.");
 #endif
             }
             return null;
@@ -239,6 +239,9 @@ namespace ASL
             m_SceneLoader = new SceneLoader();
             m_GameController = new GameController();
             m_GameController.Start();
+#if UNITY_ANDROID
+            Screen.sleepTimeout = SleepTimeout.NeverSleep; //Prevents Android app from turning the screen off, thus closing the application
+#endif
         }
 
         /// <summary>
@@ -269,9 +272,13 @@ namespace ASL
         private void OnCloseEvent(object sender, EventArgs error)
         {
 #if (ASL_DEBUG)
-            Debug.Log("[server-sent] OnCloseEvent");
+            Debug.Log("[server-sent] OnCloseEvent: " + error);
 #endif
             DisconnectFromServer();
+            if (m_LobbyManager != null)
+            {
+                QForMainThread(m_LobbyManager.Reset);
+            }
         }
 
         /// <summary>
@@ -288,7 +295,7 @@ namespace ASL
                 Debug.Log("Exception: \n" + error.Exception);
             }
 #endif
-            DisconnectFromServer();
+            QForMainThread(DisconnectFromServer);
         }
 
         /// <summary>
@@ -463,7 +470,6 @@ namespace ASL
             message.WithTargetGroup(_targetGroup); //Default group is every user
             if (_targetPlayer == -1) { _targetPlayer = m_ServerId; } //Default player is server -> thus, don't specify player if not changed (if -1)
             message.WithTargetPlayer(_targetPlayer); //Default player is the server
-
             return message;
         }
 
@@ -967,6 +973,21 @@ namespace ASL
         private void OnApplicationQuit()
         {
             DisconnectFromServer();            
+        }
+
+        /// <summary>
+        /// Used to make sure Android devices can disconnect from the GameLift servers. This function will quit the application when it loses focus
+        /// e.g., when you exit the app to the home screen. Doing so is a good thing and prevents hanging connections.
+        /// </summary>
+        /// <param name="_isPaused">flag representing if the app is paused or not</param>
+        private void OnApplicationPause(bool _isPaused)
+        {
+#if UNITY_ANDROID || UNITY_WSA
+            if (_isPaused) //If we exit the app but don't force quit - e.g., go to the home screen
+            {
+                Application.Quit(); //Then quit the application, which calls our disconnect function
+            }
+#endif
         }
 
         /// <summary>Returns the current lowest peerID value out of all the currently connected players</summary>

@@ -1,13 +1,10 @@
 ﻿using Aws.GameLift.Realtime.Command;
-using Aws.GameLift.Realtime.Types;
-using GoogleARCore;
-using GoogleARCore.CrossPlatform;
+#if UNITY_ANDROID || UNITY_IOS
+using Google.XR.ARCoreExtensions;
+#endif
 using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-using System.Linq;
-using System;
 
 namespace ASL
 {
@@ -84,8 +81,8 @@ namespace ASL
         /// Delegate for the post create cloud anchor function to execute after creating a cloud anchor
         /// </summary>
         /// <param name="_anchorObjectPrefab">The ASL object this function is tied to</param>
-        /// <param name="_trackable">The trackable object the cloud anchor was created on/with.</param>
-        public delegate void PostCreateCloudAnchorFunction(GameObject _anchorObjectPrefab, TrackableHit _trackable = new TrackableHit());
+        /// <param name="_hitResult">Information on where the cloud anchor was created</param>
+        public delegate void PostCreateCloudAnchorFunction(GameObject _anchorObjectPrefab, Pose _hitResult = new Pose());
 
         /// <summary>The number of outstanding claims for this object. </summary>
         public int m_OutstandingClaimCallbackCount { get; set; }
@@ -209,7 +206,8 @@ namespace ASL
                 byte[] id = Encoding.ASCII.GetBytes(m_Id);
                 byte[] myColor = GameLiftManager.GetInstance().ConvertVector4ToByteArray(_myColor);
                 byte[] opponentsColor = GameLiftManager.GetInstance().ConvertVector4ToByteArray(_opponentsColor);
-                byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, myColor, opponentsColor);
+                byte[] sender = GameLiftManager.GetInstance().ConvertIntToByteArray(GameLiftManager.GetInstance().m_PeerId);
+                byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, myColor, opponentsColor, sender);
 
                 RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.SetObjectColor, payload);
                 GameLiftManager.GetInstance().m_Client.SendMessage(message);
@@ -937,25 +935,26 @@ namespace ASL
                 byte[] anchorId = Encoding.ASCII.GetBytes(m_AnchorID);
                 byte[] waitForAllUsersToResolve = GameLiftManager.GetInstance().ConvertBoolToByteArray(_waitForAllUsersToResolve);
                 byte[] setWorldOrigin = GameLiftManager.GetInstance().ConvertBoolToByteArray(_setWorldOrigin);
-
-                byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, anchorId, waitForAllUsersToResolve, setWorldOrigin);
+                byte[] sender = GameLiftManager.GetInstance().ConvertIntToByteArray(GameLiftManager.GetInstance().m_PeerId);
+                byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, anchorId, waitForAllUsersToResolve, setWorldOrigin, sender);
                 
                 RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.ResolveAnchorId, payload);
                 GameLiftManager.GetInstance().m_Client.SendMessage(message);
             }
         }
 
+        #if UNITY_ANDROID || UNITY_IOS
         /// <summary>
         /// Used to trigger a coroutine that doesn't execute until all users have set their cloud anchor
         /// </summary>
         /// <param name="_cloudAnchor">The cloud anchor that was resolved</param>
         /// <param name="_setWorldOrigin">Whether or not to set the cloud anchor</param>
-        /// <param name="_postResolveCloudAnchorFunction">The function to execute after resolving the cloud anchor - only called by the creating of the cloud anchor</param>
-        /// <param name="_trackable">The trackable object the cloud anchor was created on/with</param>
-        public void StartWaitForAllUsersToResolveCloudAnchor(CloudAnchorResult _cloudAnchor,
-            bool _setWorldOrigin, PostCreateCloudAnchorFunction _postResolveCloudAnchorFunction = null, TrackableHit _trackable = new TrackableHit())
+        /// <param name="_postResolveCloudAnchorFunction">The function to execute after resolving the cloud anchor - only called by the creator of the cloud anchor</param>
+        /// <param name="_hitResult">Information on where the cloud anchor was created</param>
+        public void StartWaitForAllUsersToResolveCloudAnchor(ARCloudAnchor _cloudAnchor,
+            bool _setWorldOrigin, PostCreateCloudAnchorFunction _postResolveCloudAnchorFunction = null, Pose _hitResult = new Pose())
         {
-            StartCoroutine(WaitForAllUsersToResolveCloudAnchor(_cloudAnchor, _setWorldOrigin, _postResolveCloudAnchorFunction, _trackable));
+            StartCoroutine(WaitForAllUsersToResolveCloudAnchor(_cloudAnchor, _setWorldOrigin, _postResolveCloudAnchorFunction, _hitResult));
         }
 
         /// <summary>
@@ -964,14 +963,14 @@ namespace ASL
         /// <param name="_cloudAnchor">The cloud anchor that was just created/resolved</param>
         /// <param name="_setWorldOrigin">Flag indicating if this cloud anchor should become the world origin</param>
         /// <param name="_postResolveCloudAnchorFunction">The function to call after creating a cloud anchor (will be null for those clients resolving)</param>
-        /// <param name="_trackable">The trackable object the cloud anchor was created on/with</param>
+        /// <param name="_hitResult">Information on where the cloud anchor was created</param>
         /// <returns>Waits for the end of the frame before trying again</returns>
-        private IEnumerator WaitForAllUsersToResolveCloudAnchor(CloudAnchorResult _cloudAnchor,
-            bool _setWorldOrigin, PostCreateCloudAnchorFunction _postResolveCloudAnchorFunction = null, TrackableHit _trackable = new TrackableHit())
+        private IEnumerator WaitForAllUsersToResolveCloudAnchor(ARCloudAnchor _cloudAnchor,
+            bool _setWorldOrigin, PostCreateCloudAnchorFunction _postResolveCloudAnchorFunction = null, Pose _hitResult = new Pose())
         {
             while (!m_ResolvedCloudAnchor)
             {
-                yield return new WaitForEndOfFrame();
+                yield return new WaitForSeconds(1.0f);
             }
 
             if (_setWorldOrigin)
@@ -980,25 +979,25 @@ namespace ASL
                 //All users will do this, thus no need to use a SendAndSet function
                 transform.localPosition = Vector3.zero;
                 transform.localRotation = Quaternion.identity;
-                transform.parent = _cloudAnchor.Anchor.transform;
+                transform.parent = _cloudAnchor.transform;
 
-                ARWorldOriginHelper.Instance().SetWorldOrigin(_cloudAnchor.Anchor.transform);
-                _cloudAnchor.Anchor.name = "World Origin Anchor";
+                ARWorldOriginHelper.GetInstance().SetWorldOrigin(_cloudAnchor.transform);
+                _cloudAnchor.name = "World Origin Anchor";
             }
             else
             {
                 //Set our anchor object prefab to always follow our cloud anchor by setting it as a child of that cloud anchor
                 //All users will do this, thus no need to use a SendAndSet function
-                transform.parent = _cloudAnchor.Anchor.transform;
+                transform.parent = _cloudAnchor.transform;
                 transform.localPosition = Vector3.zero;
                 transform.localRotation = Quaternion.identity;
             }
 
 
-            ASLHelper.m_CloudAnchors.Add(_cloudAnchor.Anchor.CloudId, new ASLHelper.CloudAnchor(_cloudAnchor.Anchor, _setWorldOrigin));
-            _postResolveCloudAnchorFunction?.Invoke(gameObject, _trackable);
+            ASLHelper.m_CloudAnchors.Add(_cloudAnchor.cloudAnchorId, new ASLHelper.CloudAnchor(_cloudAnchor, _setWorldOrigin));
+            _postResolveCloudAnchorFunction?.Invoke(gameObject, _hitResult);
         }
-
+#endif
         /// <summary>
         /// Gets called right before an object is destroyed. Used to remove this object from the dictionary
         /// </summary>

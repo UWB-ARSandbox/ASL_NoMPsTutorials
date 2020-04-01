@@ -1,15 +1,14 @@
 ﻿using Aws.GameLift.Realtime.Command;
 using Aws.GameLift.Realtime.Event;
-using Aws.GameLift.Realtime.Types;
-using GoogleARCore;
-using GoogleARCore.CrossPlatform;
+#if UNITY_ANDROID || UNITY_IOS
+using Google.XR.ARCoreExtensions;
+using UnityEngine.XR.ARFoundation;
+#endif
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -54,6 +53,7 @@ namespace ASL
             /// </summary>
             private void SyncronizeID(Scene _scene, LoadSceneMode _mode)
             {
+                Debug.Log("Sending Synchronizing Ids...: " + _scene);
                 m_ObjectIDAssignedCount = 0;
                 ASLObject[] m_StartingASLObjects = FindObjectsOfType(typeof(ASLObject)) as ASLObject[];
 
@@ -62,14 +62,15 @@ namespace ASL
                 {
                     SetupSynchronizingASLObjectScreen();
                     Time.timeScale = 0; //"Pause" the game until all object's have their id's set
-                    //m_PauseCanvas.SetActive(true);
+
+                    //Sort by name + sqrt(transform components + localPosition * Dot(rotation, scale))
+                    m_StartingASLObjects = m_StartingASLObjects.OrderBy(aslObj => aslObj.name +
+                        ((aslObj.transform.position + new Vector3(aslObj.transform.position.x, aslObj.transform.rotation.y, aslObj.transform.rotation.z) +
+                         aslObj.transform.localScale) + (aslObj.transform.position + Vector3.Dot(new Vector3(aslObj.transform.rotation.x, aslObj.transform.rotation.y, aslObj.transform.rotation.z),
+                         aslObj.transform.localScale) * Vector3.one)).sqrMagnitude)
+                        .ToArray();
                 }
-                //Sort by name + sqrt(transform components + localPosition * Dot(rotation, scale))
-                m_StartingASLObjects = m_StartingASLObjects.OrderBy(aslObj => aslObj.name +
-                    ((aslObj.transform.localPosition + new Vector3(aslObj.transform.localRotation.x, aslObj.transform.localRotation.y, aslObj.transform.localRotation.z) +
-                     aslObj.transform.localScale) + (aslObj.transform.localPosition + Vector3.Dot(new Vector3(aslObj.transform.localRotation.x, aslObj.transform.localRotation.y, aslObj.transform.localRotation.z),
-                     aslObj.transform.localScale) * Vector3.one)).sqrMagnitude)
-                    .ToArray();
+                
 
                 int startingObjectCount = 0;
                 foreach (ASLObject _aslObject in m_StartingASLObjects)
@@ -77,7 +78,7 @@ namespace ASL
                     if (_aslObject.m_Id == string.Empty || _aslObject.m_Id == null) //If object does not have an ID
                     {
                         m_ObjectIDAssignedCount++;
-                        RTMessage message = GetInstance().CreateRTMessage(OpCode.ServerSetId, Encoding.ASCII.GetBytes(""), DeliveryIntent.Reliable, GetInstance().m_GroupId, GetInstance().m_ServerId);
+                        RTMessage message = GetInstance().CreateRTMessage(OpCode.ServerSetId, Encoding.ASCII.GetBytes(""));
                         GetInstance().m_Client.SendMessage(message);
                         ASLHelper.m_ASLObjects.Add(startingObjectCount.ToString(), _aslObject);
                         _aslObject._LocallySetID(startingObjectCount.ToString());
@@ -222,8 +223,7 @@ namespace ASL
 
 
                             string newData = dataParts[0] + ":" + dataParts[2];
-                            RTMessage message = GetInstance().CreateRTMessage(OpCode.ClaimFromPlayer, Encoding.ASCII.GetBytes(newData),
-                                DeliveryIntent.Reliable, GetInstance().m_GroupId, GetInstance().m_ServerId);
+                            RTMessage message = GetInstance().CreateRTMessage(OpCode.ClaimFromPlayer, Encoding.ASCII.GetBytes(newData));
                             GetInstance().m_Client.SendMessage(message);
 
                         }
@@ -284,7 +284,7 @@ namespace ASL
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
                 
                 string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
-                int sender = _packet.Sender;
+                int sender = ConvertByteArrayIntoInt(_packet.Data, startLocation[3], dataLength[3]);
 
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
@@ -305,7 +305,7 @@ namespace ASL
             /// </summary>
             /// <param name="_packet">The packet from the relay server containing the ID of what ASL Object to delete</param>
             public void DeleteObject(DataReceivedEventArgs _packet)
-            {
+            {                
                 string id = Encoding.Default.GetString(_packet.Data);
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
@@ -606,10 +606,13 @@ namespace ASL
             /// whether or not to set the world origin, and if to wait for others or not</param>
             public void ResolveAnchorId(DataReceivedEventArgs _packet)
             {
+#if UNITY_ANDROID || UNITY_IOS
+                (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
+                int sender = ConvertByteArrayIntoInt(_packet.Data, startLocation[4], dataLength[4]);
                 //Creator of anchor ID already has this anchor resolved, thus no need to do it
-                if (_packet.Sender != GetInstance().m_PeerId)
+                if (sender != GetInstance().m_PeerId)
                 {
-                    (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
+                    Debug.Log("Resolving received Anchor Id");
                     string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
                     string anchorId = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                     bool waitForAllUsersToResolve = ConvertByteArrayIntoBool(_packet.Data, startLocation[2], dataLength[2]);
@@ -617,8 +620,11 @@ namespace ASL
 
                     GetInstance().StartCoroutine(ResolveCloudAnchor(id, anchorId, waitForAllUsersToResolve, setWorldOrigin));
                 }
+#else
+                Debug.LogError("Can only resolve cloud anchors on mobile devices.");
+#endif
             }
-
+#if UNITY_ANDROID || UNITY_IOS
             /// <summary>
             /// CoRoutine that resolves the cloud anchor
             /// </summary>
@@ -627,63 +633,75 @@ namespace ASL
             /// <param name="_setWorldOrigin">Whether or not to set the world origin</param>
             /// <param name="_waitForAllUsersToResolve">Whether or not to wait for all users before creating the cloud anchor</param>
             /// <returns>yield wait for - until tracking</returns>
-            private IEnumerator ResolveCloudAnchor(string _objectId, string anchorID, bool _setWorldOrigin, bool _waitForAllUsersToResolve)
+            private IEnumerator ResolveCloudAnchor(string _objectId, string anchorID, bool _waitForAllUsersToResolve, bool _setWorldOrigin)
             {
                 //If not the device is currently not tracking, wait to resolve the anchor
-                while (Session.Status != SessionStatus.Tracking)
+                while (ARSession.state != ARSessionState.SessionTracking)
                 {
                     yield return new WaitForEndOfFrame();
                 }
-                XPSession.ResolveCloudAnchor(anchorID).ThenAction((Action<CloudAnchorResult>)(result =>
-                {
-                    //If failed to resolve
-                    if (result.Response != CloudServiceResponse.Success)
-                    {
-                        Debug.LogError("Could not resolve Cloud Anchor: " + anchorID + " " + result.Response);
-                    }
 
-                    Debug.Log("Successfully Resolved cloud anchor: " + anchorID);
+                ARCloudAnchor cloudAnchor = ARWorldOriginHelper.GetInstance().m_ARAnchorManager.ResolveCloudAnchorId(anchorID);
+
+                if (cloudAnchor == null)
+                {
+                    Debug.LogError("Failed to resolve cloud anchor: " + anchorID);
+                }
+
+                //While we are resolving - wait
+                while (cloudAnchor.cloudAnchorState == CloudAnchorState.TaskInProgress)
+                {
+                    yield return new WaitForEndOfFrame();
+                }
+
+                if (cloudAnchor.cloudAnchorState == CloudAnchorState.Success)
+                {
+                    Debug.Log("Successfully Resolved cloud anchor: " + anchorID + " for object: " + _objectId);
                     //Now have at least one cloud anchor in the scene
                     ASLObject anchorObjectPrefab;
                     if (ASLHelper.m_ASLObjects.TryGetValue(_objectId ?? string.Empty, out ASLObject myObject)) //if user has ASL object -> ASL Object was created before linking to cloud anchor
                     {
                         anchorObjectPrefab = myObject;
-                        anchorObjectPrefab._LocallySetAnchorID(result.Anchor.CloudId);
-                        anchorObjectPrefab.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f); //Set scale to be 10 cm
+                        anchorObjectPrefab._LocallySetAnchorID(cloudAnchor.cloudAnchorId);
+                        anchorObjectPrefab.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f); //Set scale to be 5 cm
                     }
                     else //ASL Object was created to link to cloud anchor - do the same here
                     {
                         //Uncomment the line below to aid in visual debugging (helps display the cloud anchor)
                         //anchorObjectPrefab = GameObject.CreatePrimitive(PrimitiveType.Cube).AddComponent<ASLObject>(); //if null, then create empty game object   
                         anchorObjectPrefab = new GameObject().AddComponent<ASLObject>();
-                        anchorObjectPrefab._LocallySetAnchorID(result.Anchor.CloudId); //Add ASLObject component to this anchor and set its anchor id variable
-                        anchorObjectPrefab._LocallySetID(result.Anchor.CloudId); //Locally set the id of this object to be that of the anchor id (which is unique)
+                        anchorObjectPrefab._LocallySetAnchorID(cloudAnchor.cloudAnchorId); //Add ASLObject component to this anchor and set its anchor id variable
+                        anchorObjectPrefab._LocallySetID(_objectId); //Locally set the id of this object to be that of the anchor id (which is unique)
 
                         //Add this anchor object to our ASL dictionary using the anchor id as its key. All users will do this once they resolve this cloud anchor to ensure they still in sync.
-                        ASLHelper.m_ASLObjects.Add(result.Anchor.CloudId, anchorObjectPrefab.GetComponent<ASLObject>());
+                        ASLHelper.m_ASLObjects.Add(_objectId, anchorObjectPrefab.GetComponent<ASLObject>());
                         //anchorObjectPrefab.GetComponent<Material>().color = Color.magenta;
-                        anchorObjectPrefab.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f); //Set scale to be 10 cm
+                        anchorObjectPrefab.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f); //Set scale to be 5 cm
                     }
 
                     if (_waitForAllUsersToResolve)
                     {
-                        Debug.Log("Sent resolved");
                         //Send packet to relay server letting it know this user is ready
                         byte[] id = Encoding.ASCII.GetBytes(anchorObjectPrefab.m_Id);
                         RTMessage message = GetInstance().CreateRTMessage(OpCode.ResolvedCloudAnchor, id);
                         GetInstance().m_Client.SendMessage(message);
 
                         //Wait for others
-                        anchorObjectPrefab.StartWaitForAllUsersToResolveCloudAnchor(result, _setWorldOrigin, null);
+                        anchorObjectPrefab.StartWaitForAllUsersToResolveCloudAnchor(cloudAnchor, _setWorldOrigin, null);
                     }
                     else
                     {
                         anchorObjectPrefab._LocallySetCloudAnchorResolved(true);
-                        anchorObjectPrefab.StartWaitForAllUsersToResolveCloudAnchor(result, _setWorldOrigin, null);
+                        anchorObjectPrefab.StartWaitForAllUsersToResolveCloudAnchor(cloudAnchor, _setWorldOrigin, null);
                     }
+                }
+                else
+                {
+                    Debug.LogError("Failed to host Cloud Anchor " + cloudAnchor.name + " " + cloudAnchor.cloudAnchorState.ToString());
+                }
 
-                }));
             }
+#endif
 
             /// <summary>
             /// Is called when all clients have finished resolving a cloud anchor
@@ -938,6 +956,10 @@ namespace ASL
                 }
             }
 
+
+
+#region Data Transformations
+
             /// <summary>
             /// Converts a byte array into a vector3 or 4 depending on the vector size sent
             /// </summary>
@@ -1088,6 +1110,8 @@ namespace ASL
                 Buffer.BlockCopy(_payload, 0, count, 0, sizeof(int));
                 return count[0];
             }
+
+#endregion
         }
     }
 }
