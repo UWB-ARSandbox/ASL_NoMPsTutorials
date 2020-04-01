@@ -433,6 +433,7 @@ namespace ASL
                 if (string.IsNullOrEmpty(m_UsernameInputField.text))
                 {
                     GetInstance().QForMainThread(AddErrorText, "Username cannot be empty.");
+                    GetInstance().QForMainThread(ChangeInteractablility, m_LoginButton, true);
                     return;
                 }
 

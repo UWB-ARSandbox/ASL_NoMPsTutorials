@@ -215,10 +215,10 @@ namespace ASL
         public bool Raycast(Vector2 _touchPosition, out Pose hitPose)
         {
 #if UNITY_ANDROID || UNITY_IOS
-            TrackableType trackableType = TrackableType.PlaneWithinPolygon
+            TrackableType trackableType = TrackableType.PlaneWithinPolygon;
             //OLD: float x, float y, TrackableHitFlags filter, out TrackableHit hitResult
             List<ARRaycastHit> hitResults = new List<ARRaycastHit>();
-            m_RaycastManager.Raycast(_touchPosition, hitResults, _trackableType);
+            m_RaycastManager.Raycast(_touchPosition, hitResults, trackableType);
 
             bool foundHit = hitResults.Count > 0;
             //hitResult = new ARRaycastHit();
