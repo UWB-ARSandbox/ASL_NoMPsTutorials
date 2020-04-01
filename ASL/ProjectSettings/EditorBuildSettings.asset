@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/ASL_Tutorials/Simple/TransformObjectViaWorldSpace/TransformObjectViaWorldSpace_Example.unity
+    guid: 3f7d2ec93f8aa2c4099b56b39c403694
+  - enabled: 1
     path: Assets/ASL/ASL_Scenes/ASL_LobbyScene.unity
     guid: 31f3bf0f357b60c4981e20725877fd45
   - enabled: 1
@@ -41,9 +44,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/ASL_Tutorials/Simple/LoadScene/LoadScene_Example.unity
     guid: af1d3b72a15dee349af083e81048c76f
-  - enabled: 0
-    path: Assets/ASL_Tutorials/Simple/TransformObjectViaWorldSpace/TransformObjectViaWorldSpace_Example.unity
-    guid: 3f7d2ec93f8aa2c4099b56b39c403694
   - enabled: 0
     path: Assets/ASL_Tutorials/Simple/DeleteObject/DeleteObject_Example.unity
     guid: 6d5615ba07db2fc499aee3baa9ea77ae
