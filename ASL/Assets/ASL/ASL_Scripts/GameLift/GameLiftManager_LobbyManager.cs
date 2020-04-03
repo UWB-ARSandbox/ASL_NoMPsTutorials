@@ -162,7 +162,7 @@ namespace ASL
             public Text m_ErrorText;
 
             /// <summary>The UDP listening port number for Android devices</summary>
-            private int m_AndroidUDPListeningPort = 33400;
+            private int m_AndroidOrOSXUDPListeningPort = 33400;
 
             /// <summary>
             /// This function starts the scene by assigning all UI elements and is manually called by GameLiftManager's Start function as 
@@ -181,7 +181,7 @@ namespace ASL
                     m_SceneName = "";
                 }
 
-#if UNITY_ANDROID
+#if UNITY_ANDROID || UNITY_STANDALONE_OSX
                 CheckPorts();
 #endif
 
@@ -700,8 +700,8 @@ namespace ASL
                 //Run one test at a time
                 //Try stress tests to see packets
 
-#if UNITY_ANDROID
-                int UDPListenPort = m_AndroidUDPListeningPort;                
+#if UNITY_ANDROID || UNITY_STANDALONE_OSX
+                int UDPListenPort = m_AndroidOrOSXUDPListeningPort;                
 #else
                 int UDPListenPort = FindAvailableUDPPort(DEFAULT_UDP_PORT, DEFAULT_UDP_PORT + 100); //33400 - 33500 - Function does not work on Android.
 #endif
@@ -1086,14 +1086,14 @@ namespace ASL
             /// </summary>
             private void CheckPorts()
             {
-                UdpClient testClient = new UdpClient(m_AndroidUDPListeningPort);
+                UdpClient testClient = new UdpClient(m_AndroidOrOSXUDPListeningPort);
                 try
                 {
-                    testClient.Connect("www.contoso.com", m_AndroidUDPListeningPort);
+                    testClient.Connect("www.contoso.com", m_AndroidOrOSXUDPListeningPort);
                     if (testClient.Client.Connected)
                     {
 #if ASL_DEBUG
-                        Debug.Log("Connection available on port: " + m_AndroidUDPListeningPort);
+                        Debug.Log("Connection available on port: " + m_AndroidOrOSXUDPListeningPort);
 #endif
                         testClient.Close();
                         m_LoginButton.interactable = true;
@@ -1102,10 +1102,10 @@ namespace ASL
                     {
                         m_LoginButton.interactable = false;
 #if ASL_DEBUG
-                        Debug.Log("Failed to connect on port: " + m_AndroidUDPListeningPort);
+                        Debug.Log("Failed to connect on port: " + m_AndroidOrOSXUDPListeningPort);
 #endif
-                        m_AndroidUDPListeningPort++;
-                        if (m_AndroidUDPListeningPort > 33500)
+                        m_AndroidOrOSXUDPListeningPort++;
+                        if (m_AndroidOrOSXUDPListeningPort > 33500)
                         {
                             AddErrorText("Could not find an available port to use. Please restart device.");
                             return;
@@ -1119,8 +1119,8 @@ namespace ASL
                     Debug.LogError(_error);
 #endif
                     AddErrorText(_error.ToString());
-                    m_AndroidUDPListeningPort++;
-                    if (m_AndroidUDPListeningPort > 33500)
+                    m_AndroidOrOSXUDPListeningPort++;
+                    if (m_AndroidOrOSXUDPListeningPort > 33500)
                     {
 #if ASL_DEBUG
                         AddErrorText("Could not find an available port to use. Please restart device. " + _error.ToString());
