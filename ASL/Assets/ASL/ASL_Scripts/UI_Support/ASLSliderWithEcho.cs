@@ -120,7 +120,7 @@ namespace ASL
                 gameObject.GetComponent<ASLObject>().SendAndSetClaim(() =>
                 {
                     float[] myFloatArray = { _newValue };
-                    GetComponent<ASLObject>().SendFloat4(myFloatArray);
+                    GetComponent<ASLObject>().SendFloatArray(myFloatArray);
                 });
             }
         }

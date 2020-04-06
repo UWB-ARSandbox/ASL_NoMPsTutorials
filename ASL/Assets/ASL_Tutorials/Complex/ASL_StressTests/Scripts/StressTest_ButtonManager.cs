@@ -47,7 +47,7 @@ namespace StressTesting
                 myValue[1] = 1;
                 myValue[2] = 2;
                 myValue[3] = 3;
-                randomObject.GetComponent<ASL.ASLObject>()?.SendFloat4(myValue);
+                randomObject.GetComponent<ASL.ASLObject>()?.SendFloatArray(myValue);
             });
 
         }

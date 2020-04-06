@@ -133,7 +133,7 @@ namespace SimpleDemos
             _myGameObject.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
             {
                 float[] myFloats = { 1, 2, 3, 4 };
-                _myGameObject.GetComponent<ASL.ASLObject>().SendFloat4(myFloats);
+                _myGameObject.GetComponent<ASL.ASLObject>().SendFloatArray(myFloats);
             });
         }
 
@@ -166,7 +166,7 @@ namespace SimpleDemos
         }
 
         /// <summary>
-        /// A function that is called whenever an ASL object calls <see cref="ASL.ASLObject.SendFloat4(float[])"/>.
+        /// A function that is called whenever an ASL object calls <see cref="ASL.ASLObject.SendFloatArray(float[])"/>.
         /// This function can be assigned to an ASL object upon creation.
         /// </summary>
         /// <param name="_id"></param>

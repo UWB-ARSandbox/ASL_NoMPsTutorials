@@ -10,7 +10,8 @@ namespace ASL
 {
     /// /// <summary>
     /// ASLObject: ASLObject Partial Class containing all of the functions and variables relating to server actions - actions that affect all players instead of just a single player.
-    /// use this class to communicate object information to other players.
+    /// use this class to communicate object information to other players. If you are looking for where to create an object for all users at runtime, check out 
+    /// <see cref="ASLHelper.InstanitateASLObject(string, Vector3, Quaternion)"/> and it's other variations
     /// </summary>
     public partial class ASLObject : MonoBehaviour
     {
@@ -53,7 +54,7 @@ namespace ASL
         public delegate void ClaimCallback();
 
         /// <summary> Delegate for the Float callback function </summary>
-        /// <param name="_id">The id of the object that called <see cref="ASLObject.SendFloat4(float[])"/></param>
+        /// <param name="_id">The id of the object that called <see cref="ASLObject.SendFloatArray(float[])"/></param>
         /// <param name="_f">The float(s) to be passed into the user defined function</param>
         public delegate void FloatCallback(string _id, float[] _f);
 
@@ -741,7 +742,7 @@ namespace ASL
         ///         float[] myValue = new float[1];
         ///         myValue[0] = 3.5;
         ///         //In this example, playerHealth would be updated to 3.5 for all users
-        ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendFloat4(myValue); 
+        ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendFloatArray(myValue); 
         ///     });
         /// }
         /// </code><code>
@@ -759,34 +760,35 @@ namespace ASL
         ///     playerHealth = f[0]; //Where playerHealth is shown to kept track/shown to all users
         /// }
         ///</code>
-        /// It is possible to use this function to send more than 4 variables if the user sets up the function to execute upon receiving SendFloat4 to include a switch/case statement
+        /// It is possible to use this function to send more than 4 variables if the user sets up the function to execute upon receiving SendFloatArray to include a switch/case statement
         /// with the final value in the float array being what determines how the other three values are handled. See below for an example
         /// <code>
-        /// //For example, use this function to update player stats using the same SendFloat4 UserDefinedFunction that can also update velocity and score
+        /// //For example, use this function to update player stats using the same SendFloatArray UserDefinedFunction that can also update velocity and score
         /// void SomeFunction()
         /// {
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
         ///         float[] myValue = new float[1];
-        ///         myValue[0] = 3.5;
+        ///         myValue[0] = 3.5f;
         ///         myValue[1] = 0;
-        ///         myValue[2] = 1.2
-        ///         myValue[3] = 2
+        ///         myValue[2] = 1.2f;
+        ///         myValue[3] = 2;
         ///         //In this example, playerHealth would be updated to 3.5 for all users, playerArmor to 0, playerSpeedBuff to 1.2, and the switch case to properly assign these values, 2
-        ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendFloat4(myValue); 
+        ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendFloatArray(myValue); 
         ///     });
         /// }
-        /// //For example, use this function to update velocity using the same SendFloat4 UserDefinedFunction that can also update player stats and score
+        /// //For example, use this function to update velocity using the same SendFloatArray UserDefinedFunction that can also update player stats and score
         /// void SomeOtherFunction()
         /// {
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
-        ///         float[] myValue = new float[1];
-        ///         myValue[0] = 17.8;
-        ///         myValue[1] = 180.2;
-        ///         myValue[3] = 1
+        ///         float[] myValue = new float[4];
+        ///         myValue[0] = 17.8f;
+        ///         myValue[1] = 180.2f;
+        ///         myValue[2] = 1.2f;
+        ///         myValue[3] = 1;
         ///         //In this example, velocity would be set to 17.8 and direction to 180.2
-        ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendFloat4(myValue); 
+        ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendFloatArray(myValue); 
         ///     });
         /// }
         /// 
@@ -806,7 +808,7 @@ namespace ASL
         ///         {
         ///             case 0:
         ///                 //Update score based on f[0] for example
-        ///             break;
+        ///                 break;
         ///             case 1:
         ///                 //Update player velocity and direction with f[0] and f[1] for example
         ///                 playerVelocity = f[0]; //Velocity gets set to 17.8
@@ -820,12 +822,13 @@ namespace ASL
         ///             case 3:
         ///                 myObject.GetComponent&lt;RigidBody&gt;().velocity = f[0];
         ///                 myObject.GetComponent&lt;MyScript&gt;().MyVariable = f[1];
+        ///                 break;
         ///         }
         ///     }
         /// }
         /// </code>
         ///</example>
-        public void SendFloat4(float[] _f)
+        public void SendFloatArray(float[] _f)
         {
             if (m_Mine) //Can only send a transform if we own the object
             {
@@ -979,7 +982,7 @@ namespace ASL
                 //All users will do this, thus no need to use a SendAndSet function
                 transform.localPosition = Vector3.zero;
                 transform.localRotation = Quaternion.identity;
-                transform.parent = _cloudAnchor.transform;
+                transform.SetParent(_cloudAnchor.transform, false);
 
                 ARWorldOriginHelper.GetInstance().SetWorldOrigin(_cloudAnchor.transform);
                 _cloudAnchor.name = "World Origin Anchor";
@@ -988,7 +991,7 @@ namespace ASL
             {
                 //Set our anchor object prefab to always follow our cloud anchor by setting it as a child of that cloud anchor
                 //All users will do this, thus no need to use a SendAndSet function
-                transform.parent = _cloudAnchor.transform;
+                transform.SetParent(_cloudAnchor.transform, false);
                 transform.localPosition = Vector3.zero;
                 transform.localRotation = Quaternion.identity;
             }

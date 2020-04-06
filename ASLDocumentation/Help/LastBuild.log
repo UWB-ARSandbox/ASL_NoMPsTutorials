@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shfbBuild product="Sandcastle Help File Builder and Tools" version="2019.9.15.0" projectFile="C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\ASLDocumentation.shfbproj" started="4/1/2020 4:49:31 AM">
+<shfbBuild product="Sandcastle Help File Builder and Tools" version="2019.9.15.0" projectFile="C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\ASLDocumentation.shfbproj" started="4/5/2020 9:31:21 PM">
 <buildStep step="Initializing">
 Finding tools...
 The Sandcastle tools are located in &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\&#39;
@@ -13,9 +13,6 @@ Loading and initializing plug-ins...
 Lightweight Website Style Version 2019.9.15.0
 Copyright &#169; 2006-2019, Eric Woodruff, All Rights Reserved
 Portions Copyright &#169; 2014, Sam Harwell, All Rights Reserved
-</buildStep>
-<buildStep step="ClearWorkFolder">
-Clearing working folder...
 -------------------------------
 Clearing any prior web/markdown output...
 </buildStep>
@@ -31,7 +28,7 @@ Copying XML comments files
 <buildStep step="GenerateSharedContent">
 Generating shared content files (en-US, English (United States))...
 <plugIn name="Lightweight Website Style" behavior="After" priority="1000">
-</plugIn>    Last step completed in 00:00:00.0060
+</plugIn>    Last step completed in 00:00:00.0030
 </buildStep>
 <buildStep step="GenerateApiFilter">
 Generating API filter for MRefBuilder...
@@ -40,7 +37,7 @@ Generating API filter for MRefBuilder...
 <buildStep step="GenerateReflectionInfo">
 Generating reflection information...
 [C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe - GenerateRefInfo.proj]
-Build started 4/1/2020 4:49:31 AM.
+Build started 4/5/2020 9:31:22 PM.
 Project &quot;C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\GenerateRefInfo.proj&quot; on node 1 (default targets).
 PrepareForBuild:
   Creating directory &quot;obj\Debug\&quot;.
@@ -50,19 +47,19 @@ GenerateRefInfo:
   Portions Copyright c 2006-2019, Eric Woodruff, All Rights Reserved.
   No source code context base path specified.  Source context information is unavailable.
   Loaded 1 assemblies for reflection and 1 dependency assemblies.
-  Wrote information on 3 namespaces, 45 types, and 507 members
+  Wrote information on 3 namespaces, 46 types, and 582 members
   Copying file from &quot;C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\reflection.org&quot; to &quot;C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\reflection.all&quot;.
   XslTransform (v2019.9.15.0)
   Copyright c 2006-2019, Microsoft Corporation, All Rights Reserved.
   Portions Copyright c 2006-2019, Eric Woodruff, All Rights Reserved.
   Applying XSL transformation &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\ProductionTransforms\MergeDuplicates.xsl&#39;.
 Done Building Project &quot;C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\GenerateRefInfo.proj&quot; (default targets).
-    Last step completed in 00:00:00.5276
+    Last step completed in 00:00:00.5397
 </buildStep>
 <buildStep step="TransformReflectionInfo">
 Transforming reflection output...
 [C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe - TransformManifest.proj]
-Build started 4/1/2020 4:49:32 AM.
+Build started 4/5/2020 9:31:22 PM.
 Project &quot;C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\TransformManifest.proj&quot; on node 1 (default targets).
 TransformManifest:
   XslTransform (v2019.9.15.0)
@@ -79,11 +76,11 @@ TransformManifest:
   Portions Copyright c 2006-2019, Eric Woodruff, All Rights Reserved.
   Applying XSL transformation &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\ProductionTransforms\ReflectionToManifest.xsl&#39;.
 Done Building Project &quot;C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\TransformManifest.proj&quot; (default targets).
-    Last step completed in 00:00:00.3626
+    Last step completed in 00:00:00.4328
 </buildStep>
 <buildStep step="GenerateNamespaceSummaries">
 Generating namespace summary information...
-    Last step completed in 00:00:00.0120
+    Last step completed in 00:00:00.0140
 </buildStep>
 <buildStep step="CopyConceptualContent">
 Copying conceptual content...
@@ -98,14 +95,14 @@ Generating conceptual topic files
     C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Content\VersionHistory\VersionHistory.aml -&gt; C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\ddueXml\177310fb-8abd-4b2b-98db-60d540b7ca2f.xml
     Parsing topic file &#39;C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Content\VersionHistory\v1.0.0.0.aml&#39;
     C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Content\VersionHistory\v1.0.0.0.aml -&gt; C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\ddueXml\78cc44cf-a21e-4e00-b939-5c44e0cceeec.xml
-    Last step completed in 00:00:00.0189
+    Last step completed in 00:00:01.1638
 </buildStep>
 <buildStep step="CreateConceptualTopicConfigs">
 Creating conceptual topic configuration files...
     Companion files
     _ContentMetadata_.xml
     Merging topic IDs into manifest.xml
-    Last step completed in 00:00:00.0050
+    Last step completed in 00:00:00.0030
 </buildStep>
 <buildStep step="CopyAdditionalContent">
 Copying additional content files...
@@ -114,12 +111,12 @@ C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentati
 </buildStep>
 <buildStep step="MergeTablesOfContents">
 Merging conceptual and additional tables of contents...
-    Last step completed in 00:00:00.0010
+    Last step completed in 00:00:00.0000
 </buildStep>
 <buildStep step="GenerateIntermediateTableOfContents">
 Generating intermediate table of contents file...
 [C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe - GenerateIntermediateTOC.proj]
-Build started 4/1/2020 4:49:32 AM.
+Build started 4/5/2020 9:31:24 PM.
 Project &quot;C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\GenerateIntermediateTOC.proj&quot; on node 1 (default targets).
 GenerateIntermediateTOC:
   XslTransform (v2019.9.15.0)
@@ -128,12 +125,12 @@ GenerateIntermediateTOC:
   Applying XSL transformation &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\\ProductionTransforms\CreateVSToc.xsl&#39;.
 Done Building Project &quot;C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\GenerateIntermediateTOC.proj&quot; (default targets).
 Generating conceptual content intermediate TOC file...
-    Last step completed in 00:00:00.1551
+    Last step completed in 00:00:00.1704
 </buildStep>
 <buildStep step="CreateBuildAssemblerConfigs">
 Creating Sandcastle configuration files...
     sandcastle.config
-    Last step completed in 00:00:00.0589
+    Last step completed in 00:00:00.0459
 </buildStep>
 <buildStep step="MergeCustomConfigs">
 Merging custom build component configurations
@@ -141,12 +138,12 @@ C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentati
   Updating reference topic configurations.
   Updating conceptual topic configurations.
     Removing unused ExampleComponent.
-    Last step completed in 00:00:00.0020
+    Last step completed in 00:00:00.0030
 </buildStep>
 <buildStep step="BuildTopics">
 Building help topics...
 [C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe - BuildTopics.proj]
-Build started 4/1/2020 4:49:32 AM.
+Build started 4/5/2020 9:31:24 PM.
 Project &quot;C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj&quot; on node 1 (default targets).
 BuildTopics:
   BuildAssembler (v2019.9.15.0)
@@ -162,12 +159,20 @@ BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ARWorldOriginH
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ARWorldOriginHelper._WorldToAnchorPose(UnityEngine.Pose)] Unknown reference link target &#39;T:UnityEngine.Pose&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:ASL.ARWorldOriginHelper.ARCoreDeviceTransform] Unknown reference link target &#39;T:UnityEngine.Transform&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:ASL.ARWorldOriginHelper.m_AnchorTransform] Unknown reference link target &#39;T:UnityEngine.Transform&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:ASL.ARWorldOriginHelper.m_ARAnchorManager] Unknown reference link target &#39;T:UnityEngine.XR.ARFoundation.ARAnchorManager&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:ASL.ARWorldOriginHelper.m_ARPlaneManager] Unknown reference link target &#39;T:UnityEngine.XR.ARFoundation.ARPlaneManager&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:ASL.ARWorldOriginHelper.m_ARSession] Unknown reference link target &#39;T:UnityEngine.XR.ARFoundation.ARSession&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:ASL.ARWorldOriginHelper.m_Instance] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ResolveReferenceLinksComponent: [F:ASL.ARWorldOriginHelper.m_PlanesBeforeOrigin] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ARWorldOriginHelper.Raycast(UnityEngine.Vector2,UnityEngine.Pose@)] Unknown reference link target &#39;T:UnityEngine.Vector2&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ARWorldOriginHelper.Raycast(UnityEngine.Vector2,UnityEngine.Pose@)] Unknown reference link target &#39;T:UnityEngine.Pose&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:ASL.ARWorldOriginHelper.m_RaycastManager] Unknown reference link target &#39;T:UnityEngine.XR.ARFoundation.ARRaycastManager&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ARWorldOriginHelper.Raycast(UnityEngine.Vector2)] Unknown reference link target &#39;T:UnityEngine.Vector2&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ARWorldOriginHelper.Raycast(UnityEngine.Vector2)] Unknown reference link target &#39;T:UnityEngine.Pose&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ARWorldOriginHelper.Raycast(UnityEngine.Vector2,UnityEngine.XR.ARSubsystems.TrackableType)] Unknown reference link target &#39;T:UnityEngine.Vector2&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ARWorldOriginHelper.Raycast(UnityEngine.Vector2,UnityEngine.XR.ARSubsystems.TrackableType)] Unknown reference link target &#39;T:UnityEngine.XR.ARSubsystems.TrackableType&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ARWorldOriginHelper.Raycast(UnityEngine.Vector2,UnityEngine.XR.ARSubsystems.TrackableType)] Unknown reference link target &#39;T:UnityEngine.Pose&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ARWorldOriginHelper.SetWorldOrigin(UnityEngine.Transform)] Unknown reference link target &#39;T:UnityEngine.Transform&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLHelper.CreateARCoreCloudAnchor(UnityEngine.Pose,ASL.ASLObject,ASL.ASLObject.PostCreateCloudAnchorFunction,System.Boolean,System.Boolean)] Unknown reference link target &#39;T:UnityEngine.Pose&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ARWorldOriginHelper.WaitForCloudAnchorToBeCreated(Google.XR.ARCoreExtensions.ARCloudAnchor,UnityEngine.Pose,ASL.ASLObject,ASL.ASLObject.PostCreateCloudAnchorFunction,System.Boolean,System.Boolean)] Unknown reference link target &#39;T:Google.XR.ARCoreExtensions.ARCloudAnchor&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ARWorldOriginHelper.WaitForCloudAnchorToBeCreated(Google.XR.ARCoreExtensions.ARCloudAnchor,UnityEngine.Pose,ASL.ASLObject,ASL.ASLObject.PostCreateCloudAnchorFunction,System.Boolean,System.Boolean)] Unknown reference link target &#39;T:UnityEngine.Pose&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLHelper.CreateARCoreCloudAnchor(System.Nullable{UnityEngine.Pose},ASL.ASLObject,ASL.ASLObject.PostCreateCloudAnchorFunction,System.Boolean,System.Boolean)] Unknown reference link target &#39;T:UnityEngine.Pose&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLHelper.InstanitateASLObject(System.String,UnityEngine.Vector3,UnityEngine.Quaternion)] Unknown reference link target &#39;T:UnityEngine.Vector3&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLHelper.InstanitateASLObject(System.String,UnityEngine.Vector3,UnityEngine.Quaternion)] Unknown reference link target &#39;T:UnityEngine.Quaternion&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLHelper.InstanitateASLObject(System.String,UnityEngine.Vector3,UnityEngine.Quaternion,System.String)] Unknown reference link target &#39;T:UnityEngine.Vector3&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
@@ -198,11 +203,16 @@ BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLHelper.Inst
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLHelper.InstanitateASLObject(UnityEngine.PrimitiveType,UnityEngine.Vector3,UnityEngine.Quaternion,System.String,System.String,ASL.ASLObject.ASLGameObjectCreatedCallback,ASL.ASLObject.ClaimCancelledRecoveryCallback,ASL.ASLObject.FloatCallback)] Unknown reference link target &#39;T:UnityEngine.PrimitiveType&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLHelper.InstanitateASLObject(UnityEngine.PrimitiveType,UnityEngine.Vector3,UnityEngine.Quaternion,System.String,System.String,ASL.ASLObject.ASLGameObjectCreatedCallback,ASL.ASLObject.ClaimCancelledRecoveryCallback,ASL.ASLObject.FloatCallback)] Unknown reference link target &#39;T:UnityEngine.Vector3&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLHelper.InstanitateASLObject(UnityEngine.PrimitiveType,UnityEngine.Vector3,UnityEngine.Quaternion,System.String,System.String,ASL.ASLObject.ASLGameObjectCreatedCallback,ASL.ASLObject.ClaimCancelledRecoveryCallback,ASL.ASLObject.FloatCallback)] Unknown reference link target &#39;T:UnityEngine.Quaternion&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:ASL.ASLHelper.m_ARCloudAnchor] Unknown reference link target &#39;T:Google.XR.ARCoreExtensions.ARCloudAnchor&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLHelper.SendSpawnPrefab(System.String,UnityEngine.Vector3,UnityEngine.Quaternion,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)] Unknown reference link target &#39;T:UnityEngine.Vector3&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLHelper.SendSpawnPrefab(System.String,UnityEngine.Vector3,UnityEngine.Quaternion,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)] Unknown reference link target &#39;T:UnityEngine.Quaternion&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLHelper.SendSpawnPrimitive(UnityEngine.PrimitiveType,UnityEngine.Vector3,UnityEngine.Quaternion,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)] Unknown reference link target &#39;T:UnityEngine.PrimitiveType&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLHelper.SendSpawnPrimitive(UnityEngine.PrimitiveType,UnityEngine.Vector3,UnityEngine.Quaternion,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)] Unknown reference link target &#39;T:UnityEngine.Vector3&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLHelper.SendSpawnPrimitive(UnityEngine.PrimitiveType,UnityEngine.Vector3,UnityEngine.Quaternion,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)] Unknown reference link target &#39;T:UnityEngine.Quaternion&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLHelper.CloudAnchor.#ctor(Google.XR.ARCoreExtensions.ARCloudAnchor,System.Boolean)] Unknown reference link target &#39;T:Google.XR.ARCoreExtensions.ARCloudAnchor&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:ASL.ASLHelper.CloudAnchor.anchor] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:ASL.ASLHelper.CloudAnchor.anchor] Unknown reference link target &#39;T:Google.XR.ARCoreExtensions.ARCloudAnchor&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:ASL.ASLHelper.CloudAnchor.worldOrigin] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.ASLObject] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.ASLObject] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.ASLObject] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
@@ -222,12 +232,105 @@ BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLObject.Send
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLObject.SendAndSetWorldPosition(System.Nullable{UnityEngine.Vector3})] Unknown reference link target &#39;T:UnityEngine.Vector3&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLObject.SendAndSetWorldRotation(System.Nullable{UnityEngine.Quaternion})] Unknown reference link target &#39;T:UnityEngine.Quaternion&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLObject.SendAndSetWorldScale(System.Nullable{UnityEngine.Vector3})] Unknown reference link target &#39;T:UnityEngine.Vector3&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.ASLObject.ASLGameObjectCreatedCallback] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.ASLObject.PostCreateCloudAnchorFunction] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.ASLObject.PostCreateCloudAnchorFunction] Unknown reference link target &#39;T:UnityEngine.Pose&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.ASLObject.PostDownloadFunction] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.ASLObject.PostDownloadFunction] Unknown reference link target &#39;T:UnityEngine.Texture2D&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.ASLObject.ReleaseFunction] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLObject.StartWaitForAllUsersToResolveCloudAnchor(Google.XR.ARCoreExtensions.ARCloudAnchor,System.Boolean,ASL.ASLObject.PostCreateCloudAnchorFunction,UnityEngine.Pose)] Unknown reference link target &#39;T:Google.XR.ARCoreExtensions.ARCloudAnchor&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLObject.StartWaitForAllUsersToResolveCloudAnchor(Google.XR.ARCoreExtensions.ARCloudAnchor,System.Boolean,ASL.ASLObject.PostCreateCloudAnchorFunction,UnityEngine.Pose)] Unknown reference link target &#39;T:UnityEngine.Pose&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLObject.WaitForAllUsersToResolveCloudAnchor(Google.XR.ARCoreExtensions.ARCloudAnchor,System.Boolean,ASL.ASLObject.PostCreateCloudAnchorFunction,UnityEngine.Pose)] Unknown reference link target &#39;T:Google.XR.ARCoreExtensions.ARCloudAnchor&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLObject.WaitForAllUsersToResolveCloudAnchor(Google.XR.ARCoreExtensions.ARCloudAnchor,System.Boolean,ASL.ASLObject.PostCreateCloudAnchorFunction,UnityEngine.Pose)] Unknown reference link target &#39;T:UnityEngine.Pose&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ASLGameObjectCreatedCallback.#ctor(System.Object,System.IntPtr)] Missing &lt;param name=&quot;object&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ASLGameObjectCreatedCallback.#ctor(System.Object,System.IntPtr)] Missing &lt;param name=&quot;method&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ASLGameObjectCreatedCallback.BeginInvoke(UnityEngine.GameObject,System.AsyncCallback,System.Object)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ASLGameObjectCreatedCallback.BeginInvoke(UnityEngine.GameObject,System.AsyncCallback,System.Object)] Missing &lt;returns&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ASLGameObjectCreatedCallback.BeginInvoke(UnityEngine.GameObject,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;_myGameObject&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ASLGameObjectCreatedCallback.BeginInvoke(UnityEngine.GameObject,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;callback&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ASLGameObjectCreatedCallback.BeginInvoke(UnityEngine.GameObject,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;object&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLObject.ASLGameObjectCreatedCallback.BeginInvoke(UnityEngine.GameObject,System.AsyncCallback,System.Object)] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ASLGameObjectCreatedCallback.EndInvoke(System.IAsyncResult)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ASLGameObjectCreatedCallback.EndInvoke(System.IAsyncResult)] Missing &lt;param name=&quot;result&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ASLGameObjectCreatedCallback.Invoke(UnityEngine.GameObject)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ASLGameObjectCreatedCallback.Invoke(UnityEngine.GameObject)] Missing &lt;param name=&quot;_myGameObject&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLObject.ASLGameObjectCreatedCallback.Invoke(UnityEngine.GameObject)] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCallback.#ctor(System.Object,System.IntPtr)] Missing &lt;param name=&quot;object&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCallback.#ctor(System.Object,System.IntPtr)] Missing &lt;param name=&quot;method&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCallback.BeginInvoke(System.AsyncCallback,System.Object)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCallback.BeginInvoke(System.AsyncCallback,System.Object)] Missing &lt;returns&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCallback.BeginInvoke(System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;callback&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCallback.BeginInvoke(System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;object&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCallback.EndInvoke(System.IAsyncResult)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCallback.EndInvoke(System.IAsyncResult)] Missing &lt;param name=&quot;result&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCallback.Invoke] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCancelledRecoveryCallback.#ctor(System.Object,System.IntPtr)] Missing &lt;param name=&quot;object&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCancelledRecoveryCallback.#ctor(System.Object,System.IntPtr)] Missing &lt;param name=&quot;method&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCancelledRecoveryCallback.BeginInvoke(System.String,System.Int32,System.AsyncCallback,System.Object)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCancelledRecoveryCallback.BeginInvoke(System.String,System.Int32,System.AsyncCallback,System.Object)] Missing &lt;returns&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCancelledRecoveryCallback.BeginInvoke(System.String,System.Int32,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;_id&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCancelledRecoveryCallback.BeginInvoke(System.String,System.Int32,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;cancelledCount&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCancelledRecoveryCallback.BeginInvoke(System.String,System.Int32,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;callback&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCancelledRecoveryCallback.BeginInvoke(System.String,System.Int32,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;object&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCancelledRecoveryCallback.EndInvoke(System.IAsyncResult)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCancelledRecoveryCallback.EndInvoke(System.IAsyncResult)] Missing &lt;param name=&quot;result&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCancelledRecoveryCallback.Invoke(System.String,System.Int32)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCancelledRecoveryCallback.Invoke(System.String,System.Int32)] Missing &lt;param name=&quot;_id&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ClaimCancelledRecoveryCallback.Invoke(System.String,System.Int32)] Missing &lt;param name=&quot;cancelledCount&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.FloatCallback.#ctor(System.Object,System.IntPtr)] Missing &lt;param name=&quot;object&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.FloatCallback.#ctor(System.Object,System.IntPtr)] Missing &lt;param name=&quot;method&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.FloatCallback.BeginInvoke(System.String,System.Single[],System.AsyncCallback,System.Object)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.FloatCallback.BeginInvoke(System.String,System.Single[],System.AsyncCallback,System.Object)] Missing &lt;returns&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.FloatCallback.BeginInvoke(System.String,System.Single[],System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;_id&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.FloatCallback.BeginInvoke(System.String,System.Single[],System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;_f&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.FloatCallback.BeginInvoke(System.String,System.Single[],System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;callback&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.FloatCallback.BeginInvoke(System.String,System.Single[],System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;object&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.FloatCallback.EndInvoke(System.IAsyncResult)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.FloatCallback.EndInvoke(System.IAsyncResult)] Missing &lt;param name=&quot;result&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.FloatCallback.Invoke(System.String,System.Single[])] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.FloatCallback.Invoke(System.String,System.Single[])] Missing &lt;param name=&quot;_id&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.FloatCallback.Invoke(System.String,System.Single[])] Missing &lt;param name=&quot;_f&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostCreateCloudAnchorFunction.#ctor(System.Object,System.IntPtr)] Missing &lt;param name=&quot;object&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostCreateCloudAnchorFunction.#ctor(System.Object,System.IntPtr)] Missing &lt;param name=&quot;method&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostCreateCloudAnchorFunction.BeginInvoke(UnityEngine.GameObject,UnityEngine.Pose,System.AsyncCallback,System.Object)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostCreateCloudAnchorFunction.BeginInvoke(UnityEngine.GameObject,UnityEngine.Pose,System.AsyncCallback,System.Object)] Missing &lt;returns&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostCreateCloudAnchorFunction.BeginInvoke(UnityEngine.GameObject,UnityEngine.Pose,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;_anchorObjectPrefab&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostCreateCloudAnchorFunction.BeginInvoke(UnityEngine.GameObject,UnityEngine.Pose,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;_hitResult&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostCreateCloudAnchorFunction.BeginInvoke(UnityEngine.GameObject,UnityEngine.Pose,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;callback&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostCreateCloudAnchorFunction.BeginInvoke(UnityEngine.GameObject,UnityEngine.Pose,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;object&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLObject.PostCreateCloudAnchorFunction.BeginInvoke(UnityEngine.GameObject,UnityEngine.Pose,System.AsyncCallback,System.Object)] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLObject.PostCreateCloudAnchorFunction.BeginInvoke(UnityEngine.GameObject,UnityEngine.Pose,System.AsyncCallback,System.Object)] Unknown reference link target &#39;T:UnityEngine.Pose&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostCreateCloudAnchorFunction.EndInvoke(System.IAsyncResult)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostCreateCloudAnchorFunction.EndInvoke(System.IAsyncResult)] Missing &lt;param name=&quot;result&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostCreateCloudAnchorFunction.Invoke(UnityEngine.GameObject,UnityEngine.Pose)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostCreateCloudAnchorFunction.Invoke(UnityEngine.GameObject,UnityEngine.Pose)] Missing &lt;param name=&quot;_anchorObjectPrefab&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostCreateCloudAnchorFunction.Invoke(UnityEngine.GameObject,UnityEngine.Pose)] Missing &lt;param name=&quot;_hitResult&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLObject.PostCreateCloudAnchorFunction.Invoke(UnityEngine.GameObject,UnityEngine.Pose)] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLObject.PostCreateCloudAnchorFunction.Invoke(UnityEngine.GameObject,UnityEngine.Pose)] Unknown reference link target &#39;T:UnityEngine.Pose&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostDownloadFunction.#ctor(System.Object,System.IntPtr)] Missing &lt;param name=&quot;object&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostDownloadFunction.#ctor(System.Object,System.IntPtr)] Missing &lt;param name=&quot;method&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostDownloadFunction.BeginInvoke(UnityEngine.GameObject,UnityEngine.Texture2D,System.AsyncCallback,System.Object)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostDownloadFunction.BeginInvoke(UnityEngine.GameObject,UnityEngine.Texture2D,System.AsyncCallback,System.Object)] Missing &lt;returns&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostDownloadFunction.BeginInvoke(UnityEngine.GameObject,UnityEngine.Texture2D,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;_myGameObject&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostDownloadFunction.BeginInvoke(UnityEngine.GameObject,UnityEngine.Texture2D,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;_myTexture2D&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostDownloadFunction.BeginInvoke(UnityEngine.GameObject,UnityEngine.Texture2D,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;callback&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostDownloadFunction.BeginInvoke(UnityEngine.GameObject,UnityEngine.Texture2D,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;object&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLObject.PostDownloadFunction.BeginInvoke(UnityEngine.GameObject,UnityEngine.Texture2D,System.AsyncCallback,System.Object)] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLObject.PostDownloadFunction.BeginInvoke(UnityEngine.GameObject,UnityEngine.Texture2D,System.AsyncCallback,System.Object)] Unknown reference link target &#39;T:UnityEngine.Texture2D&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostDownloadFunction.EndInvoke(System.IAsyncResult)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostDownloadFunction.EndInvoke(System.IAsyncResult)] Missing &lt;param name=&quot;result&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostDownloadFunction.Invoke(UnityEngine.GameObject,UnityEngine.Texture2D)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostDownloadFunction.Invoke(UnityEngine.GameObject,UnityEngine.Texture2D)] Missing &lt;param name=&quot;_myGameObject&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.PostDownloadFunction.Invoke(UnityEngine.GameObject,UnityEngine.Texture2D)] Missing &lt;param name=&quot;_myTexture2D&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLObject.PostDownloadFunction.Invoke(UnityEngine.GameObject,UnityEngine.Texture2D)] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLObject.PostDownloadFunction.Invoke(UnityEngine.GameObject,UnityEngine.Texture2D)] Unknown reference link target &#39;T:UnityEngine.Texture2D&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ReleaseFunction.#ctor(System.Object,System.IntPtr)] Missing &lt;param name=&quot;object&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ReleaseFunction.#ctor(System.Object,System.IntPtr)] Missing &lt;param name=&quot;method&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ReleaseFunction.BeginInvoke(UnityEngine.GameObject,System.AsyncCallback,System.Object)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ReleaseFunction.BeginInvoke(UnityEngine.GameObject,System.AsyncCallback,System.Object)] Missing &lt;returns&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ReleaseFunction.BeginInvoke(UnityEngine.GameObject,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;_go&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ReleaseFunction.BeginInvoke(UnityEngine.GameObject,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;callback&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ReleaseFunction.BeginInvoke(UnityEngine.GameObject,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;object&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLObject.ReleaseFunction.BeginInvoke(UnityEngine.GameObject,System.AsyncCallback,System.Object)] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ReleaseFunction.EndInvoke(System.IAsyncResult)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ReleaseFunction.EndInvoke(System.IAsyncResult)] Missing &lt;param name=&quot;result&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ReleaseFunction.Invoke(UnityEngine.GameObject)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLObject.ReleaseFunction.Invoke(UnityEngine.GameObject)] Missing &lt;param name=&quot;_go&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.ASLObject.ReleaseFunction.Invoke(UnityEngine.GameObject)] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.ASLSliderWithEcho] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.ASLSliderWithEcho] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.ASLSliderWithEcho] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
@@ -235,6 +338,17 @@ BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.ASLSliderWithE
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:ASL.ASLSliderWithEcho.TheEcho] Unknown reference link target &#39;T:UnityEngine.UI.Text&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:ASL.ASLSliderWithEcho.TheLabel] Unknown reference link target &#39;T:UnityEngine.UI.Text&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:ASL.ASLSliderWithEcho.TheSlider] Unknown reference link target &#39;T:UnityEngine.UI.Slider&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLSliderWithEcho.SliderCallbackDelegate.#ctor(System.Object,System.IntPtr)] Missing &lt;param name=&quot;object&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLSliderWithEcho.SliderCallbackDelegate.#ctor(System.Object,System.IntPtr)] Missing &lt;param name=&quot;method&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLSliderWithEcho.SliderCallbackDelegate.BeginInvoke(System.Single,System.AsyncCallback,System.Object)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLSliderWithEcho.SliderCallbackDelegate.BeginInvoke(System.Single,System.AsyncCallback,System.Object)] Missing &lt;returns&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLSliderWithEcho.SliderCallbackDelegate.BeginInvoke(System.Single,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;v&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLSliderWithEcho.SliderCallbackDelegate.BeginInvoke(System.Single,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;callback&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLSliderWithEcho.SliderCallbackDelegate.BeginInvoke(System.Single,System.AsyncCallback,System.Object)] Missing &lt;param name=&quot;object&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLSliderWithEcho.SliderCallbackDelegate.EndInvoke(System.IAsyncResult)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLSliderWithEcho.SliderCallbackDelegate.EndInvoke(System.IAsyncResult)] Missing &lt;param name=&quot;result&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLSliderWithEcho.SliderCallbackDelegate.Invoke(System.Single)] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.ASLSliderWithEcho.SliderCallbackDelegate.Invoke(System.Single)] Missing &lt;param name=&quot;v&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.GameLiftManager] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.GameLiftManager] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.GameLiftManager] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
@@ -340,6 +454,8 @@ BuildAssembler : warning : ShowMissingComponent: [M:ASL.GameLiftManager.LobbyMan
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.GameLiftManager.LobbyManager.UpdateChatLog(Aws.GameLift.Realtime.Event.DataReceivedEventArgs)] Unknown reference link target &#39;T:Aws.GameLift.Realtime.Event.DataReceivedEventArgs&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:ASL.GameLiftManager.LobbyManager.UpdateConnectionStatusText(System.String)] Missing &lt;param name=&quot;_connectionStatus&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:ASL.GameLiftManager.LobbyManager.UpdateUsername(System.String)] Missing &lt;param name=&quot;_username&quot;/&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:ASL.GameLiftManager.LobbyManager.CurrentLoginStage.value__] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:ASL.GameLiftManager.OpCode.value__] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:ASL.GameLiftManager.PlayerSessionObject.CreationTime] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:ASL.GameLiftManager.PlayerSessionObject.DnsName] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:ASL.GameLiftManager.PlayerSessionObject.FleetId] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
@@ -373,6 +489,23 @@ BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.ARClou
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.ARCloudAnchor_Example] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.ARCloudAnchor_Example] Unknown reference link target &#39;T:UnityEngine.MonoBehaviour&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.ARCloudAnchor_Example.m_ObjectToPairWithCloudAnchor] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.ARWorldOriginExampleController] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.ARWorldOriginExampleController] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.ARWorldOriginExampleController] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.ARWorldOriginExampleController] Unknown reference link target &#39;T:UnityEngine.MonoBehaviour&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.ARWorldOriginExampleController.GetTouch] Unknown reference link target &#39;T:UnityEngine.Pose&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.ARWorldOriginExampleController.m_DisplayInformation] Unknown reference link target &#39;T:UnityEngine.UI.Text&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.ARWorldOriginExampleController.m_LastValidPose] Unknown reference link target &#39;T:UnityEngine.Pose&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.ARWorldOriginExampleController.m_NormalCloudAnchorObject] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.ARWorldOriginExampleController.m_ObjectToSpawnDropDown] Unknown reference link target &#39;T:UnityEngine.UI.Dropdown&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.ARWorldOriginExampleController.m_WorldOriginCloudAnchorObject] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.ARWorldOriginExampleController.NormalCloudAnchorTextUpdate(UnityEngine.GameObject,UnityEngine.Pose)] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.ARWorldOriginExampleController.NormalCloudAnchorTextUpdate(UnityEngine.GameObject,UnityEngine.Pose)] Unknown reference link target &#39;T:UnityEngine.Pose&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.ARWorldOriginExampleController.SpawnNormalCloudAnchor(UnityEngine.GameObject)] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.ARWorldOriginExampleController.SpawnSphere(UnityEngine.GameObject)] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.ARWorldOriginExampleController.SpawnWorldOrigin(UnityEngine.GameObject)] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.ARWorldOriginExampleController.WorldOriginTextUpdate(UnityEngine.GameObject,UnityEngine.Pose)] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.ARWorldOriginExampleController.WorldOriginTextUpdate(UnityEngine.GameObject,UnityEngine.Pose)] Unknown reference link target &#39;T:UnityEngine.Pose&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.ColorObject_Example] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.ColorObject_Example] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.ColorObject_Example] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
@@ -388,6 +521,7 @@ BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.Create
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.CreateObject_Example.m_RotationHolder] Unknown reference link target &#39;T:UnityEngine.Quaternion&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.CreateObject_Example.WhatToDoWithMyGameObjectNowThatItIsCreated(UnityEngine.GameObject)] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.CreateObject_Example.WhatToDoWithMyOtherGameObjectNowThatItIsCreated(UnityEngine.GameObject)] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.CreateObject_Example.ObjectToCreate.value__] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.DeleteObject_Example] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.DeleteObject_Example] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.DeleteObject_Example] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
@@ -412,12 +546,14 @@ BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.Send2D
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.Send2DTexture_Example._TextureToSend] Unknown reference link target &#39;T:UnityEngine.Texture2D&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.Send2DTexture_Example.ChangeSpriteTexture(UnityEngine.GameObject,UnityEngine.Texture2D)] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.Send2DTexture_Example.ChangeSpriteTexture(UnityEngine.GameObject,UnityEngine.Texture2D)] Unknown reference link target &#39;T:UnityEngine.Texture2D&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.SendFloat4_Example] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.SendFloat4_Example] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.SendFloat4_Example] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.SendFloat4_Example] Unknown reference link target &#39;T:UnityEngine.MonoBehaviour&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.SendFloat4_Example.m_ObjectToSendFloats] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.SendFloat4_Example.Update] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.SendFloatArray_Example] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.SendFloatArray_Example] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.SendFloatArray_Example] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.SendFloatArray_Example] Unknown reference link target &#39;T:UnityEngine.MonoBehaviour&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.SendFloatArray_Example.m_ObjectToSendFloats] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.SendFloatArray_Example.MyFloatFunction(System.String,System.Single[])] Unknown reference link target &#39;!:ASL.ASLObject.SendFloatArray_Example(float[])&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.SendFloatArray_Example.MyFloatFunction(System.String,System.Single[])] Invalid reference link target &#39;!:ASL.ASLObject.SendFloatArray_Example(float[])&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.SendFloatArray_Example.Update] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.SliderController] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.SliderController] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.SliderController] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
@@ -432,6 +568,7 @@ BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.Transf
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.TransformObjectViaLocalSpace_Example.m_MyCustomAxis] Unknown reference link target &#39;T:UnityEngine.Vector3&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.TransformObjectViaLocalSpace_Example.m_ObjectToManipulate] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.TransformObjectViaLocalSpace_Example.m_ScaleToAmount] Unknown reference link target &#39;T:UnityEngine.Vector3&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.TransformObjectViaLocalSpace_Example.RotationAxis.value__] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.TransformObjectViaWorldSpace_Example] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.TransformObjectViaWorldSpace_Example] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.TransformObjectViaWorldSpace_Example] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
@@ -442,6 +579,7 @@ BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.Transf
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.TransformObjectViaWorldSpace_Example.m_MyCustomAxis] Unknown reference link target &#39;T:UnityEngine.Vector3&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.TransformObjectViaWorldSpace_Example.m_ObjectToManipulate] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.TransformObjectViaWorldSpace_Example.m_ScaleToAmount] Unknown reference link target &#39;T:UnityEngine.Vector3&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.TransformObjectViaWorldSpace_Example.RotationAxis.value__] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_150_ASLObjects_Controller] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_150_ASLObjects_Controller] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_150_ASLObjects_Controller] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
@@ -513,19 +651,18 @@ BuildAssembler : warning : ResolveReferenceLinksComponent: [F:StressTesting.Stre
 BuildAssembler : warning : ShowMissingComponent: [M:StressTesting.StressTest_FightOverFiveObjectsGUIController.Start] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:StressTesting.StressTest_FightOverFiveObjectsGUIController.Update] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:StressTesting.StressTest_FightOverFiveObjectsGUIController.UpdatePositionText] Missing &lt;summary&gt; documentation [C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj]
-  Processed 567 topic(s)
-  359 warning(s)
+  Processed 715 topic(s)
+  500 warning(s)
   CopyFromIndexComponent: &quot;metadata&quot; in-memory cache entries used: 1 of 15.
   ResolveArtLinksComponent: Copying media files...
-  ResolveReferenceLinksComponent: 1 entries added to the member ID URL cache.  New cache size: 74 entries
   CopyFromIndexComponent: &quot;reflection&quot; in-memory cache entries used: 4 of 15.
   CopyFromIndexComponent: &quot;comments&quot; in-memory cache entries used: 1 of 30.
 Done Building Project &quot;C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\BuildTopics.proj&quot; (default targets).
-    Last step completed in 00:00:04.7636
+    Last step completed in 00:00:05.1091
 </buildStep>
 <buildStep step="CombiningIntermediateTocFiles">
 Combining conceptual and API intermediate TOC files...
-    Last step completed in 00:00:00.0030
+    Last step completed in 00:00:00.0040
 </buildStep>
 <buildStep step="ExtractingHtmlInfo">
 Extracting HTML info for HTML Help 1 and/or website...
@@ -537,11 +674,11 @@ E-Mail: Eric@EWoodruff.us
 Using LCID &#39;1033&#39;, code page &#39;65001&#39;, encoding charset &#39;UTF-8&#39;.
 
 Processing website files in C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\Output\Website
-Processed 567 HTML files
+Processed 715 HTML files
 Sorting keywords and generating See Also indices
 Saving website keyword index to C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\WebKI.xml
 Saving website table of contents to C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\WebTOC.xml
-    Last step completed in 00:00:00.3152
+    Last step completed in 00:00:00.3505
 </buildStep>
 <buildStep step="CopyStandardHelpContent">
 Copying standard help content...
@@ -623,7 +760,7 @@ C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyle
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\Web\scripts\branding-Website.js -&gt; C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\Output\Website\scripts\branding-Website.js
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\Web\scripts\clipboard.min.js -&gt; C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\Output\Website\scripts\clipboard.min.js
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\Web\scripts\jquery-3.3.1.min.js -&gt; C:\Users\Shorty\Documents\University of Washington\ASL\ASL_Master\ASLDocumentation\Help\Working\Output\Website\scripts\jquery-3.3.1.min.js
-    Last step completed in 00:00:00.3122
+    Last step completed in 00:00:00.2753
 </buildStep>
 <buildStep step="GenerateHelpFormatTableOfContents">
 Generating website table of contents file...
@@ -634,22 +771,22 @@ Generating full-text index for the website...
 
 <plugIn name="Lightweight Website Style" behavior="After" priority="1000">
 Adding lightweight search and TOC elements to each topic...
-</plugIn>    Last step completed in 00:00:00.5767
+</plugIn>    Last step completed in 00:00:01.0731
 </buildStep>
 <buildStep step="CopyingWebsiteFiles">
 Copying website files to output folder...
 
 Copied 500 files
-Copied 775 files for the website content
-    Last step completed in 00:00:00.5705
+Copied 955 files for the website content
+    Last step completed in 00:00:00.7476
 </buildStep>
 <buildStep step="CleanIntermediates">
 Removing intermediate files...
-    Last step completed in 00:00:00.1237
+    Last step completed in 00:00:00.1646
 </buildStep>
 <buildStep step="Completed">
 
-Build completed successfully at 4/1/2020 4:49:39 AM.  Total time: 00:00:08.4996
+Build completed successfully at 4/5/2020 9:31:32 PM.  Total time: 00:00:11.0711
 
 </buildStep>
 </shfbBuild>

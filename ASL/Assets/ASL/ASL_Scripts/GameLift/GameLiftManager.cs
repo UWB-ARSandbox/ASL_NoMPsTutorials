@@ -8,6 +8,7 @@ using System.Text;
 using UnityEngine;
 using Aws.GameLift.Realtime.Command;
 using Aws.GameLift.Realtime.Types;
+using System.Collections;
 
 namespace ASL
 {
@@ -192,7 +193,9 @@ namespace ASL
             /// <summary>Packet code for updating the AR anchor point</summary>
             AnchorIDUpdate,
             /// <summary>Packet code for sending text messages to other users</summary>
-            LobbyTextMessage
+            LobbyTextMessage,
+            /// <summary>Used to help keep the Android socket connection alive</summary>
+            AndroidKeepConnectionAlive
 
         }
 
@@ -200,6 +203,11 @@ namespace ASL
         /// The queue that will hold all of the functions to be triggered by AWS events
         /// </summary>
         private readonly Queue<Action> m_MainThreadQueue = new Queue<Action>();
+
+        /// <summary>
+        /// Flag indicating whether or not we have activated the KeepConnectionAlive() coroutine so it doesn't get activated more than once
+        /// </summary>
+        private bool m_StreamActive = false;
 
         /// <summary>
         /// Used to get the Singleton instance of the GameLiftManager class
@@ -314,6 +322,9 @@ namespace ASL
                 case (int)OpCode.PlayerLoggedIn: //Auto packet sent by GameLift
                     break;
                 case (int)OpCode.PlayerJoinedMatch:
+#if UNITY_ANDROID
+                    QForMainThread(StartPacketStream);
+#endif
                     QForMainThread(m_LobbyManager.PlayerJoinedMatch, _packet);
                     break;
                 case (int)OpCode.AddPlayerToLobbyUI:
@@ -988,6 +999,37 @@ namespace ASL
                 Application.Quit(); //Then quit the application, which calls our disconnect function
             }
 #endif
+        }
+
+        /// <summary>
+        /// Starts the coroutine that will send an empty packet to the relay server every second to help maintain the Android connection
+        /// </summary>
+        private void StartPacketStream()
+        {
+            if (!m_StreamActive)
+            {
+                m_StreamActive = true;
+                StartCoroutine(KeepConnectionAlive());
+            }
+        }
+
+        /// <summary>
+        /// Sends an empty packet to the server to help maintain the android socket
+        /// </summary>
+        /// <returns>Waits for 1 second before sending another packet</returns>
+        private IEnumerator KeepConnectionAlive()
+        {
+            while (m_Client.ConnectedAndReady)
+            {
+                yield return new WaitForSeconds(1);
+                RTMessage message = CreateRTMessage(OpCode.AndroidKeepConnectionAlive, null, DeliveryIntent.Fast); 
+                m_Client.SendMessage(message);
+            }
+            while (!m_Client.ConnectedAndReady)
+            {
+                yield return new WaitForSeconds(1);
+            }
+            StartCoroutine(KeepConnectionAlive());
         }
 
         /// <summary>Returns the current lowest peerID value out of all the currently connected players</summary>

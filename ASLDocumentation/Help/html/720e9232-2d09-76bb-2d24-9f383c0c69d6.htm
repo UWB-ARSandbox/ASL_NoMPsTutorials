@@ -22,24 +22,32 @@
             Called when class first initialized
             </div></td></tr><tr data="public;static;declared;notNetfw;"><td><img src="../icons/pubmethod.gif" alt="Public method" title="Public method" /><img src="../icons/static.gif" alt="Static member" title="Static member" /></td><td><a href="5d18606f-73e2-3a61-6d7b-b351a7fac80d.htm">GetInstance</a></td><td><div class="summary">
             SIngleton for this class
-            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="1dd2a640-558e-e91c-82bd-08120e48c24b.htm">Raycast</a></td><td><div class="summary">
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="f90cdae5-687e-048e-f227-44ad53f03854.htm">Raycast(Vector2)</a></td><td><div class="summary">
             Helper function to perform an AR Raycast for the user - by default uses TrackableType.PlaneWithinPolygon which is the most common
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="882fec7a-d64e-ee40-3ebb-0b41a85ddf7b.htm">Raycast(Vector2, TrackableType)</a></td><td><div class="summary">
+            Helper function to perform an AR Raycast for the user
             </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="51419232-9c0e-103b-7634-daf91f899540.htm">SetWorldOrigin</a></td><td><div class="summary">
             Sets the apparent world origin of ARCore through applying an offset to the ARCoreDevice
             (and therefore also it's FirstPersonCamera child), so that the Origin of Unity's World
             Coordinate System coincides with the Anchor. This function needs to be called once the
             Cloud Anchor is either hosted or resolved.
-            </div></td></tr><tr data="private;declared;notNetfw;"><td><img src="../icons/privmethod.gif" alt="Private method" title="Private method" /></td><td><a href="c9e113d4-80c7-011b-385a-028d2acee4ff.htm">Start</a></td><td><div class="summary">
-            Called on class start
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="1e5ec203-c78a-9599-750e-c757205bf6e8.htm">WaitForCloudAnchorToBeCreated</a></td><td><div class="summary">
+            Waits for the cloud anchor to be created so it can then send it's information to other users
             </div></td></tr></table><a href="#PageHeader">Top</a></div><div class="collapsibleAreaRegion"><span class="collapsibleRegionTitle" onclick="SectionExpandCollapse('ID5RB')" onkeypress="SectionExpandCollapse_CheckKey('ID5RB', event)" tabindex="0"><img id="ID5RBToggle" class="collapseToggle" src="../icons/SectionExpanded.png" />Fields</span></div><div id="ID5RBSection" class="collapsibleSection"><table class="members" id="fieldList"><tr><th class="iconColumn">
 								 
 							</th><th>Name</th><th>Description</th></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubfield.gif" alt="Public field" title="Public field" /></td><td><a href="ecef8581-a715-aba5-dfa1-cfb4f44bb393.htm">ARCoreDeviceTransform</a></td><td><div class="summary">
             The transform of the ARCore Device.
             </div></td></tr><tr data="private;declared;notNetfw;"><td><img src="../icons/privfield.gif" alt="Private field" title="Private field" /></td><td><a href="d7d822d5-bf51-c50d-dd8e-8c3a8276656b.htm">m_AnchorTransform</a></td><td><div class="summary">
             The Transform of the Anchor object representing the World Origin.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubfield.gif" alt="Public field" title="Public field" /></td><td><a href="a2cb48d7-8bd2-ddc8-e2ed-db3f7e1f7976.htm">m_ARAnchorManager</a></td><td><div class="summary">
+            The AR Anchor Manager - is a part of the ARHolder object
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubfield.gif" alt="Public field" title="Public field" /></td><td><a href="5924a7c0-6c7e-dd2b-b520-6f68a933ae6b.htm">m_ARPlaneManager</a></td><td><div class="summary">
+            The AR Plane Manager - is a part of the ARHolder object
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubfield.gif" alt="Public field" title="Public field" /></td><td><a href="8e64a606-8fb2-f4b2-86d5-2f8be4dddca0.htm">m_ARSession</a></td><td><div class="summary">
+            The AR Session - is a part of the ARHolder object
             </div></td></tr><tr data="private;static;declared;notNetfw;"><td><img src="../icons/privfield.gif" alt="Private field" title="Private field" /><img src="../icons/static.gif" alt="Static member" title="Static member" /></td><td><a href="48a392d7-5bd1-d146-4244-f21bfca1c204.htm">m_Instance</a></td><td /></tr><tr data="private;declared;notNetfw;"><td><img src="../icons/privfield.gif" alt="Private field" title="Private field" /></td><td><a href="77647bcd-3b5e-584d-cd14-a776a1c52a7b.htm">m_IsOriginPlaced</a></td><td><div class="summary">
             Indicates whether the Origin of the new World Coordinate System, i.e. the Cloud Anchor,
             was placed.
-            </div></td></tr><tr data="private;declared;notNetfw;"><td><img src="../icons/privfield.gif" alt="Private field" title="Private field" /></td><td><a href="5aefb73c-5f5a-dbb0-d2c8-0a5ff97d4460.htm">m_PlanesBeforeOrigin</a></td><td><div class="summary">
-            A list to hold the planes ARCore began tracking before the WorldOrigin was placed.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="../icons/pubfield.gif" alt="Public field" title="Public field" /></td><td><a href="42e53f10-a8f5-357d-7a34-28f1932733bc.htm">m_RaycastManager</a></td><td><div class="summary">
+            The AR Raycast Manager - is a part of the ARHolder object
             </div></td></tr></table><a href="#PageHeader">Top</a></div><div class="collapsibleAreaRegion" id="seeAlsoSection"><span class="collapsibleRegionTitle" onclick="SectionExpandCollapse('ID6RB')" onkeypress="SectionExpandCollapse_CheckKey('ID6RB', event)" tabindex="0"><img id="ID6RBToggle" class="collapseToggle" src="../icons/SectionExpanded.png" />See Also</span></div><div id="ID6RBSection" class="collapsibleSection"><h4 class="subHeading">Reference</h4><div class="seeAlsoStyle"><a href="09796c35-2037-51d7-e5b0-27caaf204c40.htm">ASL Namespace</a></div></div></div></div><div id="pageFooter" class="pageFooter"> </div></body></html>

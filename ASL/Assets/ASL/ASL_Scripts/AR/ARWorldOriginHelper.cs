@@ -76,11 +76,6 @@ namespace ASL
         public Transform ARCoreDeviceTransform;
 
         /// <summary>
-        /// A list to hold the planes ARCore began tracking before the WorldOrigin was placed.
-        /// </summary>
-        private List<GameObject> m_PlanesBeforeOrigin = new List<GameObject>();
-
-        /// <summary>
         /// Indicates whether the Origin of the new World Coordinate System, i.e. the Cloud Anchor,
         /// was placed.
         /// </summary>
@@ -112,34 +107,6 @@ namespace ASL
         /// </summary>
         public ARPlaneManager m_ARPlaneManager;
 #endif
-        /// <summary>
-        /// Called on class start
-        /// </summary>
-        private void Start()
-        {
-            GetInstance().ARCoreDeviceTransform = ARCoreDeviceTransform;
-            #if UNITY_ANDROID || UNITY_IOS
-            m_ARPlaneManager.planesChanged += _planesChanged;
-#endif
-
-        }
-        #if UNITY_ANDROID || UNITY_IOS
-        private void _planesChanged(ARPlanesChangedEventArgs obj)
-        {
-            if (obj.added?.Count > 0)
-            {
-                foreach (ARPlane _newPlane in obj.added)
-                {
-                    if (!m_IsOriginPlaced)
-                    {
-                        m_PlanesBeforeOrigin.Add(_newPlane.gameObject);
-                    }
-                }
-
-            }
-
-        }    
-#endif
 
         /// <summary>
         /// Sets the apparent world origin of ARCore through applying an offset to the ARCoreDevice
@@ -166,76 +133,54 @@ namespace ASL
             Pose worldPose = _WorldToAnchorPose(new Pose(ARCoreDeviceTransform.position,
                                                          ARCoreDeviceTransform.rotation));
             ARCoreDeviceTransform.SetPositionAndRotation(worldPose.position, worldPose.rotation);
-
-            foreach (GameObject plane in m_PlanesBeforeOrigin)
-            {
-                if (plane != null)
-                {
-                    plane.transform.SetPositionAndRotation(worldPose.position, worldPose.rotation);
-                }
-            }
         }
 
 
-            #if UNITY_ANDROID || UNITY_IOS
+#if UNITY_ANDROID || UNITY_IOS
         /// <summary>
         /// Helper function to perform an AR Raycast for the user
         /// </summary>
         /// <param name="_touchPosition">Where the user touched</param>
-        /// <param name="hitPose">The location of the impact</param>
         /// <param name="_trackableType">The type of trackable to look for</param>
         /// <returns>True if they hit a trackable that fits the specified trackable type</returns>
-        public bool Raycast(Vector2 _touchPosition, out Pose hitPose, TrackableType _trackableType)
+        public Pose? Raycast(Vector2 _touchPosition, TrackableType _trackableType)
         {
-            //OLD: float x, float y, TrackableHitFlags filter, out TrackableHit hitResult
             List<ARRaycastHit> hitResults = new List<ARRaycastHit>();
             m_RaycastManager.Raycast(_touchPosition, hitResults, _trackableType);
 
             bool foundHit = hitResults.Count > 0;
-            //hitResult = new ARRaycastHit();
-            hitPose = new Pose();
+
             if (foundHit)
             {
                 Pose worldPose = _WorldToAnchorPose(hitResults[0].pose);
-                //ARRaycastHit newHit = new ARRaycastHit(new XRRaycastHit(hitResults[0].trackableId, worldPose, hitResults[0].distance, _trackableType), 
-                //                                        hitResults[0].distance, null); //Last parameter may be wrong 
-                                                                                                        //"The Transform that transforms from session space to world space"
-                hitPose = worldPose;
+                return worldPose;
             }
 
-            return foundHit;
+            return null;
+            
         }
 #endif
         /// <summary>
         /// Helper function to perform an AR Raycast for the user - by default uses TrackableType.PlaneWithinPolygon which is the most common
         /// </summary>
         /// <param name="_touchPosition">Where the user touched</param>
-        /// <param name="hitPose">The location of the impact</param>
         /// <returns>True if they hit a trackable that fits the specified trackable type</returns>
-        public bool Raycast(Vector2 _touchPosition, out Pose hitPose)
+        public Pose? Raycast(Vector2 _touchPosition)
         {
 #if UNITY_ANDROID || UNITY_IOS
             TrackableType trackableType = TrackableType.PlaneWithinPolygon;
-            //OLD: float x, float y, TrackableHitFlags filter, out TrackableHit hitResult
             List<ARRaycastHit> hitResults = new List<ARRaycastHit>();
             m_RaycastManager.Raycast(_touchPosition, hitResults, trackableType);
-
             bool foundHit = hitResults.Count > 0;
             //hitResult = new ARRaycastHit();
-            hitPose = new Pose();
             if (foundHit)
             {
-                Pose worldPose = _WorldToAnchorPose(hitResults[0].pose);
-                //ARRaycastHit newHit = new ARRaycastHit(new XRRaycastHit(hitResults[0].trackableId, worldPose, hitResults[0].distance, _trackableType), 
-                //                                        hitResults[0].distance, null); //Last parameter may be wrong 
-                //"The Transform that transforms from session space to world space"
-                hitPose = worldPose;
+                return _WorldToAnchorPose(hitResults[0].pose);
             }
-            return foundHit;
+            return null;
 #else
             Debug.LogError("Can only AR Raycast on mobile devices");
-            hitPose = new Pose();
-            return false;
+            return null;
 #endif
 
         }
@@ -307,8 +252,6 @@ namespace ASL
                 }
                 //Send Resolve packet using _anchorObjectPrefab 
                 _anchorObjectPrefab.GetComponent<ASLObject>().SendCloudAnchorToResolve(_setWorldOrigin, _waitForAllUsersToResolve);
-
-                Debug.Log("Wait: " + _waitForAllUsersToResolve);
 
                 if (_waitForAllUsersToResolve)
                 {

@@ -135,6 +135,16 @@ namespace ASL
             /// <summary>The game session id used for connecting to that game session</summary>
             private string m_GameSessionId;
 
+            /// <summary>
+            /// Helps regulate when auto connect gets called - prevents multiple from happening at the same time
+            /// </summary>
+            private bool m_TryAutoConnectAgain = false;
+
+            /// <summary>
+            /// Used to prevent the auto connect coroutine from being activated more than once
+            /// </summary>
+            private bool m_StartedAutoConnect = false;
+
             /// <summary>The scene to load after every player readies up</summary>
             public string m_SceneName { get; private set; }
 
@@ -156,6 +166,12 @@ namespace ASL
             }
             /// <summary>The current UI screen being disabled</summary>
             private CurrentLoginStage m_CurrentUIScreen;
+
+            /// <summary>
+            /// Flag indicating whether or not we have initialized connecting to GameLift - used to stop the auto connect coroutine 
+            /// </summary>
+            private bool m_InitializingConnection = false;
+
             #endregion
 
             /// <summary>Error text displayed to the user when an error occurs</summary>
@@ -492,9 +508,9 @@ namespace ASL
                 {
 
 #if (ASL_DEBUG)
-                    Debug.LogError(invokeResponse.FunctionError + _exception);
+                    Debug.LogError(invokeResponse?.FunctionError + _exception);
 #endif
-                    GetInstance().QForMainThread(AddErrorText, invokeResponse.FunctionError + _exception.ToString());
+                    GetInstance().QForMainThread(AddErrorText, invokeResponse?.FunctionError + _exception.ToString());
                     GetInstance().QForMainThread(SetQuickConnectFlag, false); //connect old way if quick connect fails
 
                 }
@@ -514,7 +530,8 @@ namespace ASL
                             if (Regex.IsMatch(payload.ToString(), "FleetCapacityExceededException"))
                             {
                                 GetInstance().QForMainThread(AddErrorText, "ASL currently does not have the capacity for another Game Session. Scaling up fleet to make room. " +
-                                    "Please try again in approximately 5 minutes.");
+                                    "You will automatically be connected once the fleet is scaled up. This may take up to 5 minutes.");
+                                GetInstance().QForMainThread(StartAutoConnect);
                             }
                             else
                             {
@@ -540,7 +557,7 @@ namespace ASL
 #if ASL_DEBUG
                 Debug.Log("Attempting to QuickConnect a game");
 #endif
-
+                m_TryAutoConnectAgain = false;
                 // paste this in from the Amazon Cognito Identity Pool console
                 CognitoAWSCredentials credentials = new CognitoAWSCredentials(
                     "us-west-2:766a7439-be4a-404e-b1a9-192fc429eee2", // Identity pool ID
@@ -575,8 +592,8 @@ namespace ASL
                 }
                 catch (Exception _exception)
                 {
-                    Debug.LogError(invokeResponse.FunctionError + _exception);
-                    GetInstance().QForMainThread(AddErrorText, invokeResponse.FunctionError + _exception.ToString());
+                    Debug.LogError(invokeResponse?.FunctionError + _exception);
+                    GetInstance().QForMainThread(AddErrorText, invokeResponse?.FunctionError + _exception.ToString());
                     GetInstance().QForMainThread(ChangeInteractablility, m_StartHostingButton, true);
                 }
                 if (invokeResponse != null)
@@ -594,7 +611,8 @@ namespace ASL
                             if (Regex.IsMatch(payload.ToString(), "FleetCapacityExceededException"))
                             {
                                 GetInstance().QForMainThread(AddErrorText, "ASL currently does not have the capacity for another Game Session. Scaling up fleet to make room. " +
-                                    "Please try again in approximately 5 minutes.");
+                                    "You will automatically be connected once the fleet is scaled up. This may take up to 5 minutes.");
+                                GetInstance().QForMainThread(StartAutoConnect);
                             }
                             else
                             {
@@ -619,6 +637,7 @@ namespace ASL
 #if ASL_DEBUG
                 Debug.Log("Attempting to host game");
 #endif
+                m_TryAutoConnectAgain = false;
                 if (string.IsNullOrEmpty(m_RoomNameInputField.text))
                 {
                     GetInstance().QForMainThread(AddErrorText, "Room name cannot be empty.");
@@ -628,9 +647,7 @@ namespace ASL
 
                 m_SceneName = m_AvailableScenes.options[m_AvailableScenes.value].text;
 
-                /***///AWSConfigs.AWSRegion = "us-west-2"; // Your region here
-                     /***///AWSConfigs.HttpClient = AWSConfigs.HttpClientOption.UnityWebRequest;
-                          // paste this in from the Amazon Cognito Identity Pool console
+                // paste this in from the Amazon Cognito Identity Pool console
                 CognitoAWSCredentials credentials = new CognitoAWSCredentials(
                     "us-west-2:9dc2d6b8-58a0-4f0a-9369-b83c5c5e796a", // Identity pool ID
                     RegionEndpoint.USWest2 // Region
@@ -659,6 +676,7 @@ namespace ASL
             /// <param name="_sceneName">The name of the next scene to load after all players are connected and ready</param>
             private void ActionConnectToServer(string _dnsName, int _port, string _tokenUID, string _gameName, string _gameSessionId, string _sceneName)
             {
+                m_InitializingConnection = true;
                 m_GameSessionId = _gameSessionId;
                 m_SceneName = _sceneName;
                 GetInstance().StartCoroutine(ConnectToServer(_dnsName, _port, _tokenUID, _gameName));
@@ -977,6 +995,39 @@ namespace ASL
             }
 
             /// <summary>
+            /// Used to start the auto connect coroutine
+            /// </summary>
+            private void StartAutoConnect()
+            {
+                m_TryAutoConnectAgain = true;
+                if (!m_StartedAutoConnect)
+                {
+                    m_StartedAutoConnect = true;
+                    GetInstance().StartCoroutine(AutoConnect());
+                }
+            }
+
+            /// <summary>
+            /// When the servers are down, this function will ping them every 30 seconds until a connection can occur.
+            /// </summary>
+            /// <returns>Waits for 30 seconds before attempting to connect again</returns>
+            private IEnumerator AutoConnect()
+            {
+                while (!m_InitializingConnection && m_TryAutoConnectAgain)
+                {                   
+                    if (!QuickConnect.m_StaticQuickStart)
+                    {
+                        HostSession();
+                    }
+                    else
+                    {
+                        QuickConnectMatch();
+                    }
+                    yield return new WaitForSeconds(30);
+                }
+            }
+
+            /// <summary>
             /// Goes back to the last UI screen and cleans anything up that may have happened on the current UI screen
             /// </summary>
             public void GoBack()
@@ -986,6 +1037,7 @@ namespace ASL
                 DestroyMatchOptions();
                 GetInstance().DisconnectFromServer();
                 SeePreviousUIScreen(m_CurrentUIScreen);
+                AddErrorText(string.Empty);
             }
 
             /// <summary>
@@ -1066,6 +1118,7 @@ namespace ASL
             private void SetQuickConnectFlag( bool _value)
             {
                 QuickConnect.m_StaticQuickStart = _value;
+                m_RoomNameInputField.text = QuickConnect.m_StaticRoomName;
             }
 
             /// <summary>
@@ -1086,9 +1139,9 @@ namespace ASL
             /// </summary>
             private void CheckPorts()
             {
-                UdpClient testClient = new UdpClient(m_AndroidOrOSXUDPListeningPort);
                 try
                 {
+                    UdpClient testClient = new UdpClient(m_AndroidOrOSXUDPListeningPort);
                     testClient.Connect("www.contoso.com", m_AndroidOrOSXUDPListeningPort);
                     if (testClient.Client.Connected)
                     {
@@ -1118,8 +1171,8 @@ namespace ASL
 #if ASL_DEBUG
                     Debug.LogError(_error);
 #endif
-                    AddErrorText(_error.ToString());
                     m_AndroidOrOSXUDPListeningPort++;
+                    AddErrorText("Tried initializing the next connection with a bad port. Port is now: " + m_AndroidOrOSXUDPListeningPort + " Try again.");                  
                     if (m_AndroidOrOSXUDPListeningPort > 33500)
                     {
 #if ASL_DEBUG
@@ -1272,8 +1325,15 @@ namespace ASL
             public void Reset()
             {
                 SetCorrectUIPanel(CurrentLoginStage.Login);
-                AddErrorText("Connection timed out.");
+                AddErrorText("Connection Lost.");
+                m_ChatHistoryText.text = "Chat Log:\n";
                 m_LoginButton.interactable = true;
+                m_PlayerListText.text = string.Empty;
+                m_PlayerCountText.text = string.Empty;
+                GetInstance().m_Players.Clear();
+#if UNITY_ANDROID || UNITY_STANDALONE_OSX
+                CheckPorts();
+#endif
             }
 
         }

@@ -27,17 +27,14 @@ namespace SimpleDemos
                 return;
             }
 
-            Debug.Log("Touch: " + touch);
-
             // Ignore the touch if it's pointing on UI objects.
             if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
             {
                 return;
             }
 
-            Pose m_LastHitPose;
 
-            ASL.ARWorldOriginHelper.GetInstance().Raycast(Input.GetTouch(0).position, out m_LastHitPose);
+            Pose? m_LastHitPose = ASL.ARWorldOriginHelper.GetInstance().Raycast(Input.GetTouch(0).position);
 
             // If there was a successful hit
             //If we haven't set a cloud anchor yet && we are the Host -> then we can set a cloud anchor

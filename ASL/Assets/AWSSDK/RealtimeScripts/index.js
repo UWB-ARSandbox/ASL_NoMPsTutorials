@@ -10,7 +10,7 @@ const configuration = {
 const tickTime = 1000;
 
 // Defines how to long to wait in Seconds before beginning early termination check in the example tick loop
-const minimumElapsedTime = 30;
+const minimumElapsedTime = 60;
 
 var session;                        // The Realtime server session object
 var logger;                         // Log at appropriate level via .info(), .warn(), .error(), .debug()
@@ -58,6 +58,7 @@ var OpCode = Object.freeze(
 	"ResolvedCloudAnchor":34,
 	"AnchorIDUpdate":35,
 	"LobbyTextMessage":36,
+	"AndroidConnectionStream":37, //Used to help keep the socket connected for android
 	"SendStringTest":1001,
 	"SendIntTest":1002,
 	"SendFloatArrayTest":1000

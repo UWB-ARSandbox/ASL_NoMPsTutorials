@@ -217,7 +217,7 @@ namespace ASL
         /// <param name="_aslGameObjectCreatedCallbackInfo">This is the function that you want to be called after object creation</param>
         /// <param name="_aslClaimCancelledRecoveryFunctionInfo">This is the function that you want to be called whenever a claim is rejected/cancelled</param>
         /// <param name="_aslFloatFunctionInfo">This is the name of the function that you want to be executed whenever you use the 
-        /// <see cref="ASLObject.SendFloat4(float[])"/> function.</param>
+        /// <see cref="ASLObject.SendFloatArray(float[])"/> function.</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -234,7 +234,7 @@ namespace ASL
         ///     _myGameObject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
         ///         float[] myFloats = new float[] { 1.1f, 2.5f, 3.4f, 4.9f };
-        ///         _myGameObject.GetComponent&lt;ASL.ASLObject&gt;().SendFloat4(myFloats);
+        ///         _myGameObject.GetComponent&lt;ASL.ASLObject&gt;().SendFloatArray(myFloats);
         ///     });
         /// }
         /// 
@@ -267,9 +267,10 @@ namespace ASL
 #region Prefab Instantiation
 
         /// <summary>
-        /// Create an ASL Object
+        /// Create an ASL Object - make sure the prefab you are using to create this ASLObject with does NOT already have an ASL script attached to it 
+        /// and that it exists on all user's devices (that it can be found on all devices)
         /// </summary>
-        /// <param name="_prefabName">The name of the prefab to be instantiated. Make sure your prefab is located in the Resources/Prefabs folder so it can be found</param>
+        /// <param name="_prefabName">The name of the prefab to be instantiated. Make sure your prefab is located in the Resources/MyPrefabs folder so it can be found</param>
         /// <param name="_position">The position where the object will be instantiated</param>
         /// <param name="_rotation">The rotation orientation of the object to be instantiated</param>
         /// <example><code>
@@ -284,9 +285,10 @@ namespace ASL
         }
 
         /// <summary>
-        /// Create an ASL Object
+        /// Create an ASL Object - make sure the prefab you are using to create this ASLObject with does NOT already have an ASL script attached to it 
+        /// and that it exists on all user's devices (that it can be found on all devices)
         /// </summary>
-        /// <param name="_prefabName">The name of the prefab to be instantiated. Make sure your prefab is located in the Resources/Prefabs folder so it can be found</param>
+        /// <param name="_prefabName">The name of the prefab to be instantiated. Make sure your prefab is located in the Resources/MyPrefabs folder so it can be found</param>
         /// <param name="_position">The position where the object will be instantiated</param>
         /// <param name="_rotation">The rotation orientation of the object to be instantiated</param>
         /// <param name="_parentID">The id or name of the parent object for this instantiated object</param>
@@ -315,9 +317,10 @@ namespace ASL
         }
 
         /// <summary>
-        /// Create an ASL Object
+        /// Create an ASL Object - make sure the prefab you are using to create this ASLObject with does NOT already have an ASL script attached to it 
+        /// and that it exists on all user's devices (that it can be found on all devices)
         /// </summary>
-        /// <param name="_prefabName">The name of the prefab to be instantiated. Make sure your prefab is located in the Resources/Prefabs folder so it can be found</param>
+        /// <param name="_prefabName">The name of the prefab to be instantiated. Make sure your prefab is located in the Resources/MyPrefabs folder so it can be found</param>
         /// <param name="_position">The position where the object will be instantiated</param>
         /// <param name="_rotation">The rotation orientation of the object to be instantiated</param>
         /// <param name="_parentID">The id or name of the parent object for this instantiated object</param>
@@ -343,9 +346,10 @@ namespace ASL
         }
 
         /// <summary>
-        /// Create an ASL Object
+        /// Create an ASL Object - make sure the prefab you are using to create this ASLObject with does NOT already have an ASL script attached to it 
+        /// and that it exists on all user's devices (that it can be found on all devices)
         /// </summary>
-        /// <param name="_prefabName">The name of the prefab to be instantiated. Make sure your prefab is located in the Resources/Prefabs folder so it can be found</param>
+        /// <param name="_prefabName">The name of the prefab to be instantiated. Make sure your prefab is located in the Resources/MyPrefabs folder so it can be found</param>
         /// <param name="_position">The position where the object will be instantiated</param>
         /// <param name="_rotation">The rotation orientation of the object to be instantiated</param>
         /// <param name="_parentID">The id or name of the parent object for this instantiated object</param>
@@ -373,9 +377,10 @@ namespace ASL
         }
 
         /// <summary>
-        /// Create an ASL Object
+        /// Create an ASL Object - make sure the prefab you are using to create this ASLObject with does NOT already have an ASL script attached to it 
+        /// and that it exists on all user's devices (that it can be found on all devices)
         /// </summary>
-        /// <param name="_prefabName">The name of the prefab to be instantiated. Make sure your prefab is located in the Resources/Prefabs folder so it can be found</param>
+        /// <param name="_prefabName">The name of the prefab to be instantiated. Make sure your prefab is located in the Resources/MyPrefabs folder so it can be found</param>
         /// <param name="_position">The position where the object will be instantiated</param>
         /// <param name="_rotation">The rotation orientation of the object to be instantiated</param>
         /// <param name="_parentID">The id or name of the parent object for this instantiated object</param>
@@ -413,7 +418,8 @@ namespace ASL
         }
 
         /// <summary>
-        /// Create an ASL Object
+        /// Create an ASL Object - make sure the prefab you are using to create this ASLObject with does NOT already have an ASL script attached to it 
+        /// and that it exists on all user's devices (that it can be found on all devices)
         /// </summary>
         /// <param name="_prefabName">The name of the prefab to be instantiated. Make sure your prefab is located in the Resources/Prefabs folder so it can be found</param>
         /// <param name="_position">The position where the object will be instantiated</param>
@@ -423,7 +429,7 @@ namespace ASL
         /// <param name="_aslGameObjectCreatedCallbackInfo">This is the function that you want to be called after object creation</param>
         /// <param name="_aslClaimCancelledRecoveryFunctionInfo">This is the function that you want to be called whenever a claim is rejected/cancelled</param>
         /// <param name="_aslFloatFunctionInfo">This is the name of the function that you want to be executed whenever you use the 
-        /// <see cref="ASLObject.SendFloat4(float[])"/> function.</param>
+        /// <see cref="ASLObject.SendFloatArray(float[])"/> function.</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -440,7 +446,7 @@ namespace ASL
         ///     _myGameObject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
         ///         float[] myFloats = new float[] { 1.1f, 2.5f, 3.4f, 4.9f };
-        ///         _myGameObject.GetComponent&lt;ASL.ASLObject&gt;().SendFloat4(myFloats);
+        ///         _myGameObject.GetComponent&lt;ASL.ASLObject&gt;().SendFloatArray(myFloats);
         ///     });
         /// }
         /// 
@@ -470,9 +476,9 @@ namespace ASL
         }
 
 
-#endregion
+        #endregion
 
-#endregion
+        #endregion
 
         /// <summary>
         /// Sends a packet out to all players to spawn an object based upon a prefab
@@ -486,8 +492,8 @@ namespace ASL
         /// <param name="_instantiatedGameObjectFunctionName">The name of the user provided function that contains the details of what to do with this object after creation</param>
         /// <param name="_claimRecoveryClassName">The name of the class that contains the user provided function detailing what to do if a claim for this object is rejected</param>
         /// <param name="_claimRecoveryFunctionName">The name of the user provided function that contains the details of what to do with this object if a claim for it is rejected</param>
-        /// <param name="_sendFloatClassName">The name of the class that contains the user provided function detailing what to do when a user calls <see cref="ASLObject.SendFloat4(float[])"/></param>
-        /// <param name="_sendFloatFunctionName">The name of the user provided function that contains the details of what to do with this object if a user calls <see cref="ASLObject.SendFloat4(float[])"/></param>
+        /// <param name="_sendFloatClassName">The name of the class that contains the user provided function detailing what to do when a user calls <see cref="ASLObject.SendFloatArray(float[])"/></param>
+        /// <param name="_sendFloatFunctionName">The name of the user provided function that contains the details of what to do with this object if a user calls <see cref="ASLObject.SendFloatArray(float[])"/></param>
         private static void SendSpawnPrimitive
             (PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID = "", string _componentAssemblyQualifiedName = "", string _instantiatedGameObjectClassName = "", string _instantiatedGameObjectFunctionName = "", 
             string _claimRecoveryClassName = "", string _claimRecoveryFunctionName = "", string _sendFloatClassName = "", string _sendFloatFunctionName = "")
@@ -529,8 +535,8 @@ namespace ASL
         /// <param name="_instantiatedGameObjectFunctionName">The name of the user provided function that contains the details of what to do with this object after creation</param>
         /// <param name="_claimRecoveryClassName">The name of the class that contains the user provided function detailing what to do if a claim for this object is rejected</param>
         /// <param name="_claimRecoveryFunctionName">The name of the user provided function that contains the details of what to do with this object if a claim for it is rejected</param>
-        /// <param name="_sendFloatClassName">The name of the class that contains the user provided function detailing what to do when a user calls <see cref="ASLObject.SendFloat4(float[])"/></param>
-        /// <param name="_sendFloatFunctionName">The name of the user provided function that contains the details of what to do with this object if a user calls <see cref="ASLObject.SendFloat4(float[])"/></param>
+        /// <param name="_sendFloatClassName">The name of the class that contains the user provided function detailing what to do when a user calls <see cref="ASLObject.SendFloatArray(float[])"/></param>
+        /// <param name="_sendFloatFunctionName">The name of the user provided function that contains the details of what to do with this object if a user calls <see cref="ASLObject.SendFloatArray(float[])"/></param>
         private static void SendSpawnPrefab(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID = "", string _componentAssemblyQualifiedName = "", string _instantiatedGameObjectClassName = "", string _instantiatedGameObjectFunctionName = "",
             string _claimRecoveryClassName = "", string _claimRecoveryFunctionName = "", string _sendFloatClassName = "", string _sendFloatFunctionName = "")
         {
@@ -590,7 +596,7 @@ namespace ASL
         /// and is the suggested value as not waiting as the potential to cause synchronization problems.</param>
         /// <param name="_setWorldOrigin">This determines if this cloud anchor should be used to set the world origin for all users or not. If you are setting the world origin, you should do
         /// so right away in your app and as the first (if you have more than 1) cloud anchor created. You should never set the world origin more than once.</param>
-        public static void CreateARCoreCloudAnchor(Pose _hitResults, ASLObject _anchorObjectPrefab = null, ASLObject.PostCreateCloudAnchorFunction _myPostCreateCloudAnchorFunction = null, 
+        public static void CreateARCoreCloudAnchor(Pose? _hitResults, ASLObject _anchorObjectPrefab = null, ASLObject.PostCreateCloudAnchorFunction _myPostCreateCloudAnchorFunction = null, 
             bool _waitForAllUsersToResolve = true, bool _setWorldOrigin = true)
         {
 #if UNITY_ANDROID || UNITY_IOS
@@ -610,7 +616,7 @@ namespace ASL
             Debug.Log("Creating the cloud anchor now...");
 
             //Create local anchor at hit location
-            ARAnchor localAnchor = ARWorldOriginHelper.GetInstance().m_ARAnchorManager.AddAnchor(_hitResults);
+            ARAnchor localAnchor = ARWorldOriginHelper.GetInstance().m_ARAnchorManager.AddAnchor((Pose)_hitResults);
             localAnchor.name = "Local anchor created when creating cloud anchor";
 
             //Create CLoud anchor
@@ -622,7 +628,7 @@ namespace ASL
                 return;
             }
 
-            ARWorldOriginHelper.GetInstance().StartCoroutine(ARWorldOriginHelper.GetInstance().WaitForCloudAnchorToBeCreated(m_ARCloudAnchor, _hitResults,
+            ARWorldOriginHelper.GetInstance().StartCoroutine(ARWorldOriginHelper.GetInstance().WaitForCloudAnchorToBeCreated(m_ARCloudAnchor, (Pose)_hitResults,
                 _anchorObjectPrefab, _myPostCreateCloudAnchorFunction, 
                 _waitForAllUsersToResolve, _setWorldOrigin));
 
