@@ -1057,8 +1057,8 @@
   <HelpKINode Title="QuickConnect.m_StaticRoomName field" Url="html/33813c4b-551f-6490-a779-a70665e15fca.htm" />
   <HelpKINode Title="QuickConnect.m_StaticStartingScene field" Url="html/b40ee526-682f-332c-bbbc-f30ca1fabd72.htm" />
   <HelpKINode Title="QuickConnect.QuickConnect constructor">
-    <HelpKINode Title="QuickConnect Constructor " Url="html/3ec72849-0a1e-b5c6-8bad-2be1f6f668c5.htm" />
     <HelpKINode Title="QuickConnect Constructor " Url="html/cb7b119e-0e32-4b28-6cfa-46df1113d5a6.htm" />
+    <HelpKINode Title="QuickConnect Constructor " Url="html/3ec72849-0a1e-b5c6-8bad-2be1f6f668c5.htm" />
   </HelpKINode>
   <HelpKINode Title="QuickConnectMatch method" Url="html/b91e264f-8663-50ec-b5d0-09a6e7404599.htm" />
   <HelpKINode Title="randomCreationTime field" Url="html/8315a4a9-e1b9-838a-22ea-b25065ff1af2.htm" />
