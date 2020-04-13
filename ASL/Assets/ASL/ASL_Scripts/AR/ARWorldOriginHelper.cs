@@ -70,6 +70,21 @@ namespace ASL
         {
             m_Instance = this;
         }
+
+        /// <summary>
+        /// Assigns each script manually
+        /// </summary>
+        private void Start()
+        {
+            ARCoreDeviceTransform = GameObject.Find("AR Session Origin").transform;
+            #if UNITY_ANDROID || UNITY_IOS
+            m_ARSession = GameObject.Find("AR Session").GetComponent<ARSession>();
+            m_RaycastManager = GameObject.Find("AR Session Origin").GetComponent<ARRaycastManager>();
+            m_ARAnchorManager = GameObject.Find("AR Session Origin").GetComponent<ARAnchorManager>();
+            m_ARPlaneManager = GameObject.Find("AR Session Origin").GetComponent<ARPlaneManager>();
+#endif
+        }
+
         /// <summary>
         /// The transform of the ARCore Device.
         /// </summary>
@@ -86,7 +101,7 @@ namespace ASL
         /// </summary>
         private Transform m_AnchorTransform;
 
-        #if UNITY_ANDROID || UNITY_IOS
+#if UNITY_ANDROID || UNITY_IOS
         /// <summary>
         /// The AR Session - is a part of the ARHolder object
         /// </summary>
