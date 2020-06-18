@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<topic id="78cc44cf-a21e-4e00-b939-5c44e0cceeec" revisionNumber="1">
+<topic id="07eac861-1339-4654-a456-e1f153ef6a57" revisionNumber="1">
 	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
 		<introduction>
-			<para>Version 1.0 was released on March 15, 2020.
+			<para>Version 2.0 was released on March 15, 2020.
 			</para>
 		</introduction>
 
@@ -21,7 +21,7 @@
 		</section>
 
 		<relatedTopics>
-			<link xlink:href="177310fb-8abd-4b2b-98db-60d540b7ca2f" />
+			<link xlink:href="ddf4a003-31b2-453e-a554-73459c77d4e0" />
 		</relatedTopics>
 
 	</developerConceptualDocument>

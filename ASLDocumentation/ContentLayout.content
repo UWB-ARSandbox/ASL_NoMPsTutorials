@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Topics>
-  <Topic id="16d360d9-1284-4cae-b7c9-c114d2c074ee" visible="True" isDefault="true" isSelected="true" title="Start Page">
+  <Topic id="cfc9baae-dbed-4f8c-b73f-9a3b1d35d485" visible="True" isDefault="true" isSelected="true" title="Start Page">
     <HelpKeywords>
       <HelpKeyword index="K" term="Welcome" />
     </HelpKeywords>
   </Topic>
-  <Topic id="177310fb-8abd-4b2b-98db-60d540b7ca2f" visible="True" isExpanded="true" title="Version History">
+  <Topic id="ddf4a003-31b2-453e-a554-73459c77d4e0" visible="True" isExpanded="true" title="Version History">
     <HelpKeywords>
       <HelpKeyword index="K" term="version, history" />
     </HelpKeywords>
-    <Topic id="78cc44cf-a21e-4e00-b939-5c44e0cceeec" visible="True" title="Version 1.0.0.0">
+    <Topic id="07eac861-1339-4654-a456-e1f153ef6a57" visible="True" title="Version 1.0.0.0">
       <HelpKeywords>
         <HelpKeyword index="K" term="version, 1.0.0.0" />
       </HelpKeywords>

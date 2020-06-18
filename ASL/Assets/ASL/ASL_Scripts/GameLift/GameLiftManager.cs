@@ -195,7 +195,9 @@ namespace ASL
             /// <summary>Packet code for sending text messages to other users</summary>
             LobbyTextMessage,
             /// <summary>Used to help keep the Android socket connection alive</summary>
-            AndroidKeepConnectionAlive
+            AndroidKeepConnectionAlive,
+            /// <summary>Packet code for sending object tags</summary>
+            TagUpdate
 
         }
 
@@ -424,6 +426,9 @@ namespace ASL
                     break;
                 case (int)OpCode.AnchorIDUpdate:
                     QForMainThread(m_GameController.SetAnchorID, _packet);
+                    break;
+                case (int)OpCode.TagUpdate:
+                    QForMainThread(m_GameController.SetObjectTag, _packet);
                     break;
                 case (int)OpCode.LobbyTextMessage:
                     QForMainThread(m_LobbyManager.UpdateChatLog, _packet);

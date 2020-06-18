@@ -2,7 +2,6 @@
 #if UNITY_ANDROID || UNITY_IOS
 using Google.XR.ARCoreExtensions;
 #endif
-using System.Collections;
 using System.Text;
 using UnityEngine;
 
@@ -10,8 +9,9 @@ namespace ASL
 {
     /// /// <summary>
     /// ASLObject: ASLObject Partial Class containing all of the functions and variables relating to server actions - actions that affect all players instead of just a single player.
-    /// use this class to communicate object information to other players. If you are looking for where to create an object for all users at runtime, check out 
-    /// <see cref="ASLHelper.InstanitateASLObject(string, Vector3, Quaternion)"/> and it's other variations
+    /// Use this class to communicate object information to other players. If you are looking for where to create an object for all users at runtime, check out 
+    /// <see cref="ASLHelper.InstantiateASLObject(string, Vector3, Quaternion)"/> and it's other variations.
+    /// You must call the functions this class provides to synchronize the called actions amongst all players. See each function's documentation for a use case example.
     /// </summary>
     public partial class ASLObject : MonoBehaviour
     {
@@ -41,7 +41,7 @@ namespace ASL
         /// when you obtain it if is important to have a release function of some sort</summary>
         public ReleaseFunction m_ReleaseFunction { get; private set; }
 
-        /// <summary>Callback to be executed after an ASL Object is instantiated</summary>
+        /// <summary>Callback to be executed after an ASL Object is instantiated - this callback is only ever executed by the creator of the object</summary>
         public ASLGameObjectCreatedCallback m_ASLGameObjectCreatedCallback { get; private set; }
         
         /// <summary>Callback to be executed after a Texture2D download is successful</summary>
@@ -99,9 +99,10 @@ namespace ASL
         /// <example><code>
         /// void SomeFunction()
         /// {
+        ///     //Claim the object
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
-        ///         //Whatever code we want to execute after we have successfully claimed this object, such as:
+        ///         //Whatever code we want to execute AFTER we have successfully claimed this object, such as:
         ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().DeleteObject(); //Delete our object
         ///         //or
         ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetLocalPosition(new Vector3(5, 0, -2)); //Move our object in its local space to 5, 0, -2
@@ -111,16 +112,20 @@ namespace ASL
         /// <code>
         /// void SomeFunction()
         /// {
+        ///     //Claim an object and then execute the ActionToTake function after a successful claim
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(ActionToTake);
         /// }
+        /// //The function to call after a successful claim
         /// private void ActionToTake()
         /// {
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().DeleteObject(); //Delete our object
         /// }
         /// void SomeOtherFunction()
         /// {
+        ///     //Same as before, but this time specify the time to hold onto our object before releasing back to the server - default time is 1000 (or 1 second)
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(ADifferentActionToTake, 2000); //Hold onto this object before releasing it to the server for 2 seconds
         /// }
+        /// //The function to call after a successful claim
         /// private void ADifferentActionToTake()
         /// {
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetLocalPosition(new Vector3(5, 0, -2)); //Move our object in its local space to 5, 0, -2
@@ -129,6 +134,7 @@ namespace ASL
         /// <code>
         /// void SomeFunction()
         /// {
+        ///     //Claim an object and then (notice the 0 after the last curly brace) hang onto this object until someone steals it from us (do not auto-release to the server)
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
         ///         //Whatever code we want to execute after we have successfully claimed this object, such as:
@@ -142,6 +148,7 @@ namespace ASL
         /// void SomeFunction()
         /// {
         ///     //Claim an object for 1 second, but don't reset whatever our current time length of time we have already held on to it for.
+        ///     //Normally if you claim an object, and then claim it again, by default, it will reset the release claim timer - in this case it does not
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(SomeActionToTake, 1000, false); 
         /// }
         /// private void SomeActionToTake()
@@ -194,8 +201,10 @@ namespace ASL
         /// <example><code>
         /// void SomeFunction()
         /// {
+        ///     //Claim our object first
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
+        ///         //Once claimed, set the object color for the claimer and for everyone else
         ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetObjectColor(new Color(0, 0, 0, 1),  new Color(1, 1, 1, 1));
         ///     });
         /// }
@@ -222,8 +231,10 @@ namespace ASL
         /// <example><code>
         /// void SomeFunction()
         /// {
+        ///     //Claim the object first
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
+        ///         //Once we have it claimed, delete the object
         ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().DeleteObject();
         ///     });
         /// }
@@ -245,8 +256,11 @@ namespace ASL
         /// <example><code>
         /// void SomeFunction()
         /// {
+        ///     //Claim the object first
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
+        ///         //Send and then set (=) the new local position. Note that the object does not move to this position until
+        ///         //it receives the packet from the server, even though it is the  caller of this function.
         ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetLocalPosition(new Vector3(1, 2, 5));
         ///     });
         /// }
@@ -284,8 +298,11 @@ namespace ASL
         /// <example><code>
         /// void SomeFunction()
         /// {
+        ///      //Claim the object first
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
+        ///         //Send and then increment (+=) the local position. Note that the object does not move to this position until
+        ///         //it receives the packet from the server, even though it is the  caller of this function.
         ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndIncrementLocalPosition(new Vector3(1, 2, 5));
         ///     });
         /// }
@@ -323,8 +340,11 @@ namespace ASL
         /// <example><code>
         /// void SomeFunction()
         /// {
+        ///     //Claim the object first
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
+        ///         //Send and then set (=) the local rotation. Note that the object does not to this rotation until
+        ///         //it receives the packet from the server, even though it is the  caller of this function.
         ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetLocalRotation(new Quaternion(0, 80, 60, 1));
         ///     });
         /// }
@@ -360,8 +380,11 @@ namespace ASL
         /// <example><code>
         /// void SomeFunction()
         /// {
+        ///     //Claim the object first
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
+        ///         //Send and then set (*=) the local rotation. Note that the object does not to this rotation until
+        ///         //it receives the packet from the server, even though it is the  caller of this function.
         ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndIncrementLocalRotation(new Quaternion(0, 80, 60, 1));
         ///     });
         /// }
@@ -397,8 +420,11 @@ namespace ASL
         /// <example><code>
         /// void SomeFunction()
         /// {
+        ///      //Claim the object first
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
+        ///         //Send and then set (=) the local scale. Note that the object does not move to this scale until
+        ///         //it receives the packet from the server, even though it is the  caller of this function.
         ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetLocalScale(new Vector3(.5, 2, .5));
         ///     });
         /// }
@@ -436,8 +462,11 @@ namespace ASL
         /// <example><code>
         /// void SomeFunction()
         /// {
+        ///      //Claim the object first
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
+        ///         //Send and then increment (+=) the local scale. Note that the object does not move to this scale until
+        ///         //it receives the packet from the server, even though it is the  caller of this function.
         ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndIncrementLocalScale(new Vector3(.5, 2, .5));
         ///     });
         /// }
@@ -472,8 +501,11 @@ namespace ASL
         /// <example><code>
         /// void SomeFunction()
         /// {
+        ///     //Claim the object first
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
+        ///         //Send and then set (=) the world position. Note that the object does not move to this position until
+        ///         //it receives the packet from the server, even though it is the  caller of this function.
         ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetWorldPosition(new Vector3(1, 2, 5));
         ///     });
         /// }
@@ -514,8 +546,11 @@ namespace ASL
         /// <example><code>
         /// void SomeFunction()
         /// {
+        ///     //Claim the object first
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
+        ///         //Send and then increment (+=) the world position. Note that the object does not move to this position until
+        ///         //it receives the packet from the server, even though it is the  caller of this function.
         ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndIncrementWorldPosition(new Vector3(1, 2, 5));
         ///     });
         /// }
@@ -553,8 +588,11 @@ namespace ASL
         /// <example><code>
         /// void SomeFunction()
         /// {
+        ///     //Claim the object first
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
+        ///         //Send and then set (=) the world rotation. Note that the object does not move to this rotation until
+        ///         //it receives the packet from the server, even though it is the  caller of this function.
         ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetWorldRotation(new Quaternion(0, 80, 60, 1));
         ///     });
         /// }
@@ -590,8 +628,11 @@ namespace ASL
         /// <example><code>
         /// void SomeFunction()
         /// {
+        ///     //Claim the object first
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
+        ///         //Send and then increment (*=) the world rotation. Note that the object does not move to this rotation until
+        ///         //it receives the packet from the server, even though it is the  caller of this function.
         ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndIncrementWorldRotation(new Quaternion(0, 80, 60, 1));
         ///     });
         /// }
@@ -628,8 +669,11 @@ namespace ASL
         /// <example><code>
         /// void SomeFunction()
         /// {
+        ///     //Claim the object first
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
+        ///         //Send and then set (=) the world scale. Note that the object does not move to this scale until
+        ///         //it receives the packet from the server, even though it is the  caller of this function.
         ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetWorldScale(new Vector3(.5, 2, .5));
         ///     });
         /// }
@@ -670,8 +714,11 @@ namespace ASL
         /// <example><code>
         /// void SomeFunction()
         /// {
+        ///     //Claim the object first
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
+        ///         //Send and then increment (+=) the world scale. Note that the object does not set the anchor ID to this ID until
+        ///         //it receives the packet from the server, even though it is the  caller of this function.
         ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndIncrementWorldScale(new Vector3(.5, 2, .5));
         ///     });
         /// }
@@ -704,14 +751,19 @@ namespace ASL
         }
 
         /// <summary>
-        /// Send and set the AR anchor id for this object for all users. 
+        /// Send and set the AR anchor id for this object for all users. Normally, you will not need to call this function
+        /// as creating an AR Anchor is done through <see cref="ASLHelper.CreateARCoreCloudAnchor(Pose?, ASLObject, PostCreateCloudAnchorFunction, bool, bool)"/>
+        /// But if for some reason you want to change Anchors, you can do so via this function
         /// </summary>
         /// <param name="_anchorID">The anchor id for this object to reference</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
+        ///     //Claim the object first
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
+        ///         //Send and then set (=) the id of the AR Anchor you want this object to have. Note that the object does not move to this scale until
+        ///         //it receives the packet from the server, even though it is the  caller of this function.
         ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetAnchorID("Your Anchor id Here");
         ///     });
         /// }
@@ -728,15 +780,43 @@ namespace ASL
         }
 
         /// <summary>
-        /// Send and set  up to x float value(s). The float value(s) will then be processed by a user defined function.
-        /// A switch and case statement system can be used to create a function that can handle more than just 4 floats
-        /// if that is needed
+        /// Send and set the tag for this object for all users. As Unity does not all users to create tags at runtime, all players must have this tag defined
+        /// </summary>
+        /// <param name="_tag">The tag for this object to get</param>
+        /// <example><code>
+        /// void SomeFunction()
+        /// {
+        ///     //Claim your object first
+        ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
+        ///     {
+        ///         //Send and then set (=) the tag this object should have. Note that the object does not set the tag of this object until
+        ///         //it receives the packet from the server, even though it is the  caller of this function.
+        ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetTag("Your Tag Here");
+        ///     });
+        /// }
+        /// </code></example>
+        public void SendAndSetTag(string _tag)
+        {
+            byte[] id = Encoding.ASCII.GetBytes(m_Id);
+            byte[] anchorId = Encoding.ASCII.GetBytes(_tag);
+
+            byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, anchorId);
+
+            RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.TagUpdate, payload);
+            GameLiftManager.GetInstance().m_Client.SendMessage(message);
+        }
+
+        /// <summary>
+        /// Send and set up to a maximum of 1000 float value(s). The float value(s) will then be processed by a user defined function.
+        /// If you need to send more than 1000 floats with this object, or you need this object to perform more than one action with this function,
+        /// then a switch statement is a good way to implement what you need.
         /// </summary>
         /// <param name="_f">The float value to be passed to all users</param>
         /// <example>
         /// <code>
         /// void SomeFunction()
         /// {
+        ///     //Claim the object first
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
         ///         float[] myValue = new float[1];
@@ -753,15 +833,17 @@ namespace ASL
         ///     //Or if this object was created dynamically, then to have this function assigned on creation instead of in start like this one is
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;()._LocallySetFloatCallback(UserDefinedFunction) 
         /// }
-        /// public void UserDefinedFunction(string _id, float[] f)
+        /// //Assuming it is properly linked via the float callback function (see void Start() in this example)
+        /// //This function executes upon receiving the SendFloatArray() packet from the server, even if you are the player that called that function
+        /// public void UserDefinedFunction(string _id, float[] _f) 
         /// {
-        ///     //Update some value for all users based on f. 
+        ///     //Update some value for all users based on _f. 
         ///     //Example:
-        ///     playerHealth = f[0]; //Where playerHealth is shown to kept track/shown to all users
+        ///     playerHealth = _f[0]; //Where playerHealth is shown to kept track/shown to all users
         /// }
         ///</code>
-        /// It is possible to use this function to send more than 4 variables if the user sets up the function to execute upon receiving SendFloatArray to include a switch/case statement
-        /// with the final value in the float array being what determines how the other three values are handled. See below for an example
+        /// It is possible to use this function to send more than 1000 variables if the user sets up the function to execute upon receiving SendFloatArray to include a switch statement
+        /// with the final value (really, any value you want) in the float array being what determines how the other values are handled. See below for an example
         /// <code>
         /// //For example, use this function to update player stats using the same SendFloatArray UserDefinedFunction that can also update velocity and score
         /// void SomeFunction()
@@ -780,6 +862,7 @@ namespace ASL
         /// //For example, use this function to update velocity using the same SendFloatArray UserDefinedFunction that can also update player stats and score
         /// void SomeOtherFunction()
         /// {
+        ///     //Claim the object
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetClaim(() =>
         ///     {
         ///         float[] myValue = new float[4];
@@ -788,7 +871,7 @@ namespace ASL
         ///         myValue[2] = 1.2f;
         ///         myValue[3] = 1;
         ///         //In this example, velocity would be set to 17.8 and direction to 180.2
-        ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendFloatArray(myValue); 
+        ///         gameobject.GetComponent&lt;ASL.ASLObject&gt;().SendFloatArray(myValue); //Send the floats
         ///     });
         /// }
         /// 
@@ -797,31 +880,33 @@ namespace ASL
         ///     //Or if this object was created dynamically, then to have this function assigned on creation instead of in start like this one is
         ///     gameobject.GetComponent&lt;ASL.ASLObject&gt;()._LocallySetFloatCallback(UserDefinedFunction) 
         /// }
-        /// public void UserDefinedFunction(string _id, float[] f)
+        /// //Assuming it is properly linked via the float callback function (see void Start() in this example)
+        /// //This function executes upon receiving the SendFloatArray() packet from the server, even if you are the player that called that function
+        /// public void UserDefinedFunction(string _id, float[] _f)
         /// {
-        ///     //Update some value for all users based on f and update 1 object specifically. 
+        ///     //Update some value for all users based on _f and update 1 object specifically. 
         ///     //Example:
         ///     //If we find the object that called this operation
         ///    if (ASL.ASLHelper.m_ASLObjects.TryGetValue(_id, out ASL.ASLObject myObject))
         ///    {
-        ///         switch (f[3])
+        ///         switch (_f[3])
         ///         {
         ///             case 0:
-        ///                 //Update score based on f[0] for example
+        ///                 //Update score based on _f[0] for example
         ///                 break;
         ///             case 1:
         ///                 //Update player velocity and direction with f[0] and f[1] for example
-        ///                 playerVelocity = f[0]; //Velocity gets set to 17.8
-        ///                 playerDirection = f[1]; //Player Direction gets set to 180.2
+        ///                 playerVelocity = _f[0]; //Velocity gets set to 17.8
+        ///                 playerDirection = _f[1]; //Player Direction gets set to 180.2
         ///                 break;
         ///             case 2:
-        ///                 playerHealth = f[0]; //Health gets assigned to 3.5
-        ///                 playerArmor = f[1]; //Armor gets assigned to 0
-        ///                 playerSpeedBuff = f[2]; SpeedBuff gets assigned to 1.2
+        ///                 playerHealth = _f[0]; //Health gets assigned to 3.5
+        ///                 playerArmor = _f[1]; //Armor gets assigned to 0
+        ///                 playerSpeedBuff = _f[2]; SpeedBuff gets assigned to 1.2
         ///                 break;
         ///             case 3:
-        ///                 myObject.GetComponent&lt;RigidBody&gt;().velocity = f[0];
-        ///                 myObject.GetComponent&lt;MyScript&gt;().MyVariable = f[1];
+        ///                 myObject.GetComponent&lt;RigidBody&gt;().velocity = _f[0];
+        ///                 myObject.GetComponent&lt;MyScript&gt;().MyVariable = _f[1];
         ///                 break;
         ///         }
         ///     }
@@ -835,6 +920,12 @@ namespace ASL
                 byte[] id = Encoding.ASCII.GetBytes(m_Id);
                 byte[] floats = GameLiftManager.GetInstance().ConvertFloatArrayToByteArray(_f);
                 byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, floats);
+
+                if (payload.Length > 4096)
+                {
+                    Debug.LogError("Your float array is too large. Max float array length: 1000");
+                    return;
+                }
 
                 RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.SendFloats, payload);
                 GameLiftManager.GetInstance().m_Client.SendMessage(message);
@@ -850,6 +941,28 @@ namespace ASL
         /// <param name="_myTexture2D">The Texture2D to be uploaded and sent to others</param>
         /// <param name="_myPostDownloadFunction">The function to be called after the Texture2D is downloaded</param>
         /// <param name="_uploadAsPNG">Optional parameter allowing the user to upload the image as a PNG. The default is JPG.</param>
+        /// <example><code>
+        /// An example of how to send a Texture2D.
+        /// Optional parameters include to send it as a PNG (larger file, but allows for transparent pixels, default is JPG),
+        /// and to synchronize every user's callback function (in this case, "ChangeSpriteTexture"), the default is to not synchronize
+        /// callback functions, so once a user downloads an image, by default they will execute their given function instead of
+        /// waiting for every other user to download the image as well.
+        /// public void SendAndChangeTexture()
+        /// {
+        ///    _MyASLObject.GetComponent&lt;ASL.ASLObject&gt;().SendAndSetTexture2D(_TextureToSend, ChangeSpriteTexture, false);
+        /// }
+        /// The function is called after the Texture2D is sent by all users. Note: All users must have this function defined for them 
+        /// (just like with other callback functions except claim). Just because other users do not have the Texture2D being sent 
+        /// does not mean they do not need this function. This function can be used to do whatever you want to do after the Texture2D 
+        /// has been transferred. In this case, it is simply swapping the Texture2D out on the current sprite, changing the image 
+        /// the sprite displays. This function can be named anything, but must be a static public void function.
+        /// static public void ChangeSpriteTexture(GameObject _myGameObject, Texture2D _myTexture2D)
+        /// {
+        ///    Sprite newSprite = Sprite.Create(_myTexture2D, _myGameObject.GetComponent&lt;SpriteRenderer&gt;().sprite.rect,
+        ///        new Vector2(0.5f, 0.5f), _myGameObject.GetComponent&lt;SpriteRenderer&gt;().sprite.pixelsPerUnit);
+        ///    _myGameObject.GetComponent&lt;SpriteRenderer&gt;().sprite = newSprite;
+        /// }
+        /// </code></example>
         public void SendAndSetTexture2D(Texture2D _myTexture2D, PostDownloadFunction _myPostDownloadFunction, bool _uploadAsPNG = false)
         {
             byte[] id = Encoding.ASCII.GetBytes(m_Id);
@@ -868,7 +981,7 @@ namespace ASL
             byte[] postDownloadFunction = Encoding.ASCII.GetBytes(_myPostDownloadFunction.Method.ReflectedType + " " + _myPostDownloadFunction.Method.Name);
             byte[] firstPositionFlag = GameLiftManager.GetInstance().ConvertIntToByteArray(1);
 
-            int maxPacketSize = 4076; //4096
+            int maxPacketSize = 4076; //4096 - 20 (20 is the size of our meta data)
             //First packet:
             int imagePacketsSent = maxPacketSize - id.Length - firstPositionFlag.Length - textureName.Length;
             byte[] firstImagePacket;

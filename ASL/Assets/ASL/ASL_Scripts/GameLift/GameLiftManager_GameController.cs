@@ -11,7 +11,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 namespace ASL
 {
@@ -731,6 +730,23 @@ namespace ASL
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
                     myObject._LocallySetAnchorID(anchorId);
+                }
+            }
+
+            /// <summary>
+            /// Updates the tag of an ASL Object based upon its ID. Remember that this tag must be defined by all players.
+            /// This function is triggered by a packet received from the relay server. 
+            /// </summary>
+            /// <param name="_packet">The packet from the relay server containing the ID of what ASL Object to modified
+            /// and the object's new tag</param>
+            public void SetObjectTag(DataReceivedEventArgs _packet)
+            {
+                (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string tag = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
+                if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
+                {
+                    myObject.tag = tag;
                 }
             }
 

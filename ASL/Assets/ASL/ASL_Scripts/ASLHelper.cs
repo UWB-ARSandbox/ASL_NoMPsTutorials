@@ -11,11 +11,12 @@ using UnityEngine;
 namespace ASL
 {
     /// <summary>
-    /// Provides functions pertaining to ASL to be called by the user but not linked to any specific object
-    /// https://codelabs.developers.google.com/codelabs/arcore-cloud-anchors/index.html#4
-    /// https://developers.google.com/ar/develop/developer-guides/anchors
-    /// https://developers.google.com/ar/develop/unity/cloud-anchors/quickstart-unity-android
-    /// https://developers.google.com/ar/develop/unity/cloud-anchors/overview-unity
+    /// Provides functions pertaining to ASL to be called by the user but not linked to any specific object. Not that AR uses AR Foundation which is through Unity
+    /// but that AR Foundation uses Google's ARCore SDK.
+    /// <para>https://codelabs.developers.google.com/codelabs/arcore-cloud-anchors/index.html#4</para>
+    /// <para>https://developers.google.com/ar/develop/developer-guides/anchors</para>
+    /// <para>https://developers.google.com/ar/develop/unity/cloud-anchors/quickstart-unity-android</para>
+    /// <para>https://developers.google.com/ar/develop/unity/cloud-anchors/overview-unity</para>
     /// </summary>
     public static class ASLHelper
     {
@@ -68,10 +69,10 @@ namespace ASL
         /// <example><code>
         /// void SomeFunction()
         /// {
-        ///     ASL.ASLHelper.InstanitateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity);
+        ///     ASL.ASLHelper.InstantiateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity);
         /// }
         /// </code></example>
-        static public void InstanitateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation)
+        static public void InstantiateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation)
         {
             SendSpawnPrimitive(_type, _position, _rotation);
         }
@@ -87,25 +88,25 @@ namespace ASL
         /// void SomeFunction()
         /// {
         ///     //Where gameObject is the parent of the object that is being created here
-        ///     ASL.ASLHelper.InstanitateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id); 
+        ///     ASL.ASLHelper.InstantiateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id); 
         /// }
         /// </code>
         /// <code>
         /// void SomeOtherFunction()
         /// {
-        ///     ASL.ASLHelper.InstanitateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity, ""); //Using this overload (and others) and passing in an empty string is a valid option 
+        ///     ASL.ASLHelper.InstantiateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity, ""); //Using this overload (and others) and passing in an empty string is a valid option 
         /// }
         /// </code>
         /// <code>
         /// void WoahAnotherFunction()
         /// {
         ///     //Where 'MyParentObject' is the name of the parent of the object that is being created here
-        ///     ASL.ASLHelper.InstanitateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity, "MyParentObject"); 
+        ///     ASL.ASLHelper.InstantiateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity, "MyParentObject"); 
         ///     //The parent of your object can also be found by passing in the name (e.g., gameObject.name) of the parent you want. However, this method is a lot slower than using the ASL ID method, 
         ///     //but it is the only way to assign a non-ASL Object as a parent to an ASL Object for all users
         /// }
         /// </code></example>
-        static public void InstanitateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID)
+        static public void InstantiateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID)
         {
             SendSpawnPrimitive(_type, _position, _rotation, _parentID ?? "");
         }
@@ -125,14 +126,14 @@ namespace ASL
         /// {
         ///     //Using just the name space and the class name should be enough for _componentAssemblyQualifiedName. For more info, go here
         ///     //https://docs.microsoft.com/en-us/dotnet/api/system.type.assemblyqualifiedname?view=netframework-4.8#System_Type_AssemblyQualifiedName
-        ///     ASL.ASLHelper.InstanitateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id, "MyNamespace.MyComponent"); 
+        ///     ASL.ASLHelper.InstantiateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id, "MyNamespace.MyComponent"); 
         ///     
         ///     //Note: If you need to add more than 1 component to an object, you will need to use the _aslGameObjectCreatedCallbackInfo parameter as well. 
         ///     //See those instantiation overload options for more details
         /// }
         /// </code>
         ///</example>
-        static public void InstanitateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName)
+        static public void InstantiateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName)
         {
             SendSpawnPrimitive(_type, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "");
         }
@@ -150,7 +151,7 @@ namespace ASL
         /// void SomeFunction()
         /// {
         ///     //Where gameObject is the parent of the object that is being created here and "MyNamespace.MyClass" is an example of a component you want to add
-        ///     ASL.ASLHelper.InstanitateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id,
+        ///     ASL.ASLHelper.InstantiateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id,
         ///     "MyNamespace.MyClass",
         ///     MyUponInstantiationFunction);
         /// }
@@ -160,7 +161,7 @@ namespace ASL
         /// }
         /// 
         /// </code></example>
-        static public void InstanitateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
+        static public void InstantiateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
             ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo)
         {
             SendSpawnPrimitive(_type, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "", 
@@ -181,7 +182,7 @@ namespace ASL
         /// void SomeFunction()
         /// {
         ///     //Where gameObject is the parent of the object that is being created here and "MyNamespace.MyClass" is an example of a component you want to add
-        ///     ASL.ASLHelper.InstanitateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id,
+        ///     ASL.ASLHelper.InstantiateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id,
         ///     "MyNamespace.MyClass",
         ///     MyUponInstantiationFunction, 
         ///     MyClaimRejectedFunction); 
@@ -197,7 +198,7 @@ namespace ASL
         ///       " callbacks generated by a claim for object: " + _id + " rather than try to recover.");
         /// }
         /// </code></example>
-        static public void InstanitateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
+        static public void InstantiateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
             ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo,
             ASLObject.ClaimCancelledRecoveryCallback _aslClaimCancelledRecoveryFunctionInfo)
         {
@@ -222,7 +223,7 @@ namespace ASL
         /// void SomeFunction()
         /// {
         ///     //Where gameObject is the parent of the object that is being created here and "MyNamespace.MyClass" is an example of a component you want to add
-        ///     ASL.ASLHelper.InstanitateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id,
+        ///     ASL.ASLHelper.InstantiateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id,
         ///     "MyNamespace.MyClass",
         ///     MyUponInstantiationFunction, 
         ///     MyClaimRejectedFunction,
@@ -251,7 +252,7 @@ namespace ASL
         ///     }
         /// }
         /// </code></example>
-        static public void InstanitateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
+        static public void InstantiateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
             ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo,
             ASLObject.ClaimCancelledRecoveryCallback _aslClaimCancelledRecoveryFunctionInfo,
             ASLObject.FloatCallback _aslFloatFunctionInfo)
@@ -262,9 +263,9 @@ namespace ASL
                 _aslFloatFunctionInfo?.Method?.ReflectedType?.ToString() ?? "", _aslFloatFunctionInfo?.Method?.Name ?? "");
         }
 
-#endregion
+        #endregion
 
-#region Prefab Instantiation
+        #region Prefab Instantiation
 
         /// <summary>
         /// Create an ASL Object - make sure the prefab you are using to create this ASLObject with does NOT already have an ASL script attached to it 
@@ -276,10 +277,10 @@ namespace ASL
         /// <example><code>
         /// void SomeFunction()
         /// {
-        ///     ASL.ASLHelper.InstanitateASLObject("MyPrefab", new Vector3(0, 0, 0), Quaternion.identity);
+        ///     ASL.ASLHelper.InstantiateASLObject("MyPrefab", new Vector3(0, 0, 0), Quaternion.identity);
         /// }
         /// </code></example>
-        static public void InstanitateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation)
+        static public void InstantiateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation)
         {
             SendSpawnPrefab(_prefabName, _position, _rotation);
         }
@@ -294,24 +295,24 @@ namespace ASL
         /// <param name="_parentID">The id or name of the parent object for this instantiated object</param>
         /// <example><code>
         /// //Where gameObject is the parent of the object that is being created here
-        /// ASL.ASLHelper.InstanitateASLObject("MyPrefab", new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id); 
+        /// ASL.ASLHelper.InstantiateASLObject("MyPrefab", new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id); 
         /// </code>
         /// <code>
         /// void SomeFunction()
         /// {
-        ///     ASL.ASLHelper.InstanitateASLObject("MyPrefab", new Vector3(0, 0, 0), Quaternion.identity, ""); //Using this overload (and others) and passing in an empty string is a valid option 
+        ///     ASL.ASLHelper.InstantiateASLObject("MyPrefab", new Vector3(0, 0, 0), Quaternion.identity, ""); //Using this overload (and others) and passing in an empty string is a valid option 
         /// }
         /// </code>
         /// <code>
         /// void SomeOtherFunction()
         /// {
         ///     //Where 'MyParentObject' is the name of the parent of the object that is being created here
-        ///     ASL.ASLHelper.InstanitateASLObject("MyPrefab", new Vector3(0, 0, 0), Quaternion.identity, "MyParentObject"); 
+        ///     ASL.ASLHelper.InstantiateASLObject("MyPrefab", new Vector3(0, 0, 0), Quaternion.identity, "MyParentObject"); 
         ///     //The parent of your object can also be found by passing in the name (e.g., gameObject.name) of the parent you want. However, this method is a lot slower than using the ASL ID method, 
         ///     //but it is the only way to assign a non-ASL Object as a parent to an ASL Object for all users
         /// }
         /// </code></example>
-        static public void InstanitateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID)
+        static public void InstantiateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID)
         {
             SendSpawnPrefab(_prefabName, _position, _rotation, _parentID ?? "");
         }
@@ -332,7 +333,7 @@ namespace ASL
         /// {
         ///     //Using just the name space and the class name should be enough for _componentAssemblyQualifiedName. For more info, go here
         ///     //https://docs.microsoft.com/en-us/dotnet/api/system.type.assemblyqualifiedname?view=netframework-4.8#System_Type_AssemblyQualifiedName
-        ///     ASL.ASLHelper.InstanitateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id, "MyNamespace.MyComponent"); 
+        ///     ASL.ASLHelper.InstantiateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id, "MyNamespace.MyComponent"); 
         ///     
         ///     //Note: If you need to add more than 1 component to an object, use the AddComponent ASL function after this object is created via an after creation function
         ///     //To do so, you will need to use the instantiatedGameObjectClassName and InstantiatedGameObjectFunctionName parameters as well. 
@@ -340,7 +341,7 @@ namespace ASL
         /// }
         /// </code>
         ///</example>
-        static public void InstanitateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName)
+        static public void InstantiateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName)
         {
             SendSpawnPrefab(_prefabName, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "");
         }
@@ -359,7 +360,7 @@ namespace ASL
         /// void SomeFunction()
         /// {
         ///     //Where gameObject is the parent of the object that is being created here and "MyNamespace.MyClass" is an example of a component you want to add
-        ///     ASL.ASLHelper.InstanitateASLObject("MyPrefab", new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id,
+        ///     ASL.ASLHelper.InstantiateASLObject("MyPrefab", new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id,
         ///     "MyNamespace.MyClass",
         ///     MyUponInstantiationFunction); 
         /// }
@@ -369,7 +370,7 @@ namespace ASL
         /// }
         /// 
         /// </code></example>
-        static public void InstanitateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
+        static public void InstantiateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
             ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo)
         {
             SendSpawnPrefab(_prefabName, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "", 
@@ -391,7 +392,7 @@ namespace ASL
         /// void SomeFunction()
         /// {
         ///     //Where gameObject is the parent of the object that is being created here and "MyNamespace.MyClass" is an example of a component you want to add
-        ///     ASL.ASLHelper.InstanitateASLObject("MyPrefab", new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id,
+        ///     ASL.ASLHelper.InstantiateASLObject("MyPrefab", new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id,
         ///     "MyNamespace.MyClass",
         ///     MyUponInstantiationFunction,
         ///     MyClaimRejectedFunction);
@@ -408,7 +409,7 @@ namespace ASL
         /// } 
         /// 
         /// </code></example>
-        static public void InstanitateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
+        static public void InstantiateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
             ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo,
             ASLObject.ClaimCancelledRecoveryCallback _aslClaimCancelledRecoveryFunctionInfo)
         {
@@ -434,7 +435,7 @@ namespace ASL
         /// void SomeFunction()
         /// {
         ///     //Where gameObject is the parent of the object that is being created here and "MyNamespace.MyClass" is an example of a component you want to add
-        ///     ASL.ASLHelper.InstanitateASLObject("MyPrefab", new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id,
+        ///     ASL.ASLHelper.InstantiateASLObject("MyPrefab", new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id,
         ///     "MyNamespace.MyClass",
         ///     MyUponInstantiationFunction
         ///     MyClaimRejectedFunction,
@@ -464,7 +465,7 @@ namespace ASL
         /// } 
         /// 
         /// </code></example>
-        static public void InstanitateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
+        static public void InstantiateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
             ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo,
             ASLObject.ClaimCancelledRecoveryCallback _aslClaimCancelledRecoveryFunctionInfo,
             ASLObject.FloatCallback _aslFloatFunctionInfo)

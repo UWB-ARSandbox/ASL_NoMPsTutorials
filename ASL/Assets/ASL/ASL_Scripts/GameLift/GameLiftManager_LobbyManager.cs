@@ -15,12 +15,11 @@ using System.Collections;
 using System.Net.NetworkInformation;
 using System.Linq;
 using Aws.GameLift.Realtime.Command;
-using Aws.GameLift.Realtime.Types;
 using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
 using UnityEditor;
-using System.Net;
 using System.Net.Sockets;
+using Aws.GameLift.Realtime.Types;
 
 namespace ASL
 {
@@ -706,7 +705,10 @@ namespace ASL
                 ConnectionToken token = new ConnectionToken(_tokenUID, null);
                 ClientConfiguration clientConfiguration = new ClientConfiguration();
 
-                //clientConfiguration.ConnectionType = ConnectionType.RT_OVER_WSS_DTLS_TLS12; //Still working on getting this to work
+                //https://docs.aws.amazon.com/gamelift/latest/developerguide/realtime-sdk-csharp-ref-datatypes.html#realtime-sdk-csharp-ref-datatypes-clientconfiguration
+                //clientConfiguration.ConnectionType = ConnectionType.RT_OVER_WSS_DTLS_TLS12; //Still working on getting this to work 
+
+
 
                 GetInstance().m_Client = new Client(clientConfiguration);
                 GetInstance().m_Client.ConnectionOpen += new EventHandler(GetInstance().OnOpenEvent);

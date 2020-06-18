@@ -23,17 +23,12 @@
 
 namespace ASL
 {
-    using System.Collections;
-    using System.Collections.Generic;
     #if UNITY_ANDROID || UNITY_IOS
     using UnityEngine.XR.ARFoundation;
     using UnityEngine.XR.ARSubsystems;
     using Google.XR.ARCoreExtensions;
     #endif
     using UnityEngine;
-    using System.Text;
-    using Aws.GameLift.Realtime.Command;
-    using System;
 
     /// <summary>
     /// A helper script to set the apparent world origin of ARCore through applying an offset to the
@@ -77,7 +72,7 @@ namespace ASL
         private void Start()
         {
             ARCoreDeviceTransform = GameObject.Find("AR Session Origin").transform;
-            #if UNITY_ANDROID || UNITY_IOS
+#if UNITY_ANDROID || UNITY_IOS
             m_ARSession = GameObject.Find("AR Session").GetComponent<ARSession>();
             m_RaycastManager = GameObject.Find("AR Session Origin").GetComponent<ARRaycastManager>();
             m_ARAnchorManager = GameObject.Find("AR Session Origin").GetComponent<ARAnchorManager>();
@@ -101,7 +96,7 @@ namespace ASL
         /// </summary>
         private Transform m_AnchorTransform;
 
-#if UNITY_ANDROID || UNITY_IOS
+        #if UNITY_ANDROID || UNITY_IOS
         /// <summary>
         /// The AR Session - is a part of the ARHolder object
         /// </summary>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<topic id="177310fb-8abd-4b2b-98db-60d540b7ca2f" revisionNumber="1">
+<topic id="ddf4a003-31b2-453e-a554-73459c77d4e0" revisionNumber="1">
 	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
 		<introduction>
 			<para>The topics in this section describe the various changes made to the ASL Documentation System over the
@@ -21,7 +21,7 @@ life of the project.</para>
 		</section>
 
 		<relatedTopics>
-			<link xlink:href="16d360d9-1284-4cae-b7c9-c114d2c074ee" />
+			<link xlink:href="cfc9baae-dbed-4f8c-b73f-9a3b1d35d485" />
 		</relatedTopics>
 
 	</developerConceptualDocument>
