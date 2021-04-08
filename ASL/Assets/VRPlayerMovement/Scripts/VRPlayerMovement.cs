@@ -33,7 +33,7 @@ public class VRPlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             playerBody.velocity = new Vector3(playerBody.velocity.x, jumpForce, playerBody.velocity.z);
-        }*
+        }
 
     }
 }
