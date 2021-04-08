@@ -5,7 +5,7 @@ using UnityEngine;
 public class MazeEndPosition : MonoBehaviour
 {
     public GameObject character;
-    private float endMazeDistance = 2f;
+    private float endMazeDistance = 1f;
     private bool isMazeEnded = false;
 
     // Update is called once per frame
