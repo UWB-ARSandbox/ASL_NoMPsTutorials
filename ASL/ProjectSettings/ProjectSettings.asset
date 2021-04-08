@@ -171,7 +171,7 @@ PlayerSettings:
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 28
   AndroidTargetSdkVersion: 0
-  AndroidPreferredInstallLocation: 1
+  AndroidPreferredInstallLocation: 0
   aotOptions: 
   stripEngineCode: 1
   iPhoneStrippingLevel: 0
@@ -671,9 +671,9 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    1: 
+    1: OCULUSINTEGRATION_PRESENT
     4: ARFOUNDATION_PRESENT
-    7: ARFOUNDATION_PRESENT
+    7: ARFOUNDATION_PRESENT;OCULUSINTEGRATION_PRESENT
     14: 
   platformArchitecture: {}
   scriptingBackend:
@@ -715,6 +715,7 @@ PlayerSettings:
   metroSplashScreenUseBackgroundColor: 0
   platformCapabilities:
     WindowsStoreApps:
+      EnterpriseAuthentication: False
       VideosLibrary: False
       Location: False
       HumanInterfaceDevice: False
@@ -727,7 +728,6 @@ PlayerSettings:
       InternetClientServer: False
       OfflineMapsManagement: False
       Objects3D: False
-      InternetClient: True
       RemoteSystem: False
       BlockedChatMessages: False
       PhoneCall: False
@@ -750,9 +750,9 @@ PlayerSettings:
       RecordedCallsFolder: False
       Contacts: False
       Proximity: False
+      InternetClient: True
       CodeGeneration: False
       BackgroundMediaPlayback: False
-      EnterpriseAuthentication: False
   metroTargetDeviceFamilies:
     Desktop: True
     Holographic: True
