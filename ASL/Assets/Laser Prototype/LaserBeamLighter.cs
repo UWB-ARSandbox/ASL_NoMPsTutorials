@@ -9,6 +9,9 @@ public class LaserBeamLighter : MonoBehaviour
     public float Intensity;
     public float ClipDistance;
     private List<GameObject> lights;
+
+    public LaserSensor ExcludeSensor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,26 +20,29 @@ public class LaserBeamLighter : MonoBehaviour
 
     void FixedUpdate()
     {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(new Vector3(0f, 0f, 1f)), out hit, Mathf.Infinity))
         {
+            Debug.DrawRay(transform.position, transform.TransformDirection(new Vector3(0f, 0f, 1f)) * hit.distance, Color.yellow);
             transform.localScale = new Vector3(1f, 1f, Mathf.Min(ClipDistance, hit.distance));
             LaserSensor sensor = hit.transform.gameObject.GetComponent<LaserSensor>();
-            if (sensor != null)
+            if (sensor != null && sensor != ExcludeSensor)
             {
                 sensor.Trigger();
             }
         }
         else
         {
+            Debug.DrawRay(transform.position, transform.TransformDirection(new Vector3(0f, 0f, 1f)) * 1000, Color.white);
+            // Vector3(0,-0.495000005,-0.600000024)
             transform.localScale = new Vector3(1f, 1f, ClipDistance);
         }
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
+        /*
         int lightCount = (int)(transform.localScale.z * LightDensity);
         if (lightCount < 0)
         {
@@ -61,6 +67,6 @@ public class LaserBeamLighter : MonoBehaviour
             light.transform.SetParent(transform);
             light.transform.localPosition = new Vector3(0.0f, 0.0f, i/LightDensity/transform.localScale.z + 0.5f / lightCount);
             light.GetComponent<Light>().intensity = Intensity / LightDensity;
-        }
+        }*/
     }
 }

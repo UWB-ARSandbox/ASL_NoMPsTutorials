@@ -6,10 +6,20 @@ using UnityEngine.Events;
 public class LaserSensor : MonoBehaviour
 {
  
-    public UnityEvent OnBeamIn;
-    public UnityEvent OnBeamOut;
-    private bool laserDetectedLastFrame;
-    private bool laserDetected;
+    public UnityEvent Sense;
+    public UnityEvent Unsense;
+    public UnityEvent<int> Change;
+    private int lasersDetected;
+    private int lasersDetectedNextFrame;
+    private int inOutTrigger;
+
+    public bool log;
+
+    private int fixedFrame = 0;
+    private uint frame = 0;
+    private uint lateFrame = 0;
+    private bool triggerSense;
+    private bool triggerUnsense;
 
     // Start is called before the first frame update
     void Start()
@@ -17,14 +27,65 @@ public class LaserSensor : MonoBehaviour
         
     }
 
+    void FixedUpdate()
+    {
+        int lasersDetectedLastFrame = lasersDetected;
+        lasersDetected = lasersDetectedNextFrame;
+
+        if (lasersDetected > 0 && lasersDetectedLastFrame == 0)
+        {
+            triggerSense = true;
+        }
+        if (lasersDetected == 0 && lasersDetectedLastFrame > 0)
+        {
+            triggerUnsense = true;
+        }
+
+        inOutTrigger = lasersDetected - lasersDetectedLastFrame;
+        if (log)
+        {
+            Debug.Log("FixedUpdate(): Fixed Frame: " + fixedFrame
+                + ", lasersDetectedLastFrame: " + lasersDetectedLastFrame + ", lasersDetected: " + lasersDetected);
+        }
+
+        lasersDetectedNextFrame = 0;
+
+        fixedFrame++;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (triggerSense)
+        {
+            Sense.Invoke();
+            triggerSense = false;
+        }
 
+        if (triggerUnsense)
+        {
+            Unsense.Invoke();
+            triggerUnsense = false;
+        }
+
+        if (inOutTrigger != 0)
+        {
+            Change.Invoke(lasersDetected);
+            if (log)
+            {
+                Debug.Log("Update(): Frame: " + frame + " inOutTrigger: " + inOutTrigger);
+            }
+            inOutTrigger = 0;
+        }
+
+        frame++;
     }
     void LateUpdate()
     {
-        if (laserDetected && !laserDetectedLastFrame)
+        //Debug.Log("LateUpdate(): Frame: " + frame + ", Late Frame: " + lateFrame
+        //    + ", detected: " + laserDetected + ", prevDetected: " + laserDetectedLastFrame);
+        lateFrame++;
+        /*if (laserDetected && !laserDetectedLastFrame)
         {
             OnBeamIn.Invoke();
         }
@@ -33,19 +94,19 @@ public class LaserSensor : MonoBehaviour
             OnBeamOut.Invoke();
         }
         laserDetectedLastFrame = laserDetected;
-        laserDetected = false;
+        laserDetected = false;*/
     }
 
     public void Trigger()
     {
-        laserDetected = true;
-    }
-    public void TestIn() {
-        GetComponent<MeshRenderer>().material.color = new Color(0.0f, 1.0f, 0.0f);
-    }
-    public void TestOut()
-    {
-        GetComponent<MeshRenderer>().material.color = new Color(1.0f, 0.0f, 0.0f);
+        //Debug.Log("Trigger(): Frame: " + frame + ", Late Frame: " + lateFrame
+        //    + ", detected: " + laserDetected + ", prevDetected: " + laserDetectedLastFrame);
+        //laserDetected = true;
+        if (log)
+        {
+            Debug.Log("Trigger(): Fixed Frame: " + fixedFrame + ", lasersDetectedNextFrame: " + lasersDetectedNextFrame);
+        }
+        lasersDetectedNextFrame++;
     }
 
 }
