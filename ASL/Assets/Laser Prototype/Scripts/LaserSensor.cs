@@ -9,6 +9,21 @@ public class LaserSensor : MonoBehaviour
     public UnityEvent Sense;
     public UnityEvent Unsense;
     public UnityEvent<int> Change;
+    public int DetectionCount
+    {
+        get
+        {
+            return lasersDetected;
+        }
+    }
+    public bool Detected
+    {
+        get
+        {
+            return lasersDetected > 0;
+        }
+    }
+
     private int lasersDetected;
     private int lasersDetectedNextFrame;
     private int inOutTrigger;
