@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Microsoft.MixedReality.Toolkit;
+using Microsoft.MixedReality.Toolkit.Teleport;
 
 public class VRPlayerMovement : MonoBehaviour
 {
@@ -26,6 +28,29 @@ public class VRPlayerMovement : MonoBehaviour
         playerBody.transform.eulerAngles = new Vector3(playerBody.transform.eulerAngles.x, _rotationAngle, playerBody.transform.eulerAngles.z);
         //check if the player is on the ground
         
+
+    }
+    void DisableTeleportSystem()
+    {
+        CoreServices.TeleportSystem.Disable();
+    }
+
+    void EnableTeleportSystem()
+    {
+        CoreServices.TeleportSystem.Enable();
+    }
+
+    public void toggleContinousMovementHandler()
+    {
+        
+        continousMovement = !continousMovement;
+        if (continousMovement)
+        {
+            DisableTeleportSystem();
+        }
+        else
+            EnableTeleportSystem();
+        Debug.Log(" continousMovement: " + continousMovement);
 
     }
 
