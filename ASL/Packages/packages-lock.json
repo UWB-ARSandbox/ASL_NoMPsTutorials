@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.google.ar.core.arfoundation.extensions": {
-      "version": "file:C:/Users/mmunson2/Downloads/arcore-unity-extensions-1.23.0.tgz",
+      "version": "file:../Assets/ASL/XR/arcore-unity-extensions-1.23.0.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
