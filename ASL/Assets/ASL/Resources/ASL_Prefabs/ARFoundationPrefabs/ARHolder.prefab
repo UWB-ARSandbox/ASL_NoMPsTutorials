@@ -94,8 +94,7 @@ MonoBehaviour:
   Session: {fileID: 7227626954685983983}
   SessionOrigin: {fileID: 7227626954786318353}
   CameraManager: {fileID: 7227626954106178970}
-  ARCoreExtensionsConfig: {fileID: 11400000, guid: eeeb78de6201c5349b91c75d190ad3e0,
-    type: 2}
+  ARCoreExtensionsConfig: {fileID: 11400000, guid: eeeb78de6201c5349b91c75d190ad3e0, type: 2}
 --- !u!1 &7227626953973032918
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,6 +142,7 @@ GameObject:
   - component: {fileID: 7227626954106178917}
   - component: {fileID: 7227626954106178970}
   - component: {fileID: 7227626954106178971}
+  - component: {fileID: 4371776163317251374}
   m_Layer: 0
   m_Name: AR Camera
   m_TagString: MainCamera
@@ -250,6 +250,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UseCustomMaterial: 0
   m_CustomMaterial: {fileID: 0}
+--- !u!114 &4371776163317251374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7227626954106178969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 115f5c25fcbb5d240b80a7c3c7255201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7227626954685983980
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,8 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ab0e80cee9cc1d44928bfe488dd1e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PointCloudPrefab: {fileID: 2346641500355058667, guid: d91c97c626e2e4e4e8d56f904139da51,
-    type: 3}
+  m_PointCloudPrefab: {fileID: 2346641500355058667, guid: d91c97c626e2e4e4e8d56f904139da51, type: 3}
 --- !u!114 &7227626954786318357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,8 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlanePrefab: {fileID: 7193258150143389265, guid: c9bd14542d964ff43b9017fb4502332a,
-    type: 3}
+  m_PlanePrefab: {fileID: 7193258150143389265, guid: c9bd14542d964ff43b9017fb4502332a, type: 3}
   m_DetectionMode: -1
 --- !u!114 &7227626954786318359
 MonoBehaviour:
@@ -399,6 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa17d122634046b4a8e23048891fafc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_RaycastPrefab: {fileID: 0}
 --- !u!114 &7227626954786318356
 MonoBehaviour:
   m_ObjectHideFlags: 0
