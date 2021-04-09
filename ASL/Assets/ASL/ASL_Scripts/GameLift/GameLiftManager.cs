@@ -114,6 +114,8 @@ namespace ASL
         /// </summary>
         public Client m_Client { get; private set; }
 
+        public DataReceivedEventArgs m_Packet { get; private set; }
+
         /// <summary>
         /// Can be any positive number, but must be matched with the OpCodes in the RealTime script.
         /// </summary>
@@ -197,9 +199,60 @@ namespace ASL
             /// <summary>Used to help keep the Android socket connection alive</summary>
             AndroidKeepConnectionAlive,
             /// <summary>Packet code for sending object tags</summary>
-            TagUpdate
+            TagUpdate,
+            /// <summary>Packet code representing data that will be used to recreate a Mesh</summary>
+            SendARPlaneAsMesh
 
         }
+
+        /// <summary>
+        /// Array of OpCode function references executed when a packet is received with the corresponding OpCode.
+        /// null entries in the array are OpCodes that currently have no action within this script when received, 
+        /// but may have other action elsewhere or are automatically sent.
+        /// </summary>
+        public Action[] OpCodeFunctions =
+        {
+            null, // PlayerLoggedIn - Auto packet sent by GameLift
+            () => GetInstance().PlayerJoinedMatch(GetInstance().m_Packet),
+            () => GetInstance().AddPlayerToLobbyUI(GetInstance().m_Packet),
+            () => GetInstance().PlayerDisconnected(GetInstance().m_Packet),
+            () => GetInstance().AllPlayersReady(GetInstance().m_Packet),
+            () => GetInstance().PlayerDisconnectedBeforeMatchStart(GetInstance().m_Packet),
+            null,   // PlayerReady
+            () => GetInstance().LaunchScene(GetInstance().m_Packet),
+            () => GetInstance().LoadScene(GetInstance().m_Packet),
+            () => GetInstance().ServerSetId(GetInstance().m_Packet),
+            null,   // ReleaseClaimToServer
+            () => GetInstance().Claim(GetInstance().m_Packet),
+            () => GetInstance().RejectClaim(GetInstance().m_Packet),
+            () => GetInstance().ReleaseClaimToPlayer(GetInstance().m_Packet),
+            () => GetInstance().ClaimFromPlayer(GetInstance().m_Packet),
+            () => GetInstance().SetObjectColor(GetInstance().m_Packet),
+            () => GetInstance().DeleteObject(GetInstance().m_Packet),
+            () => GetInstance().SetLocalPosition(GetInstance().m_Packet),
+            () => GetInstance().IncrementLocalPosition(GetInstance().m_Packet),
+            () => GetInstance().SetLocalRotation(GetInstance().m_Packet),
+            () => GetInstance().IncrementLocalRotation(GetInstance().m_Packet),
+            () => GetInstance().SetLocalScale(GetInstance().m_Packet),
+            () => GetInstance().IncrementLocalScale(GetInstance().m_Packet),
+            () => GetInstance().SetWorldPosition(GetInstance().m_Packet),
+            () => GetInstance().IncrementWorldPosition(GetInstance().m_Packet),
+            () => GetInstance().SetWorldRotation(GetInstance().m_Packet),
+            () => GetInstance().IncrementWorldRotation(GetInstance().m_Packet),
+            () => GetInstance().SetWorldScale(GetInstance().m_Packet),
+            () => GetInstance().IncrementWorldScale(GetInstance().m_Packet),
+            () => GetInstance().SpawnPrefab(GetInstance().m_Packet),
+            () => GetInstance().SpawnPrimitive(GetInstance().m_Packet),
+            () => GetInstance().SendFloats(GetInstance().m_Packet),
+            () => GetInstance().SendTexture2D(GetInstance().m_Packet),
+            () => GetInstance().ResolveAnchorId(GetInstance().m_Packet),
+            () => GetInstance().ResolvedCloudAnchor(GetInstance().m_Packet),
+            () => GetInstance().AnchorIDUpdate(GetInstance().m_Packet),
+            () => GetInstance().LobbyTextMessage(GetInstance().m_Packet),
+            null,   // AndroidKeepConnectionAlive
+            () => GetInstance().TagUpdate(GetInstance().m_Packet),
+            () => GetInstance().SendARPlaneAsMesh(GetInstance().m_Packet)
+        };
 
         /// <summary>
         /// The queue that will hold all of the functions to be triggered by AWS events
@@ -310,6 +363,7 @@ namespace ASL
 
         /// <summary>
         /// An AWS listener function that gets called every time a packet is received.
+        /// Directly invokes the OpCode function corresponding to the OpCode number, determined by the OpCode enum.
         /// </summary>
         /// <param name="sender">The packet sender</param>
         /// <param name="_packet">The packet that was received</param>
@@ -319,124 +373,201 @@ namespace ASL
             string data = System.Text.Encoding.Default.GetString(_packet.Data);
             Debug.Log($"[server-sent] OnDataReceived - Sender: {_packet.Sender} OpCode: {_packet.OpCode} data: {data.ToString()}");
             #endif
-            switch (_packet.OpCode)
+            m_Packet = _packet; // Set packet
+            if(_packet.OpCode > OpCodeFunctions.Length || _packet.OpCode < 0) // Check for invalid OpCode
             {
-                case (int)OpCode.PlayerLoggedIn: //Auto packet sent by GameLift
-                    break;
-                case (int)OpCode.PlayerJoinedMatch:
-#if UNITY_ANDROID
-                    QForMainThread(StartPacketStream);
-#endif
-                    QForMainThread(m_LobbyManager.PlayerJoinedMatch, _packet);
-                    break;
-                case (int)OpCode.AddPlayerToLobbyUI:
-                    QForMainThread(m_LobbyManager.AddPlayerToMatch, _packet);
-                    break;
-                case (int)OpCode.PlayerDisconnected:
-                    QForMainThread(RemovePlayerFromList, _packet);
-                    break;
-                case (int)OpCode.PlayerDisconnectedBeforeMatchStart:
-                    QForMainThread(m_LobbyManager.AllowReadyUp);
-                    break;
-                case (int)OpCode.AllPlayersReady:
-                    QForMainThread(m_LobbyManager.LockSession);
-                    QForMainThread(DestroyLobbyManager);
-                    QForMainThread(m_SceneLoader.LoadScene, _packet);
-                    break;
-                case (int)OpCode.LaunchScene:
-                    QForMainThread(m_SceneLoader.LaunchScene);
-                    break;
-                case (int)OpCode.LoadScene:
-                    QForMainThread(m_SceneLoader.LoadScene, _packet);
-                    break;
-                case (int)OpCode.ServerSetId:
-                    QForMainThread(m_GameController.SetObjectID, _packet);
-                    break;
-                case (int)OpCode.Claim:
-                    QForMainThread(m_GameController.SetObjectClaim, _packet);
-                    break;
-                case (int)OpCode.ReleaseClaimToPlayer:
-                    QForMainThread(m_GameController.ReleaseClaimedObject, _packet);
-                    break;
-                case (int)OpCode.ClaimFromPlayer:
-                    QForMainThread(m_GameController.ObjectClaimReceived, _packet);
-                    break;
-                case (int)OpCode.RejectClaim:
-                    QForMainThread(m_GameController.RejectClaim, _packet);
-                    break;
-                case (int)OpCode.SetObjectColor:
-                    QForMainThread(m_GameController.SetObjectColor, _packet);
-                    break;
-                case (int)OpCode.DeleteObject:
-                    QForMainThread(m_GameController.DeleteObject, _packet);
-                    break;
-                case (int)OpCode.SetLocalPosition:
-                    QForMainThread(m_GameController.SetLocalPosition, _packet);
-                    break;
-                case (int)OpCode.IncrementLocalPosition:
-                    QForMainThread(m_GameController.IncrementLocalPosition, _packet);
-                    break;
-                case (int)OpCode.SetLocalRotation:
-                    QForMainThread(m_GameController.SetLocalRotation, _packet);
-                    break;
-                case (int)OpCode.IncrementLocalRotation:
-                    QForMainThread(m_GameController.IncrementLocalRotation, _packet);
-                    break;
-                case (int)OpCode.SetLocalScale:
-                    QForMainThread(m_GameController.SetLocalScale, _packet);
-                    break;
-                case (int)OpCode.IncrementLocalScale:
-                    QForMainThread(m_GameController.IncrementLocalScale, _packet);
-                    break;
-                case (int)OpCode.SetWorldPosition:
-                    QForMainThread(m_GameController.SetWorldPosition, _packet);
-                    break;
-                case (int)OpCode.IncrementWorldPosition:
-                    QForMainThread(m_GameController.IncrementWorldPosition, _packet);
-                    break;
-                case (int)OpCode.SetWorldRotation:
-                    QForMainThread(m_GameController.SetWorldRotation, _packet);
-                    break;
-                case (int)OpCode.IncrementWorldRotation:
-                    QForMainThread(m_GameController.IncrementWorldRotation, _packet);
-                    break;
-                case (int)OpCode.SetWorldScale:
-                    QForMainThread(m_GameController.SetWorldScale, _packet);
-                    break;
-                case (int)OpCode.IncrementWorldScale:
-                    QForMainThread(m_GameController.IncrementWorldScale, _packet);
-                    break;
-                case (int)OpCode.SpawnPrefab:
-                    QForMainThread(m_GameController.SpawnPrefab, _packet);
-                    break;
-                case (int)OpCode.SpawnPrimitive:
-                    QForMainThread(m_GameController.SpawnPrimitive, _packet);
-                    break;
-                case (int)OpCode.SendFloats:
-                    QForMainThread(m_GameController.SentFloats, _packet);
-                    break;
-                case (int)OpCode.SendTexture2D:
-                    QForMainThread(m_GameController.RecieveTexture2D, _packet);
-                        break;
-                case (int)OpCode.ResolveAnchorId:
-                    QForMainThread(m_GameController.ResolveAnchorId, _packet);
-                    break;
-                case (int)OpCode.ResolvedCloudAnchor:
-                    QForMainThread(m_GameController.AllClientsFinishedResolvingCloudAnchor, _packet);
-                    break;
-                case (int)OpCode.AnchorIDUpdate:
-                    QForMainThread(m_GameController.SetAnchorID, _packet);
-                    break;
-                case (int)OpCode.TagUpdate:
-                    QForMainThread(m_GameController.SetObjectTag, _packet);
-                    break;
-                case (int)OpCode.LobbyTextMessage:
-                    QForMainThread(m_LobbyManager.UpdateChatLog, _packet);
-                    break;
-                default:
-                    Debug.LogError("Unassigned OpCode received: " + _packet.OpCode);
-                    break;
+                Debug.LogError("Unassigned OpCode received: " + _packet.OpCode);
+                return;
             }
+            if(OpCodeFunctions[_packet.OpCode] != null)     // Check that a function exists for the OpCode
+            {
+                OpCodeFunctions[_packet.OpCode].Invoke();   // Valid OpCode, invoke corresponding function
+            }
+        }
+
+        // OpCode Functions
+        private void PlayerJoinedMatch(DataReceivedEventArgs _packet)
+        {
+#if UNITY_ANDROID
+            QForMainThread(StartPacketStream);
+#endif
+            QForMainThread(m_LobbyManager.PlayerJoinedMatch, _packet);
+        }
+
+        private void AddPlayerToLobbyUI(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_LobbyManager.AddPlayerToMatch, _packet);
+        }
+        private void PlayerDisconnected(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(RemovePlayerFromList, _packet);
+        }
+
+        private void AllPlayersReady(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_LobbyManager.LockSession);
+            QForMainThread(DestroyLobbyManager);
+            QForMainThread(m_SceneLoader.LoadScene, _packet);
+        }
+
+        private void PlayerDisconnectedBeforeMatchStart(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_LobbyManager.AllowReadyUp);
+        }
+
+        private void LaunchScene(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_SceneLoader.LaunchScene);
+        }
+
+        private void LoadScene(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_SceneLoader.LoadScene, _packet);
+        }
+
+        private void ServerSetId(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.SetObjectID, _packet);
+        }
+
+        private void Claim(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.SetObjectClaim, _packet);
+        }
+
+        private void RejectClaim(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.RejectClaim, _packet);
+        }
+
+        private void ReleaseClaimToPlayer(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.ReleaseClaimedObject, _packet);
+        }
+
+        private void ClaimFromPlayer(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.ObjectClaimReceived, _packet);
+        }
+
+        private void SetObjectColor(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.SetObjectColor, _packet);
+        }
+
+        private void DeleteObject(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.DeleteObject, _packet);
+        }
+
+        private void SetLocalPosition(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.SetLocalPosition, _packet);
+        }
+
+        private void IncrementLocalPosition(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.IncrementLocalPosition, _packet);
+        }
+
+        private void SetLocalRotation(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.SetLocalRotation, _packet);
+        }
+
+        private void IncrementLocalRotation(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.IncrementLocalRotation, _packet);
+        }
+
+        private void SetLocalScale(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.SetLocalScale, _packet);
+        }
+
+        private void IncrementLocalScale(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.IncrementLocalScale, _packet);
+        }
+
+        private void SetWorldPosition(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.SetWorldPosition, _packet);
+        }
+
+        private void IncrementWorldPosition(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.IncrementWorldPosition, _packet);
+        }
+
+        private void SetWorldRotation(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.SetWorldRotation, _packet);
+        }
+
+        private void IncrementWorldRotation(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.IncrementWorldRotation, _packet);
+        }
+
+        private void SetWorldScale(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.SetWorldScale, _packet);
+        }
+
+        private void IncrementWorldScale(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.IncrementWorldScale, _packet);
+        }
+
+        private void SpawnPrefab(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.SpawnPrefab, _packet);
+        }
+
+        private void SpawnPrimitive(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.SpawnPrimitive, _packet);
+        }
+
+        private void SendFloats(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.SentFloats, _packet);
+        }
+
+        private void SendTexture2D(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.RecieveTexture2D, _packet);
+        }
+
+        private void ResolveAnchorId(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.ResolveAnchorId, _packet);
+        }
+
+        private void ResolvedCloudAnchor(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.AllClientsFinishedResolvingCloudAnchor, _packet);
+        }
+
+        private void AnchorIDUpdate(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.SetAnchorID, _packet);
+        }
+
+        private void LobbyTextMessage(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_LobbyManager.UpdateChatLog, _packet);
+        }
+
+        private void TagUpdate(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.SetObjectTag, _packet);
+        }
+
+        private void SendARPlaneAsMesh(DataReceivedEventArgs _packet)
+        {
+            QForMainThread(m_GameController.ReceiveARPlaneAsMesh, _packet);
         }
 
         /// <summary>
@@ -552,6 +683,25 @@ namespace ASL
             Buffer.BlockCopy(BitConverter.GetBytes(_vector3.z), 0, bytes, 2 * sizeof(float), sizeof(float));
 
             return bytes;
+        }
+
+        /// <summary>
+        /// Converts a vector3 array into a float array
+        /// </summary>
+        /// <param name="_vectors">The vector3 array to convert into a float array</param>
+        /// <returns>A float array representing the vector3 array passed in</returns>
+        public float[] ConvertVector3ArrayToFloatArray(Vector3[] _vectors)
+        {
+            // Multiply the vector length by 3 since the float array will contain the x, y, and z positions of every point
+            float[] vectorsInFloatFormat = new float[(_vectors.Length * 3)];
+            for (int i = 0; i < _vectors.Length; i++)
+            {
+                // Separate a single vector3 into 3 floats for the x, y, and z positions
+                vectorsInFloatFormat[(i * 3)] = _vectors[i].x;
+                vectorsInFloatFormat[(i * 3) + 1] = _vectors[i].y;
+                vectorsInFloatFormat[(i * 3) + 2] = _vectors[i].z;
+            }
+            return vectorsInFloatFormat;
         }
 
         /// <summary>

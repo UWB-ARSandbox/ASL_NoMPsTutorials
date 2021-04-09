@@ -16,7 +16,11 @@ MonoBehaviour:
   useManagerScene: 1
   managerScene:
     Name: DefaultManagerScene
+<<<<<<< HEAD
     Path: Assets/ASL/MRTK/Services/SceneSystem/SceneSystemResources/DefaultManagerScene.unity
+=======
+    Path: Assets/MRTK/Services/SceneSystem/SceneSystemResources/DefaultManagerScene.unity
+>>>>>>> ASL/Unity-2020.3
     Included: 0
     BuildIndex: -1
     Tag: Untagged
@@ -25,7 +29,11 @@ MonoBehaviour:
   defaultLightingSceneIndex: 0
   lightingScenes:
   - Name: DefaultLightingScene
+<<<<<<< HEAD
     Path: Assets/ASL/MRTK/Services/SceneSystem/SceneSystemResources/DefaultLightingScene.unity
+=======
+    Path: Assets/MRTK/Services/SceneSystem/SceneSystemResources/DefaultLightingScene.unity
+>>>>>>> ASL/Unity-2020.3
     Included: 0
     BuildIndex: -1
     Tag: Untagged
