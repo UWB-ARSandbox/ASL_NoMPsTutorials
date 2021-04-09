@@ -11,6 +11,7 @@ public class VRPlayerMovement : MonoBehaviour
     public float jumpForce = 6f;
     public LayerMask layerMask;
     private bool grounded; //prevent infinite jump
+    public bool continousMovement = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,17 +21,25 @@ public class VRPlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x = Input.GetAxisRaw("Horizontal") * movementSensitivity;
-        float y = Input.GetAxisRaw("Vertical") * movementSensitivity;
-        //moving
-        Vector3 movePos = Camera.main.transform.right * x + Camera.main.transform.forward * y;
-        Vector3 newMovePos = new Vector3(movePos.x, mixedRealityPlayspace.velocity.y, movePos.z);
-        mixedRealityPlayspace.velocity = newMovePos;
+        continousMovementHandler();
         float _rotationAngle = Camera.main.transform.rotation.eulerAngles.y;
         playerBody.transform.eulerAngles = new Vector3(playerBody.transform.eulerAngles.x, _rotationAngle, playerBody.transform.eulerAngles.z);
         //check if the player is on the ground
         
 
+    }
+
+    public void continousMovementHandler()
+    {
+        if (continousMovement)
+        {
+            float x = Input.GetAxisRaw("Horizontal") * movementSensitivity;
+            float y = Input.GetAxisRaw("Vertical") * movementSensitivity;
+            //moving
+            Vector3 movePos = Camera.main.transform.right * x + Camera.main.transform.forward * y;
+            Vector3 newMovePos = new Vector3(movePos.x, mixedRealityPlayspace.velocity.y, movePos.z);
+            mixedRealityPlayspace.velocity = newMovePos;
+        }
     }
 
     public void jump() {
