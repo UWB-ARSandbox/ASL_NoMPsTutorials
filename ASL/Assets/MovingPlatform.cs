@@ -10,6 +10,7 @@ public class MovingPlatform : MonoBehaviour
     public float Speed;
     public float RelativePosition;
     private float fromTime;
+    private bool delayed;
 
     // Start is called before the first frame update
     void Start()
@@ -20,10 +21,17 @@ public class MovingPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (From == null || To == null || From.Delay > Time.time - fromTime)
+        if (From != null && To == null)
+        {
+            To = From.Next;
+
+        }
+
+        if (From == null || To == null || (delayed && From.Delay > Time.time - fromTime))
         {
             return;
         }
+        delayed = false;
 
         if (Speed == 0)
         {
@@ -55,6 +63,12 @@ public class MovingPlatform : MonoBehaviour
                 return;
             }
             To = From.Next;
+            if (To == null)
+            {
+                Speed = 0;
+                RelativePosition = 0;
+                return;
+            }
 
             // Update Speed
             if (From.SetSpeed)
@@ -72,6 +86,7 @@ public class MovingPlatform : MonoBehaviour
                 NextRelativePosition = distance / v.magnitude;
             } else
             {
+                delayed = true;
                 NextRelativePosition = 0;
             }
         }
