@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class VRPlayerMovement : MonoBehaviour
 {
-    private Rigidbody playerBody;
+    private Rigidbody mixedRealityPlayspace;
+    public GameObject playerBody; 
     private Vector3 inputVector;
     public float movementSensitivity = 10f;
     public float jumpForce = 6f;
@@ -13,7 +14,7 @@ public class VRPlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerBody = GetComponent<Rigidbody>();
+        mixedRealityPlayspace = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -23,17 +24,23 @@ public class VRPlayerMovement : MonoBehaviour
         float y = Input.GetAxisRaw("Vertical") * movementSensitivity;
         //moving
         Vector3 movePos = Camera.main.transform.right * x + Camera.main.transform.forward * y;
-        Vector3 newMovePos = new Vector3(movePos.x, playerBody.velocity.y, movePos.z);
-        playerBody.velocity = newMovePos;
-        
+        Vector3 newMovePos = new Vector3(movePos.x, mixedRealityPlayspace.velocity.y, movePos.z);
+        mixedRealityPlayspace.velocity = newMovePos;
+        float _rotationAngle = Camera.main.transform.rotation.eulerAngles.y;
+        playerBody.transform.eulerAngles = new Vector3(playerBody.transform.eulerAngles.x, _rotationAngle, playerBody.transform.eulerAngles.z);
         //check if the player is on the ground
-        grounded = Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), .7f, layerMask);
         
-        //jumping 
-        if(Input.GetKeyDown(KeyCode.Space) && grounded)
-        {
-            playerBody.velocity = new Vector3(playerBody.velocity.x, jumpForce, playerBody.velocity.z);
-        }
 
+    }
+
+    public void jump() {
+        
+        grounded = Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), .7f, layerMask);
+        Debug.Log("jump " + grounded);
+        //jumping 
+        if (grounded)
+        {
+            mixedRealityPlayspace.velocity = new Vector3(mixedRealityPlayspace.velocity.x, jumpForce, mixedRealityPlayspace.velocity.z);
+        }
     }
 }
