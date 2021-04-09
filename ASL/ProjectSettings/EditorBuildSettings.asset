@@ -5,12 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/ASL/ASL_Scenes/ASL_LobbyScene.unity
     guid: 31f3bf0f357b60c4981e20725877fd45
-  - enabled: 1
+  - enabled: 0
     path: Assets/ASL/ASL_Scenes/ASL_SceneLoader.unity
     guid: 6026d53651e499849a1420efc6833ec7
+  - enabled: 1
+    path: Assets/VRPlayerMovement/Scenes/SampleScene.unity
+    guid: aabf3e1e779edf54e9b26a5f5ddef5c9
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 69d665b2e6fda1d4cb43c3cc65ca8174, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: bf557935255407f40b56b5c173577bf9, type: 2}

@@ -20,7 +20,7 @@ public class PCPlayerItemInteraction : MonoBehaviour {
         if(Input.GetMouseButtonDown(0))
         {   if (pickedUpItem == null)
             {
-                int layerMask = 1 << 9;
+                int layerMask = 1 << 7;
                 RaycastHit hit;
                 if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, pickUpDistance, layerMask))
                 {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -256,6 +256,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &556700193
 Canvas:
   m_ObjectHideFlags: 0
@@ -310,7 +311,7 @@ GameObject:
   - component: {fileID: 581729442}
   - component: {fileID: 581729441}
   - component: {fileID: 581729440}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,7 +366,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 594da6fa8eca7b04aa61ac4aa431fbec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -485,6 +486,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &705507995
@@ -626,14 +628,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 910477922}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cd0fd016667362418420db33f098054, type: 3}
+  m_Script: {fileID: 11500000, guid: da5b556d612bf624f83be21ad7100e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movementSensitivity: 10
   jumpForce: 4
   layerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
 --- !u!114 &910477929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,11 +645,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 910477922}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d81727805104abe40b1c1b686d9336c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 288ce389dd337d3498f47eceb8e730db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pickedUpItem: {fileID: 0}
-  pickUpDistance: 3
+  pickUpDistance: 5
   throwingYDirection: 0.3
   throwingForce: 350
 --- !u!1 &963194225
@@ -743,7 +745,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3c9ed34b9985b8468e95f15bebf8a2b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4581f0ad5e7d9d74a978298d03a9db53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 700
@@ -755,7 +757,7 @@ LightingSettings:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Settings.lighting
-  serializedVersion: 2
+  serializedVersion: 3
   m_GIWorkflowMode: 1
   m_EnableBakedLightmaps: 1
   m_EnableRealtimeLightmaps: 0
@@ -777,7 +779,7 @@ LightingSettings:
   m_MixedBakeMode: 2
   m_LightmapsBakeMode: 1
   m_FilterMode: 1
-  m_LightmapParameters: {fileID: 0}
+  m_LightmapParameters: {fileID: 15204, guid: 0000000000000000f000000000000000, type: 0}
   m_ExportTrainingData: 0
   m_TrainingDataDestination: TrainingData
   m_RealtimeResolution: 2
@@ -794,7 +796,7 @@ LightingSettings:
   m_PVREnvironmentReferencePointCount: 2048
   m_LightProbeSampleCountMultiplier: 4
   m_PVRBounces: 2
-  m_PVRRussianRouletteStartBounce: 2
+  m_PVRMinBounces: 1
   m_PVREnvironmentMIS: 0
   m_PVRFilteringMode: 2
   m_PVRDenoiserTypeDirect: 0
@@ -822,7 +824,7 @@ GameObject:
   - component: {fileID: 1780775493}
   - component: {fileID: 1780775492}
   - component: {fileID: 1780775495}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -838,7 +840,7 @@ Transform:
   m_GameObject: {fileID: 1780775490}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.57, z: 1.59}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -875,7 +877,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 594da6fa8eca7b04aa61ac4aa431fbec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -999,7 +1001,7 @@ GameObject:
   - component: {fileID: 2038512580}
   - component: {fileID: 2038512579}
   - component: {fileID: 2038512578}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1039,7 +1041,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 323a3a4d8921b804e8cfe64a1ef3e121, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
