@@ -42,7 +42,6 @@ public class LaserBeamLighter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
         int lightCount = (int)(transform.localScale.z * LightDensity);
         if (lightCount < 0)
         {
@@ -67,6 +66,6 @@ public class LaserBeamLighter : MonoBehaviour
             light.transform.SetParent(transform);
             light.transform.localPosition = new Vector3(0.0f, 0.0f, i/LightDensity/transform.localScale.z + 0.5f / lightCount);
             light.GetComponent<Light>().intensity = Intensity / LightDensity;
-        }*/
+        }
     }
 }
