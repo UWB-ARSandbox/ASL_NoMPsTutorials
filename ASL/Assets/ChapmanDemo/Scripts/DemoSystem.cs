@@ -7,7 +7,6 @@ public class DemoSystem : MonoBehaviour
     public GameObject character1;
     public GameObject characterCam;
     public GameObject topDownCam;
-    public Transform endPosition;
     private float m_movement_dX = 100; // per second
     private float m_movement_dZ = 100; // per second
     private float m_rotation_dY = 50; // per second
@@ -16,7 +15,7 @@ public class DemoSystem : MonoBehaviour
     public GameObject GetCharacter() { return character1; }
 
     /// <param name="_gameObject">The gameobject that was created</param>
-    public static void AddToStorage(GameObject _gameObject)
+    public static void StoreMaze(GameObject _gameObject)
     {
         //An example of how we can get a handle to our object that we just created but want to use later
         maze = _gameObject;
@@ -49,15 +48,15 @@ public class DemoSystem : MonoBehaviour
 
     private void Start()
     {
-        /*
+
         // Instantiate the maze prefab
-        ASL.ASLHelper.InstantiateASLObject("CubeVisual", // TODO: Change to maze pref in resource
+        ASL.ASLHelper.InstantiateASLObject("MazeDemo",
                                    new Vector3(0f, 0f, 0f), // TODO: Should have a parameter object
                                    Quaternion.identity, "", "",
-                                   AddToStorage,
+                                   StoreMaze,
                                    ClaimRecoveryFunction,
                                    MyFloatsFunction);
-        */
+
     }
 
     // Update is called once per frame
