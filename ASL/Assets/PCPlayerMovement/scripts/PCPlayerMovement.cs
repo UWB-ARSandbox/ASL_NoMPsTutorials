@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PCPlayerMovement : MonoBehaviour
 {
-    private Rigidbody playerBody;
+    public Rigidbody playerBody;
     private Vector3 inputVector;
     public float movementSensitivity = 10f;
     public float jumpForce = 6f;
@@ -13,7 +13,7 @@ public class PCPlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerBody = GetComponent<Rigidbody>();
+        //playerBody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -25,7 +25,7 @@ public class PCPlayerMovement : MonoBehaviour
         Vector3 movePos = transform.right * x + transform.forward * y;
         Vector3 newMovePos = new Vector3(movePos.x, playerBody.velocity.y, movePos.z);
         playerBody.velocity = newMovePos;
-
+        //transform.position = playerBody.position;
         //check if the player is on the ground
         grounded = Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), .7f, layerMask); 
 
@@ -34,5 +34,6 @@ public class PCPlayerMovement : MonoBehaviour
         {
             playerBody.velocity = new Vector3(playerBody.velocity.x, jumpForce, playerBody.velocity.z);
         }
+
     }
 }

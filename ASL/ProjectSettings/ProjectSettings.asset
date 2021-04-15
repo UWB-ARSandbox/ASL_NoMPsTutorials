@@ -42,8 +42,8 @@ PlayerSettings:
   m_SplashScreenLogos: []
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
-  defaultScreenWidth: 640
-  defaultScreenHeight: 480
+  defaultScreenWidth: 1000
+  defaultScreenHeight: 1000
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
   m_StereoRenderingPath: 2
@@ -82,7 +82,7 @@ PlayerSettings:
   bakeCollisionMeshes: 0
   forceSingleInstance: 0
   useFlipModelSwapchain: 1
-  resizableWindow: 0
+  resizableWindow: 1
   useMacAppStoreValidation: 0
   macAppStoreCategory: public.app-category.games
   gpuSkinning: 1
@@ -728,7 +728,7 @@ PlayerSettings:
   metroSplashScreenUseBackgroundColor: 0
   platformCapabilities:
     WindowsStoreApps:
-      EnterpriseAuthentication: False
+      CodeGeneration: False
       VideosLibrary: False
       Location: False
       HumanInterfaceDevice: False
@@ -762,10 +762,10 @@ PlayerSettings:
       PointOfService: False
       RecordedCallsFolder: False
       Contacts: False
-      InternetClient: True
-      CodeGeneration: False
-      BackgroundMediaPlayback: False
       Proximity: False
+      InternetClient: True
+      BackgroundMediaPlayback: False
+      EnterpriseAuthentication: False
   metroTargetDeviceFamilies:
     Desktop: True
     Holographic: True
