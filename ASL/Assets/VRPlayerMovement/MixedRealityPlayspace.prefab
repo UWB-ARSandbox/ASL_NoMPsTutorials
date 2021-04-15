@@ -211,6 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBody: {fileID: 6056647688918130362}
+  toolkit: {fileID: 0}
   movementSensitivity: 10
   jumpForce: 6
   layerMask:
