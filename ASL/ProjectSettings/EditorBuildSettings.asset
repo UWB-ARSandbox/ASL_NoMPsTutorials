@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Laser Prototype/ASL Laser Demo.unity
+    guid: b2a00d5ef4122fd45b788ae65866e671
+  - enabled: 1
     path: Assets/ASL/ASL_Scenes/ASL_LobbyScene.unity
     guid: 31f3bf0f357b60c4981e20725877fd45
   - enabled: 1
