@@ -997,7 +997,7 @@ namespace ASL
             byte[] postDownloadFunction = Encoding.ASCII.GetBytes(_myPostDownloadFunction.Method.ReflectedType + " " + _myPostDownloadFunction.Method.Name);
             byte[] firstPositionFlag = GameLiftManager.GetInstance().ConvertIntToByteArray(1);
 
-            int maxPacketSize = 4076; //4096 - 20 (20 is the size of our meta data)
+            int maxPacketSize = 4072; //4096 - 24 (24 is the size of our meta data)
             //First packet:
             int imagePacketsSent = maxPacketSize - id.Length - firstPositionFlag.Length - textureName.Length;
             byte[] firstImagePacket;
