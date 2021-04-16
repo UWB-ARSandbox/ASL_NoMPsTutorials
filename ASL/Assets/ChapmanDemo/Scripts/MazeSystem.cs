@@ -5,7 +5,7 @@ using UnityEngine;
 public class MazeSystem : MonoBehaviour
 {
     // Test/Demo user system
-    private DemoSystem m_demoSystem;
+    private PlayerSystem m_playerSystem;
 
     private MazeStartPosition m_mazeStartPosition;
     private MazeEndPosition m_mazeEndPosition;
@@ -43,7 +43,7 @@ public class MazeSystem : MonoBehaviour
         return m_characterListOnTopFloor[index];
     }
 
-    // Display List<GameObject>
+    // Debug Function: Display the List<GameObject>
     public void DisplayList(List<GameObject> list)
     {
         Debug.Log("Num in list = " + list.Count);
@@ -59,13 +59,17 @@ public class MazeSystem : MonoBehaviour
 
     /* Private initialize functions */
 
-    private void InitMaze()
+    public void InitMaze()
     {
+        if (!m_playerSystem.GetIsHost()) return;
         // Get players
-        var character = m_demoSystem.GetCharacter(); // TODO: Replace with new player/user system
-
-        // Add players into the start position
-        AddCharacterInMaze(character); // TODO: Use a loop to add players
+        int numPlayer = m_playerSystem.GetNumPlayers();
+        for (int i = 0; i < numPlayer; i++)
+        {
+            GameObject player = m_playerSystem.GetPlayerByIndex(i);
+            if (player != null)
+                AddCharacterInMaze(player);
+        }
 
         // Start Maze
         m_mazeStartPosition.PlaceCharacterInStartPos();
@@ -75,10 +79,9 @@ public class MazeSystem : MonoBehaviour
     private void Start()
     {
         // Demo system only
-        m_demoSystem = GameObject.FindObjectOfType<DemoSystem>();
+        m_playerSystem = GameObject.FindObjectOfType<PlayerSystem>();
 
         m_mazeStartPosition = GameObject.FindObjectOfType<MazeStartPosition>();
         m_mazeEndPosition = GameObject.FindObjectOfType<MazeEndPosition>();
-        InitMaze();
     }
 }
