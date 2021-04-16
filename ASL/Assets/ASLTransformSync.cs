@@ -14,11 +14,14 @@ public class ASLTransformSync : MonoBehaviour
     private Vector3 previousScale;
     private bool transformChangedRemotely;
     private int id;
+    private int lockHolder;
+    private bool madeInitialClaim;
     // Start is called before the first frame update
     void Start()
     {
         GetComponent<ASLObject>()._LocallySetFloatCallback((string _id, float[] f) =>
         {
+            lockHolder = id;
             if (id != f[0])
             {
                 remotePosition = new Vector3(f[1], f[2], f[3]);
@@ -29,10 +32,29 @@ public class ASLTransformSync : MonoBehaviour
         });
     }
 
+    void FixedUpdate()
+    {
+        if (GetComponent<Rigidbody>() != null)
+        {
+            GetComponent<Rigidbody>().isKinematic = !GetComponent<ASLObject>().m_Mine;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (GetComponent<Rigidbody>() != null && GetComponent<Rigidbody>().isKinematic && GetComponent<MeshRenderer>() != null)
+        {
+            GetComponent<MeshRenderer>().material.color = Color.red;
+        } else if (GetComponent<MeshRenderer>() != null)
+        {
+            GetComponent<MeshRenderer>().material.color = Color.green;
+        }
         GameLiftManager glm = GameLiftManager.GetInstance();
+        if (glm == null)
+        {
+            return;
+        }
         List<string> usernames = new List<string>();
         foreach (string username in glm.m_Players.Values)
         {
@@ -41,6 +63,11 @@ public class ASLTransformSync : MonoBehaviour
         usernames.Sort();
         id = usernames.IndexOf(glm.m_Username);
 
+        if (id == 0 && !madeInitialClaim)
+        {
+            GetComponent<ASLObject>().SendAndSetClaim(() => { });
+            madeInitialClaim = true;
+        }
         // if transform != previousTransform then transform has changed locally, so
         //     send transform data in float array to be stored in remoteTransform
         // load remoteTransform into local transform if remoteTransform recieved
