@@ -82,6 +82,5 @@ EditorBuildSettings:
     guid: 469930ea538046f429f64844afe0f1e7
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: bf557935255407f40b56b5c173577bf9, type: 2}
-    com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: f81eaaa375ab70b40957a0e33db2d86f, type: 2}
     com.unity.xr.management.arcore_loader: {fileID: 11400000, guid: 23a24ef9a392c0e4f95ea82d0acb26a1, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 9884d9205f7a5604c9da4d3f97b10a5e, type: 2}
