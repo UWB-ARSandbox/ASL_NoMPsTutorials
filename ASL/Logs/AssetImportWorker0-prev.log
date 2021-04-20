@@ -11,19 +11,19 @@ C:\Program Files\Unity\Hub\Editor\2020.3.0f1\Editor\Unity.exe
 -name
 AssetImportWorker0
 -projectPath
-C:/Users/Eunmin/Documents/css499/prototype/PuzzleSpeedRun/ASL
+C:/Users/Eunmin/Documents/css499/prototype/clone/PuzzleSpeedRun/ASL
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-57061
-Successfully changed project path to: C:/Users/Eunmin/Documents/css499/prototype/PuzzleSpeedRun/ASL
-C:/Users/Eunmin/Documents/css499/prototype/PuzzleSpeedRun/ASL
+58642
+Successfully changed project path to: C:/Users/Eunmin/Documents/css499/prototype/clone/PuzzleSpeedRun/ASL
+C:/Users/Eunmin/Documents/css499/prototype/clone/PuzzleSpeedRun/ASL
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 68.94 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.69 ms.
+Refreshing native plugins compatible for Editor in 107.80 ms, found 9 plugins.
+Preloading 1 native plugins for Editor in 1.30 ms.
 Initialize engine version: 2020.3.0f1 (c7b5465681fb)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/Eunmin/Documents/css499/prototype/PuzzleSpeedRun/ASL/Assets
+[Subsystems] Discovering subsystems at path C:/Users/Eunmin/Documents/css499/prototype/clone/PuzzleSpeedRun/ASL/Assets
 GfxDevice: creating device client; threaded=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
@@ -35,301 +35,91 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56972
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56888
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.001550 seconds.
+Registered in 0.001544 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 60.13 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.10 ms.
+Refreshing native plugins compatible for Editor in 57.91 ms, found 9 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.656 seconds
+- Completed reload, in  1.618 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.013470 seconds.
+Registered in 0.015555 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 58.66 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.09 ms.
+Refreshing native plugins compatible for Editor in 57.50 ms, found 9 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.935 seconds
+- Completed reload, in  1.888 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
-Refreshing native plugins compatible for Editor in 1.53 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.10 ms.
-Unloading 3480 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 167.9 MB.
-System memory in use after: 166.6 MB.
+Refreshing native plugins compatible for Editor in 1.00 ms, found 9 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 3481 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 168.0 MB.
+System memory in use after: 166.7 MB.
 
-Unloading 2248 unused Assets to reduce memory usage. Loaded Objects now: 3606.
-Total: 4.677400 ms (FindLiveObjects: 0.564900 ms CreateObjectMapping: 0.135800 ms MarkObjects: 1.884300 ms  DeleteObjects: 2.091400 ms)
+Unloading 2248 unused Assets to reduce memory usage. Loaded Objects now: 3607.
+Total: 4.568400 ms (FindLiveObjects: 0.619600 ms CreateObjectMapping: 0.132400 ms MarkObjects: 1.832200 ms  DeleteObjects: 1.983200 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/ChapmanDemo/Scripts/PlayerSystem.cs
-  artifactKey: Guid(6b5b6b782734b9f468579d56044ac234) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ChapmanDemo/Scripts/PlayerSystem.cs using Guid(6b5b6b782734b9f468579d56044ac234) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09275eb6188d324e6c5d8125f177b3d9') in 0.025392 seconds
-  Import took 0.029849 seconds .
+  path: Assets/VRPlayerMovement/Scenes/SampleScene.unity
+  artifactKey: Guid(aabf3e1e779edf54e9b26a5f5ddef5c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRPlayerMovement/Scenes/SampleScene.unity using Guid(aabf3e1e779edf54e9b26a5f5ddef5c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7475dc53fb72d7fca4fa85830cf11976') in 0.018722 seconds
+  Import took 0.023720 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000183 seconds.
+  path: Assets/VRPlayerMovement/MixedRealityPlayspace.prefab
+  artifactKey: Guid(049a21eb68592494fb261e2e22440e91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRPlayerMovement/MixedRealityPlayspace.prefab using Guid(049a21eb68592494fb261e2e22440e91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb37df39219e7b7afaf274ab41847a5b') in 0.076352 seconds
+  Import took 0.080687 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000161 seconds.
+  path: Assets/VRPlayerMovement/Scenes
+  artifactKey: Guid(a3491edda05862449b7b00796a30e284) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRPlayerMovement/Scenes using Guid(a3491edda05862449b7b00796a30e284) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '189b2a92c35af09e4333209f322d10e5') in 0.005303 seconds
+  Import took 0.009546 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000162 seconds.
+  path: Assets/VRPlayerMovement/Material
+  artifactKey: Guid(d64d7a1ba695dc9479752c97a2bfa7d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRPlayerMovement/Material using Guid(d64d7a1ba695dc9479752c97a2bfa7d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '13de948ae42ba2b5a41d9094c42cc908') in 0.005420 seconds
+  Import took 0.009798 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.427646 seconds.
+  path: Assets/VRPlayerMovement
+  artifactKey: Guid(c4cf752806b4f904d84857e628f3d059) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/VRPlayerMovement using Guid(c4cf752806b4f904d84857e628f3d059) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a6db6f0fd982651dde65164c82a6677') in 0.006143 seconds
+  Import took 0.010974 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.011810 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.98 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.07 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Error when attempting to update scene info fields. Scene info data may be stale.
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogWarning (object)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:RefreshSceneInfoFieldsInScriptableObjects () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:313)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:InitializeOnLoad () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:231)
-
-(Filename: Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs Line: 313)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  1.481 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.02 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Unloading 3398 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 174.7 MB.
-System memory in use after: 173.8 MB.
-
-Unloading 2350 unused Assets to reduce memory usage. Loaded Objects now: 3610.
-Total: 4.882300 ms (FindLiveObjects: 0.553000 ms CreateObjectMapping: 0.134100 ms MarkObjects: 2.015400 ms  DeleteObjects: 2.178700 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.011646 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.04 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Error when attempting to update scene info fields. Scene info data may be stale.
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogWarning (object)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:RefreshSceneInfoFieldsInScriptableObjects () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:313)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:InitializeOnLoad () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:231)
-
-(Filename: Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs Line: 313)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  1.438 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.02 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Unloading 3398 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 174.8 MB.
-System memory in use after: 173.9 MB.
-
-Unloading 2350 unused Assets to reduce memory usage. Loaded Objects now: 3614.
-Total: 4.467600 ms (FindLiveObjects: 0.526700 ms CreateObjectMapping: 0.142700 ms MarkObjects: 1.809700 ms  DeleteObjects: 1.987500 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.011911 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.01 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.07 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Error when attempting to update scene info fields. Scene info data may be stale.
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogWarning (object)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:RefreshSceneInfoFieldsInScriptableObjects () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:313)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:InitializeOnLoad () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:231)
-
-(Filename: Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs Line: 313)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  1.493 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.00 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.07 ms.
-Unloading 3398 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 174.9 MB.
-System memory in use after: 174.0 MB.
-
-Unloading 2350 unused Assets to reduce memory usage. Loaded Objects now: 3618.
-Total: 4.382100 ms (FindLiveObjects: 0.514800 ms CreateObjectMapping: 0.131200 ms MarkObjects: 1.770800 ms  DeleteObjects: 1.964200 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.012404 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.11 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Error when attempting to update scene info fields. Scene info data may be stale.
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogWarning (object)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:RefreshSceneInfoFieldsInScriptableObjects () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:313)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:InitializeOnLoad () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:231)
-
-(Filename: Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs Line: 313)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  1.561 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.02 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Unloading 3398 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 175.0 MB.
-System memory in use after: 174.1 MB.
-
-Unloading 2350 unused Assets to reduce memory usage. Loaded Objects now: 3622.
-Total: 4.728400 ms (FindLiveObjects: 0.619000 ms CreateObjectMapping: 0.135000 ms MarkObjects: 1.921600 ms  DeleteObjects: 2.051800 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.011744 seconds.
+Registered in 0.012044 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
 Refreshing native plugins compatible for Editor in 1.00 ms, found 9 plugins.
 Preloading 1 native plugins for Editor in 0.07 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Error when attempting to update scene info fields. Scene info data may be stale.
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogWarning (object)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:RefreshSceneInfoFieldsInScriptableObjects () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:313)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:InitializeOnLoad () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:231)
-
-(Filename: Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs Line: 313)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  1.430 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.98 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.07 ms.
-Unloading 3398 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 175.0 MB.
-System memory in use after: 174.2 MB.
-
-Unloading 2350 unused Assets to reduce memory usage. Loaded Objects now: 3626.
-Total: 5.331700 ms (FindLiveObjects: 0.644600 ms CreateObjectMapping: 0.136900 ms MarkObjects: 2.035700 ms  DeleteObjects: 2.513000 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.011444 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.01 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.09 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Error when attempting to update scene info fields. Scene info data may be stale.
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogWarning (object)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:RefreshSceneInfoFieldsInScriptableObjects () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:313)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:InitializeOnLoad () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:231)
-
-(Filename: Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs Line: 313)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  1.450 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.04 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Unloading 3398 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 175.1 MB.
-System memory in use after: 174.2 MB.
-
-Unloading 2350 unused Assets to reduce memory usage. Loaded Objects now: 3630.
-Total: 4.528800 ms (FindLiveObjects: 0.554100 ms CreateObjectMapping: 0.135400 ms MarkObjects: 1.840900 ms  DeleteObjects: 1.997400 ms)
-
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 8.45 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.09 ms.
-Unloading 39 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 87.3 MB.
-System memory in use after: 87.5 MB.
-
-Unloading 39 unused Assets to reduce memory usage. Loaded Objects now: 3630.
-Total: 2.747900 ms (FindLiveObjects: 0.377800 ms CreateObjectMapping: 0.078000 ms MarkObjects: 2.238700 ms  DeleteObjects: 0.051800 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.013152 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.15 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Error when attempting to update scene info fields. Scene info data may be stale.
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogWarning (object)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:RefreshSceneInfoFieldsInScriptableObjects () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:313)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:InitializeOnLoad () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:231)
-
-(Filename: Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs Line: 313)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  1.660 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.08 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Unloading 3398 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 175.1 MB.
-System memory in use after: 174.2 MB.
-
-Unloading 2350 unused Assets to reduce memory usage. Loaded Objects now: 3634.
-Total: 4.869600 ms (FindLiveObjects: 0.688300 ms CreateObjectMapping: 0.159800 ms MarkObjects: 1.952300 ms  DeleteObjects: 2.068300 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.017286 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.04 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
@@ -346,338 +136,35 @@ Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:InitializeOnLoad () (at Ass
 Mono: successfully reloaded assembly
 - Completed reload, in  1.525 seconds
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.02 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.07 ms.
-Unloading 3398 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 175.2 MB.
-System memory in use after: 174.3 MB.
-
-Unloading 2350 unused Assets to reduce memory usage. Loaded Objects now: 3638.
-Total: 4.705000 ms (FindLiveObjects: 0.539400 ms CreateObjectMapping: 0.135300 ms MarkObjects: 1.995600 ms  DeleteObjects: 2.033700 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.012162 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.05 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Error when attempting to update scene info fields. Scene info data may be stale.
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogWarning (object)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:RefreshSceneInfoFieldsInScriptableObjects () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:313)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:InitializeOnLoad () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:231)
-
-(Filename: Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs Line: 313)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  1.532 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.06 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Unloading 3398 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 175.2 MB.
-System memory in use after: 174.3 MB.
-
-Unloading 2350 unused Assets to reduce memory usage. Loaded Objects now: 3642.
-Total: 4.639600 ms (FindLiveObjects: 0.572000 ms CreateObjectMapping: 0.134300 ms MarkObjects: 1.824100 ms  DeleteObjects: 2.108100 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.011459 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.02 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Error when attempting to update scene info fields. Scene info data may be stale.
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogWarning (object)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:RefreshSceneInfoFieldsInScriptableObjects () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:313)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:InitializeOnLoad () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:231)
-
-(Filename: Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs Line: 313)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  1.542 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.28 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Unloading 3398 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 175.2 MB.
-System memory in use after: 174.3 MB.
-
-Unloading 2350 unused Assets to reduce memory usage. Loaded Objects now: 3646.
-Total: 5.143300 ms (FindLiveObjects: 0.630300 ms CreateObjectMapping: 0.149200 ms MarkObjects: 2.083000 ms  DeleteObjects: 2.278700 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.011566 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.10 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.09 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Error when attempting to update scene info fields. Scene info data may be stale.
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogWarning (object)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:RefreshSceneInfoFieldsInScriptableObjects () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:313)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:InitializeOnLoad () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:231)
-
-(Filename: Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs Line: 313)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  1.521 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.04 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.09 ms.
-Unloading 3398 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 175.3 MB.
-System memory in use after: 174.4 MB.
-
-Unloading 2350 unused Assets to reduce memory usage. Loaded Objects now: 3650.
-Total: 4.561400 ms (FindLiveObjects: 0.572100 ms CreateObjectMapping: 0.133300 ms MarkObjects: 1.843400 ms  DeleteObjects: 2.011400 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.011973 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.09 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.07 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Error when attempting to update scene info fields. Scene info data may be stale.
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogWarning (object)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:RefreshSceneInfoFieldsInScriptableObjects () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:313)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:InitializeOnLoad () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:231)
-
-(Filename: Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs Line: 313)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  1.522 seconds
-Platform modules already initialized, skipping
 Refreshing native plugins compatible for Editor in 0.98 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.07 ms.
-Unloading 3398 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 175.3 MB.
-System memory in use after: 174.5 MB.
-
-Unloading 2350 unused Assets to reduce memory usage. Loaded Objects now: 3654.
-Total: 4.511100 ms (FindLiveObjects: 0.536100 ms CreateObjectMapping: 0.136300 ms MarkObjects: 1.801300 ms  DeleteObjects: 2.036400 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.011940 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.12 ms, found 9 plugins.
 Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Error when attempting to update scene info fields. Scene info data may be stale.
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogWarning (object)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:RefreshSceneInfoFieldsInScriptableObjects () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:313)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:InitializeOnLoad () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:231)
-
-(Filename: Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs Line: 313)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  1.549 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.06 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.07 ms.
 Unloading 3398 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 180.7 MB.
-System memory in use after: 179.9 MB.
+System memory in use before: 178.1 MB.
+System memory in use after: 176.9 MB.
 
-Unloading 2350 unused Assets to reduce memory usage. Loaded Objects now: 3658.
-Total: 4.503600 ms (FindLiveObjects: 0.518600 ms CreateObjectMapping: 0.138200 ms MarkObjects: 1.816700 ms  DeleteObjects: 2.029300 ms)
+Unloading 2352 unused Assets to reduce memory usage. Loaded Objects now: 3618.
+Total: 4.411800 ms (FindLiveObjects: 0.510100 ms CreateObjectMapping: 0.137700 ms MarkObjects: 1.811900 ms  DeleteObjects: 1.951000 ms)
 
 ========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 8.13 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.07 ms.
-Unloading 39 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 92.9 MB.
-System memory in use after: 93.1 MB.
+Received Import Request.
+  Time since last request: 24.091837 seconds.
+  path: Assets/ASL
+  artifactKey: Guid(160bb6e64b06aa648a5940ad3d28acfe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ASL using Guid(160bb6e64b06aa648a5940ad3d28acfe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e31d79edbb7f125b1ce2e1f4ba12fd85') in 0.010269 seconds
+  Import took 0.016140 seconds .
 
-Unloading 39 unused Assets to reduce memory usage. Loaded Objects now: 3658.
-Total: 2.449400 ms (FindLiveObjects: 0.398600 ms CreateObjectMapping: 0.089800 ms MarkObjects: 1.921500 ms  DeleteObjects: 0.038800 ms)
+========================================================================
+Received Import Request.
+  Time since last request: 0.794702 seconds.
+  path: Assets/ASL/ASL_Scripts
+  artifactKey: Guid(846fc2aefe422644096f477c5d9a1f1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ASL/ASL_Scripts using Guid(846fc2aefe422644096f477c5d9a1f1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '28080b7e1518e0ac0439818bf8557696') in 0.006209 seconds
+  Import took 0.011033 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.011670 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.13 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Error when attempting to update scene info fields. Scene info data may be stale.
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogWarning (object)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:RefreshSceneInfoFieldsInScriptableObjects () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:313)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:InitializeOnLoad () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:231)
-
-(Filename: Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs Line: 313)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  1.521 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.17 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.12 ms.
-Unloading 3398 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 175.4 MB.
-System memory in use after: 174.5 MB.
-
-Unloading 2350 unused Assets to reduce memory usage. Loaded Objects now: 3662.
-Total: 5.015600 ms (FindLiveObjects: 0.630400 ms CreateObjectMapping: 0.137100 ms MarkObjects: 1.965100 ms  DeleteObjects: 2.281900 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.012669 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.01 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.07 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Error when attempting to update scene info fields. Scene info data may be stale.
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogWarning (object)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:RefreshSceneInfoFieldsInScriptableObjects () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:313)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:InitializeOnLoad () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:231)
-
-(Filename: Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs Line: 313)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  1.454 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.36 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.10 ms.
-Unloading 3398 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 175.4 MB.
-System memory in use after: 174.6 MB.
-
-Unloading 2350 unused Assets to reduce memory usage. Loaded Objects now: 3666.
-Total: 4.498200 ms (FindLiveObjects: 0.551900 ms CreateObjectMapping: 0.140800 ms MarkObjects: 1.830100 ms  DeleteObjects: 1.974600 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.014306 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.05 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.07 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Error when attempting to update scene info fields. Scene info data may be stale.
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogWarning (object)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:RefreshSceneInfoFieldsInScriptableObjects () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:313)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:InitializeOnLoad () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:231)
-
-(Filename: Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs Line: 313)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  1.480 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.02 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.07 ms.
-Unloading 3398 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 175.4 MB.
-System memory in use after: 174.6 MB.
-
-Unloading 2350 unused Assets to reduce memory usage. Loaded Objects now: 3670.
-Total: 4.654600 ms (FindLiveObjects: 0.500900 ms CreateObjectMapping: 0.140700 ms MarkObjects: 1.850600 ms  DeleteObjects: 2.161600 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.011259 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.04 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Error when attempting to update scene info fields. Scene info data may be stale.
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogWarning (object)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:RefreshSceneInfoFieldsInScriptableObjects () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:313)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:InitializeOnLoad () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:231)
-
-(Filename: Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs Line: 313)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  1.564 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.01 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.07 ms.
-Unloading 3398 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 175.4 MB.
-System memory in use after: 174.6 MB.
-
-Unloading 2350 unused Assets to reduce memory usage. Loaded Objects now: 3674.
-Total: 4.549600 ms (FindLiveObjects: 0.512000 ms CreateObjectMapping: 0.133800 ms MarkObjects: 1.876100 ms  DeleteObjects: 2.026800 ms)
-
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 7.74 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.07 ms.
-Unloading 39 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 87.6 MB.
-System memory in use after: 87.8 MB.
-
-Unloading 39 unused Assets to reduce memory usage. Loaded Objects now: 3674.
-Total: 2.479800 ms (FindLiveObjects: 0.392300 ms CreateObjectMapping: 0.079700 ms MarkObjects: 1.971800 ms  DeleteObjects: 0.035100 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.012023 seconds.
+Registered in 0.011841 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
 Refreshing native plugins compatible for Editor in 1.01 ms, found 9 plugins.
@@ -696,47 +183,22 @@ Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:InitializeOnLoad () (at Ass
 (Filename: Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs Line: 313)
 
 Mono: successfully reloaded assembly
-- Completed reload, in  1.459 seconds
+- Completed reload, in  1.484 seconds
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.03 ms, found 9 plugins.
+Refreshing native plugins compatible for Editor in 0.99 ms, found 9 plugins.
 Preloading 1 native plugins for Editor in 0.08 ms.
 Unloading 3398 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 175.5 MB.
-System memory in use after: 174.7 MB.
+System memory in use before: 178.2 MB.
+System memory in use after: 177.1 MB.
 
-Unloading 2350 unused Assets to reduce memory usage. Loaded Objects now: 3678.
-Total: 5.633000 ms (FindLiveObjects: 0.593800 ms CreateObjectMapping: 0.138600 ms MarkObjects: 2.180000 ms  DeleteObjects: 2.718300 ms)
+Unloading 2350 unused Assets to reduce memory usage. Loaded Objects now: 3622.
+Total: 4.888900 ms (FindLiveObjects: 0.542100 ms CreateObjectMapping: 0.143900 ms MarkObjects: 2.135800 ms  DeleteObjects: 2.066100 ms)
 
 ========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.011656 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.01 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.07 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Error when attempting to update scene info fields. Scene info data may be stale.
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogWarning (object)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:RefreshSceneInfoFieldsInScriptableObjects () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:313)
-Microsoft.MixedReality.Toolkit.Editor.SceneInfoUtils:InitializeOnLoad () (at Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs:231)
-
-(Filename: Assets/ASL/MRTK/Core/Inspectors/PropertyDrawers/SceneInfoUtils.cs Line: 313)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  1.449 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.01 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Unloading 3398 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 175.5 MB.
-System memory in use after: 174.7 MB.
-
-Unloading 2350 unused Assets to reduce memory usage. Loaded Objects now: 3682.
-Total: 4.465100 ms (FindLiveObjects: 0.522800 ms CreateObjectMapping: 0.134000 ms MarkObjects: 1.846400 ms  DeleteObjects: 1.959900 ms)
+Received Import Request.
+  Time since last request: 356.122507 seconds.
+  path: Assets/ChapmanDemo/Scenes/MazeDemoScene 1.unity
+  artifactKey: Guid(478fa95191720bb469107e2e9d46b195) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ChapmanDemo/Scenes/MazeDemoScene 1.unity using Guid(478fa95191720bb469107e2e9d46b195) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0dfee94ba6d35b4172bff4983d1c89f4') in 0.019387 seconds
+  Import took 0.025808 seconds .
 
