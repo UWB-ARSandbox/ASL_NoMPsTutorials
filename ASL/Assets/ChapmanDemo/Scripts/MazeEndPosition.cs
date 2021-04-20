@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MazeEndPosition : MonoBehaviour
 {
+    private PlayerSystem m_playerSystem;
     private MazeSystem m_mazeSystem;
     [SerializeField] private float m_endMazeDistance = 1f;
 
     private void Awake()
     {
+        m_playerSystem = GameObject.FindObjectOfType<PlayerSystem>();
         m_mazeSystem = GameObject.FindObjectOfType<MazeSystem>();
     }
 
@@ -20,6 +22,7 @@ public class MazeEndPosition : MonoBehaviour
 
     private void CheckDistance()
     {
+        if (!m_playerSystem.GetIsHost()) return;
         if (m_mazeSystem.GetIsMazeEnded()) { return; }
         
         int numPlayerInBottomFloor = m_mazeSystem.GetNumCharacterInBottomFloor();

@@ -4,16 +4,13 @@
   <HelpKINode Title="AddErrorText method" Url="html/5a9a6e06-fcd6-bdd7-210b-ba80081a16d4.htm" />
   <HelpKINode Title="AddPlayerToList method" Url="html/9dff615b-37ad-e0ea-887d-5942a084beea.htm" />
   <HelpKINode Title="AddPlayerToLobbyUI enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="AddPlayerToLobbyUI method" Url="html/b282a6a9-c2d2-9859-3c7c-ab9353534702.htm" />
   <HelpKINode Title="AddPlayerToMatch method" Url="html/65d3bd75-c192-36b8-6d30-8aaa13732680.htm" />
   <HelpKINode Title="AddPotentialSession method" Url="html/c7c49570-f5c9-2bb3-0ef9-f17b42433544.htm" />
   <HelpKINode Title="AllClientsFinishedResolvingCloudAnchor method" Url="html/efe7f6e9-051e-cb7d-66a3-cd348931e07e.htm" />
   <HelpKINode Title="AllowReadyUp method" Url="html/0185a36c-f5ee-93ae-0107-c2fdcbc681d9.htm" />
   <HelpKINode Title="AllPlayersReady enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="AllPlayersReady method" Url="html/b45d69b7-7c5d-540e-32da-d4df8570d105.htm" />
   <HelpKINode Title="AmLowestPeer method" Url="html/3cd9ef89-7ec6-cf6f-b81f-c4ef7a89575c.htm" />
   <HelpKINode Title="AnchorIDUpdate enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="AnchorIDUpdate method" Url="html/95cffac1-7a40-2cd7-9523-2a8b65847b4a.htm" />
   <HelpKINode Title="AndroidKeepConnectionAlive enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
   <HelpKINode Title="ARCloudAnchor_Example class">
     <HelpKINode Title="ARCloudAnchor_Example Class" Url="html/161a58fe-64b2-a55c-def4-80af47071110.htm" />
@@ -25,56 +22,6 @@
   <HelpKINode Title="ARCloudAnchor_Example.m_ObjectToPairWithCloudAnchor field" Url="html/4a9f939d-1215-578f-49f4-89668940c10f.htm" />
   <HelpKINode Title="ARCloudAnchor_Example.Update method" Url="html/63041f7c-53ab-1eee-4d2a-c843d109f416.htm" />
   <HelpKINode Title="ARCoreDeviceTransform field" Url="html/ecef8581-a715-aba5-dfa1-cfb4f44bb393.htm" />
-  <HelpKINode Title="ARMeshFromPlane_Example class">
-    <HelpKINode Title="ARMeshFromPlane_Example Class" Url="html/6df8148b-e4e9-6a07-87b1-8f5a6f0c9c62.htm" />
-    <HelpKINode Title="constructor" Url="html/75b4b3e6-07a0-d7e3-e241-3976267192c5.htm" />
-    <HelpKINode Title="fields" Url="html/a9dbceda-4ab5-395d-d787-9f1543edbebb.htm" />
-    <HelpKINode Title="methods" Url="html/6d6c3e5c-552e-d75a-4789-1bc3e4f2bf7a.htm" />
-  </HelpKINode>
-  <HelpKINode Title="ARMeshFromPlane_Example.ARMeshFromPlane_Example constructor" Url="html/75b4b3e6-07a0-d7e3-e241-3976267192c5.htm" />
-  <HelpKINode Title="ARMeshFromPlane_Example.m_ARPlaneVertices field" Url="html/52994f95-fe35-416c-9608-74b322016ecf.htm" />
-  <HelpKINode Title="ARMeshFromPlane_Example.m_DisplayInformation field" Url="html/8cad3bd5-dcd4-2ab0-1c7f-798c0a144c25.htm" />
-  <HelpKINode Title="ARMeshFromPlane_Example.m_ShowARPlanesToggle field" Url="html/410d306d-50e0-0d23-81e4-998386229065.htm" />
-  <HelpKINode Title="ARMeshFromPlane_Example.m_TouchPosition field" Url="html/256eb590-c7bd-85d9-e5ab-7007e72c226b.htm" />
-  <HelpKINode Title="ARMeshFromPlane_Example.SpawnPlatform method" Url="html/5971ff8f-84cb-5f71-e56d-2970012fc4d5.htm" />
-  <HelpKINode Title="ARMeshFromPlane_Example.SpawnWorldOrigin method" Url="html/9acce713-4c9e-fa66-9d40-33d127af2bc3.htm" />
-  <HelpKINode Title="ARMeshFromPlane_Example.Start method" Url="html/5434ef94-1d52-b01a-bddd-fff90a562da1.htm" />
-  <HelpKINode Title="ARMeshFromPlane_Example.Update method" Url="html/3c953052-e0fc-7734-732b-a9145a2b8a20.htm" />
-  <HelpKINode Title="ARObjectSync_Example class">
-    <HelpKINode Title="ARObjectSync_Example Class" Url="html/8f3f1a62-78c5-4579-79ab-0b5fb72a2de0.htm" />
-    <HelpKINode Title="constructor" Url="html/fe00f9e9-fd98-0b8c-94f6-d7f0260a5f7e.htm" />
-    <HelpKINode Title="fields" Url="html/19cdef98-db2d-2c9b-7767-cbcb98dd4cf3.htm" />
-    <HelpKINode Title="methods" Url="html/b3c9aede-7972-fe0a-1bfb-33938006e43a.htm" />
-    <HelpKINode Title="properties" Url="html/70c7977b-40bd-bd5c-5534-65308081cc8c.htm" />
-  </HelpKINode>
-  <HelpKINode Title="ARObjectSync_Example.ARObjectSync_Example constructor" Url="html/fe00f9e9-fd98-0b8c-94f6-d7f0260a5f7e.htm" />
-  <HelpKINode Title="ARObjectSync_Example.IsPC property" Url="html/f5a92c99-90b4-72c7-cf09-748b47ee0021.htm" />
-  <HelpKINode Title="ARObjectSync_Example.m_DisplayInformation field" Url="html/900577c7-741a-7c8c-b8b2-a1ad749ae9e2.htm" />
-  <HelpKINode Title="ARObjectSync_Example.m_PCCamera field" Url="html/107db9ba-e2d0-3ffd-c611-8af146554cb2.htm" />
-  <HelpKINode Title="ARObjectSync_Example.m_TouchPosition field" Url="html/6e0ca815-4cd4-a8f8-cff2-83f853c9bfa5.htm" />
-  <HelpKINode Title="ARObjectSync_Example.SpawnWorldOrigin method" Url="html/0364e3d3-ec16-7778-e4d9-51abe0c36d9d.htm" />
-  <HelpKINode Title="ARObjectSync_Example.Start method" Url="html/48a324d2-46ec-7309-0277-90e572e50b3c.htm" />
-  <HelpKINode Title="ARObjectSync_Example.Update method" Url="html/26253700-6443-dfbe-9801-89d1878a4e03.htm" />
-  <HelpKINode Title="ARRaycast_Example class">
-    <HelpKINode Title="ARRaycast_Example Class" Url="html/fa8bbaff-3978-31be-2320-6cc5b231f3c3.htm" />
-    <HelpKINode Title="constructor" Url="html/0368d15c-f5d6-1cc3-0d74-bec03c5aaff8.htm" />
-    <HelpKINode Title="fields" Url="html/e17d6e4f-700c-9a85-7908-c367d05bc8fb.htm" />
-    <HelpKINode Title="methods" Url="html/7e6bba94-dff6-9bf6-095a-0ed2aae64b9d.htm" />
-    <HelpKINode Title="properties" Url="html/d7d34e02-72bd-fbfa-e3d8-566425747c8e.htm" />
-  </HelpKINode>
-  <HelpKINode Title="ARRaycast_Example.ARRaycast_Example constructor" Url="html/0368d15c-f5d6-1cc3-0d74-bec03c5aaff8.htm" />
-  <HelpKINode Title="ARRaycast_Example.DeselectObject method" Url="html/6b29976b-50f8-92a1-b25e-b2f1924b0459.htm" />
-  <HelpKINode Title="ARRaycast_Example.IsPC property" Url="html/1a56d8e6-57be-6636-3016-c838d9551bdb.htm" />
-  <HelpKINode Title="ARRaycast_Example.m_DisplayInformation field" Url="html/cfb5b885-7bba-f7c4-42a8-c831916bb2a1.htm" />
-  <HelpKINode Title="ARRaycast_Example.m_ModeDropDown field" Url="html/ff0ce480-0214-3e00-89ee-d0b306edc8a5.htm" />
-  <HelpKINode Title="ARRaycast_Example.m_PCCamera field" Url="html/0d86275f-44e5-9f1a-246b-4ebf82e84677.htm" />
-  <HelpKINode Title="ARRaycast_Example.m_SelectedObject field" Url="html/46a69368-e675-6bab-d4f8-486980817f57.htm" />
-  <HelpKINode Title="ARRaycast_Example.m_TouchPosition field" Url="html/d5285cae-b6d4-ad1b-c508-2f479e839c38.htm" />
-  <HelpKINode Title="ARRaycast_Example.SelectObject method" Url="html/fb31845d-c8e1-1326-333f-b37f951917d9.htm" />
-  <HelpKINode Title="ARRaycast_Example.SpawnSphere method" Url="html/5d1f4f50-4520-1fac-aa6c-d596f3560d38.htm" />
-  <HelpKINode Title="ARRaycast_Example.SpawnWorldOrigin method" Url="html/baff2a57-0863-510f-1932-720799ed9c1a.htm" />
-  <HelpKINode Title="ARRaycast_Example.Start method" Url="html/bff92891-f745-4bb1-f8f4-e83f68abc317.htm" />
-  <HelpKINode Title="ARRaycast_Example.Update method" Url="html/d6f46673-4540-275f-00ae-ac583647029b.htm" />
   <HelpKINode Title="ARWorldOriginExampleController class">
     <HelpKINode Title="ARWorldOriginExampleController Class" Url="html/f32d56b1-490c-bbd5-cbb2-670eb407a294.htm" />
     <HelpKINode Title="constructor" Url="html/b27629b0-258d-49b7-e837-3e1038d2a130.htm" />
@@ -90,19 +37,13 @@
   <HelpKINode Title="ARWorldOriginExampleController.m_LastValidPose field" Url="html/6183bc20-1e92-77c3-1ced-c345c1a703fd.htm" />
   <HelpKINode Title="ARWorldOriginExampleController.m_NormalCloudAnchorObject field" Url="html/743a0722-6acb-70c4-8844-2503d23fcce0.htm" />
   <HelpKINode Title="ARWorldOriginExampleController.m_ObjectToSpawnDropDown field" Url="html/c0e16cf9-1efa-6d6c-ccd5-d7ff9fe80912.htm" />
-  <HelpKINode Title="ARWorldOriginExampleController.m_SpawnedSphere field" Url="html/f6cb967f-3730-cf63-bbe4-24f798578712.htm" />
-  <HelpKINode Title="ARWorldOriginExampleController.m_SubmitButton field" Url="html/f4cd536e-6374-9ade-e0eb-292731b8fb75.htm" />
   <HelpKINode Title="ARWorldOriginExampleController.m_WorldOriginCloudAnchorObject field" Url="html/9e82f579-63db-e989-867c-0fcb180435b2.htm" />
   <HelpKINode Title="ARWorldOriginExampleController.m_WorldOriginInitilized field" Url="html/0075b81f-7b93-be84-7507-65387a232c35.htm" />
-  <HelpKINode Title="ARWorldOriginExampleController.m_XInput field" Url="html/518a4dbd-2d91-e5b6-696c-63efa33e3fa4.htm" />
-  <HelpKINode Title="ARWorldOriginExampleController.m_YInput field" Url="html/52784b2b-712f-9bf6-40ad-5713bea0e0d1.htm" />
-  <HelpKINode Title="ARWorldOriginExampleController.m_ZInput field" Url="html/a53001bb-8c7b-aa59-01af-534739846efa.htm" />
   <HelpKINode Title="ARWorldOriginExampleController.NormalCloudAnchorTextUpdate method" Url="html/b297f26e-fb4d-8b65-dbbe-c25649209979.htm" />
   <HelpKINode Title="ARWorldOriginExampleController.SpawnNormalCloudAnchor method" Url="html/7750bc38-b6be-5b2e-a8aa-1ec1c665c3a3.htm" />
   <HelpKINode Title="ARWorldOriginExampleController.SpawnSphere method" Url="html/56d3b9a3-ec52-e418-19b2-f8c62aa0ba81.htm" />
   <HelpKINode Title="ARWorldOriginExampleController.SpawnWorldOrigin method" Url="html/15e735c5-b44a-28ac-2c9c-410a348701a6.htm" />
   <HelpKINode Title="ARWorldOriginExampleController.Start method" Url="html/9a1e213f-eb75-cfba-2f07-8b225f792e2a.htm" />
-  <HelpKINode Title="ARWorldOriginExampleController.SubmitCoordinates method" Url="html/8f3053bc-5058-30bb-5d25-515f2ba52443.htm" />
   <HelpKINode Title="ARWorldOriginExampleController.Update method" Url="html/bae59d97-d9f6-375f-95f5-1d46d7279788.htm" />
   <HelpKINode Title="ARWorldOriginExampleController.WorldOriginTextUpdate method" Url="html/ef798b29-42a4-d7b1-d1eb-d380fb241f0f.htm" />
   <HelpKINode Title="ARWorldOriginHelper class">
@@ -136,7 +77,6 @@
   <HelpKINode Title="ASL.ASLObject.ReleaseFunction delegate" Url="html/2932299d-8ac2-05b8-49ed-5133415d8666.htm" />
   <HelpKINode Title="ASL.ASLSliderWithEcho class" Url="html/61b04ba6-1b5f-530c-bccf-dedca841ae5b.htm" />
   <HelpKINode Title="ASL.ASLSliderWithEcho.SliderCallbackDelegate delegate" Url="html/1b15a0fa-65c1-4b9d-a560-e63ea90aa44f.htm" />
-  <HelpKINode Title="ASL.DeactivateARCameraOnPC class" Url="html/dde1d044-e950-a204-0e38-dc0f557a4a88.htm" />
   <HelpKINode Title="ASL.GameLiftManager class" Url="html/005a7152-9786-573d-eab7-8c3a6c8ce488.htm" />
   <HelpKINode Title="ASL.GameLiftManager.GameController class" Url="html/dc7fd40a-375c-0174-f5e9-56dbc3dd5f27.htm" />
   <HelpKINode Title="ASL.GameLiftManager.GameSessionObject class" Url="html/97e07638-01ab-c3e3-2b47-9fe75bfb1613.htm" />
@@ -214,7 +154,6 @@
   <HelpKINode Title="ASLObject.SendAndSetWorldPosition method" Url="html/fc24d52f-311d-236f-7732-210591252bb3.htm" />
   <HelpKINode Title="ASLObject.SendAndSetWorldRotation method" Url="html/da81c11d-988c-29c7-fe68-89e803aa2730.htm" />
   <HelpKINode Title="ASLObject.SendAndSetWorldScale method" Url="html/d8ff15ef-baef-0017-48f8-33bb6800e66f.htm" />
-  <HelpKINode Title="ASLObject.SendARPlaneAsMesh method" Url="html/c051d468-4e5f-026e-f420-afb28fee1999.htm" />
   <HelpKINode Title="ASLObject.SendCloudAnchorToResolve method" Url="html/d90e3672-9ffe-4c53-67f9-a030a5e827ad.htm" />
   <HelpKINode Title="ASLObject.SendFloatArray method" Url="html/e7277c39-953f-728f-226f-19a458c2fc6b.htm" />
   <HelpKINode Title="ASLObject.Start method" Url="html/c641f4c9-aaf9-8042-0ada-7eeb91a6cf02.htm" />
@@ -261,7 +200,6 @@
     <HelpKINode Title="ARWorldOriginExampleController.Awake Method " Url="html/17e421d0-0607-a028-8a75-29f8cf351a02.htm" />
     <HelpKINode Title="ARWorldOriginHelper.Awake Method " Url="html/8a05f38f-0a51-d1c4-2fa9-58ff8ef2947c.htm" />
     <HelpKINode Title="ASLObject.Awake Method " Url="html/80d7ffd4-c516-90bc-b14f-0fae0c943c24.htm" />
-    <HelpKINode Title="DeactivateARCameraOnPC.Awake Method " Url="html/69a8b0d6-7c88-a50f-9047-f855fc74dae0.htm" />
     <HelpKINode Title="GameLiftManager.Awake Method " Url="html/f5591e15-e7b8-519c-d49b-0a69c808180a.htm" />
     <HelpKINode Title="InstantiateARIfConnected.Awake Method " Url="html/8f11774c-adb7-dd40-175d-d07b00ff7b2f.htm" />
     <HelpKINode Title="InstantiateMRTKIfConnected.Awake Method " Url="html/833f9a3c-b0ee-2d4c-9a68-8f742cb98eee.htm" />
@@ -277,9 +215,7 @@
   <HelpKINode Title="ChooseToFindSessions method" Url="html/4e49527c-3170-34b6-9be4-805d39e5a43f.htm" />
   <HelpKINode Title="ChooseToHostSession method" Url="html/b16d0a9e-d1cd-c646-5178-ab1d167598d3.htm" />
   <HelpKINode Title="Claim enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="Claim method" Url="html/3d7864d2-2185-09b5-221e-6fe6f8493ae3.htm" />
   <HelpKINode Title="ClaimFromPlayer enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="ClaimFromPlayer method" Url="html/0b8179c5-7b21-db1d-b2f0-0dce286861b1.htm" />
   <HelpKINode Title="ClaimRecoveryFunction method" Url="html/89f79f9e-9d0a-6ea6-4cbc-3394d9f6d225.htm" />
   <HelpKINode Title="ColorObject_Example class">
     <HelpKINode Title="ColorObject_Example Class" Url="html/0bc57725-b3a4-9b75-9035-53e420d1add2.htm" />
@@ -303,17 +239,15 @@
   <HelpKINode Title="ConvertByteArrayIntoInt method" Url="html/5a01f487-35d4-fddc-0084-b30671a7ebba.htm" />
   <HelpKINode Title="ConvertByteArrayIntoString method" Url="html/dd71bff7-2411-2025-755d-d129990d2bc3.htm" />
   <HelpKINode Title="ConvertByteArrayIntoVector method" Url="html/fa1bf8a2-1fa4-c107-6a93-99756f0a2707.htm" />
-  <HelpKINode Title="ConvertFloatArrayIntoVector3Array method" Url="html/3f7c5431-5260-e6f6-1a5b-749470061927.htm" />
   <HelpKINode Title="ConvertFloatArrayToByteArray method" Url="html/a66d6e99-17fb-9301-9155-2e473f08b421.htm" />
   <HelpKINode Title="ConvertIntToByteArray method" Url="html/6697b129-a7e3-fff6-1087-83ed64f21aae.htm" />
-  <HelpKINode Title="ConvertVector3ArrayToFloatArray method" Url="html/f81fe06e-8cac-3392-b45c-03d5a2d9b5b7.htm" />
   <HelpKINode Title="ConvertVector3ToByteArray method" Url="html/9724fe4f-8feb-f73c-e373-d128af946191.htm" />
   <HelpKINode Title="ConvertVector4ToByteArray method" Url="html/de18bd31-9d85-514d-b22f-94fca21031ba.htm" />
   <HelpKINode Title="CreateARCoreCloudAnchor method" Url="html/7acae654-2a8a-d8a5-fa10-1f68d8033b86.htm" />
   <HelpKINode Title="CreateObject_Example class">
     <HelpKINode Title="CreateObject_Example Class" Url="html/52166d2e-5c1e-52fa-b822-67aef32ead30.htm" />
-    <HelpKINode Title="constructor" Url="html/cde68866-6c84-4fff-3333-3acb387bf94d.htm" />
     <HelpKINode Title="constructor" Url="html/a1a5e14e-1df1-9c0e-14e7-2626f40e4ffa.htm" />
+    <HelpKINode Title="constructor" Url="html/cde68866-6c84-4fff-3333-3acb387bf94d.htm" />
     <HelpKINode Title="fields" Url="html/2315d8c7-e8d5-b566-27c6-942acc20f9ee.htm" />
     <HelpKINode Title="methods" Url="html/2eaf37e9-f6c0-67cb-036b-5e8370f38eb4.htm" />
   </HelpKINode>
@@ -342,18 +276,10 @@
     <HelpKINode Title="TransformObjectViaWorldSpace_Example.RotationAxis Enumeration" Url="html/1f092ded-072e-c551-4c51-3d8ea9d3c2a3.htm" />
   </HelpKINode>
   <HelpKINode Title="DataLengthsAndStartLocations method" Url="html/382c8c90-07cb-5d35-c058-941ae992e365.htm" />
-  <HelpKINode Title="DeactivateARCameraOnPC class">
-    <HelpKINode Title="DeactivateARCameraOnPC Class" Url="html/dde1d044-e950-a204-0e38-dc0f557a4a88.htm" />
-    <HelpKINode Title="constructor" Url="html/e28a01e6-2fd2-0ed3-f490-ac877b3fab4f.htm" />
-    <HelpKINode Title="methods" Url="html/0799e4e6-94dc-6b06-a8fd-e412876f3765.htm" />
-  </HelpKINode>
-  <HelpKINode Title="DeactivateARCameraOnPC.Awake method" Url="html/69a8b0d6-7c88-a50f-9047-f855fc74dae0.htm" />
-  <HelpKINode Title="DeactivateARCameraOnPC.DeactivateARCameraOnPC constructor" Url="html/e28a01e6-2fd2-0ed3-f490-ac877b3fab4f.htm" />
   <HelpKINode Title="DEFAULT_UDP_PORT field" Url="html/c4cffa83-e311-7633-9db5-e7c154291ba4.htm" />
   <HelpKINode Title="DeleteObject enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
   <HelpKINode Title="DeleteObject method">
     <HelpKINode Title="ASLObject.DeleteObject Method " Url="html/913377d0-20b0-d547-891d-671b0d6f69dd.htm" />
-    <HelpKINode Title="GameLiftManager.DeleteObject Method " Url="html/dad9ef93-e518-fa02-645e-a374c56a5af2.htm" />
     <HelpKINode Title="GameLiftManager.GameController.DeleteObject Method " Url="html/9b75f8c4-f191-2be9-c303-74c624378952.htm" />
     <HelpKINode Title="StressTest_ButtonManager.DeleteObject Method " Url="html/c87dd6d2-6713-ec6b-da8f-e00eac625cde.htm" />
     <HelpKINode Title="StressTest_CreateDelete_Controller.DeleteObject Method " Url="html/ce2f95f4-f087-858e-dfc4-af68b35d490c.htm" />
@@ -370,7 +296,6 @@
   <HelpKINode Title="DeleteObject_Example.m_Reset field" Url="html/66cda744-9200-c969-e020-0482e363400b.htm" />
   <HelpKINode Title="DeleteObject_Example.Update method" Url="html/76f23db1-dd65-ac0c-65c9-63e21a749e70.htm" />
   <HelpKINode Title="deletionTimer field" Url="html/2d590069-2325-16c6-1fb3-26c1f8f1b752.htm" />
-  <HelpKINode Title="DeselectObject method" Url="html/6b29976b-50f8-92a1-b25e-b2f1924b0459.htm" />
   <HelpKINode Title="DestroyLobbyManager method" Url="html/4fbd4eee-4af2-93cb-6a5f-ace16f66c257.htm" />
   <HelpKINode Title="DestroyMatchOptions method" Url="html/b4d88a8a-d184-32b4-ca75-7de0bde62ea0.htm" />
   <HelpKINode Title="DisconnectFromServer method" Url="html/4f83b649-ccca-0ef1-e639-f6893e70af89.htm" />
@@ -393,23 +318,16 @@
     <HelpKINode Title="properties" Url="html/6ff30087-b8d3-a5a8-b2c9-de593078c14a.htm" />
   </HelpKINode>
   <HelpKINode Title="GameLiftManager.AddPlayerToList method" Url="html/9dff615b-37ad-e0ea-887d-5942a084beea.htm" />
-  <HelpKINode Title="GameLiftManager.AddPlayerToLobbyUI method" Url="html/b282a6a9-c2d2-9859-3c7c-ab9353534702.htm" />
-  <HelpKINode Title="GameLiftManager.AllPlayersReady method" Url="html/b45d69b7-7c5d-540e-32da-d4df8570d105.htm" />
   <HelpKINode Title="GameLiftManager.AmLowestPeer method" Url="html/3cd9ef89-7ec6-cf6f-b81f-c4ef7a89575c.htm" />
-  <HelpKINode Title="GameLiftManager.AnchorIDUpdate method" Url="html/95cffac1-7a40-2cd7-9523-2a8b65847b4a.htm" />
   <HelpKINode Title="GameLiftManager.Awake method" Url="html/f5591e15-e7b8-519c-d49b-0a69c808180a.htm" />
-  <HelpKINode Title="GameLiftManager.Claim method" Url="html/3d7864d2-2185-09b5-221e-6fe6f8493ae3.htm" />
-  <HelpKINode Title="GameLiftManager.ClaimFromPlayer method" Url="html/0b8179c5-7b21-db1d-b2f0-0dce286861b1.htm" />
   <HelpKINode Title="GameLiftManager.CombineByteArrays method" Url="html/68ffa79b-90ab-8e92-fa96-9cba35f1c5ac.htm" />
   <HelpKINode Title="GameLiftManager.CombineByteArrayWithoutLengths method" Url="html/1678a627-e931-12ea-0e47-04d9623c2897.htm" />
   <HelpKINode Title="GameLiftManager.ConvertBoolToByteArray method" Url="html/861e53f4-6f2d-c5f4-7c2a-b9f92123dbdb.htm" />
   <HelpKINode Title="GameLiftManager.ConvertFloatArrayToByteArray method" Url="html/a66d6e99-17fb-9301-9155-2e473f08b421.htm" />
   <HelpKINode Title="GameLiftManager.ConvertIntToByteArray method" Url="html/6697b129-a7e3-fff6-1087-83ed64f21aae.htm" />
-  <HelpKINode Title="GameLiftManager.ConvertVector3ArrayToFloatArray method" Url="html/f81fe06e-8cac-3392-b45c-03d5a2d9b5b7.htm" />
   <HelpKINode Title="GameLiftManager.ConvertVector3ToByteArray method" Url="html/9724fe4f-8feb-f73c-e373-d128af946191.htm" />
   <HelpKINode Title="GameLiftManager.ConvertVector4ToByteArray method" Url="html/de18bd31-9d85-514d-b22f-94fca21031ba.htm" />
   <HelpKINode Title="GameLiftManager.CreateRTMessage method" Url="html/aadb386c-fa2b-2fd2-c9d7-179eb7709369.htm" />
-  <HelpKINode Title="GameLiftManager.DeleteObject method" Url="html/dad9ef93-e518-fa02-645e-a374c56a5af2.htm" />
   <HelpKINode Title="GameLiftManager.DestroyLobbyManager method" Url="html/4fbd4eee-4af2-93cb-6a5f-ace16f66c257.htm" />
   <HelpKINode Title="GameLiftManager.DisconnectFromServer method" Url="html/4f83b649-ccca-0ef1-e639-f6893e70af89.htm" />
   <HelpKINode Title="GameLiftManager.GameController class">
@@ -422,7 +340,6 @@
   <HelpKINode Title="GameLiftManager.GameController.ConvertByteArrayIntoInt method" Url="html/5a01f487-35d4-fddc-0084-b30671a7ebba.htm" />
   <HelpKINode Title="GameLiftManager.GameController.ConvertByteArrayIntoString method" Url="html/dd71bff7-2411-2025-755d-d129990d2bc3.htm" />
   <HelpKINode Title="GameLiftManager.GameController.ConvertByteArrayIntoVector method" Url="html/fa1bf8a2-1fa4-c107-6a93-99756f0a2707.htm" />
-  <HelpKINode Title="GameLiftManager.GameController.ConvertFloatArrayIntoVector3Array method" Url="html/3f7c5431-5260-e6f6-1a5b-749470061927.htm" />
   <HelpKINode Title="GameLiftManager.GameController.DataLengthsAndStartLocations method" Url="html/382c8c90-07cb-5d35-c058-941ae992e365.htm" />
   <HelpKINode Title="GameLiftManager.GameController.DeleteObject method" Url="html/9b75f8c4-f191-2be9-c303-74c624378952.htm" />
   <HelpKINode Title="GameLiftManager.GameController.GameController constructor" Url="html/9ca1a6b1-94e9-9943-2ad2-d6407d4ef0b6.htm" />
@@ -441,7 +358,6 @@
   <HelpKINode Title="GameLiftManager.GameController.m_PauseCanvas field" Url="html/65b19074-0a2e-0983-672e-0268d94b3029.htm" />
   <HelpKINode Title="GameLiftManager.GameController.m_PauseText field" Url="html/78b8a855-8697-12fb-9cd8-b702eb372fbb.htm" />
   <HelpKINode Title="GameLiftManager.GameController.ObjectClaimReceived method" Url="html/74410707-1493-7182-8261-cde0bf7e28ea.htm" />
-  <HelpKINode Title="GameLiftManager.GameController.ReceiveARPlaneAsMesh method" Url="html/e543821c-39a5-e688-d735-6ee5bd8a2830.htm" />
   <HelpKINode Title="GameLiftManager.GameController.ReceivedTexture2Ds field" Url="html/34f1bf8b-dded-aabc-6d2b-16bca33ae39d.htm" />
   <HelpKINode Title="GameLiftManager.GameController.RecieveTexture2D method" Url="html/a57c635c-4b02-83a1-5866-df373cb552de.htm" />
   <HelpKINode Title="GameLiftManager.GameController.RejectClaim method" Url="html/9a79902d-684f-e2ef-b1b5-74c804b54b01.htm" />
@@ -465,7 +381,6 @@
   <HelpKINode Title="GameLiftManager.GameController.SpawnPrimitive method" Url="html/969edd17-4e21-4876-df68-0a81ef89ebe3.htm" />
   <HelpKINode Title="GameLiftManager.GameController.Start method" Url="html/c4945e9e-a953-dcb9-2009-f5fa56817470.htm" />
   <HelpKINode Title="GameLiftManager.GameController.SyncronizeID method" Url="html/9c5619de-6ff5-ba97-d9ef-70285936c1a4.htm" />
-  <HelpKINode Title="GameLiftManager.GameController.TriangulateMesh method" Url="html/484dc886-33c2-64f3-4f7b-51a14945cce3.htm" />
   <HelpKINode Title="GameLiftManager.GameLiftManager constructor" Url="html/d31c05b5-7180-bb6c-26fe-d5f90ba873d4.htm" />
   <HelpKINode Title="GameLiftManager.GameSessionObject class">
     <HelpKINode Title="GameLiftManager.GameSessionObject Class" Url="html/97e07638-01ab-c3e3-2b47-9fe75bfb1613.htm" />
@@ -486,15 +401,7 @@
   <HelpKINode Title="GameLiftManager.GameSessionObjectCollection.GameSessions field" Url="html/ad90cf0b-2b38-3313-ca53-c5767b718691.htm" />
   <HelpKINode Title="GameLiftManager.GetInstance method" Url="html/34c5fa97-360b-dc5b-66ae-606611b2c40a.htm" />
   <HelpKINode Title="GameLiftManager.GetLowestPeerId method" Url="html/7a44eaca-4d87-dcf6-ac8c-494151531483.htm" />
-  <HelpKINode Title="GameLiftManager.IncrementLocalPosition method" Url="html/7ad6b62b-12fa-2942-b817-5679b89f8556.htm" />
-  <HelpKINode Title="GameLiftManager.IncrementLocalRotation method" Url="html/671ca2b6-6188-cea0-cbca-acf9fb86e907.htm" />
-  <HelpKINode Title="GameLiftManager.IncrementLocalScale method" Url="html/ecd44a34-b6da-5001-f20c-1646e81cd55d.htm" />
-  <HelpKINode Title="GameLiftManager.IncrementWorldPosition method" Url="html/bd2e3d74-cc2d-2b3f-0e77-ec9dcd1c01e0.htm" />
-  <HelpKINode Title="GameLiftManager.IncrementWorldRotation method" Url="html/6d255b2c-1589-0511-8c79-c3817779c581.htm" />
-  <HelpKINode Title="GameLiftManager.IncrementWorldScale method" Url="html/c92c5a68-55e9-e66e-824f-6cfb95dbc822.htm" />
   <HelpKINode Title="GameLiftManager.KeepConnectionAlive method" Url="html/06194be6-bc0e-e7ca-28d3-6df8e3683768.htm" />
-  <HelpKINode Title="GameLiftManager.LaunchScene method" Url="html/d1aeceae-0b98-96fe-6c7c-9a95f4bcd29e.htm" />
-  <HelpKINode Title="GameLiftManager.LoadScene method" Url="html/5e243754-2793-ed01-e38f-3b6a4210b6a1.htm" />
   <HelpKINode Title="GameLiftManager.LobbyManager class">
     <HelpKINode Title="GameLiftManager.LobbyManager Class" Url="html/a0196c11-776f-3c51-e73d-415188c651c7.htm" />
     <HelpKINode Title="constructor" Url="html/045a7213-250a-8257-af70-00d0bba7c493.htm" />
@@ -582,7 +489,6 @@
   <HelpKINode Title="GameLiftManager.LobbyManager.UpdateNewComer method" Url="html/6e54aac9-27e3-e9b4-858d-fb6c1ee0fd55.htm" />
   <HelpKINode Title="GameLiftManager.LobbyManager.UpdateOtherUsers method" Url="html/d30ea636-5555-52a0-bb0f-edfeac4c4d64.htm" />
   <HelpKINode Title="GameLiftManager.LobbyManager.UpdateUsername method" Url="html/217844b0-ea61-dec2-ad00-6cae9889e611.htm" />
-  <HelpKINode Title="GameLiftManager.LobbyTextMessage method" Url="html/5fc0d3b1-3520-6a47-286a-9b0cca548d12.htm" />
   <HelpKINode Title="GameLiftManager.m_Client property" Url="html/ad2488c0-cefc-9828-5e31-b41d56a417cf.htm" />
   <HelpKINode Title="GameLiftManager.m_GameController field" Url="html/37a1d144-83ac-8c37-2d5b-32212acab2d7.htm" />
   <HelpKINode Title="GameLiftManager.m_GameSessionName property" Url="html/a5c0f178-7026-4200-39ee-2fb6086c798f.htm" />
@@ -590,7 +496,6 @@
   <HelpKINode Title="GameLiftManager.m_Instance field" Url="html/d1b936e7-2a0c-9d5b-3c87-7fd2bd3dcbdb.htm" />
   <HelpKINode Title="GameLiftManager.m_LobbyManager field" Url="html/a781dedf-5312-00e8-6faf-36df70fd6504.htm" />
   <HelpKINode Title="GameLiftManager.m_MainThreadQueue field" Url="html/ca4ee199-5d73-7e81-bd5b-9bcf5106d53a.htm" />
-  <HelpKINode Title="GameLiftManager.m_Packet property" Url="html/fc04b731-fa78-185d-d7d9-2b28a45aa067.htm" />
   <HelpKINode Title="GameLiftManager.m_PeerId property" Url="html/eaec14eb-e448-362d-5b20-99cb4c016727.htm" />
   <HelpKINode Title="GameLiftManager.m_Players field" Url="html/b5ebc141-73b3-6a15-32c2-7dd3feec38c5.htm" />
   <HelpKINode Title="GameLiftManager.m_SceneLoader field" Url="html/e77bcb74-1c5c-b8af-26fd-57d4c75e95b8.htm" />
@@ -604,10 +509,6 @@
   <HelpKINode Title="GameLiftManager.OnDataReceived method" Url="html/3998142a-d52b-3f60-a62b-a200caeea3c2.htm" />
   <HelpKINode Title="GameLiftManager.OnOpenEvent method" Url="html/b76596b7-a76b-f4bd-3aa3-c696e445d14b.htm" />
   <HelpKINode Title="GameLiftManager.OpCode enumeration" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="GameLiftManager.OpCodeFunctions field" Url="html/beaf3274-6d27-afce-457e-a324b04d3435.htm" />
-  <HelpKINode Title="GameLiftManager.PlayerDisconnected method" Url="html/e2b0b333-0221-1630-d5ff-7659e44d5204.htm" />
-  <HelpKINode Title="GameLiftManager.PlayerDisconnectedBeforeMatchStart method" Url="html/e75d48ff-2717-e7eb-4594-9bea8667048e.htm" />
-  <HelpKINode Title="GameLiftManager.PlayerJoinedMatch method" Url="html/cb94839e-433f-3b40-8e94-7e2cca405b87.htm" />
   <HelpKINode Title="GameLiftManager.PlayerSessionObject class">
     <HelpKINode Title="GameLiftManager.PlayerSessionObject Class" Url="html/6105fd7f-bf04-2204-196a-881e793d25b3.htm" />
     <HelpKINode Title="constructor" Url="html/b213f1fb-2854-376a-0f18-0be3b362db42.htm" />
@@ -625,11 +526,7 @@
   <HelpKINode Title="GameLiftManager.PlayerSessionObject.SceneName field" Url="html/d5cf8048-f525-5b01-5f68-ce96a71ab8bf.htm" />
   <HelpKINode Title="GameLiftManager.PlayerSessionObject.Status field" Url="html/2505f672-3478-5ef9-7562-3790f6d39e0d.htm" />
   <HelpKINode Title="GameLiftManager.QForMainThread method" Url="html/ce361c6b-78c7-c3c6-aa48-b58998e5cc31.htm" />
-  <HelpKINode Title="GameLiftManager.RejectClaim method" Url="html/b39e5703-bcee-5dfa-ee1c-d906f04e3a3f.htm" />
-  <HelpKINode Title="GameLiftManager.ReleaseClaimToPlayer method" Url="html/43ee03f5-96c7-130a-23d2-33847f9345db.htm" />
   <HelpKINode Title="GameLiftManager.RemovePlayerFromList method" Url="html/0e795ea5-9cd9-5ea0-4c5c-ba89184e8219.htm" />
-  <HelpKINode Title="GameLiftManager.ResolveAnchorId method" Url="html/ead69414-5a2c-6cb2-a306-5ad82a6075e9.htm" />
-  <HelpKINode Title="GameLiftManager.ResolvedCloudAnchor method" Url="html/fbca5a70-69f4-483d-c765-fd581eb14dfb.htm" />
   <HelpKINode Title="GameLiftManager.RunMainThreadQueueActions method" Url="html/920cd553-21ae-0e3f-571f-65bc5b462f2d.htm" />
   <HelpKINode Title="GameLiftManager.SceneLoader class">
     <HelpKINode Title="GameLiftManager.SceneLoader Class" Url="html/e8d7b2d6-aebd-8a92-17b5-9ea77ea9f66e.htm" />
@@ -642,23 +539,9 @@
   <HelpKINode Title="GameLiftManager.SceneLoader.m_Loaded field" Url="html/57759c1a-6d85-86fc-a52c-28e1bbbe2b5b.htm" />
   <HelpKINode Title="GameLiftManager.SceneLoader.m_LoadingProgressTest field" Url="html/1a655c14-a856-f17d-c044-d2c130bea760.htm" />
   <HelpKINode Title="GameLiftManager.SceneLoader.SceneLoader constructor" Url="html/98c64530-2047-d965-03d3-fb22b6815b1b.htm" />
-  <HelpKINode Title="GameLiftManager.SendARPlaneAsMesh method" Url="html/21785ac7-418a-b68b-6c6d-173e8eb1d86c.htm" />
-  <HelpKINode Title="GameLiftManager.SendFloats method" Url="html/ba80029f-33c3-05d7-67a2-5182f0051088.htm" />
-  <HelpKINode Title="GameLiftManager.SendTexture2D method" Url="html/3df0b2d3-c61e-fd71-1b70-0b1bbce00ca5.htm" />
-  <HelpKINode Title="GameLiftManager.ServerSetId method" Url="html/19439960-1acf-acad-0e52-dd8e72ed0848.htm" />
-  <HelpKINode Title="GameLiftManager.SetLocalPosition method" Url="html/4ad1d7d4-275c-dcbe-3271-93597b438c6f.htm" />
-  <HelpKINode Title="GameLiftManager.SetLocalRotation method" Url="html/88d19336-8e3a-555b-46b4-09ce627f8c55.htm" />
-  <HelpKINode Title="GameLiftManager.SetLocalScale method" Url="html/756559c8-b6b8-2736-a5a0-dc263cd125d5.htm" />
-  <HelpKINode Title="GameLiftManager.SetObjectColor method" Url="html/2742d54b-5f3c-ac2f-0783-0d0f275cc07d.htm" />
-  <HelpKINode Title="GameLiftManager.SetWorldPosition method" Url="html/ca592299-2866-4dc6-ed9e-dc427b145c06.htm" />
-  <HelpKINode Title="GameLiftManager.SetWorldRotation method" Url="html/75c1091b-95ac-cbbe-5a46-d75b85da094c.htm" />
-  <HelpKINode Title="GameLiftManager.SetWorldScale method" Url="html/7149b766-5c23-8477-7c22-dcec95783a77.htm" />
-  <HelpKINode Title="GameLiftManager.SpawnPrefab method" Url="html/808fa4c4-9fef-3150-be5d-3d1ac18ac3af.htm" />
-  <HelpKINode Title="GameLiftManager.SpawnPrimitive method" Url="html/94abc945-ddeb-3b96-cdb6-5480fa3537d1.htm" />
   <HelpKINode Title="GameLiftManager.SpiltByteArray method" Url="html/0009e67e-b740-0086-1d97-04655e3c3077.htm" />
   <HelpKINode Title="GameLiftManager.Start method" Url="html/2b2ac892-812e-37ff-5c56-2c5af004c79b.htm" />
   <HelpKINode Title="GameLiftManager.StartPacketStream method" Url="html/cfac0b49-fd04-8898-d82e-d474b59cb843.htm" />
-  <HelpKINode Title="GameLiftManager.TagUpdate method" Url="html/5e1c76fc-5405-d846-12ef-1a01692ac41a.htm" />
   <HelpKINode Title="GameLiftManager.Update method" Url="html/863bf114-7049-75ff-4c76-97e805359ec1.htm" />
   <HelpKINode Title="GameName field" Url="html/5679203a-137a-a1f1-97a8-0cbb3a9d6dc5.htm" />
   <HelpKINode Title="GameSessionId field">
@@ -695,35 +578,17 @@
   <HelpKINode Title="HostOrFindSession enumeration member" Url="html/c3be05ad-3b86-218e-38d3-3ef26583aca4.htm" />
   <HelpKINode Title="HostSession method" Url="html/90344a03-da75-b2d9-0423-fb60f946bdf4.htm" />
   <HelpKINode Title="IncrementLocalPosition enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="IncrementLocalPosition method">
-    <HelpKINode Title="GameLiftManager.GameController.IncrementLocalPosition Method " Url="html/fcce1b44-0c61-1f2f-2425-e4c3c17e7f44.htm" />
-    <HelpKINode Title="GameLiftManager.IncrementLocalPosition Method " Url="html/7ad6b62b-12fa-2942-b817-5679b89f8556.htm" />
-  </HelpKINode>
+  <HelpKINode Title="IncrementLocalPosition method" Url="html/fcce1b44-0c61-1f2f-2425-e4c3c17e7f44.htm" />
   <HelpKINode Title="IncrementLocalRotation enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="IncrementLocalRotation method">
-    <HelpKINode Title="GameLiftManager.GameController.IncrementLocalRotation Method " Url="html/8acc9646-58ed-4eff-abfd-816d953727de.htm" />
-    <HelpKINode Title="GameLiftManager.IncrementLocalRotation Method " Url="html/671ca2b6-6188-cea0-cbca-acf9fb86e907.htm" />
-  </HelpKINode>
+  <HelpKINode Title="IncrementLocalRotation method" Url="html/8acc9646-58ed-4eff-abfd-816d953727de.htm" />
   <HelpKINode Title="IncrementLocalScale enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="IncrementLocalScale method">
-    <HelpKINode Title="GameLiftManager.GameController.IncrementLocalScale Method " Url="html/7c22e740-ed49-5316-806a-ebdde260851a.htm" />
-    <HelpKINode Title="GameLiftManager.IncrementLocalScale Method " Url="html/ecd44a34-b6da-5001-f20c-1646e81cd55d.htm" />
-  </HelpKINode>
+  <HelpKINode Title="IncrementLocalScale method" Url="html/7c22e740-ed49-5316-806a-ebdde260851a.htm" />
   <HelpKINode Title="IncrementWorldPosition enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="IncrementWorldPosition method">
-    <HelpKINode Title="GameLiftManager.GameController.IncrementWorldPosition Method " Url="html/dfe193a3-120a-08a7-b48d-4df1ab39201f.htm" />
-    <HelpKINode Title="GameLiftManager.IncrementWorldPosition Method " Url="html/bd2e3d74-cc2d-2b3f-0e77-ec9dcd1c01e0.htm" />
-  </HelpKINode>
+  <HelpKINode Title="IncrementWorldPosition method" Url="html/dfe193a3-120a-08a7-b48d-4df1ab39201f.htm" />
   <HelpKINode Title="IncrementWorldRotation enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="IncrementWorldRotation method">
-    <HelpKINode Title="GameLiftManager.GameController.IncrementWorldRotation Method " Url="html/783d004b-fb25-44d5-e620-abd96fdd8474.htm" />
-    <HelpKINode Title="GameLiftManager.IncrementWorldRotation Method " Url="html/6d255b2c-1589-0511-8c79-c3817779c581.htm" />
-  </HelpKINode>
+  <HelpKINode Title="IncrementWorldRotation method" Url="html/783d004b-fb25-44d5-e620-abd96fdd8474.htm" />
   <HelpKINode Title="IncrementWorldScale enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="IncrementWorldScale method">
-    <HelpKINode Title="GameLiftManager.GameController.IncrementWorldScale Method " Url="html/57823a14-a9bf-a447-7ab4-90ee6cc35538.htm" />
-    <HelpKINode Title="GameLiftManager.IncrementWorldScale Method " Url="html/c92c5a68-55e9-e66e-824f-6cfb95dbc822.htm" />
-  </HelpKINode>
+  <HelpKINode Title="IncrementWorldScale method" Url="html/57823a14-a9bf-a447-7ab4-90ee6cc35538.htm" />
   <HelpKINode Title="InitializeStartObject method" Url="html/cd0782b5-eab7-0058-063d-0d61ac53a43d.htm" />
   <HelpKINode Title="InitilizeSlider method" Url="html/4c80333f-2ddc-f9c4-6ff2-eb06debbe6c3.htm" />
   <HelpKINode Title="InitilizeUIElements method" Url="html/c79f59eb-f0d6-a672-2d5d-1cfc4f5af72b.htm" />
@@ -755,24 +620,14 @@
     <HelpKINode Title="GameLiftManager.GameSessionObject.IpAddress Field" Url="html/4000c11d-af92-3fa9-36d5-7512dcf6453b.htm" />
     <HelpKINode Title="GameLiftManager.PlayerSessionObject.IpAddress Field" Url="html/6d0d6e9a-23bb-41a3-c1f3-e2cd4c226406.htm" />
   </HelpKINode>
-  <HelpKINode Title="IsPC property">
-    <HelpKINode Title="ARObjectSync_Example.IsPC Property " Url="html/f5a92c99-90b4-72c7-cf09-748b47ee0021.htm" />
-    <HelpKINode Title="ARRaycast_Example.IsPC Property " Url="html/1a56d8e6-57be-6636-3016-c838d9551bdb.htm" />
-  </HelpKINode>
   <HelpKINode Title="JoinSelectedMatch method" Url="html/24ac6268-e571-5146-3aa8-81675d70578b.htm" />
   <HelpKINode Title="JoinSession method" Url="html/c4509724-64e2-f2e0-5595-1925a3baefca.htm" />
   <HelpKINode Title="KeepConnectionAlive method" Url="html/06194be6-bc0e-e7ca-28d3-6df8e3683768.htm" />
   <HelpKINode Title="LaunchScene enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="LaunchScene method">
-    <HelpKINode Title="GameLiftManager.LaunchScene Method " Url="html/d1aeceae-0b98-96fe-6c7c-9a95f4bcd29e.htm" />
-    <HelpKINode Title="GameLiftManager.SceneLoader.LaunchScene Method " Url="html/a4d17bc3-a8be-9d0f-ab11-5e52bffd0dd1.htm" />
-  </HelpKINode>
+  <HelpKINode Title="LaunchScene method" Url="html/a4d17bc3-a8be-9d0f-ab11-5e52bffd0dd1.htm" />
   <HelpKINode Title="LMBSelect method" Url="html/1bbb0626-eb48-70bb-8e05-61537c4a41cf.htm" />
   <HelpKINode Title="LoadScene enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="LoadScene method">
-    <HelpKINode Title="GameLiftManager.LoadScene Method " Url="html/5e243754-2793-ed01-e38f-3b6a4210b6a1.htm" />
-    <HelpKINode Title="GameLiftManager.SceneLoader.LoadScene Method " Url="html/4cb0979c-9122-58ee-deb1-92161e09acfa.htm" />
-  </HelpKINode>
+  <HelpKINode Title="LoadScene method" Url="html/4cb0979c-9122-58ee-deb1-92161e09acfa.htm" />
   <HelpKINode Title="LoadScene_Example class">
     <HelpKINode Title="LoadScene_Example Class" Url="html/ec579016-f731-cb21-93fc-3cdabd0cc231.htm" />
     <HelpKINode Title="constructor" Url="html/b86804eb-45d4-8ec4-32ac-def67ee5f983.htm" />
@@ -791,7 +646,6 @@
   </HelpKINode>
   <HelpKINode Title="LobbyScreen enumeration member" Url="html/c3be05ad-3b86-218e-38d3-3ef26583aca4.htm" />
   <HelpKINode Title="LobbyTextMessage enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="LobbyTextMessage method" Url="html/5fc0d3b1-3520-6a47-286a-9b0cca548d12.htm" />
   <HelpKINode Title="LockSession method" Url="html/f3fece5a-db96-7d26-5376-e8e193bde586.htm" />
   <HelpKINode Title="Login enumeration member" Url="html/c3be05ad-3b86-218e-38d3-3ef26583aca4.htm" />
   <HelpKINode Title="MaximumPlayerSessionCount field" Url="html/ad8343a7-a8e1-94a3-f273-ec66e43e9f69.htm" />
@@ -827,7 +681,6 @@
     <HelpKINode Title="TransformObjectViaLocalSpace_Example.m_Angle Field" Url="html/915ec4ae-ae94-87e8-d83e-d7260373c955.htm" />
     <HelpKINode Title="TransformObjectViaWorldSpace_Example.m_Angle Field" Url="html/a2cc2d06-4261-c558-08fc-3df10ca94f0b.htm" />
   </HelpKINode>
-  <HelpKINode Title="m_ARPlaneVertices field" Url="html/52994f95-fe35-416c-9608-74b322016ecf.htm" />
   <HelpKINode Title="m_ASLGameObjectCreatedCallback property" Url="html/c4d80dd7-841b-3123-9056-b20a5e681c6c.htm" />
   <HelpKINode Title="m_ASLObjects field" Url="html/777306e9-1c08-765b-6c93-3360fafbe52b.htm" />
   <HelpKINode Title="m_AvailableScenes field" Url="html/a61f1636-28ce-bb6f-0db5-43eb0dc5c201.htm" />
@@ -848,12 +701,7 @@
   <HelpKINode Title="m_CurrentUIScreen field" Url="html/5398cc2c-9486-89f7-6fa1-7685b7e81008.htm" />
   <HelpKINode Title="m_DefaultXRSDKConfigurationProfile field" Url="html/d8c6a895-c3e0-810f-2183-b2adec3c30fe.htm" />
   <HelpKINode Title="m_Delete field" Url="html/6380e5e2-a881-a297-1e9b-2b9516c5b3ae.htm" />
-  <HelpKINode Title="m_DisplayInformation field">
-    <HelpKINode Title="ARMeshFromPlane_Example.m_DisplayInformation Field" Url="html/8cad3bd5-dcd4-2ab0-1c7f-798c0a144c25.htm" />
-    <HelpKINode Title="ARObjectSync_Example.m_DisplayInformation Field" Url="html/900577c7-741a-7c8c-b8b2-a1ad749ae9e2.htm" />
-    <HelpKINode Title="ARRaycast_Example.m_DisplayInformation Field" Url="html/cfb5b885-7bba-f7c4-42a8-c831916bb2a1.htm" />
-    <HelpKINode Title="ARWorldOriginExampleController.m_DisplayInformation Field" Url="html/18cf67cf-560c-5a5c-3ba5-1a41e0598260.htm" />
-  </HelpKINode>
+  <HelpKINode Title="m_DisplayInformation field" Url="html/18cf67cf-560c-5a5c-3ba5-1a41e0598260.htm" />
   <HelpKINode Title="m_Down field" Url="html/cd65240f-a5dc-de36-18f5-0339c755e786.htm" />
   <HelpKINode Title="m_ErrorText field" Url="html/8d218206-279a-d417-b425-c2cf7852e3a6.htm" />
   <HelpKINode Title="m_ExampleSlider field" Url="html/c4e4df47-ce66-cbd4-0d2d-c6ec9413b3fd.htm" />
@@ -889,7 +737,6 @@
   <HelpKINode Title="m_MatchFoundButtonPosition field" Url="html/85245f20-a43b-4f38-ac95-1aa592e495af.htm" />
   <HelpKINode Title="m_MatchNameText field" Url="html/ffd43a60-cabe-0c3f-e4ba-22aea18614e4.htm" />
   <HelpKINode Title="m_Mine property" Url="html/11ba13fe-0e11-e8d3-28bc-c6cdf10972e2.htm" />
-  <HelpKINode Title="m_ModeDropDown field" Url="html/ff0ce480-0214-3e00-89ee-d0b306edc8a5.htm" />
   <HelpKINode Title="m_MoveDown field" Url="html/f9ecc4a5-24d4-f60b-987f-37ac53465ca5.htm" />
   <HelpKINode Title="m_MoveLeft field" Url="html/3eb11ee8-df1a-e4af-49eb-06eb77780752.htm" />
   <HelpKINode Title="m_MoveRight field" Url="html/4d475240-6297-d3b2-b567-fb320cc00f86.htm" />
@@ -926,13 +773,8 @@
   <HelpKINode Title="m_OpponentsColor field" Url="html/e9aa6019-0eb5-a486-81b5-7542b3ab2fee.htm" />
   <HelpKINode Title="m_OutstandingClaimCallbackCount property" Url="html/c8ca33e2-0c98-5142-17ed-1814e8033578.htm" />
   <HelpKINode Title="m_OutStandingClaims property" Url="html/531264e9-f98f-2f5d-21b2-5255950d1116.htm" />
-  <HelpKINode Title="m_Packet property" Url="html/fc04b731-fa78-185d-d7d9-2b28a45aa067.htm" />
   <HelpKINode Title="m_PauseCanvas field" Url="html/65b19074-0a2e-0983-672e-0268d94b3029.htm" />
   <HelpKINode Title="m_PauseText field" Url="html/78b8a855-8697-12fb-9cd8-b702eb372fbb.htm" />
-  <HelpKINode Title="m_PCCamera field">
-    <HelpKINode Title="ARObjectSync_Example.m_PCCamera Field" Url="html/107db9ba-e2d0-3ffd-c611-8af146554cb2.htm" />
-    <HelpKINode Title="ARRaycast_Example.m_PCCamera Field" Url="html/0d86275f-44e5-9f1a-246b-4ebf82e84677.htm" />
-  </HelpKINode>
   <HelpKINode Title="m_PeerId property" Url="html/eaec14eb-e448-362d-5b20-99cb4c016727.htm" />
   <HelpKINode Title="m_PlayerCountText field" Url="html/e8c2bf41-84e4-4d7d-0615-3cb1b797f9ba.htm" />
   <HelpKINode Title="m_PlayerListText field" Url="html/a204913f-9d23-13c7-d132-706e20672b87.htm" />
@@ -959,10 +801,7 @@
   <HelpKINode Title="m_SceneLoader field" Url="html/e77bcb74-1c5c-b8af-26fd-57d4c75e95b8.htm" />
   <HelpKINode Title="m_SceneName property" Url="html/db2fc285-bdba-1c76-fe22-d5d65148e9f5.htm" />
   <HelpKINode Title="m_SceneToLoad field" Url="html/6fca7006-dab2-e0c4-da94-40395e32d9d3.htm" />
-  <HelpKINode Title="m_SelectedObject field">
-    <HelpKINode Title="ARRaycast_Example.m_SelectedObject Field" Url="html/46a69368-e675-6bab-d4f8-486980817f57.htm" />
-    <HelpKINode Title="StressTest_150_ASLObjects_Controller.m_SelectedObject Field" Url="html/dfeca40c-d594-3c8f-1c14-09c0bf44c937.htm" />
-  </HelpKINode>
+  <HelpKINode Title="m_SelectedObject field" Url="html/dfeca40c-d594-3c8f-1c14-09c0bf44c937.htm" />
   <HelpKINode Title="m_SendAdditiveTransform field">
     <HelpKINode Title="TransformObjectViaLocalSpace_Example.m_SendAdditiveTransform Field" Url="html/4ba18726-5ffa-d498-d4d1-34dd324ec433.htm" />
     <HelpKINode Title="TransformObjectViaWorldSpace_Example.m_SendAdditiveTransform Field" Url="html/0167a49c-7b61-ae3f-9980-1cbad42cb407.htm" />
@@ -977,8 +816,6 @@
   </HelpKINode>
   <HelpKINode Title="m_ServerId property" Url="html/f72b1e33-bdec-613d-63d5-2564a01e6871.htm" />
   <HelpKINode Title="m_SessionsAvailableHolder field" Url="html/d6219ab1-807c-4998-6f70-d4127835238d.htm" />
-  <HelpKINode Title="m_ShowARPlanesToggle field" Url="html/410d306d-50e0-0d23-81e4-998386229065.htm" />
-  <HelpKINode Title="m_SpawnedSphere field" Url="html/f6cb967f-3730-cf63-bbe4-24f798578712.htm" />
   <HelpKINode Title="m_SpawnObject field" Url="html/dcc5a0e6-3a4f-217d-0270-9421d06d3910.htm" />
   <HelpKINode Title="m_StartedAutoConnect field" Url="html/fa9b5aef-451a-4e46-8d04-f7350ad7dfac.htm" />
   <HelpKINode Title="m_StartHostingButton field" Url="html/f5ec3691-49e2-a014-a08c-05b720d4d711.htm" />
@@ -987,13 +824,7 @@
   <HelpKINode Title="m_StaticRoomName field" Url="html/33813c4b-551f-6490-a779-a70665e15fca.htm" />
   <HelpKINode Title="m_StaticStartingScene field" Url="html/b40ee526-682f-332c-bbbc-f30ca1fabd72.htm" />
   <HelpKINode Title="m_StreamActive field" Url="html/115c0fbc-e83c-71fa-99ce-73e006fd88a5.htm" />
-  <HelpKINode Title="m_SubmitButton field" Url="html/f4cd536e-6374-9ade-e0eb-292731b8fb75.htm" />
   <HelpKINode Title="m_TagToSendAndSet field" Url="html/30cd4a69-ff80-82ca-c861-58a31cf9f674.htm" />
-  <HelpKINode Title="m_TouchPosition field">
-    <HelpKINode Title="ARMeshFromPlane_Example.m_TouchPosition Field" Url="html/256eb590-c7bd-85d9-e5ab-7007e72c226b.htm" />
-    <HelpKINode Title="ARObjectSync_Example.m_TouchPosition Field" Url="html/6e0ca815-4cd4-a8f8-cff2-83f853c9bfa5.htm" />
-    <HelpKINode Title="ARRaycast_Example.m_TouchPosition Field" Url="html/d5285cae-b6d4-ad1b-c508-2f479e839c38.htm" />
-  </HelpKINode>
   <HelpKINode Title="m_TryAutoConnectAgain field" Url="html/85a51be7-9543-c7fc-e6da-593db2121ad8.htm" />
   <HelpKINode Title="m_Up field" Url="html/7101c5e2-e000-3932-aa4b-ab7fa6f16dd8.htm" />
   <HelpKINode Title="m_Username property" Url="html/865ee0c6-47c7-60e4-1274-eef4cd8d7d87.htm" />
@@ -1002,9 +833,6 @@
   <HelpKINode Title="m_WaitingForNextSceneScreen field" Url="html/7afe261a-810d-b40e-c291-4d7809235b81.htm" />
   <HelpKINode Title="m_WorldOriginCloudAnchorObject field" Url="html/9e82f579-63db-e989-867c-0fcb180435b2.htm" />
   <HelpKINode Title="m_WorldOriginInitilized field" Url="html/0075b81f-7b93-be84-7507-65387a232c35.htm" />
-  <HelpKINode Title="m_XInput field" Url="html/518a4dbd-2d91-e5b6-696c-63efa33e3fa4.htm" />
-  <HelpKINode Title="m_YInput field" Url="html/52784b2b-712f-9bf6-40ad-5713bea0e0d1.htm" />
-  <HelpKINode Title="m_ZInput field" Url="html/a53001bb-8c7b-aa59-01af-534739846efa.htm" />
   <HelpKINode Title="Name field" Url="html/3637ecbf-e0cd-3026-37f1-8e3cab1d9828.htm" />
   <HelpKINode Title="NormalCloudAnchorTextUpdate method" Url="html/b297f26e-fb4d-8b65-dbbe-c25649209979.htm" />
   <HelpKINode Title="Object1Pos field" Url="html/561dd39a-16fe-8c04-ff84-00ce97adcf3c.htm" />
@@ -1032,18 +860,12 @@
   <HelpKINode Title="OnDestroy method" Url="html/b88cf9da-cfac-6c63-3691-b933084bbee8.htm" />
   <HelpKINode Title="OnOpenEvent method" Url="html/b76596b7-a76b-f4bd-3aa3-c696e445d14b.htm" />
   <HelpKINode Title="OnRelease method" Url="html/9a389825-22bc-d1c8-d461-8243101abd63.htm" />
-  <HelpKINode Title="OpCodeFunctions field" Url="html/beaf3274-6d27-afce-457e-a324b04d3435.htm" />
   <HelpKINode Title="Parent field" Url="html/c54e74cf-f3ad-4cf0-5cbc-8906fc7d5a3a.htm" />
   <HelpKINode Title="PlayerDisconnected enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="PlayerDisconnected method" Url="html/e2b0b333-0221-1630-d5ff-7659e44d5204.htm" />
   <HelpKINode Title="PlayerDisconnectedBeforeMatchStart enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="PlayerDisconnectedBeforeMatchStart method" Url="html/e75d48ff-2717-e7eb-4594-9bea8667048e.htm" />
   <HelpKINode Title="PlayerId field" Url="html/4994bb46-8d55-f2f9-2e00-0f8fbafb731c.htm" />
   <HelpKINode Title="PlayerJoinedMatch enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="PlayerJoinedMatch method">
-    <HelpKINode Title="GameLiftManager.LobbyManager.PlayerJoinedMatch Method " Url="html/a05d9071-af17-337f-59b5-0ba96b9d45f2.htm" />
-    <HelpKINode Title="GameLiftManager.PlayerJoinedMatch Method " Url="html/cb94839e-433f-3b40-8e94-7e2cca405b87.htm" />
-  </HelpKINode>
+  <HelpKINode Title="PlayerJoinedMatch method" Url="html/a05d9071-af17-337f-59b5-0ba96b9d45f2.htm" />
   <HelpKINode Title="PlayerLoggedIn enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
   <HelpKINode Title="PlayerReady enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
   <HelpKINode Title="PlayerSessionId field" Url="html/5ae248bd-93c9-daa7-6e68-5c04691623ef.htm" />
@@ -1080,28 +902,19 @@
   <HelpKINode Title="randomTime field" Url="html/84c4dac4-8044-0a20-1a24-b9b55ecaf597.htm" />
   <HelpKINode Title="Raycast method" Url="html/f90cdae5-687e-048e-f227-44ad53f03854.htm" />
   <HelpKINode Title="ReadyUp method" Url="html/a10d3fc4-8971-3ce3-3a9a-5be8f080ad0c.htm" />
-  <HelpKINode Title="ReceiveARPlaneAsMesh method" Url="html/e543821c-39a5-e688-d735-6ee5bd8a2830.htm" />
   <HelpKINode Title="ReceivedTexture2Ds field" Url="html/34f1bf8b-dded-aabc-6d2b-16bca33ae39d.htm" />
   <HelpKINode Title="RecieveTexture2D method" Url="html/a57c635c-4b02-83a1-5866-df373cb552de.htm" />
   <HelpKINode Title="RejectClaim enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="RejectClaim method">
-    <HelpKINode Title="GameLiftManager.GameController.RejectClaim Method " Url="html/9a79902d-684f-e2ef-b1b5-74c804b54b01.htm" />
-    <HelpKINode Title="GameLiftManager.RejectClaim Method " Url="html/b39e5703-bcee-5dfa-ee1c-d906f04e3a3f.htm" />
-  </HelpKINode>
+  <HelpKINode Title="RejectClaim method" Url="html/9a79902d-684f-e2ef-b1b5-74c804b54b01.htm" />
   <HelpKINode Title="ReleaseClaimedObject method" Url="html/b6a8bfff-bcc8-6a1f-dad5-0b1fcb99308f.htm" />
   <HelpKINode Title="ReleaseClaimToPlayer enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="ReleaseClaimToPlayer method" Url="html/43ee03f5-96c7-130a-23d2-33847f9345db.htm" />
   <HelpKINode Title="ReleaseClaimToServer enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
   <HelpKINode Title="RemoveErrorText method" Url="html/4bb675a6-cefe-308c-da1b-edf78d9056b5.htm" />
   <HelpKINode Title="RemovePlayerFromList method" Url="html/0e795ea5-9cd9-5ea0-4c5c-ba89184e8219.htm" />
   <HelpKINode Title="Reset method" Url="html/7d73bc8d-514b-b783-bd5d-aed7ccfbd1dd.htm" />
   <HelpKINode Title="ResolveAnchorId enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="ResolveAnchorId method">
-    <HelpKINode Title="GameLiftManager.GameController.ResolveAnchorId Method " Url="html/6c49e53d-5ba8-1d2d-3f8e-b609fc12d7dc.htm" />
-    <HelpKINode Title="GameLiftManager.ResolveAnchorId Method " Url="html/ead69414-5a2c-6cb2-a306-5ad82a6075e9.htm" />
-  </HelpKINode>
+  <HelpKINode Title="ResolveAnchorId method" Url="html/6c49e53d-5ba8-1d2d-3f8e-b609fc12d7dc.htm" />
   <HelpKINode Title="ResolvedCloudAnchor enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="ResolvedCloudAnchor method" Url="html/fbca5a70-69f4-483d-c765-fd581eb14dfb.htm" />
   <HelpKINode Title="RunMainThreadQueueActions method" Url="html/920cd553-21ae-0e3f-571f-65bc5b462f2d.htm" />
   <HelpKINode Title="SceneLoader class">
     <HelpKINode Title="fields" Url="html/ef5ea29c-8c5d-c451-407e-8723ae1fcb08.htm" />
@@ -1110,10 +923,7 @@
   <HelpKINode Title="SceneName field" Url="html/d5cf8048-f525-5b01-5f68-ce96a71ab8bf.htm" />
   <HelpKINode Title="SearchForSessions method" Url="html/2d31cfe3-8072-a4c3-33c7-bbe6d66b8d1a.htm" />
   <HelpKINode Title="SeePreviousUIScreen method" Url="html/ab2b2f67-d826-ede3-dbf0-bc6ab752cf69.htm" />
-  <HelpKINode Title="SelectObject method">
-    <HelpKINode Title="ARRaycast_Example.SelectObject Method " Url="html/fb31845d-c8e1-1326-333f-b37f951917d9.htm" />
-    <HelpKINode Title="StressTest_150_ASLObjects_Controller.SelectObject Method " Url="html/2c4375c8-b768-6440-df8b-7f46264017c2.htm" />
-  </HelpKINode>
+  <HelpKINode Title="SelectObject method" Url="html/2c4375c8-b768-6440-df8b-7f46264017c2.htm" />
   <HelpKINode Title="SelectObjectColor method" Url="html/1e33cc35-d8cf-4444-9a02-7393fb787baf.htm" />
   <HelpKINode Title="Send2DTexture_Example class">
     <HelpKINode Title="Send2DTexture_Example Class" Url="html/5549f0d7-7d2c-ef93-f893-861bfaa6b7ee.htm" />
@@ -1148,11 +958,6 @@
   <HelpKINode Title="SendAndSetWorldPosition method" Url="html/fc24d52f-311d-236f-7732-210591252bb3.htm" />
   <HelpKINode Title="SendAndSetWorldRotation method" Url="html/da81c11d-988c-29c7-fe68-89e803aa2730.htm" />
   <HelpKINode Title="SendAndSetWorldScale method" Url="html/d8ff15ef-baef-0017-48f8-33bb6800e66f.htm" />
-  <HelpKINode Title="SendARPlaneAsMesh enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="SendARPlaneAsMesh method">
-    <HelpKINode Title="ASLObject.SendARPlaneAsMesh Method " Url="html/c051d468-4e5f-026e-f420-afb28fee1999.htm" />
-    <HelpKINode Title="GameLiftManager.SendARPlaneAsMesh Method " Url="html/21785ac7-418a-b68b-6c6d-173e8eb1d86c.htm" />
-  </HelpKINode>
   <HelpKINode Title="SendClaim field" Url="html/606571c1-4c62-b7a0-5ca4-0046b4e455df.htm" />
   <HelpKINode Title="SendCloudAnchorToResolve method" Url="html/d90e3672-9ffe-4c53-67f9-a030a5e827ad.htm" />
   <HelpKINode Title="SendFloatArray method" Url="html/e7277c39-953f-728f-226f-19a458c2fc6b.htm" />
@@ -1170,38 +975,23 @@
   <HelpKINode Title="SendFloatArray_Example.Start method" Url="html/040c659f-6a50-6a0b-8154-54e6cd86db40.htm" />
   <HelpKINode Title="SendFloatArray_Example.Update method" Url="html/7b57c38f-d641-90fe-eacc-bb768d2e878e.htm" />
   <HelpKINode Title="SendFloats enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="SendFloats method" Url="html/ba80029f-33c3-05d7-67a2-5182f0051088.htm" />
   <HelpKINode Title="SendSpawnPrefab method" Url="html/dd87e550-8530-301d-da53-16d2672c39c0.htm" />
   <HelpKINode Title="SendSpawnPrimitive method" Url="html/f913d622-cd43-ac83-651e-fb23c0a014fd.htm" />
   <HelpKINode Title="SendTexture2D enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="SendTexture2D method" Url="html/3df0b2d3-c61e-fd71-1b70-0b1bbce00ca5.htm" />
   <HelpKINode Title="SentFloats method" Url="html/99ee5eab-5375-ebfa-92e1-b4f71af41d32.htm" />
   <HelpKINode Title="ServerSetId enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="ServerSetId method" Url="html/19439960-1acf-acad-0e52-dd8e72ed0848.htm" />
   <HelpKINode Title="SetAnchorID method" Url="html/3a6c270b-3c43-111a-943d-2ef87dce3258.htm" />
   <HelpKINode Title="SetCorrectUIPanel method" Url="html/635c5325-6a80-0eca-1d5c-98efdda3df58.htm" />
   <HelpKINode Title="SetGameName method" Url="html/cd4e0f2b-4100-19de-429e-37c1cf3ed53c.htm" />
   <HelpKINode Title="SetLocalPosition enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="SetLocalPosition method">
-    <HelpKINode Title="GameLiftManager.GameController.SetLocalPosition Method " Url="html/d650e638-5208-2fbc-ed0b-c324620fbb12.htm" />
-    <HelpKINode Title="GameLiftManager.SetLocalPosition Method " Url="html/4ad1d7d4-275c-dcbe-3271-93597b438c6f.htm" />
-  </HelpKINode>
+  <HelpKINode Title="SetLocalPosition method" Url="html/d650e638-5208-2fbc-ed0b-c324620fbb12.htm" />
   <HelpKINode Title="SetLocalRotation enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="SetLocalRotation method">
-    <HelpKINode Title="GameLiftManager.GameController.SetLocalRotation Method " Url="html/eace8825-ea2b-de03-32d5-2e2c2c0bc405.htm" />
-    <HelpKINode Title="GameLiftManager.SetLocalRotation Method " Url="html/88d19336-8e3a-555b-46b4-09ce627f8c55.htm" />
-  </HelpKINode>
+  <HelpKINode Title="SetLocalRotation method" Url="html/eace8825-ea2b-de03-32d5-2e2c2c0bc405.htm" />
   <HelpKINode Title="SetLocalScale enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="SetLocalScale method">
-    <HelpKINode Title="GameLiftManager.GameController.SetLocalScale Method " Url="html/a931613d-5908-62ed-7852-55d443d5e24c.htm" />
-    <HelpKINode Title="GameLiftManager.SetLocalScale Method " Url="html/756559c8-b6b8-2736-a5a0-dc263cd125d5.htm" />
-  </HelpKINode>
+  <HelpKINode Title="SetLocalScale method" Url="html/a931613d-5908-62ed-7852-55d443d5e24c.htm" />
   <HelpKINode Title="SetObjectClaim method" Url="html/9284b7d2-887d-e28d-8119-a38fc98c3a6b.htm" />
   <HelpKINode Title="SetObjectColor enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="SetObjectColor method">
-    <HelpKINode Title="GameLiftManager.GameController.SetObjectColor Method " Url="html/02cb53a5-c92c-5889-d6eb-694e6aa56c77.htm" />
-    <HelpKINode Title="GameLiftManager.SetObjectColor Method " Url="html/2742d54b-5f3c-ac2f-0783-0d0f275cc07d.htm" />
-  </HelpKINode>
+  <HelpKINode Title="SetObjectColor method" Url="html/02cb53a5-c92c-5889-d6eb-694e6aa56c77.htm" />
   <HelpKINode Title="SetObjectID method" Url="html/87c93d16-5961-ee11-f1ae-b6364e95e18d.htm" />
   <HelpKINode Title="SetObjectTag method" Url="html/7e44a213-e019-4031-424a-b1e47cdc5ca4.htm" />
   <HelpKINode Title="SetParent method" Url="html/8a9d4243-47cc-21f5-677e-7fd54c5cf451.htm" />
@@ -1224,25 +1014,13 @@
   <HelpKINode Title="SetupSynchronizingASLObjectScreen method" Url="html/d165ebef-1f5e-33c4-204b-d01d03791b20.htm" />
   <HelpKINode Title="SetWorldOrigin method" Url="html/51419232-9c0e-103b-7634-daf91f899540.htm" />
   <HelpKINode Title="SetWorldPosition enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="SetWorldPosition method">
-    <HelpKINode Title="GameLiftManager.GameController.SetWorldPosition Method " Url="html/5ff9bc90-48b4-3009-128d-94bcdc898878.htm" />
-    <HelpKINode Title="GameLiftManager.SetWorldPosition Method " Url="html/ca592299-2866-4dc6-ed9e-dc427b145c06.htm" />
-  </HelpKINode>
+  <HelpKINode Title="SetWorldPosition method" Url="html/5ff9bc90-48b4-3009-128d-94bcdc898878.htm" />
   <HelpKINode Title="SetWorldRotation enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="SetWorldRotation method">
-    <HelpKINode Title="GameLiftManager.GameController.SetWorldRotation Method " Url="html/fe12ef1b-8810-4bd2-2cbc-95f633c87fab.htm" />
-    <HelpKINode Title="GameLiftManager.SetWorldRotation Method " Url="html/75c1091b-95ac-cbbe-5a46-d75b85da094c.htm" />
-  </HelpKINode>
+  <HelpKINode Title="SetWorldRotation method" Url="html/fe12ef1b-8810-4bd2-2cbc-95f633c87fab.htm" />
   <HelpKINode Title="SetWorldScale enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="SetWorldScale method">
-    <HelpKINode Title="GameLiftManager.GameController.SetWorldScale Method " Url="html/f1841e56-36e1-93d1-e308-f79e616ec36b.htm" />
-    <HelpKINode Title="GameLiftManager.SetWorldScale Method " Url="html/7149b766-5c23-8477-7c22-dcec95783a77.htm" />
-  </HelpKINode>
+  <HelpKINode Title="SetWorldScale method" Url="html/f1841e56-36e1-93d1-e308-f79e616ec36b.htm" />
   <HelpKINode Title="SimpleDemos namespace" Url="html/27f31e9d-144b-6ea0-62ec-d4b1a0500aa5.htm" />
   <HelpKINode Title="SimpleDemos.ARCloudAnchor_Example class" Url="html/161a58fe-64b2-a55c-def4-80af47071110.htm" />
-  <HelpKINode Title="SimpleDemos.ARMeshFromPlane_Example class" Url="html/6df8148b-e4e9-6a07-87b1-8f5a6f0c9c62.htm" />
-  <HelpKINode Title="SimpleDemos.ARObjectSync_Example class" Url="html/8f3f1a62-78c5-4579-79ab-0b5fb72a2de0.htm" />
-  <HelpKINode Title="SimpleDemos.ARRaycast_Example class" Url="html/fa8bbaff-3978-31be-2320-6cc5b231f3c3.htm" />
   <HelpKINode Title="SimpleDemos.ARWorldOriginExampleController class" Url="html/f32d56b1-490c-bbd5-cbb2-670eb407a294.htm" />
   <HelpKINode Title="SimpleDemos.ColorObject_Example class" Url="html/0bc57725-b3a4-9b75-9035-53e420d1add2.htm" />
   <HelpKINode Title="SimpleDemos.CreateObject_Example class" Url="html/52166d2e-5c1e-52fa-b822-67aef32ead30.htm" />
@@ -1273,32 +1051,14 @@
   <HelpKINode Title="SliderValueChange method" Url="html/8ddedf31-bfa6-627f-1b33-c6f3575cdad2.htm" />
   <HelpKINode Title="SpawnNormalCloudAnchor method" Url="html/7750bc38-b6be-5b2e-a8aa-1ec1c665c3a3.htm" />
   <HelpKINode Title="SpawnObject method" Url="html/745e4753-a544-981e-8f74-0a35f8eea7e9.htm" />
-  <HelpKINode Title="SpawnPlatform method" Url="html/5971ff8f-84cb-5f71-e56d-2970012fc4d5.htm" />
   <HelpKINode Title="SpawnPrefab enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="SpawnPrefab method">
-    <HelpKINode Title="GameLiftManager.GameController.SpawnPrefab Method " Url="html/e5d9237f-ed93-d85e-85fa-1233c2b05ff7.htm" />
-    <HelpKINode Title="GameLiftManager.SpawnPrefab Method " Url="html/808fa4c4-9fef-3150-be5d-3d1ac18ac3af.htm" />
-  </HelpKINode>
+  <HelpKINode Title="SpawnPrefab method" Url="html/e5d9237f-ed93-d85e-85fa-1233c2b05ff7.htm" />
   <HelpKINode Title="SpawnPrimitive enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="SpawnPrimitive method">
-    <HelpKINode Title="GameLiftManager.GameController.SpawnPrimitive Method " Url="html/969edd17-4e21-4876-df68-0a81ef89ebe3.htm" />
-    <HelpKINode Title="GameLiftManager.SpawnPrimitive Method " Url="html/94abc945-ddeb-3b96-cdb6-5480fa3537d1.htm" />
-  </HelpKINode>
-  <HelpKINode Title="SpawnSphere method">
-    <HelpKINode Title="ARRaycast_Example.SpawnSphere Method " Url="html/5d1f4f50-4520-1fac-aa6c-d596f3560d38.htm" />
-    <HelpKINode Title="ARWorldOriginExampleController.SpawnSphere Method " Url="html/56d3b9a3-ec52-e418-19b2-f8c62aa0ba81.htm" />
-  </HelpKINode>
-  <HelpKINode Title="SpawnWorldOrigin method">
-    <HelpKINode Title="ARMeshFromPlane_Example.SpawnWorldOrigin Method " Url="html/9acce713-4c9e-fa66-9d40-33d127af2bc3.htm" />
-    <HelpKINode Title="ARObjectSync_Example.SpawnWorldOrigin Method " Url="html/0364e3d3-ec16-7778-e4d9-51abe0c36d9d.htm" />
-    <HelpKINode Title="ARRaycast_Example.SpawnWorldOrigin Method " Url="html/baff2a57-0863-510f-1932-720799ed9c1a.htm" />
-    <HelpKINode Title="ARWorldOriginExampleController.SpawnWorldOrigin Method " Url="html/15e735c5-b44a-28ac-2c9c-410a348701a6.htm" />
-  </HelpKINode>
+  <HelpKINode Title="SpawnPrimitive method" Url="html/969edd17-4e21-4876-df68-0a81ef89ebe3.htm" />
+  <HelpKINode Title="SpawnSphere method" Url="html/56d3b9a3-ec52-e418-19b2-f8c62aa0ba81.htm" />
+  <HelpKINode Title="SpawnWorldOrigin method" Url="html/15e735c5-b44a-28ac-2c9c-410a348701a6.htm" />
   <HelpKINode Title="SpiltByteArray method" Url="html/0009e67e-b740-0086-1d97-04655e3c3077.htm" />
   <HelpKINode Title="Start method">
-    <HelpKINode Title="ARMeshFromPlane_Example.Start Method " Url="html/5434ef94-1d52-b01a-bddd-fff90a562da1.htm" />
-    <HelpKINode Title="ARObjectSync_Example.Start Method " Url="html/48a324d2-46ec-7309-0277-90e572e50b3c.htm" />
-    <HelpKINode Title="ARRaycast_Example.Start Method " Url="html/bff92891-f745-4bb1-f8f4-e83f68abc317.htm" />
     <HelpKINode Title="ARWorldOriginExampleController.Start Method " Url="html/9a1e213f-eb75-cfba-2f07-8b225f792e2a.htm" />
     <HelpKINode Title="ARWorldOriginHelper.Start Method " Url="html/c9e113d4-80c7-011b-385a-028d2acee4ff.htm" />
     <HelpKINode Title="ASLObject.Start Method " Url="html/c641f4c9-aaf9-8042-0ada-7eeb91a6cf02.htm" />
@@ -1441,10 +1201,8 @@
   <HelpKINode Title="StressTest_FightOverFiveObjectsGUIController.StressTest_FightOverFiveObjectsGUIController constructor" Url="html/16b3fb9f-434e-7c5a-767a-73de72a48a8c.htm" />
   <HelpKINode Title="StressTest_FightOverFiveObjectsGUIController.Update method" Url="html/76ccc4a8-76a2-4f04-fe0c-bb72b3847c7b.htm" />
   <HelpKINode Title="StressTest_FightOverFiveObjectsGUIController.UpdatePositionText method" Url="html/ba5a5116-8fc5-9242-4d72-984b57ab67aa.htm" />
-  <HelpKINode Title="SubmitCoordinates method" Url="html/8f3053bc-5058-30bb-5d25-515f2ba52443.htm" />
   <HelpKINode Title="SyncronizeID method" Url="html/9c5619de-6ff5-ba97-d9ef-70285936c1a4.htm" />
   <HelpKINode Title="TagUpdate enumeration member" Url="html/dc299652-ac7d-3205-f224-e8a4109a0e16.htm" />
-  <HelpKINode Title="TagUpdate method" Url="html/5e1c76fc-5405-d846-12ef-1a01692ac41a.htm" />
   <HelpKINode Title="TestObjects field" Url="html/92fc32c5-4555-d2de-360f-23e502981b66.htm" />
   <HelpKINode Title="TheEcho field" Url="html/0494a0f8-f762-c907-9064-4e5d140f112b.htm" />
   <HelpKINode Title="TheLabel field" Url="html/31f44303-80bd-edd5-6d93-644768ab6861.htm" />
@@ -1492,12 +1250,8 @@
   <HelpKINode Title="TransformObjectViaWorldSpace_Example.Start method" Url="html/e709993f-3578-2168-c532-a54b372a29ee.htm" />
   <HelpKINode Title="TransformObjectViaWorldSpace_Example.TransformObjectViaWorldSpace_Example constructor" Url="html/5c280859-b09e-8f47-5afc-eb7e8ec64576.htm" />
   <HelpKINode Title="TransformObjectViaWorldSpace_Example.Update method" Url="html/377857d0-ed46-f0b8-8eff-2ed5c84cbe70.htm" />
-  <HelpKINode Title="TriangulateMesh method" Url="html/484dc886-33c2-64f3-4f7b-51a14945cce3.htm" />
   <HelpKINode Title="Update method">
     <HelpKINode Title="ARCloudAnchor_Example.Update Method " Url="html/63041f7c-53ab-1eee-4d2a-c843d109f416.htm" />
-    <HelpKINode Title="ARMeshFromPlane_Example.Update Method " Url="html/3c953052-e0fc-7734-732b-a9145a2b8a20.htm" />
-    <HelpKINode Title="ARObjectSync_Example.Update Method " Url="html/26253700-6443-dfbe-9801-89d1878a4e03.htm" />
-    <HelpKINode Title="ARRaycast_Example.Update Method " Url="html/d6f46673-4540-275f-00ae-ac583647029b.htm" />
     <HelpKINode Title="ARWorldOriginExampleController.Update Method " Url="html/bae59d97-d9f6-375f-95f5-1d46d7279788.htm" />
     <HelpKINode Title="ASLObject.Update Method " Url="html/bc83c554-603b-8506-d8d9-cd8f864a6918.htm" />
     <HelpKINode Title="ColorObject_Example.Update Method " Url="html/3f1124c0-01b2-335e-2119-2a1b5ec4d751.htm" />
