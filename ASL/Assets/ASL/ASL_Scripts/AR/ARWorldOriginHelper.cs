@@ -23,12 +23,17 @@
 
 namespace ASL
 {
-    #if UNITY_ANDROID || UNITY_IOS
+    using Aws.GameLift.Realtime.Command;
+#if UNITY_ANDROID || UNITY_IOS
     using UnityEngine.XR.ARFoundation;
     using UnityEngine.XR.ARSubsystems;
     using Google.XR.ARCoreExtensions;
     #endif
     using UnityEngine;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Text;
 
     /// <summary>
     /// A helper script to set the apparent world origin of ARCore through applying an offset to the
