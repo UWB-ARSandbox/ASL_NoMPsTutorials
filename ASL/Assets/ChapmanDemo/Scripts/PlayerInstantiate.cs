@@ -39,7 +39,7 @@ public class PlayerInstantiate : MonoBehaviour
                                            null,
                                            StoreInstatiatedObject);
     }
-  
+
     // Set position of the camera to gameObject
     private void UpdateCameraPosition()
     {

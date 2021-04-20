@@ -6,7 +6,7 @@ public class MazeStartPosition : MonoBehaviour
 {
     private PlayerSystem m_playerSystem;
     private MazeSystem m_mazeSystem;
-    [SerializeField] private float m_pos_y = 2.5f;
+    [SerializeField] private float m_pos_y = 1f;
     [SerializeField] private float m_secFloorPos_y = 12f;
 
     public void PlaceCharacterInStartPos()
@@ -36,13 +36,11 @@ public class MazeStartPosition : MonoBehaviour
             {
                 Debug.Log("Bottom floor");
                 // Set character position to bottom floor
-
-               
                 character.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
                 {
                     character.GetComponent<ASL.ASLObject>().SendAndSetWorldPosition(bottomFloorPos);
-                    Debug.Log("Bottom floor: " + bottomFloorPos);
                 });
+                //Debug.Log("Add Character name: " + character.name + " to bottom floor list");
                 m_mazeSystem.AddBottomFloorCharac(character);
             }          
             else
@@ -51,7 +49,6 @@ public class MazeStartPosition : MonoBehaviour
                 character.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
                 {
                     character.GetComponent<ASL.ASLObject>().SendAndSetWorldPosition(topFloorPos);
-                    Debug.Log("topFloorPos: " + topFloorPos);
                 });
                 m_mazeSystem.AddTopFloorCharac(character);
             }
