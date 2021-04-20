@@ -3,26 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PCPlayerItemInteraction : MonoBehaviour {
-    private bool close;
-    public GameObject pickedUpItem;
-    public float pickUpDistance = 4f;
-    public float throwingYDirection = 0.3f;
-    public float throwingForce = 350f;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
+    private GameObject pickedUpItem; //Store the item that user is currently picking up
+    public float pickUpDistance = 4f; //Maximum distance that allow user to pick up
+    public float throwingYDirection = 0.3f; //y direction for parabola projectile angle
+    public float throwingForce = 350f;  //throwing force for parabola projectile 
+    public LayerMask pickableLayer; //Layer Mask for pickable items layer
 
     // Update is called once per frame
     void Update()
     {
+        //pick up item
         if(Input.GetMouseButtonDown(0))
         {   if (pickedUpItem == null)
             {
-                int layerMask = 1 << 7;
                 RaycastHit hit;
-                if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, pickUpDistance, layerMask))
+                if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, pickUpDistance, pickableLayer))
                 {
                     Debug.Log("Did Hit " + hit.transform.name);
                     pickedUpItem = hit.collider.gameObject;
@@ -33,7 +29,7 @@ public class PCPlayerItemInteraction : MonoBehaviour {
                 pickedUpItem = null;
             }
         }
-
+        //throw item
         if(Input.GetMouseButtonDown(1))
         {
             if (pickedUpItem != null)
@@ -46,6 +42,7 @@ public class PCPlayerItemInteraction : MonoBehaviour {
             }
         }
         
+        //keep the picked item at the center
         if (pickedUpItem != null)
         {
             Vector3 cameraDirection = Camera.main.transform.forward;
