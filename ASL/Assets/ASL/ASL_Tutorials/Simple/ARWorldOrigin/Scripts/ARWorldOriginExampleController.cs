@@ -5,13 +5,7 @@ using UnityEngine.UI;
 namespace SimpleDemos
 {
     /// <summary>
-    /// A demo showcasing how to use the SetWorldOrigin parameter when creating a cloud anchor to synchronize AR origins.
-    /// 
-    /// This demo allows AR users to create a world origin for the AR space, then create cloud anchors and spheres on AR planes.
-    /// AR users can move the most recently created sphere to any position using the textboxes as input and pressing "Submit".
-    /// This example will not work with a PC user, as the AR World Origin is created after the initial PC setup.
-    /// 
-    /// Video Example: https://drive.google.com/file/d/1R7Xc98CFY5IYHcNch6H1kndXxmqR7ozp/view?usp=sharing
+    /// Demonstrates how you can use the SetWorldOrigin parameter when creating a cloud anchor to synchronize AR origins.
     /// </summary>
     public class ARWorldOriginExampleController : MonoBehaviour
     {
@@ -30,21 +24,6 @@ namespace SimpleDemos
         /// <summary> GameObject that represents a cloud anchor object (will be placed where the cloud anchor is)</summary>
         public GameObject m_NormalCloudAnchorObject;
 
-        /// <summary>Input Box for X value</summary>
-        public InputField m_XInput;
-
-        /// <summary>Input Box for Y value</summary>
-        public InputField m_YInput;
-
-        /// <summary>Input Box for Z value</summary>
-        public InputField m_ZInput;
-
-        /// <summary>Button for submitting coordinates</summary>
-        public Button m_SubmitButton;
-
-        /// <summary> GameObject that represents a cloud anchor object (will be placed where the cloud anchor is)</summary>
-        private GameObject m_SpawnedSphere;
-
         /// <summary>Flag indicating if the world origin has been initialized or not - it should only be set once</summary>
         private bool m_WorldOriginInitilized = false;
 
@@ -60,50 +39,11 @@ namespace SimpleDemos
             m_Controller = this;
         }
 
-        /// <summary>Called on start up - sets the initial text for the user and adds a listener for Submit button</summary>
+        /// <summary>Called on start up - sets the initial text for the user</summary>
         void Start()
         {
             m_DisplayInformation.text = "The first location you touch will spawn the World Origin Cloud Anchor. " +
                 "Only 1 player can spawn this cloud anchor and it should always be the first cloud anchor created if you plan on utilizing cloud anchors.";
-
-            m_SubmitButton.onClick.AddListener(SubmitCoordinates);
-        }
-
-        /// <summary>Called when Submit button is pressed</summary>
-        private void SubmitCoordinates()
-        {
-            //Get and set coordinates
-            float x, y, z;
-            float.TryParse(m_XInput.text, out x);
-            float.TryParse(m_YInput.text, out y);
-            float.TryParse(m_ZInput.text, out z);
-
-            // If a sphere already exists
-            if (m_SpawnedSphere != null)
-            {
-                m_SpawnedSphere.transform.localPosition = new Vector3(x, y, z);
-
-                //Reset displayed textbox coordinates
-                m_Controller.m_XInput.placeholder.GetComponent<Text>().text = m_SpawnedSphere.transform.localPosition.x.ToString();
-                m_Controller.m_YInput.placeholder.GetComponent<Text>().text = m_SpawnedSphere.transform.localPosition.y.ToString();
-                m_Controller.m_ZInput.placeholder.GetComponent<Text>().text = m_SpawnedSphere.transform.localPosition.z.ToString();
-                m_Controller.m_XInput.text = m_SpawnedSphere.transform.localPosition.x.ToString();
-                m_Controller.m_YInput.text = m_SpawnedSphere.transform.localPosition.y.ToString();
-                m_Controller.m_ZInput.text = m_SpawnedSphere.transform.localPosition.z.ToString();
-
-                m_DisplayInformation.text = "Finished moving most recently created sphere to a local position of: " + m_SpawnedSphere.transform.localPosition
-                + " and a world position of: " + m_SpawnedSphere.transform.position;
-            }
-            // No sphere exists
-            else
-            {
-                // World Origin has been initialized
-                if(m_WorldOriginInitilized)
-                {
-                    //Create a sphere at submitted coordinates
-                    ASL.ASLHelper.InstantiateASLObject(PrimitiveType.Sphere, new Vector3(x, y, z), Quaternion.identity, string.Empty, string.Empty, SpawnSphere);
-                }
-            }
         }
 
         /// <summary> The logic of this example - listens for screen touches and spawns whichever object is currently active on the drop down menu</summary>
@@ -240,16 +180,7 @@ namespace SimpleDemos
                 _sphere.GetComponent<ASL.ASLObject>().SendAndSetLocalScale(new Vector3(.05f, .05f, .05f)); 
             });
 
-            //Set as current spawned sphere
-            m_Controller.m_SpawnedSphere = _sphere;
-
-            // Reset displayed textbox coordinates
-            m_Controller.m_XInput.placeholder.GetComponent<Text>().text = _sphere.transform.localPosition.x.ToString();
-            m_Controller.m_YInput.placeholder.GetComponent<Text>().text = _sphere.transform.localPosition.y.ToString();
-            m_Controller.m_ZInput.placeholder.GetComponent<Text>().text = _sphere.transform.localPosition.z.ToString();
-            m_Controller.m_XInput.text = _sphere.transform.localPosition.x.ToString();
-            m_Controller.m_YInput.text = _sphere.transform.localPosition.y.ToString();
-            m_Controller.m_ZInput.text = _sphere.transform.localPosition.z.ToString();
         }
+
     }
 }
