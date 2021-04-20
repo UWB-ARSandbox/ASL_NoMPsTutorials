@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7490895612394308705}
   - component: {fileID: 7490895612394308711}
   m_Layer: 7
-  m_Name: Cube
+  m_Name: PickableCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

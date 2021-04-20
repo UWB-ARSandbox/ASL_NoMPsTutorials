@@ -14,7 +14,17 @@ public class ASLPropertySync : MonoBehaviour
     public delegate object GetLocalObject();
     public delegate void SetLocalObject(object obj);
     public delegate T GetLocalValue<T>();
-    public delegate void SetLocalValue<T>();
+    public delegate void SetLocalValue<T>(T v);
+
+    private int m_lockHolder;
+
+    public int LockHolder
+    {
+        get
+        {
+            return m_lockHolder;
+        }
+    }
 
     private class SynchronizedProperty
     {
@@ -109,10 +119,15 @@ public class ASLPropertySync : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PropertySyncStart();
+    }
+
+    protected void PropertySyncStart() {
         props = new List<SynchronizedProperty>();
 
         GetComponent<ASLObject>()._LocallySetFloatCallback((string _id, float[] f) =>
         {
+            m_lockHolder = ASLUserID.ID();
             if (ASLUserID.ID() != f[0])
             {
                 int propIndex = (int) f[1];
@@ -125,6 +140,10 @@ public class ASLPropertySync : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PropertySyncUpdate();
+    }
+
+    protected void PropertySyncUpdate() {
         for (int propID = 0; propID < props.Count; ++propID)
         {
             SynchronizedProperty prop = props[propID];

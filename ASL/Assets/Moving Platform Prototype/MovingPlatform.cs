@@ -1,3 +1,4 @@
+using ASL;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -48,7 +49,14 @@ public class MovingPlatform : MonoBehaviour
 
         float distance = Speed * Time.deltaTime;
         Vector3 v = To.transform.position - From.transform.position;
-        float NextRelativePosition = RelativePosition + distance / v.magnitude;
+        float NextRelativePosition;
+        if (v.magnitude != 0)
+        {
+            NextRelativePosition = RelativePosition + distance / v.magnitude;
+        } else
+        {
+            NextRelativePosition = RelativePosition;
+        }
 
         // Check if next position is at or past the destination
         if (NextRelativePosition >= 1f)
@@ -84,6 +92,14 @@ public class MovingPlatform : MonoBehaviour
             {
                 distance -= (NextRelativePosition - 1) * v.magnitude;
                 NextRelativePosition = distance / v.magnitude;
+                if (v.magnitude != 0)
+                {
+                    NextRelativePosition = distance / v.magnitude;
+                }
+                else
+                {
+                    NextRelativePosition = 0;
+                }
             } else
             {
                 delayed = true;
@@ -93,6 +109,17 @@ public class MovingPlatform : MonoBehaviour
 
         RelativePosition = NextRelativePosition;
 
-        transform.position = From.transform.position + v * RelativePosition;
+        Debug.Log("USER ID = " + ASLUserID.ID());
+        if (ASLUserID.ID() == 0)
+        {
+            GetComponent<ASLObject>().SendAndSetClaim(() => {
+                Vector3 newPos = From.transform.position + v * RelativePosition;
+                if (newPos.x != newPos.x)
+                {
+                    Debug.Log("NaN in newPos.x! newPos = " + newPos + " from pos: " + From.transform.position + " v: " + v + " RelativePosition: " + RelativePosition);
+                }
+                GetComponent<ASLObject>().SendAndSetWorldPosition(newPos);
+            });
+        }
     }
 }
