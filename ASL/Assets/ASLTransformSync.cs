@@ -43,13 +43,6 @@ public class ASLTransformSync : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GetComponent<Rigidbody>() != null && GetComponent<Rigidbody>().isKinematic && GetComponent<MeshRenderer>() != null)
-        {
-            GetComponent<MeshRenderer>().material.color = Color.red;
-        } else if (GetComponent<MeshRenderer>() != null)
-        {
-            GetComponent<MeshRenderer>().material.color = Color.green;
-        }
         GameLiftManager glm = GameLiftManager.GetInstance();
         if (glm == null)
         {
@@ -73,16 +66,16 @@ public class ASLTransformSync : MonoBehaviour
         // load remoteTransform into local transform if remoteTransform recieved
         // store transform into previousTransform
 
-        if (transform.localPosition != previousPosition || transform.localRotation != previousRotation || transform.localScale != previousScale)
+        if (transform.position != previousPosition || transform.localRotation != previousRotation || transform.localScale != previousScale)
         {
             // position changed locally
             GetComponent<ASLObject>().SendAndSetClaim(() =>
             {
                 float[] f = new float[11];
                 f[0] = id;
-                f[1] = transform.localPosition.x;
-                f[2] = transform.localPosition.y;
-                f[3] = transform.localPosition.z;
+                f[1] = transform.position.x;
+                f[2] = transform.position.y;
+                f[3] = transform.position.z;
 
                 f[4] = transform.localRotation.x;
                 f[5] = transform.localRotation.y;
@@ -98,12 +91,12 @@ public class ASLTransformSync : MonoBehaviour
         }
         if (transformChangedRemotely)
         {
-            transform.localPosition = remotePosition;
+            transform.position = remotePosition;
             transform.localRotation = remoteRotation;
             transform.localScale = remoteScale;
             transformChangedRemotely = false;
         }
-        previousPosition = transform.localPosition;
+        previousPosition = transform.position;
         previousRotation = transform.localRotation;
         previousScale = transform.localScale;
     }
