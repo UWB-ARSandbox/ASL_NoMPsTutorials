@@ -100,7 +100,6 @@ public class PlayerSystem : MonoBehaviour
         // Find all character objects in the scene by tag or level
         if (!m_isHost) return;
         if (m_isInit) return;
-
         //Debug.Log("I am the Host");
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player"); // TODO: Switch to the player script
 
@@ -108,7 +107,6 @@ public class PlayerSystem : MonoBehaviour
         Debug.Log("Num player in PlayerSystem = " + players.Length);
         foreach (GameObject characterObj in players)
         {
-            
             string id = characterObj.GetComponent<ASL.ASLObject>().m_Id;
             if (!m_playerObjDict.ContainsKey(id))
             {
@@ -118,7 +116,6 @@ public class PlayerSystem : MonoBehaviour
                 m_playerIndex++;
             }
             //Debug.Log("Character Object name: " + characterObj.name);
-           
         }
         Debug.Log("Num player added to the list: " + m_playerList.Count);
         m_isInit = true;
@@ -127,7 +124,6 @@ public class PlayerSystem : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-
     }
 
     // Update is called once per frame

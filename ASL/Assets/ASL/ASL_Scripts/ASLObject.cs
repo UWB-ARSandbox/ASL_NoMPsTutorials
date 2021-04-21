@@ -3,6 +3,7 @@
 using Google.XR.ARCoreExtensions;
 #endif
 using System.Text;
+using System.Collections;
 using UnityEngine;
 
 namespace ASL
@@ -937,6 +938,21 @@ namespace ASL
             }
         }
 
+        /// <summary>
+        /// Send and set an AR Plane's vertices on a Mesh.
+        /// <param name="_myVertices">The Vector3 array of vertices of the AR Plane mesh to be sent to others</param>
+        /// </summary>
+        public void SendARPlaneAsMesh(Vector3[] _myVertices)
+        {
+            byte[] id = Encoding.ASCII.GetBytes(m_Id);
+            byte[] floats = GameLiftManager.GetInstance().ConvertFloatArrayToByteArray(GameLiftManager.GetInstance().ConvertVector3ArrayToFloatArray(_myVertices));
+
+            byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, floats);
+
+            RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.SendARPlaneAsMesh, payload);
+            GameLiftManager.GetInstance().m_Client.SendMessage(message);
+        }
+
         /// <summary>Sends a Texture2D to other users and then calls the sent function once it is successfully recreated</summary>
         /// <param name="_myTexture2D">The Texture2D to be uploaded and sent to others</param>
         /// <param name="_myPostDownloadFunction">The function to be called after the Texture2D is downloaded</param>
@@ -981,7 +997,7 @@ namespace ASL
             byte[] postDownloadFunction = Encoding.ASCII.GetBytes(_myPostDownloadFunction.Method.ReflectedType + " " + _myPostDownloadFunction.Method.Name);
             byte[] firstPositionFlag = GameLiftManager.GetInstance().ConvertIntToByteArray(1);
 
-            int maxPacketSize = 4076; //4096 - 20 (20 is the size of our meta data)
+            int maxPacketSize = 4072; //4096 - 24 (24 is the size of our meta data)
             //First packet:
             int imagePacketsSent = maxPacketSize - id.Length - firstPositionFlag.Length - textureName.Length;
             byte[] firstImagePacket;

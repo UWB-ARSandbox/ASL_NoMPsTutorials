@@ -7,6 +7,7 @@ EXE/
 EXE-Android/
 VRBuild/
 Assets/AssetStoreTools*
+ASL/Logs/
 
 # Visual Studio cache directory
 .vs/
