@@ -101,7 +101,7 @@ public class PCPlayerMovement : MonoBehaviour
     {
         if (playerMeshTransform != null)
         {
-            if (!playerMeshTransform.GetComponent<ASLTransformSync>())
+            if (!playerMeshTransform.GetComponent<ASLPlayerSync>())
             {
                 transform.position = playerMeshTransform.position + new Vector3(0,2,0);
             }

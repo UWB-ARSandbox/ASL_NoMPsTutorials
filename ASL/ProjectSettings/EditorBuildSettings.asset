@@ -8,8 +8,8 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/ASL/ASL_Tutorials/Complex/ASL_StressTests/Scenes/StressTest_FightOverFiveObjects.unity
     guid: e37ccc4818234c847b2246cf6e79b020
-  - enabled: 1
-    path: Assets/ChapmanDemo/PCPlayerMovement/NewMazeDemoScene.unity
+  - enabled: 0
+    path: Assets/ChapmanDemo/Scenes/MazeDemoScene.unity
     guid: c98ca6164388f1e48b82f8bf95b87472
   - enabled: 0
     path: Assets/ASL/ASL_Tutorials/Simple/ARWorldOrigin/ARWorldOrigin_Example.unity
@@ -20,25 +20,19 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/ASL/ASL_Scenes/ASL_LobbyScene.unity
-    guid: 31f3bf0f357b60c4981e20725877fd45
   - enabled: 0
     path: Assets/ASL/ASL_Tutorials/Simple/ARCloudAnchors/ARCloudAnchors_Example.unity
     guid: 4a1306f7d255b644e8fc4fc46cd27115
   - enabled: 0
     path: Assets/ASL/ASL_Tutorials/Complex/ASL_StressTests/Scenes/StressTest_150_ASLObjects.unity
     guid: 8c87c2f2d4a01c54ab3344d1043554b3
-  - enabled: 1
-    path: Assets/ASL/ASL_Scenes/ASL_SceneLoader.unity
-    guid: 6026d53651e499849a1420efc6833ec7
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/ASL/ASL_Tutorials/Simple/CreateObject/CreateObject_Example.unity
     guid: 5713198fc7e4cab4294d32fc0e0aae63
-  - enabled: 1
+  - enabled: 0
     path: Assets/ASL/ASL_Tutorials/Simple/TransformObjectViaLocalSpace/TransformObjectViaLocalSpace_Example.unity
     guid: bb47f37a4de70e14099dddee3c104811
   - enabled: 0
@@ -80,9 +74,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/ASL/ASL_Tutorials/Simple/WorldScanExample/ASLRoomLoadingExample.unity
     guid: 469930ea538046f429f64844afe0f1e7
+  - enabled: 1
+    path: Assets/ChapmanDemo/PCPlayerMovement/NewMazeDemoScene.unity
+    guid: 9309e14f7d8ed314da8fb5614e8c9608
+  - enabled: 1
+    path: Assets/ASL/ASL_Scenes/ASL_SceneLoader.unity
+    guid: 6026d53651e499849a1420efc6833ec7
+  - enabled: 1
+    path: Assets/ASL/ASL_Scenes/ASL_LobbyScene.unity
+    guid: 31f3bf0f357b60c4981e20725877fd45
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 014e11ea0b10820459a24005e5775897, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: bf557935255407f40b56b5c173577bf9, type: 2}
-    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 7414da7f3b0526e459ccf1cee85cbacc, type: 2}
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: f81eaaa375ab70b40957a0e33db2d86f, type: 2}
     com.unity.xr.management.arcore_loader: {fileID: 11400000, guid: 23a24ef9a392c0e4f95ea82d0acb26a1, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 9884d9205f7a5604c9da4d3f97b10a5e, type: 2}
