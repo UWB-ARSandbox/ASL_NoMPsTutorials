@@ -11,17 +11,22 @@ public class PCPlayerMovement : MonoBehaviour
     //public float jumpForce = 6f; //Jump functionality closed
     public LayerMask groundLayerMask; //Layer Mask for ground
     public LayerMask playerMeshLayerMask; //Layer Mask for player mesh
+    public LayerMask pickAbleItemLayerMask; //Layer Mask for pickable Items
     private bool grounded; //Check if the player is on the ground 
+    private bool onObject = false; //check if the player is on top of the pickable object
     private CharacterController controller; //Stores player's Character controller component
     public float gravity = -9.81f;  //Gravity to calculate falling speed
     private float fallingSpeed; //Stores falling speed
     private ASLTransformSync myASL;
-    
+    private Vector3 onObjectPos; //Player position when on the top of the pickable object
+    PCPlayerItemInteraction pcPlayerItemInteraction;
+
     private bool spawnPointSet = false; //True if player System set its spawn point
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        pcPlayerItemInteraction = GetComponent<PCPlayerItemInteraction>();
         //calculate spawn point
         initPlayerMeshToThePoint();
     }
@@ -33,6 +38,11 @@ public class PCPlayerMovement : MonoBehaviour
             tryGettingPlayerMesh();
         }
         movePlayerMesh();
+        
+    }
+
+    private void FixedUpdate()
+    {
         if (spawnPointSet)
         {
             movePlayerMovementbyKeyboard();
@@ -83,14 +93,27 @@ public class PCPlayerMovement : MonoBehaviour
     //This method will make player to fall to the ground if the player is not on the ground
     void fallPlayer()
     {
-        //check if the player is on the ground
-        grounded = Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), .7f, groundLayerMask);
-        Debug.Log(grounded);
+        grounded = Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), .5f, groundLayerMask);
+        onObject = Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), .5f, pickAbleItemLayerMask);
+
+        if (onObject && !pcPlayerItemInteraction.pickedUpItem)
+        {
+            onObjectPos = transform.position;
+        }
+
+        if (onObject && pcPlayerItemInteraction.pickedUpItem)
+        {
+            transform.position = new Vector3(transform.position.x, onObjectPos.y, transform.position.z);
+        }
         if (grounded)
             fallingSpeed = 0;
         else
             fallingSpeed += gravity * Time.fixedDeltaTime;
         controller.Move(Vector3.up * fallingSpeed * Time.fixedDeltaTime);
+        if (transform.position.y < -99f)
+        {
+            transform.position = spawnPoint;
+        }
     }
     // Update is called once per frame
 
