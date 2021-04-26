@@ -75,6 +75,13 @@ public class MazeSystem : MonoBehaviour
         m_mazeStartPosition.PlaceCharacterInStartPos();
     }
 
+    private void InitButtonSystem()
+    {
+        ASL.ASLHelper.InstantiateASLObject("ButtonSystem",
+                                           new Vector3(0f, 0f, 0f),
+                                           Quaternion.identity);
+    }
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -83,5 +90,6 @@ public class MazeSystem : MonoBehaviour
 
         m_mazeStartPosition = GameObject.FindObjectOfType<MazeStartPosition>();
         m_mazeEndPosition = GameObject.FindObjectOfType<MazeEndPosition>();
+        //InitButtonSystem();
     }
 }

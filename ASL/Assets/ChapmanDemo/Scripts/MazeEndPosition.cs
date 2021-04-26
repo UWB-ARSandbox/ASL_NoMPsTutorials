@@ -5,13 +5,13 @@ using UnityEngine;
 public class MazeEndPosition : MonoBehaviour
 {
     private PlayerSystem m_playerSystem;
-    private MazeSystem m_mazeSystem;
+    public MazeSystem m_mazeSystem;
     [SerializeField] private float m_endMazeDistance = 1f;
 
     private void Awake()
     {
         m_playerSystem = GameObject.FindObjectOfType<PlayerSystem>();
-        m_mazeSystem = GameObject.FindObjectOfType<MazeSystem>();
+        //m_mazeSystem = GameObject.FindObjectOfType<MazeSystem>();
     }
 
     // Update is called once per frame
