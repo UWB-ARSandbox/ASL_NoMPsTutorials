@@ -37,6 +37,7 @@ public class PCPlayerItemInteraction : MonoBehaviour {
                 {
                     Debug.Log("Did Hit " + hit.transform.name);
                     pickedUpItem = hit.collider.gameObject;
+                    pickedUpItem.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
                 }
             } else
             {
@@ -65,6 +66,7 @@ public class PCPlayerItemInteraction : MonoBehaviour {
     
     private void leaveObejct()
     {
+        pickedUpItem.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         pickedUpItem.GetComponent<Rigidbody>().velocity = Vector3.zero;
         pickedUpItem = null;
     }
