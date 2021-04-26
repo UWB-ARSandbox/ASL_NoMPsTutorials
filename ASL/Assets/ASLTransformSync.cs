@@ -16,9 +16,14 @@ public class ASLTransformSync : MonoBehaviour
     private int id;
     private int lockHolder;
     private bool madeInitialClaim;
+    private bool alwaysKinematic;
     // Start is called before the first frame update
     void Start()
     {
+        if (GetComponent<Rigidbody>() != null)
+        {
+            alwaysKinematic = GetComponent<Rigidbody>().isKinematic;
+        }
         GetComponent<ASLObject>()._LocallySetFloatCallback((string _id, float[] f) =>
         {
             lockHolder = id;
@@ -34,7 +39,7 @@ public class ASLTransformSync : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (GetComponent<Rigidbody>() != null)
+        if (GetComponent<Rigidbody>() != null && !alwaysKinematic)
         {
             GetComponent<Rigidbody>().isKinematic = !GetComponent<ASLObject>().m_Mine;
         }

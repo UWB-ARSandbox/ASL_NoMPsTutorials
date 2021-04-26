@@ -25,7 +25,9 @@ public class LaserSensorIndicator : MonoBehaviour
         activations++;
         if (activations >= Threshold)
         {
-            GetComponent<MeshRenderer>().material.color = new Color(0.0f, 1.0f, 0.0f);
+            Debug.Log("A");
+            Color c = new Color(0.0f, 1.0f, 0.0f);
+            GetComponent<MeshRenderer>().material.color = c;
         }
     }
     public void LaserHitEnd()
@@ -33,7 +35,9 @@ public class LaserSensorIndicator : MonoBehaviour
         activations--;
         if (activations < Threshold)
         {
-            GetComponent<MeshRenderer>().material.color = new Color(1.0f, 0.0f, 0.0f);
+            Debug.Log("B");
+            Color c = new Color(1.0f, 0.0f, 0.0f);
+            GetComponent<MeshRenderer>().material.color = c;
         }
     }
 }

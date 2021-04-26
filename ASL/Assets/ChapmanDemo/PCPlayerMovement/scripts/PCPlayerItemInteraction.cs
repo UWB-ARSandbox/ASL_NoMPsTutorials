@@ -9,10 +9,23 @@ public class PCPlayerItemInteraction : MonoBehaviour {
     public float throwingYDirection = 0.3f; //y direction for parabola projectile angle
     public float throwingForce = 350f;  //throwing force for parabola projectile 
     public LayerMask pickableLayer; //Layer Mask for pickable items layer
+    public LayerMask pickableChildLayer; //Layer Mask for pickable items layer
 
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown("e"))
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
+            {
+                OnAction onAction = hit.collider.GetComponent<OnAction>();
+                if (onAction != null)
+                {
+                    onAction.OnUse.Invoke();
+                }
+            }
+        }
         //pick up item
         if(Input.GetMouseButtonDown(0))
         {   if (pickedUpItem == null)
@@ -22,9 +35,21 @@ public class PCPlayerItemInteraction : MonoBehaviour {
                 {
                     Debug.Log("Did Hit " + hit.transform.name);
                     pickedUpItem = hit.collider.gameObject;
+                } else if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, pickUpDistance, pickableChildLayer))
+                {
+                    Transform t = hit.transform.parent;
+                    while (t != null)
+                    {
+                        if ((1 << t.gameObject.layer) == pickableLayer.value)
+                        {
+                            Debug.Log("Did Hit " + t.name);
+                            pickedUpItem = t.gameObject;
+                            break;
+                        }
+                        t = t.parent;
+                    }
                 }
-            } else
-            {
+            } else {
                 pickedUpItem.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 pickedUpItem = null;
             }

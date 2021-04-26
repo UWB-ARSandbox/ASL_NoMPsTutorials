@@ -27,15 +27,24 @@ public class LaserBeamLighter : MonoBehaviour
     {
         Ray ray = new Ray(transform.position, transform.TransformDirection(new Vector3(0f, 0f, 1f)));
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("LaserSensor")))
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(new Vector3(0f, 0f, 1f)) * hit.distance, Color.yellow);
-            transform.localScale = new Vector3(1f, 1f, Mathf.Min(ClipDistance, hit.distance));
+            LaserSensor sensor = hit.transform.gameObject.GetComponent<LaserSensor>();
+            Debug.Log(hit.transform.gameObject.name);
+            if (sensor != null && sensor != ExcludeSensor)
+            {
+                sensor.Trigger(ray, hit);
+            }
+            Debug.DrawRay(transform.position, transform.TransformDirection(new Vector3(0f, 0f, 1f)) * hit.distance, Color.green);
+        }
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~LayerMask.GetMask("LaserSensor"))) {
             LaserSensor sensor = hit.transform.gameObject.GetComponent<LaserSensor>();
             if (sensor != null && sensor != ExcludeSensor)
             {
                 sensor.Trigger(ray, hit);
-            }   
+            }
+            Debug.DrawRay(transform.position, transform.TransformDirection(new Vector3(0f, 0f, 1f)) * hit.distance, Color.yellow);
+            transform.localScale = new Vector3(1f, 1f, Mathf.Min(ClipDistance, hit.distance));
         }
         else
         {
@@ -44,8 +53,10 @@ public class LaserBeamLighter : MonoBehaviour
             transform.localScale = new Vector3(1f, 1f, ClipDistance);
         }
 
+        float dist = transform.localScale.z;
+        dist = Mathf.Min(ClipDistance, dist);
 
-        int lightCount = (int)(transform.localScale.z * LightDensity);
+        int lightCount = (int)(dist * LightDensity);
         if (lightCount < 0)
         {
             lightCount = 0;
@@ -67,7 +78,7 @@ public class LaserBeamLighter : MonoBehaviour
         {
             GameObject light = lights[i];
             light.transform.SetParent(transform);
-            light.transform.localPosition = new Vector3(0.0f, 0.0f, i/LightDensity/transform.localScale.z + 0.5f / lightCount);
+            light.transform.localPosition = new Vector3(0.0f, 0.0f, i/LightDensity/dist + 0.5f / lightCount);
             light.GetComponent<Light>().intensity = Intensity / LightDensity;
         }
     }

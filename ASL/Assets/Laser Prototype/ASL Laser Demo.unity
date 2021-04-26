@@ -504,6 +504,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1638522408587049632, guid: 816bc7d291d55094aa875a470a2a6fad, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1638522409165707161, guid: 816bc7d291d55094aa875a470a2a6fad, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1638522410383775246, guid: 816bc7d291d55094aa875a470a2a6fad, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7257771957054572509, guid: 816bc7d291d55094aa875a470a2a6fad, type: 3}
       propertyPath: m_Name
       value: Beam Splitter
@@ -550,6 +562,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7257771957054572510, guid: 816bc7d291d55094aa875a470a2a6fad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7257771958029600354, guid: 816bc7d291d55094aa875a470a2a6fad, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7257771958029600356, guid: 816bc7d291d55094aa875a470a2a6fad, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -604,6 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e47d3bd6c308204389dc51ee8f4b383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holdPhysicsCounterValue: 0
 --- !u!136 &1542698394
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -796,6 +817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e47d3bd6c308204389dc51ee8f4b383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holdPhysicsCounterValue: 0
 --- !u!114 &1967104396
 MonoBehaviour:
   m_ObjectHideFlags: 0

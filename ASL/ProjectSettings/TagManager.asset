@@ -18,8 +18,8 @@ TagManager:
   - PickableItem
   - PostProcessing
   - PlayerMesh
-  - 
-  - 
+  - PickableItemChild
+  - LaserSensor
   - 
   - 
   - 
