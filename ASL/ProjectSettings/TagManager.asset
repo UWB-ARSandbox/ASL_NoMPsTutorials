@@ -7,6 +7,8 @@ TagManager:
   - MatchInfo
   - AvailableMatches
   - UI
+  - CubePosition
+  - KeyMaze
   layers:
   - Default
   - TransparentFX
@@ -18,8 +20,8 @@ TagManager:
   - PickableItem
   - PostProcessing
   - PlayerMesh
-  - 
-  - 
+  - Button
+  - Key
   - 
   - 
   - 
