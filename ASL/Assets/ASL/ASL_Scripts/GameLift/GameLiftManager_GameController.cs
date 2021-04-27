@@ -786,6 +786,7 @@ namespace ASL
                     {
                         if (!AwaitingChildGUIDs[rootGUID].MoveNext())
                         {
+                            AwaitingChildGUIDs.Remove(rootGUID);
                             return;
                         }
                     }
