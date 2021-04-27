@@ -10,14 +10,23 @@ public class PressurePlate : MonoBehaviour
 
     void Update()
     {
-        while (onPressurePlate && door.transform.position.y <= 2.6)
+        if (onPressurePlate && door.transform.position.y <= 2.6)
         {
-            door.transform.position += new Vector3(0, 5, 0);
+            door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y + (float)5, door.transform.position.z);
+            //Just set position
+            door.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
+            {
+                door.GetComponent<ASL.ASLObject>().SendAndSetWorldPosition(door.transform.position);
+            });
         }
-
-        while (!onPressurePlate && door.transform.position.y > 2.5)
+        else if(!onPressurePlate && door.transform.position.y > 2.5)
         {
-            door.transform.position += new Vector3(0, -5, 0);
+            door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y - (float)5, door.transform.position.z);
+            //Just set position
+            door.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
+            {
+                door.GetComponent<ASL.ASLObject>().SendAndSetWorldPosition(door.transform.position);
+            });
         }
 
     }
