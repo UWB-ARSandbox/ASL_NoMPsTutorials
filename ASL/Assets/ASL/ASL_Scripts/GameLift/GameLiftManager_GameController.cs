@@ -38,6 +38,8 @@ namespace ASL
             /// </summary>
             private readonly Dictionary<string, byte[]> ReceivedTexture2Ds = new Dictionary<string, byte[]>();
 
+            private Dictionary<Guid, IEnumerator<GameObject>> AwaitingChildGUIDs = new Dictionary<Guid, IEnumerator<GameObject>>();
+
             /// <summary>
             /// Start function that states any scene loaded will call the SyncronizeId function, ensuring all ASL objects are synced upon scene loads
             /// </summary>
@@ -772,8 +774,33 @@ namespace ASL
                 //[10] = send float class
                 //[11] = send float function
                 //[12] = creator peerId
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]); 
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                
+                // Set up a child ASLObject
+                if (ConvertByteArrayIntoString(_packet.Data, startLocation[3], dataLength[3]).Equals("CHILD_OF_PREFAB"))
+                {
+                    string rootGUIDString = ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]);
+                    Guid rootGUID = new Guid(rootGUIDString);
+                    Guid childGuid = new Guid(id);
+                    do
+                    {
+                        if (!AwaitingChildGUIDs[rootGUID].MoveNext())
+                        {
+                            return;
+                        }
+                    }
+                    while (AwaitingChildGUIDs[rootGUID].Current != null && AwaitingChildGUIDs[rootGUID].Current.GetComponent<ASLObject>() == null);
+                    
+                    GameObject childObj = AwaitingChildGUIDs[rootGUID].Current;
+                    ASLObject childASLObj = childObj.GetComponent<ASLObject>();
+                    childASLObj._LocallySetID(childGuid.ToString());
+                    ASLHelper.m_ASLObjects.Add(childGuid.ToString(), AwaitingChildGUIDs[rootGUID].Current.GetComponent<ASLObject>());
+                    return;
+                }
+
                 GameObject newASLObject = Instantiate(Resources.Load(@"MyPrefabs\" + ConvertByteArrayIntoString(_packet.Data, startLocation[3], dataLength[3]))) as GameObject;
+                AwaitingChildGUIDs.Add(new Guid(id), ASLHelper.IterateOverChildObjects(newASLObject).GetEnumerator());
+                
                 //Do we need to set the parent?
                 string parent = ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]);
                 if (parent != string.Empty || parent != null)
@@ -785,8 +812,14 @@ namespace ASL
                 Vector4 rotation = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                 newASLObject.transform.localRotation = new Quaternion(rotation.x, rotation.y, rotation.z, rotation.w);
 
-                //Set ID
-                newASLObject.AddComponent<ASLObject>()._LocallySetID(id);
+                if (newASLObject.GetComponent<ASLObject>() != null)
+                {
+                    newASLObject.GetComponent<ASLObject>()._LocallySetID(id);
+                }
+                else
+                {
+                    newASLObject.AddComponent<ASLObject>()._LocallySetID(id);
+                }
 
                 //Add any components if needed
                 string componentName = ConvertByteArrayIntoString(_packet.Data, startLocation[5], dataLength[5]);
@@ -811,6 +844,7 @@ namespace ASL
                 //If we have the means to set up the SendFloat callback function - then do it
                 string floatClass = ConvertByteArrayIntoString(_packet.Data, startLocation[10], dataLength[10]);
                 string floatFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[11], dataLength[11]);
+
                 if (floatClass != string.Empty && floatClass != null &&
                     floatFunction != string.Empty && floatFunction != null)
                 {
