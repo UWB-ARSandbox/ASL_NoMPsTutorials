@@ -23,7 +23,7 @@ public class ButtonTwoKey : MonoBehaviour
         {
             int layerMask = 1 << 10;
             RaycastHit hit;
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100, layerMask))
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 2, layerMask))
             {
                 if(hit.transform.GetComponent<Renderer>().material.color == buttonColor)
                 {

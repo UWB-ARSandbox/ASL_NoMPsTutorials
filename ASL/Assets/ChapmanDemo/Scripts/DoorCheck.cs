@@ -5,11 +5,11 @@ using UnityEngine;
 public class DoorCheck : MonoBehaviour
 {
     public Color[] unlockColors = new Color[10];
-    public List<GameObject> keys = new List<GameObject>();
+    public GameObject[] keys = new GameObject[10];
+    //public List<GameObject> keys = new List<GameObject>();
     public GameObject door;
-    public LayerMask doorLayer;
+    //public LayerMask doorLayer;
     public bool unlock = false;
-    bool test = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,20 +19,10 @@ public class DoorCheck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (test)
-        {
-            Collider[] Door = Physics.OverlapSphere(transform.position, 0.5f, doorLayer);
-            door = Door[0].transform.gameObject;
-            test = false;
-        }
-        
-        if(keys.Count > 1)
-        {
-            unlock = true;
-        }
 
-        for (int i = 0; i < keys.Count; i++)
-        {
+        unlock = true;
+        for (int i = 0; i < keys.Length; i++)
+        {       
             if (keys[i] != null)
             {
                 
@@ -43,7 +33,7 @@ public class DoorCheck : MonoBehaviour
             }
         }
 
-        while (unlock && door.transform.position.y <= 4)
+        while (unlock && door.transform.position.y <= 2.6)
         {
             door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y + (float)5, door.transform.position.z);
             //Just set position
@@ -53,7 +43,7 @@ public class DoorCheck : MonoBehaviour
             });
         }
 
-        while (!unlock && door.transform.position.y > 6)
+        while (!unlock && door.transform.position.y > 2.5)
         {
             door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y - (float)5, door.transform.position.z);
             //Just set position
@@ -66,6 +56,6 @@ public class DoorCheck : MonoBehaviour
 
     public void setKeyColors(GameObject input)
     {
-        keys.Add(input);
+        //keys.Add(input);
     }
 }
