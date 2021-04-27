@@ -1482,7 +1482,7 @@ MonoBehaviour:
   doorLayer:
     serializedVersion: 2
     m_Bits: 4096
-  unlock: 1
+  unlock: 0
 --- !u!1 &7046678177107752489
 GameObject:
   m_ObjectHideFlags: 0
