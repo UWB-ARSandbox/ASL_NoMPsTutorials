@@ -53,4 +53,14 @@ public class ButtonTwoKey : MonoBehaviour
             }
         }
     }
+
+    public void setKey(GameObject input)
+    {
+        keyOne = input;
+    }
+
+    public void setKey2(GameObject input)
+    {
+        keyTwo = input;
+    }
 }

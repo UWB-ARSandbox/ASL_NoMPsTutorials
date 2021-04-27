@@ -4,10 +4,14 @@ using UnityEngine;
 using ASL;
 public class KeyInitialize : MonoBehaviour
 {
-    public GameObject[] keyPositions;
+    public bool InitializeKey = true;
+    public GameObject keyDoor;
+    public bool sendKeyDoor = true;
     public GameObject button;
+    public GameObject button2;
     public LayerMask keyLayer;
     private GameObject myKey;
+    public GameObject keyTwo;
     public static List<GameObject> keys = new List<GameObject>();
     private bool mazeInitialized = false;
     private bool m_isHost = false;
@@ -20,16 +24,31 @@ public class KeyInitialize : MonoBehaviour
         if (!m_isHost) return;
         if (!mazeInitialized)
         {
-            
+            if (InitializeKey)
+            {
                 InitKeys();
                 mazeInitialized = true;
-            
+            }
+                       
         }
         if(myKey == null)
         {
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, 0.1f, keyLayer);
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, 0.05f, keyLayer);
             myKey = hitColliders[0].transform.gameObject;
-            button.GetComponent<ButtonOneKey>().setKey(myKey);
+            if(button != null)
+            {
+                button.GetComponent<ButtonOneKey>().setKey(myKey);
+            }
+            button2.GetComponent<ButtonTwoKey>().setKey(myKey);
+
+            if (sendKeyDoor)
+            {
+                keyDoor.GetComponent<DoorCheck>().setKeyColors(myKey);
+                sendKeyDoor = false;
+            }
+            //Collider[] hit = Physics.OverlapSphere(keyTwo.transform.position, 0.05f, keyLayer);
+            //myKey = hit[0].transform.gameObject;
+            //button2.GetComponent<ButtonTwoKey>().setKey2(myKey);
         }
     }
 

@@ -9,6 +9,7 @@ TagManager:
   - UI
   - CubePosition
   - KeyMaze
+  - KeyDoor
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - PlayerMesh
   - Button
   - Key
-  - 
+  - KeyDoor
   - 
   - 
   - 
