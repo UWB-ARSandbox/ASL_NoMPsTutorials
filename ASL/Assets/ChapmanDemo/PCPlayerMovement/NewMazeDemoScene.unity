@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e4f1c43c86502449523205c21302a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RoomName: MazePlayerInte
+  m_RoomName: MazePlayerIntesdsd
   m_StartingScene: NewMazeDemoScene
 --- !u!4 &659362291
 Transform:
@@ -336,6 +336,14 @@ PrefabInstance:
     - target: {fileID: 2800118942192953682, guid: 145f08ff755faa64d92312daa6f50a23, type: 3}
       propertyPath: playerRandomSpwanRange
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800118942192953683, guid: 145f08ff755faa64d92312daa6f50a23, type: 3}
+      propertyPath: throwingForce
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800118942192953683, guid: 145f08ff755faa64d92312daa6f50a23, type: 3}
+      propertyPath: pickUpDistance
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2800118942192953688, guid: 145f08ff755faa64d92312daa6f50a23, type: 3}
       propertyPath: m_Name

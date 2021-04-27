@@ -6,25 +6,28 @@ public class PCPlayerItemInteraction : MonoBehaviour {
 
     public GameObject pickedUpItem; //Store the item that user is currently picking up
     public float pickUpDistance = 4f; //Maximum distance that allow user to pick up
+    public float distanceBetweenPlayerAndObject = 3f;
     public float throwingYDirection = 0.3f; //y direction for parabola projectile angle
-    public float throwingForce = 350f;  //throwing force for parabola projectile 
+    public float throwingForce = 200f;  //throwing force for parabola projectile 
     public LayerMask pickableLayer; //Layer Mask for pickable items layer
-    private float pickUpObjectDistance = 2f; //Distance between the player's eye and picked up item
+    private float pickUpObjectDistance = 3f; //Distance between the player's eye and picked up item
     // Update is called once per frame
     void Update()
     {
-        pickUpObjectDistance = 2f;
+        pickUpObjectDistance = distanceBetweenPlayerAndObject;
         //if (pickedUpItem && collidingObject)
         if (pickedUpItem)
         {
             RaycastHit hitInfo;
             // Does the ray intersect any objects excluding the player layer
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, 3f, ~pickableLayer))
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, 5f, ~pickableLayer))
             {
                 Debug.Log(hitInfo.collider.gameObject.name);
                 pickUpObjectDistance = hitInfo.distance - .3f;
                 if (pickUpObjectDistance < 0)
                     pickUpObjectDistance = 0;
+                if (pickUpObjectDistance > distanceBetweenPlayerAndObject)
+                    pickUpObjectDistance = distanceBetweenPlayerAndObject;
             }
         }
 
