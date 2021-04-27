@@ -8,8 +8,6 @@ public class MazeStartPosition : MonoBehaviour
     public SpawnArea bottomFloorSpawnArea;
     private PlayerSystem m_playerSystem;
     public MazeSystem m_mazeSystem;
-    [SerializeField] private float m_pos_y = 1f;
-    [SerializeField] private float m_secFloorPos_y = 12f;
 
     public void PlaceCharacterInStartPos()
     {
@@ -34,6 +32,13 @@ public class MazeStartPosition : MonoBehaviour
             {
                 Debug.Log("Bottom floor");
                 Vector3 bottomFloorPos = bottomFloorSpawnArea.GetEmptySpawnPosition();
+
+                if (bottomFloorPos.x == 1000f && bottomFloorPos.y == 1000f && bottomFloorPos.z == 1000f)
+                {
+                    Debug.Log("No more bottom floor spawn position");
+                    continue;
+                }
+
                 // Set character position to bottom floor
                 character.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
                 {
@@ -46,6 +51,13 @@ public class MazeStartPosition : MonoBehaviour
             {
                 Debug.Log("Top floor");
                 Vector3 topFloorPos = topFloorSpawnArea.GetEmptySpawnPosition();
+
+                if (topFloorPos.x == 1000f && topFloorPos.y == 1000f && topFloorPos.z == 1000f)
+                {
+                    Debug.Log("No more bottom floor spawn position");
+                    continue;
+                }
+
                 character.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
                 {
                     character.GetComponent<ASL.ASLObject>().SendAndSetWorldPosition(topFloorPos);
