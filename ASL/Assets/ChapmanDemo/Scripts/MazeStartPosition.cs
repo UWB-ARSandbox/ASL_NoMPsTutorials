@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class MazeStartPosition : MonoBehaviour
 {
+    public SpawnArea topFloorSpawnArea;
+    public SpawnArea bottomFloorSpawnArea;
     private PlayerSystem m_playerSystem;
-    private MazeSystem m_mazeSystem;
-    [SerializeField] private float m_pos_y = 1f;
-    [SerializeField] private float m_secFloorPos_y = 12f;
+    public MazeSystem m_mazeSystem;
 
     public void PlaceCharacterInStartPos()
     {
         if (!m_playerSystem.GetIsHost()) return;
-        Vector3 bottomFloorPos = this.gameObject.transform.position;
-        bottomFloorPos.y = m_pos_y;
-        Vector3 topFloorPos = this.gameObject.transform.position;
-        topFloorPos.y = m_secFloorPos_y;
 
         //Debug.Log("Position = " + pos);
         int numCharacterInMaze = m_mazeSystem.GetNumCharacterInMaze();
@@ -35,6 +31,14 @@ public class MazeStartPosition : MonoBehaviour
             if (i % 2 == 0) // even number
             {
                 Debug.Log("Bottom floor");
+                Vector3 bottomFloorPos = bottomFloorSpawnArea.GetEmptySpawnPosition();
+
+                if (bottomFloorPos.x == 1000f && bottomFloorPos.y == 1000f && bottomFloorPos.z == 1000f)
+                {
+                    Debug.Log("No more bottom floor spawn position");
+                    continue;
+                }
+
                 // Set character position to bottom floor
                 character.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
                 {
@@ -46,6 +50,14 @@ public class MazeStartPosition : MonoBehaviour
             else
             {
                 Debug.Log("Top floor");
+                Vector3 topFloorPos = topFloorSpawnArea.GetEmptySpawnPosition();
+
+                if (topFloorPos.x == 1000f && topFloorPos.y == 1000f && topFloorPos.z == 1000f)
+                {
+                    Debug.Log("No more bottom floor spawn position");
+                    continue;
+                }
+
                 character.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
                 {
                     character.GetComponent<ASL.ASLObject>().SendAndSetWorldPosition(topFloorPos);
@@ -75,7 +87,7 @@ public class MazeStartPosition : MonoBehaviour
     private void Awake()
     {
         m_playerSystem = GameObject.FindObjectOfType<PlayerSystem>();
-        m_mazeSystem = GameObject.FindObjectOfType<MazeSystem>();
+        //m_mazeSystem = GameObject.FindObjectOfType<MazeSystem>();
     }
 
     private void Update()
