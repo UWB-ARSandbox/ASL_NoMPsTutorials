@@ -748,230 +748,54 @@ namespace ASL
         }
 
         /// <summary>
-        /// Combines byte arrays so they can be sent as one byte array to other users
+        /// Combines byte arrays so they can be sent as one byte array to other users. Can be called with 2 or more byte[] arguments.
+        /// Note that this method supports a variable number of arguments.
         /// </summary>
         /// <param name="_first">The first byte array</param>
         /// <param name="_second">The second byte array</param>
+        /// <param name="arrays">Additional byte arrays to combine</param>
         /// <returns>A single byte array containing the original byte arrays and length information about them so that they can be properly decoded when received by users</returns>
-        public byte[] CombineByteArrays(byte[] _first, byte[] _second)
+        public byte[] CombineByteArrays(byte[] _first, byte[] _second, params byte[][] arrays)
         {
-            byte[] count = BitConverter.GetBytes(2);
+            byte[] count = BitConverter.GetBytes(2 + arrays.Length);
             byte[] firstLength = BitConverter.GetBytes(_first.Length);
             byte[] secondLength = BitConverter.GetBytes(_second.Length);
 
-            byte[] combinedResults = new byte[count.Length + firstLength.Length + secondLength.Length + _first.Length + _second.Length];
+            // Compute size in bytes of combinedResults
+            int totalLength = count.Length + _first.Length + _second.Length + firstLength.Length * (2 + arrays.Length);
+            foreach (byte[] i in arrays)
+            {
+                totalLength += i.Length;
+            }
+
+            byte[] combinedResults = new byte[totalLength];
 
             Buffer.BlockCopy(count, 0, combinedResults, 0, count.Length);
+
+            // Copy byte[] lengths into combinedResults
             Buffer.BlockCopy(firstLength, 0, combinedResults, count.Length, firstLength.Length);
             Buffer.BlockCopy(secondLength, 0, combinedResults, count.Length + firstLength.Length, secondLength.Length);
-            Buffer.BlockCopy(_first, 0, combinedResults, count.Length + firstLength.Length + secondLength.Length, _first.Length);
-            Buffer.BlockCopy(_second, 0, combinedResults, count.Length + firstLength.Length + secondLength.Length + _first.Length, _second.Length);
+            int writeHead = count.Length + firstLength.Length + secondLength.Length;
+            for (int i = 0; i < arrays.Length; ++i)
+            {
+                byte[] length = BitConverter.GetBytes(arrays[i].Length);
+                Buffer.BlockCopy(length, 0, combinedResults, writeHead, length.Length);
+                writeHead += length.Length;
+            }
+
+            // Copy byte[] contents into combinedResults
+            Buffer.BlockCopy(_first, 0, combinedResults, writeHead, _first.Length);
+            writeHead += _first.Length;
+            Buffer.BlockCopy(_second, 0, combinedResults, writeHead, _second.Length);
+            writeHead += _second.Length;
+            for (int i = 0; i < arrays.Length; ++i)
+            {
+                Buffer.BlockCopy(arrays[i], 0, combinedResults, writeHead, arrays[i].Length);
+                writeHead += arrays[i].Length;
+            }
 
             return combinedResults;
         }
-
-        /// <summary>
-        /// Combines byte arrays so they can be sent as one byte array to other users
-        /// </summary>
-        /// <param name="_first">The first byte array</param>
-        /// <param name="_second">The second byte array</param>
-        /// <param name="_third">The third byte array</param>
-        /// <returns>A single byte array containing the original byte arrays and length information about them so that they can be properly decoded when received by users</returns>
-        public byte[] CombineByteArrays(byte[] _first, byte[] _second, byte[] _third)
-        {
-            byte[] count = BitConverter.GetBytes(3);
-            byte[] firstLength = BitConverter.GetBytes(_first.Length);
-            byte[] secondLength = BitConverter.GetBytes(_second.Length);
-            byte[] thirdLength = BitConverter.GetBytes(_third.Length);
-
-            byte[] combinedResults = new byte[count.Length + firstLength.Length + secondLength.Length + thirdLength.Length + _first.Length + _second.Length + _third.Length];
-
-            Buffer.BlockCopy(count, 0, combinedResults, 0, count.Length);
-            Buffer.BlockCopy(firstLength, 0, combinedResults, count.Length, firstLength.Length);
-            Buffer.BlockCopy(secondLength, 0, combinedResults, count.Length + firstLength.Length, secondLength.Length);
-            Buffer.BlockCopy(thirdLength, 0, combinedResults, count.Length + firstLength.Length + secondLength.Length, thirdLength.Length);
-            Buffer.BlockCopy(_first, 0, combinedResults, count.Length + firstLength.Length + secondLength.Length + thirdLength.Length, _first.Length);
-            Buffer.BlockCopy(_second, 0, combinedResults, count.Length + firstLength.Length + secondLength.Length + thirdLength.Length + _first.Length, _second.Length);
-            Buffer.BlockCopy(_third, 0, combinedResults, count.Length + firstLength.Length + secondLength.Length + thirdLength.Length + _first.Length + _second.Length, _third.Length);
-
-            return combinedResults;
-        }
-
-        /// <summary>
-        /// Combines byte arrays so they can be sent as one byte array to other users
-        /// </summary>
-        /// <param name="_first">The first byte array</param>
-        /// <param name="_second">The second byte array</param>
-        /// <param name="_third">The third byte array</param>
-        /// <param name="_fourth">The fourth byte array</param>
-        /// <returns>A single byte array containing the original byte arrays and length information about them so that they can be properly decoded when received by users</returns>
-        public byte[] CombineByteArrays(byte[] _first, byte[] _second, byte[] _third, byte[] _fourth)
-        {
-            byte[] count = BitConverter.GetBytes(4);
-            byte[] firstLength = BitConverter.GetBytes(_first.Length);
-            byte[] secondLength = BitConverter.GetBytes(_second.Length);
-            byte[] thirdLength = BitConverter.GetBytes(_third.Length);
-            byte[] fourthLength = BitConverter.GetBytes(_fourth.Length);
-
-            byte[] combinedResults = new byte[count.Length + firstLength.Length + secondLength.Length + thirdLength.Length + fourthLength.Length
-                                               + _first.Length + _second.Length + _third.Length + _fourth.Length];
-
-            Buffer.BlockCopy(count, 0, combinedResults, 0, count.Length);
-            Buffer.BlockCopy(firstLength, 0, combinedResults, count.Length, firstLength.Length);
-            Buffer.BlockCopy(secondLength, 0, combinedResults, count.Length + firstLength.Length, secondLength.Length);
-            Buffer.BlockCopy(thirdLength, 0, combinedResults, count.Length + firstLength.Length + secondLength.Length, thirdLength.Length);
-            Buffer.BlockCopy(fourthLength, 0, combinedResults, count.Length + firstLength.Length + secondLength.Length + thirdLength.Length, fourthLength.Length);
-            Buffer.BlockCopy(_first, 0, combinedResults, count.Length + firstLength.Length + secondLength.Length + thirdLength.Length + fourthLength.Length, _first.Length);
-            Buffer.BlockCopy(_second, 0, combinedResults, count.Length + firstLength.Length + secondLength.Length + thirdLength.Length + fourthLength.Length + _first.Length, _second.Length);
-            Buffer.BlockCopy(_third, 0, combinedResults, count.Length + firstLength.Length + secondLength.Length + thirdLength.Length + fourthLength.Length 
-                                + _first.Length + _second.Length, _third.Length);
-            Buffer.BlockCopy(_fourth, 0, combinedResults, count.Length + firstLength.Length + secondLength.Length + thirdLength.Length + fourthLength.Length 
-                                + _first.Length + _second.Length + _third.Length, _fourth.Length);
-
-            return combinedResults;
-        }
-
-        /// <summary>
-        /// Combines byte arrays so they can be sent as one byte array to other users
-        /// </summary>
-        /// <param name="_first">The first byte array</param>
-        /// <param name="_second">The second byte array</param>
-        /// <param name="_third">The third byte array</param>
-        /// <param name="_fourth">The fourth byte array</param>
-        /// <param name="_fifth">The fifth byte array</param>
-        /// <returns>A single byte array containing the original byte arrays and length information about them so that they can be properly decoded when received by users</returns>
-        public byte[] CombineByteArrays(byte[] _first, byte[] _second, byte[] _third, byte[] _fourth, byte[] _fifth)
-        {
-            byte[] count = BitConverter.GetBytes(5);
-            byte[] firstLength = BitConverter.GetBytes(_first.Length);
-            byte[] secondLength = BitConverter.GetBytes(_second.Length);
-            byte[] thirdLength = BitConverter.GetBytes(_third.Length);
-            byte[] fourthLength = BitConverter.GetBytes(_fourth.Length);
-            byte[] fifthLength = BitConverter.GetBytes(_fifth.Length);
-
-            byte[] combinedResults = new byte[count.Length + firstLength.Length + secondLength.Length + thirdLength.Length + fourthLength.Length + fifthLength.Length
-                                               + _first.Length + _second.Length + _third.Length + _fourth.Length + _fifth.Length];
-
-            Buffer.BlockCopy(count, 0, combinedResults, 0, count.Length);
-            Buffer.BlockCopy(firstLength, 0, combinedResults, count.Length, firstLength.Length);
-            Buffer.BlockCopy(secondLength, 0, combinedResults, count.Length + firstLength.Length, secondLength.Length);
-            Buffer.BlockCopy(thirdLength, 0, combinedResults, count.Length + firstLength.Length + secondLength.Length, thirdLength.Length);
-            Buffer.BlockCopy(fourthLength, 0, combinedResults, count.Length + firstLength.Length + secondLength.Length + thirdLength.Length, fourthLength.Length);
-            Buffer.BlockCopy(fifthLength, 0, combinedResults, count.Length + firstLength.Length + secondLength.Length + thirdLength.Length + fourthLength.Length, fifthLength.Length);
-            Buffer.BlockCopy(_first, 0, combinedResults, count.Length + firstLength.Length + secondLength.Length + thirdLength.Length + fourthLength.Length + fifthLength.Length, _first.Length);
-            Buffer.BlockCopy(_second, 0, combinedResults, count.Length + firstLength.Length + secondLength.Length + 
-                                thirdLength.Length + fourthLength.Length + fifthLength.Length + _first.Length, _second.Length);
-            Buffer.BlockCopy(_third, 0, combinedResults, count.Length + firstLength.Length + secondLength.Length +
-                                thirdLength.Length + fourthLength.Length + fifthLength.Length + _first.Length + _second.Length, _third.Length);
-            Buffer.BlockCopy(_fourth, 0, combinedResults, count.Length + firstLength.Length + secondLength.Length +
-                                thirdLength.Length + fourthLength.Length + fifthLength.Length + _first.Length + _second.Length + _third.Length, _fourth.Length);
-            Buffer.BlockCopy(_fifth, 0, combinedResults, count.Length + firstLength.Length + secondLength.Length +
-                                thirdLength.Length + fourthLength.Length + fifthLength.Length + _first.Length + _second.Length + _third.Length + _fourth.Length, _fifth.Length);
-
-            return combinedResults;
-        }
-
-        /// <summary>
-        /// Combines byte arrays so they can be sent as one byte array to other users
-        /// </summary>
-        /// <param name="_first">The first byte array</param>
-        /// <param name="_second">The second byte array</param>
-        /// <param name="_third">The third byte array</param>
-        /// <param name="_fourth">The fourth byte array</param>
-        /// <param name="_fifth">The fifth byte array</param>
-        /// <param name="_sixth">The sixth byte array</param>
-        /// <param name="_seventh">The seventh byte array</param>
-        /// <param name="_eighth">The eighth byte array</param>
-        /// <param name="_ninth">The ninth byte array</param>
-        /// <param name="_tenth">The tenth byte array</param>
-        /// <param name="_eleventh">The eleventh byte array</param>
-        /// <param name="_twelfth">The twelfth byte array</param>
-        /// <param name="_thirteenth">The thirteenth byte array</param>
-        /// <returns>A single byte array containing the original byte arrays and length information about them so that they can be properly decoded when received by users</returns>
-        public byte[] CombineByteArrays(byte[] _first, byte[] _second, byte[] _third, byte[] _fourth, byte[] _fifth, byte[] _sixth, byte[] _seventh, byte[] _eighth, byte[] _ninth, byte[] _tenth,
-            byte[] _eleventh, byte[] _twelfth, byte[] _thirteenth)
-        {
-            byte[] count = BitConverter.GetBytes(13);
-            byte[] firstLength = BitConverter.GetBytes(_first.Length);
-            byte[] secondLength = BitConverter.GetBytes(_second.Length);
-            byte[] thirdLength = BitConverter.GetBytes(_third.Length);
-            byte[] fourthLength = BitConverter.GetBytes(_fourth.Length);
-            byte[] fifthLength = BitConverter.GetBytes(_fifth.Length);
-            byte[] sixthLength = BitConverter.GetBytes(_sixth.Length);
-            byte[] seventhLength = BitConverter.GetBytes(_seventh.Length);
-            byte[] eighthLength = BitConverter.GetBytes(_eighth.Length);
-            byte[] ninthLength = BitConverter.GetBytes(_ninth.Length);
-            byte[] tenthLength = BitConverter.GetBytes(_tenth.Length);
-            byte[] evelethLength = BitConverter.GetBytes(_eleventh.Length);
-            byte[] twelfthLength = BitConverter.GetBytes(_twelfth.Length);
-            byte[] thirteenthLength = BitConverter.GetBytes(_thirteenth.Length);
-
-            byte[] combinedResults = new byte[count.Length + firstLength.Length + secondLength.Length + thirdLength.Length +
-                                        fourthLength.Length + fifthLength.Length + sixthLength.Length + seventhLength.Length +
-                                        eighthLength.Length + ninthLength.Length + tenthLength.Length + evelethLength.Length + 
-                                        twelfthLength.Length + thirteenthLength.Length + _first.Length + _second.Length + _third.Length + 
-                                        _fourth.Length + _fifth.Length + _sixth.Length + _seventh.Length + _eighth.Length + _ninth.Length +
-                                         _tenth.Length + _eleventh.Length + _twelfth.Length + _thirteenth.Length];
-
-            int offset = 0;
-
-            Buffer.BlockCopy(count, 0, combinedResults, 0, count.Length);
-            offset += count.Length;
-            Buffer.BlockCopy(firstLength, 0, combinedResults, offset, firstLength.Length);
-            offset += firstLength.Length;
-            Buffer.BlockCopy(secondLength, 0, combinedResults, offset, secondLength.Length);
-            offset += secondLength.Length;
-            Buffer.BlockCopy(thirdLength, 0, combinedResults, offset, thirdLength.Length);
-            offset += thirdLength.Length;
-            Buffer.BlockCopy(fourthLength, 0, combinedResults, offset, fourthLength.Length);
-            offset += fourthLength.Length;
-            Buffer.BlockCopy(fifthLength, 0, combinedResults, offset, fifthLength.Length);
-            offset += fifthLength.Length;
-            Buffer.BlockCopy(sixthLength, 0, combinedResults, offset, sixthLength.Length);
-            offset += sixthLength.Length;
-            Buffer.BlockCopy(seventhLength, 0, combinedResults, offset, seventhLength.Length);
-            offset += seventhLength.Length;
-            Buffer.BlockCopy(eighthLength, 0, combinedResults, offset, eighthLength.Length);
-            offset += eighthLength.Length;
-            Buffer.BlockCopy(ninthLength, 0, combinedResults, offset, ninthLength.Length);
-            offset += ninthLength.Length;
-            Buffer.BlockCopy(tenthLength, 0, combinedResults, offset, tenthLength.Length);
-            offset += tenthLength.Length;
-            Buffer.BlockCopy(evelethLength, 0, combinedResults, offset, evelethLength.Length);
-            offset += evelethLength.Length;
-            Buffer.BlockCopy(twelfthLength, 0, combinedResults, offset, twelfthLength.Length);
-            offset += twelfthLength.Length;
-            Buffer.BlockCopy(thirteenthLength, 0, combinedResults, offset, thirteenthLength.Length);
-            offset += thirteenthLength.Length;
-            Buffer.BlockCopy(_first, 0, combinedResults, offset, _first.Length);
-            offset += _first.Length;
-            Buffer.BlockCopy(_second, 0, combinedResults, offset, _second.Length);
-            offset += _second.Length;
-            Buffer.BlockCopy(_third, 0, combinedResults, offset, _third.Length);
-            offset += _third.Length;
-            Buffer.BlockCopy(_fourth, 0, combinedResults, offset, _fourth.Length);
-            offset += _fourth.Length;
-            Buffer.BlockCopy(_fifth, 0, combinedResults, offset, _fifth.Length);
-            offset += _fifth.Length;
-            Buffer.BlockCopy(_sixth, 0, combinedResults, offset, _sixth.Length);
-            offset += _sixth.Length;
-            Buffer.BlockCopy(_seventh, 0, combinedResults, offset, _seventh.Length);
-            offset += _seventh.Length;
-            Buffer.BlockCopy(_eighth, 0, combinedResults, offset, _eighth.Length);
-            offset += _eighth.Length;
-            Buffer.BlockCopy(_ninth, 0, combinedResults, offset, _ninth.Length);
-            offset += _ninth.Length;
-            Buffer.BlockCopy(_tenth, 0, combinedResults, offset, _tenth.Length);
-            offset += _tenth.Length;
-            Buffer.BlockCopy(_eleventh, 0, combinedResults, offset, _eleventh.Length);
-            offset += _eleventh.Length;
-            Buffer.BlockCopy(_twelfth, 0, combinedResults, offset, _twelfth.Length);
-            offset += _twelfth.Length;
-            Buffer.BlockCopy(_thirteenth, 0, combinedResults, offset, _thirteenth.Length);
-
-            return combinedResults;
-        }
-
         #endregion
 
         //As AWS runs on a different thread, but Unity is single threaded, this is how we ensure that any information on the AWS thread is communicated to Unity thread
