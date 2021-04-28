@@ -28,8 +28,6 @@ public class ASLObejctsHandler : MonoBehaviour
                 ASLObjects.Add(g);
                 if (g.tag == "Player")
                     g.AddComponent<ASLPlayerSync>();
-                else
-                    g.AddComponent<ASLTransformSync>();
             }  
             
         }
