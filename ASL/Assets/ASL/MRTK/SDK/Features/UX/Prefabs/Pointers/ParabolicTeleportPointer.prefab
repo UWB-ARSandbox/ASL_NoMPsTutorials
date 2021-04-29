@@ -115,6 +115,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -434,8 +435,7 @@ MonoBehaviour:
     description: Pointer Pose
     axisConstraint: 7
   handedness: 1
-  cursorPrefab: {fileID: 1554777696564956, guid: ae2b3fffb00f464287cda86f49109b47,
-    type: 3}
+  cursorPrefab: {fileID: 1554777696564956, guid: ae2b3fffb00f464287cda86f49109b47, type: 3}
   disableCursorOnStart: 1
   setCursorVisibilityOnSourceDetected: 0
   raycastOrigin: {fileID: 0}
@@ -650,16 +650,14 @@ MonoBehaviour:
     m_NumAlphaKeys: 4
   ValidLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 192
   InvalidLayers:
     serializedVersion: 2
     m_Bits: 4
   gravityDistorter: {fileID: 114225980339285346}
   pointerAudioSource: {fileID: 5571717125842689191}
-  teleportRequestedClip: {fileID: 8300000, guid: a16c53885bdbc54469088880ea44a9fd,
-    type: 3}
-  teleportCompletedClip: {fileID: 8300000, guid: 06f9d598e90313646bbff63530142344,
-    type: 3}
+  teleportRequestedClip: {fileID: 8300000, guid: a16c53885bdbc54469088880ea44a9fd, type: 3}
+  teleportCompletedClip: {fileID: 8300000, guid: 06f9d598e90313646bbff63530142344, type: 3}
   pointerOrientation: 0
   minParabolaVelocity: 5
   maxParabolaVelocity: 20
