@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class MazeEndPosition : MonoBehaviour
 {
+    public MovingPlatformPoint Point;
+    public GameObject MazeExitDoor;
     private PlayerSystem m_playerSystem;
-    private MazeSystem m_mazeSystem;
+    public MazeSystem m_mazeSystem;
     [SerializeField] private float m_endMazeDistance = 1f;
 
     private void Awake()
     {
         m_playerSystem = GameObject.FindObjectOfType<PlayerSystem>();
-        m_mazeSystem = GameObject.FindObjectOfType<MazeSystem>();
+        //m_mazeSystem = GameObject.FindObjectOfType<MazeSystem>();
     }
 
     // Update is called once per frame
@@ -47,6 +49,12 @@ public class MazeEndPosition : MonoBehaviour
         {
             Debug.Log("Maze passed");
             m_mazeSystem.SetIsMazeEnded(true);
+            Point.SetSpeed = true;
+            Point.Speed = 4f;
+            MazeExitDoor.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
+            {
+                MazeExitDoor.GetComponent<ASL.ASLObject>().DeleteObject();
+            });
         }
     }
 }

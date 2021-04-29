@@ -7,6 +7,9 @@ TagManager:
   - MatchInfo
   - AvailableMatches
   - UI
+  - CubePosition
+  - KeyMaze
+  - KeyDoor
   layers:
   - Default
   - TransparentFX
@@ -21,9 +24,9 @@ TagManager:
   - PickableItemChild
   - LaserSensor
   - 
-  - 
-  - 
-  - 
+  - Button
+  - Key
+  - KeyDoor
   - 
   - 
   - 

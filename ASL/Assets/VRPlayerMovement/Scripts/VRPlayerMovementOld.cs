@@ -6,7 +6,7 @@ using Microsoft.MixedReality.Toolkit.Teleport;
 using Microsoft.MixedReality.Toolkit.Input;
 using UnityEngine.EventSystems;
 
-public class VRPlayerMovement : MonoBehaviour {
+public class VRPlayerMovementOld : MonoBehaviour {
     private Rigidbody mixedRealityPlayspace;
     public GameObject playerBody;
     public GameObject toolkit;
