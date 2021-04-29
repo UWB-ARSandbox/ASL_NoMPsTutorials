@@ -11,6 +11,9 @@ public class PCPlayerItemInteraction : MonoBehaviour {
     public float throwingForce = 200f;  //throwing force for parabola projectile 
     public LayerMask pickableLayer; //Layer Mask for pickable items layer
     public LayerMask pickableChildLayer; //Layer Mask for pickable items layer
+
+    public LayerMask nonInterativeLayer; //TODO pick a better name?
+
     public float mouseSensitivity; // sensitivity for rotation of picked-up objects
 
     private float pickUpObjectDistance = 3f; //Distance between the player's eye and picked up item
@@ -49,7 +52,7 @@ public class PCPlayerItemInteraction : MonoBehaviour {
         {
             RaycastHit hitInfo;
             // Does the ray intersect any objects excluding the player layer
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, 5f, ~pickableLayer))
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, 5f, ~pickableLayer & ~pickableChildLayer & ~nonInterativeLayer))
             {
                 Debug.Log(hitInfo.collider.gameObject.name);
                 pickUpObjectDistance = hitInfo.distance - .3f;

@@ -331,6 +331,14 @@ PrefabInstance:
       propertyPath: mouseSensitivity
       value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 2800118942192953683, guid: 145f08ff755faa64d92312daa6f50a23, type: 3}
+      propertyPath: nonInterativeLayer.m_Bits
+      value: 49152
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800118942192953683, guid: 145f08ff755faa64d92312daa6f50a23, type: 3}
+      propertyPath: pickableChildLayer.m_Bits
+      value: 8192
+      objectReference: {fileID: 0}
     - target: {fileID: 2800118942192953688, guid: 145f08ff755faa64d92312daa6f50a23, type: 3}
       propertyPath: m_Name
       value: PCPlayer
