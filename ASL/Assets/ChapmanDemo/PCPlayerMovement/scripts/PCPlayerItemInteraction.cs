@@ -11,6 +11,7 @@ public class PCPlayerItemInteraction : MonoBehaviour {
     public float throwingForce = 200f;  //throwing force for parabola projectile 
     public LayerMask pickableLayer; //Layer Mask for pickable items layer
     public LayerMask pickableChildLayer; //Layer Mask for pickable items layer
+    public float mouseSensitivity; // sensitivity for rotation of picked-up objects
 
     private float pickUpObjectDistance = 3f; //Distance between the player's eye and picked up item
     // Update is called once per frame
@@ -19,12 +20,25 @@ public class PCPlayerItemInteraction : MonoBehaviour {
         if(Input.GetKeyDown("e"))
         {
             RaycastHit hit;
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, pickUpObjectDistance))
             {
                 OnAction onAction = hit.collider.GetComponent<OnAction>();
                 if (onAction != null)
                 {
                     onAction.OnUse.Invoke();
+                }
+            }
+        }
+
+        if (Input.GetKeyUp("e"))
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, pickUpObjectDistance))
+            {
+                OnAction onAction = hit.collider.GetComponent<OnAction>();
+                if (onAction != null)
+                {
+                    onAction.OnUseUp.Invoke();
                 }
             }
         }
@@ -86,7 +100,24 @@ public class PCPlayerItemInteraction : MonoBehaviour {
                 objectToThrow.GetComponent<Rigidbody>().AddForce((Camera.main.transform.forward + new Vector3(0, throwingYDirection, 0))* throwingForce);
             }
         }
-        
+
+        //rotate item
+        if (Input.GetKeyDown("q"))
+        {
+            Camera.main.GetComponent<MouseFirstPersonView>().enabled = false;
+        }
+        if (Input.GetKeyUp("q"))
+        {
+            Camera.main.GetComponent<MouseFirstPersonView>().enabled = true;
+        }
+        if (pickedUpItem != null && Input.GetKey("q"))
+        {
+            float mouseX = Input.GetAxis("Mouse X") * -1 * mouseSensitivity * Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+            pickedUpItem.transform.Rotate(transform.up, mouseX, Space.World);
+            pickedUpItem.transform.Rotate(transform.right, mouseY, Space.World);
+        }
+
         //keep the picked item at the center
         if (pickedUpItem != null)
         {

@@ -21,12 +21,12 @@ TagManager:
   - PickableItem
   - PostProcessing
   - PlayerMesh
-  - PickableItemChild
-  - LaserSensor
-  - 
   - Button
   - Key
   - KeyDoor
+  - PickableItemChild
+  - LaserSensor
+  - 
   - 
   - 
   - 

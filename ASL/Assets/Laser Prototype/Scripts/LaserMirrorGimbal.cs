@@ -61,4 +61,14 @@ public class LaserMirrorGimbal : MonoBehaviour
             mfpv.enabled = !mouseRotation;
         }
     }
+
+    public void SetMouseRotation(bool rotationEnabled)
+    {
+        mouseRotation = rotationEnabled;
+        MouseFirstPersonView mfpv = Camera.main.GetComponent<MouseFirstPersonView>();
+        if (mfpv != null)
+        {
+            mfpv.enabled = !rotationEnabled;
+        }
+    }
 }

@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3732179474255481446}
   - component: {fileID: 8200823806991023336}
   - component: {fileID: 2201859144503775642}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: LaserMirrorStandUpper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,8 +197,23 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2722112320306132574}
         m_TargetAssemblyTypeName: LaserMirrorGimbal, Assembly-CSharp
-        m_MethodName: ToggleMouseRotation
-        m_Mode: 1
+        m_MethodName: SetMouseRotation
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  OnUseUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2722112320306132574}
+        m_TargetAssemblyTypeName: LaserMirrorGimbal, Assembly-CSharp
+        m_MethodName: SetMouseRotation
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -232,7 +247,7 @@ GameObject:
   - component: {fileID: 6300439872918134695}
   - component: {fileID: 1564688742044661516}
   - component: {fileID: 5160870953290638522}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: EdgeCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +338,7 @@ GameObject:
   - component: {fileID: 4737111100183105077}
   - component: {fileID: 4909934482451824688}
   - component: {fileID: 3721176683604225132}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: LaserMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -526,8 +541,23 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2722112320306132574}
         m_TargetAssemblyTypeName: LaserMirrorGimbal, Assembly-CSharp
-        m_MethodName: ToggleMouseRotation
-        m_Mode: 1
+        m_MethodName: SetMouseRotation
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  OnUseUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2722112320306132574}
+        m_TargetAssemblyTypeName: LaserMirrorGimbal, Assembly-CSharp
+        m_MethodName: SetMouseRotation
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -716,8 +746,23 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2722112320306132574}
         m_TargetAssemblyTypeName: LaserMirrorGimbal, Assembly-CSharp
-        m_MethodName: ToggleMouseRotation
-        m_Mode: 1
+        m_MethodName: SetMouseRotation
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  OnUseUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2722112320306132574}
+        m_TargetAssemblyTypeName: LaserMirrorGimbal, Assembly-CSharp
+        m_MethodName: SetMouseRotation
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
