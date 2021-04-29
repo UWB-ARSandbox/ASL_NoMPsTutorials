@@ -26,18 +26,11 @@ public class LaserBeamLighter : MonoBehaviour
     void Update()
     {
         Ray ray = new Ray(transform.position, transform.TransformDirection(new Vector3(0f, 0f, 1f)));
+        float nonSensorHitDistance = -1;
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("LaserSensor")))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~LayerMask.GetMask("LaserSensor")))
         {
-            LaserSensor sensor = hit.transform.gameObject.GetComponent<LaserSensor>();
-            Debug.Log(hit.transform.gameObject.name);
-            if (sensor != null && sensor != ExcludeSensor)
-            {
-                sensor.Trigger(ray, hit);
-            }
-            Debug.DrawRay(transform.position, transform.TransformDirection(new Vector3(0f, 0f, 1f)) * hit.distance, Color.green);
-        }
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~LayerMask.GetMask("LaserSensor"))) {
+            nonSensorHitDistance = hit.distance;
             LaserSensor sensor = hit.transform.gameObject.GetComponent<LaserSensor>();
             if (sensor != null && sensor != ExcludeSensor)
             {
@@ -51,6 +44,19 @@ public class LaserBeamLighter : MonoBehaviour
             Debug.DrawRay(transform.position, transform.TransformDirection(new Vector3(0f, 0f, 1f)) * 1000, Color.white);
             // Vector3(0,-0.495000005,-0.600000024)
             transform.localScale = new Vector3(1f, 1f, ClipDistance);
+        }
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("LaserSensor")))
+        {
+            if (hit.distance <= nonSensorHitDistance)
+            {
+                LaserSensor sensor = hit.transform.gameObject.GetComponent<LaserSensor>();
+                Debug.Log(hit.transform.gameObject.name);
+                if (sensor != null && sensor != ExcludeSensor)
+                {
+                    sensor.Trigger(ray, hit);
+                }
+                Debug.DrawRay(transform.position, transform.TransformDirection(new Vector3(0f, 0f, 1f)) * hit.distance, Color.green);
+            }
         }
 
         float dist = transform.localScale.z;

@@ -714,7 +714,7 @@ MonoBehaviour:
   ConstantRotationRateYaw: 0
   Stand: {fileID: 831236862987044973}
   Mirror: {fileID: 5231844404409231969}
-  mouseSensitivity: 250
+  mouseSensitivity: 200
   mouseRotation: 0
 --- !u!65 &5258514336112059538
 BoxCollider:

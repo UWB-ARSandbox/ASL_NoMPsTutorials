@@ -10,6 +10,7 @@ TagManager:
   - CubePosition
   - KeyMaze
   - KeyDoor
+  - New tag
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - PickableItemChild
   - LaserSensor
   - LaserBeam
-  - 
+  - PlayerTrigger
   - 
   - 
   - 

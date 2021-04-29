@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LevelEndPosition : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class LevelEndPosition : MonoBehaviour
     public MazeSystem m_mazeSystem;
     public float endLevelDistance = 1f;
     private bool m_isLevelEnded = false;
+
+    public UnityEvent OnWin;
 
     // Start is called before the first frame update
     private void Start()
@@ -42,6 +45,7 @@ public class LevelEndPosition : MonoBehaviour
         {
             Debug.Log("Level passed");
             m_isLevelEnded = true;
+            OnWin.Invoke();
         }
     }
 
