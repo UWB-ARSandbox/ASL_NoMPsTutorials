@@ -595,6 +595,7 @@ GameObject:
   - component: {fileID: 5258514336112059538}
   - component: {fileID: 3493595687443175143}
   - component: {fileID: 2039483824603962205}
+  - component: {fileID: 4612198656939549623}
   m_Layer: 7
   m_Name: LaserMirror
   m_TagString: Untagged
@@ -708,8 +709,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db4198e4723ace4e889f3168455af05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pitch: 0
-  Yaw: 0
   ConstantRotationRatePitch: 0
   ConstantRotationRateYaw: 0
   Stand: {fileID: 831236862987044973}
@@ -781,5 +780,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03c58412da33e154692db87cbf8c6ff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4612198656939549623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7000559189734877141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b584f1ea68e8d94e95a54ab1c9b0f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

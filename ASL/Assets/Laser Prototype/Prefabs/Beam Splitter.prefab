@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7428600871821632319}
   - component: {fileID: 6842067329688806625}
   - component: {fileID: 4656051300745461832}
+  - component: {fileID: 4298901553376286336}
   m_Layer: 7
   m_Name: Beam Splitter
   m_TagString: Untagged
@@ -99,6 +100,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03c58412da33e154692db87cbf8c6ff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4298901553376286336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7257771957054572509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e47d3bd6c308204389dc51ee8f4b383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7257771958029600354
