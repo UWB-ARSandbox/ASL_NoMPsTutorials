@@ -541,7 +541,20 @@ namespace ASL
         private static void SendSpawnPrefab(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID = "", string _componentAssemblyQualifiedName = "", string _instantiatedGameObjectClassName = "", string _instantiatedGameObjectFunctionName = "",
             string _claimRecoveryClassName = "", string _claimRecoveryFunctionName = "", string _sendFloatClassName = "", string _sendFloatFunctionName = "")
         {
-            string guid = Guid.NewGuid().ToString();
+            Guid rootGUID = Guid.NewGuid();
+            string guid = rootGUID.ToString();
+
+            // generate uuid for all children w/ ASLObjects
+            List<Guid> childGUIDs = new List<Guid>();
+            GameObject prefabObj = Resources.Load<GameObject>(@"MyPrefabs\" + _prefabName);
+            foreach (GameObject child in IterateOverChildObjects(prefabObj))
+            {
+                if (child.GetComponent<ASLObject>() != null)
+                {
+                    Guid childguid = Guid.NewGuid();
+                    childGUIDs.Add(childguid);
+                }
+            }
 
             byte[] id = Encoding.ASCII.GetBytes(guid);
             byte[] position = GameLiftManager.GetInstance().ConvertVector3ToByteArray(new Vector3(_position.x, _position.y, _position.z));
@@ -556,14 +569,21 @@ namespace ASL
             byte[] sendFloatClassName = Encoding.ASCII.GetBytes(_sendFloatClassName);
             byte[] sendFloatFunctionName = Encoding.ASCII.GetBytes(_sendFloatFunctionName);
             byte[] peerId = Encoding.ASCII.GetBytes(GameLiftManager.GetInstance().m_PeerId.ToString());
-
-
+            
             byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, position, rotation, prefabName, parentID, componentAssemblyQualifiedName, instantiatedGameObjectClassName,
-                                                         instantiatedGameObjectFunctionName, claimRecoveryClassName, claimRecoveryFunctionName, sendFloatClassName, sendFloatFunctionName, peerId);
-
+                instantiatedGameObjectFunctionName, claimRecoveryClassName, claimRecoveryFunctionName, sendFloatClassName, sendFloatFunctionName, peerId);
             RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.SpawnPrefab, payload);
             GameLiftManager.GetInstance().m_Client.SendMessage(message);
 
+            foreach(Guid childGUID in childGUIDs)
+            {
+                byte[] childGUIDBytes = Encoding.ASCII.GetBytes(childGUID.ToString());
+                byte[] childPrefabName = Encoding.ASCII.GetBytes("CHILD_OF_PREFAB");
+                byte[] childGUIDPayload = GameLiftManager.GetInstance().CombineByteArrays(childGUIDBytes, position, rotation, childPrefabName, id, componentAssemblyQualifiedName, instantiatedGameObjectClassName,
+                    instantiatedGameObjectFunctionName, claimRecoveryClassName, claimRecoveryFunctionName, sendFloatClassName, sendFloatFunctionName, peerId);
+                RTMessage message2 = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.SpawnPrefab, childGUIDPayload);
+                GameLiftManager.GetInstance().m_Client.SendMessage(message2);
+            }
         }
 
         /// <summary>
@@ -640,9 +660,21 @@ namespace ASL
 #endif
         }
 
-
-
-
-
+        public static IEnumerable<GameObject> IterateOverChildObjects(GameObject obj)
+        {
+            for (int i = 0; i < obj.transform.childCount; ++i)
+            {
+                GameObject child = obj.transform.GetChild(i).gameObject;
+                yield return child;
+                if (child.transform.childCount > 0)
+                {
+                    foreach (GameObject childchild in IterateOverChildObjects(child))
+                    {
+                        yield return childchild;
+                    }
+                }
+            }
+            yield break;
+        }
     }
 }
