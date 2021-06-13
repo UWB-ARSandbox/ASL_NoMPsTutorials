@@ -27,7 +27,7 @@
       <Argument Key="maxVersionParts" Value="" xmlns="" />
     </TransformComponentArguments>
     <DocumentationSources>
-      <DocumentationSource sourceFile="..\ASL\Assembly-CSharp.csproj" xmlns="" />
+      <DocumentationSource sourceFile="..\ASL\Assembly-CSharp.csproj" />
     </DocumentationSources>
     <HelpFileFormat>Website</HelpFileFormat>
     <SyntaxFilters>Standard</SyntaxFilters>
@@ -40,10 +40,11 @@
     <SaveComponentCacheCapacity>100</SaveComponentCacheCapacity>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="(global)" isDocumented="False" xmlns="" />
-<NamespaceSummaryItem name="ASL" isDocumented="True" xmlns="">All the ASL features and how they can be used throughout your project.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Mps" isDocumented="False" xmlns="" />
-<NamespaceSummaryItem name="SimpleDemos" isDocumented="True" xmlns="">Simple demo applications to help the user understand key ASL features.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="StressTesting" isDocumented="True" xmlns="">More complex demos that are meant to stress test ASL, its capabilities, and the machines it runs on.</NamespaceSummaryItem></NamespaceSummaries>
+      <NamespaceSummaryItem name="ASL" isDocumented="True" xmlns="">All the ASL features and how they can be used throughout your project.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Mps" isDocumented="False" xmlns="" />
+      <NamespaceSummaryItem name="SimpleDemos" isDocumented="True" xmlns="">Simple demo applications to help the user understand key ASL features.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="StressTesting" isDocumented="True" xmlns="">More complex demos that are meant to stress test ASL, its capabilities, and the machines it runs on.</NamespaceSummaryItem>
+    </NamespaceSummaries>
     <VisibleItems>Internals, Privates, PrivateFields, Protected, ProtectedInternalAsProtected</VisibleItems>
     <HelpTitle>Augmented Space Library %28ASL%29 Documentation</HelpTitle>
     <HelpFileVersion>1.0.0.0</HelpFileVersion>

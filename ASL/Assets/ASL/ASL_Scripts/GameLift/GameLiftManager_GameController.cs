@@ -583,6 +583,57 @@ namespace ASL
             }
 
             /// <summary>
+            /// Is called when someone sends an AR Plane's vertices. This transforms the byte[] of the float[] of 
+            /// vertices of the sent Mesh into a Vector3[] to create a Mesh from.
+            /// </summary>
+            /// <param name="_packet">The packet containing the id of the ASL Object and the float array to
+            /// be converted into a Vector3 array of Mesh vertices</param>
+            public void ReceiveARPlaneAsMesh(DataReceivedEventArgs _packet)
+            {
+                (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
+                {
+                    // Get Vector3 array of vertices from float array
+                    Vector3[] myVertices = ConvertFloatArrayIntoVector3Array(ConvertByteArrayIntoFloatArray(_packet.Data, startLocation[1], dataLength[1]));
+
+                    // Create the mesh
+                    Mesh myMesh = new Mesh();
+                    myMesh.Clear();
+                    myMesh.vertices = myVertices;
+                    myMesh.triangles = TriangulateMesh(myVertices.Length - 1);
+                    // Finish mesh setup
+                    myMesh.RecalculateNormals();
+                    myMesh.RecalculateTangents();
+                    myMesh.Optimize();
+
+                    // Set the mesh
+                    myObject.GetComponent<MeshCollider>().sharedMesh = null;
+                    myObject.GetComponent<MeshCollider>().sharedMesh = myMesh;
+                    myObject.GetComponent<MeshFilter>().mesh.Clear();
+                    myObject.GetComponent<MeshFilter>().mesh = myMesh;
+                }
+            }
+
+            /// <summary>
+            /// Triangulates Mesh based on vertices.
+            /// </summary>
+            /// <param name="_edgePointCount">The number of vertices</param>
+            private int[] TriangulateMesh(int _edgePointCount)
+            {
+                List<int> triangles = new List<int>();
+
+                for (int i = 2; i < _edgePointCount; i++)
+                {
+                    triangles.Add(0);
+                    triangles.Add(i - 1);
+                    triangles.Add(i);
+                }
+
+                return triangles.ToArray();
+            }
+
+            /// <summary>
             /// Is called when someone sends a Texture2D. This transforms the byte[] of the Texture2D into a Texture2D and calls the function associated with
             /// this sent Texture2D if one exists and async start is enabled. If sync start is enabled instead, then it informs the relay server that is has successfully recreated
             /// the image and is ready to execute its function.
@@ -1131,6 +1182,23 @@ namespace ASL
                 Buffer.BlockCopy(_payload, _floatStartLocation, floats, 0, _floatArraySize);
 
                 return floats;
+            }
+
+            /// <summary>
+            /// Converts a float array into a vector3 array
+            /// </summary>
+            /// <param name="_floats">The float array to convert into a vector3 array</param>
+            /// <returns>A vector3 array representing the float array passed in</returns>
+            private Vector3[] ConvertFloatArrayIntoVector3Array(float[] _floats)
+            {
+                // Divide the floats length by 3 since the vector3 array will have one slot for every 3 floats
+                Vector3[] result = new Vector3[_floats.Length / 3];
+                for (int i = 0; i < result.Length; i++)
+                {
+                    // Translate the x, y, and z floats into a singular vector3
+                    result[i] = new Vector3(_floats[(i * 3)], _floats[(i * 3) + 1], _floats[(i * 3) + 2]);
+                }
+                return result;
             }
 
             /// <summary>

@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 using Microsoft.MixedReality.Toolkit.Utilities.Editor;
@@ -13,7 +13,7 @@ using Object = UnityEngine.Object;
 namespace Microsoft.MixedReality.Toolkit.Utilities
 {
     /// <summary>
-    /// <see href="https://microsoft.github.io/MixedRealityToolkit-Unity/Documentation/Tools/MigrationWindow.html"/>This is an utility window for the MigrationTool. 
+    /// <see href="https://docs.microsoft.com/windows/mixed-reality/mrtk-unity/features/tools/migration-window"/>This is an utility window for the MigrationTool. 
     /// </summary>
     public class MigrationWindow : EditorWindow
     {
@@ -35,7 +35,7 @@ namespace Microsoft.MixedReality.Toolkit.Utilities
         private Vector2 scrollPosition = Vector2.zero;
         private Vector2 logScrollPosition = Vector2.zero;
 
-        private const string MigrationWindowURL = "https://microsoft.github.io/MixedRealityToolkit-Unity/Documentation/Tools/MigrationWindow.html";
+        private const string MigrationWindowURL = "https://docs.microsoft.com/windows/mixed-reality/mrtk-unity/features/tools/migration-window";
         private const string WindowTitle = "Migration Window";
         private const string WindowDescription = "This tool allows the migration of obsolete components into up-to-date versions.";
 
@@ -89,7 +89,7 @@ namespace Microsoft.MixedReality.Toolkit.Utilities
             migrationHandlerTypeNames = migrationTypeNamesList.ToArray();
 
             selectedMigrationHandlerIndex = 0;
-            
+
             failIcon = (Texture)AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(failIconGUID), typeof(Texture));
             passIcon = (Texture)AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(passIconGUID), typeof(Texture));
             lightTabIcon = (Texture)AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(lightTabIconGUID), typeof(Texture));
@@ -128,6 +128,12 @@ namespace Microsoft.MixedReality.Toolkit.Utilities
                 InspectorUIUtility.RenderDocumentationButton(MigrationWindowURL);
             }
             EditorGUILayout.LabelField(WindowDescription, EditorStyles.wordWrappedLabel);
+
+            // show a warning as long as we're not handling dependencies
+            EditorGUILayout.HelpBox("Note that the migration window currently doesn't do dependency checks, " +
+                "so overrides on prefab instances might be lost after choosing to upgrade. Create a local copy " +
+                "or make sure to use version control before using the tool on game objects or scenes that are " +
+                "using prefab overrides.", MessageType.Warning);
 
             EditorGUILayout.Space();
             EditorGUILayout.Space();
@@ -284,14 +290,14 @@ namespace Microsoft.MixedReality.Toolkit.Utilities
                             }
                         }
                     }
-                    
+
                     else if (migrationTool.MigrationState == MigrationTool.MigrationToolState.PostMigration && !String.IsNullOrEmpty(migrationLog))
                     {
                         using (var logScrollView = new EditorGUILayout.ScrollViewScope(logScrollPosition))
                         {
                             logScrollPosition = logScrollView.scrollPosition;
                             GUILayout.TextArea(migrationLog);
-                        }                    
+                        }
                     }
                 }
             }

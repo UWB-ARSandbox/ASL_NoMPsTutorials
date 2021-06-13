@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using System.Collections.Generic;
 using UnityEditor;
@@ -11,8 +11,8 @@ namespace Microsoft.MixedReality.Toolkit.Utilities.Editor
     /// Adds menu items to automate reserializing specific files in Unity.
     /// </summary>
     /// <remarks>
-    /// Reserialization can be needed between Unity versions or when the
-    /// underlying script or asset definitions are changed.
+    /// <para>Reserialization can be needed between Unity versions or when the
+    /// underlying script or asset definitions are changed.</para>
     /// </remarks>
     public class ReserializeUtility
     {
