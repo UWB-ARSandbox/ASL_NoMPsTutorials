@@ -30,7 +30,7 @@ public class ASL_ObjectCollider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //PysicsMasterSetUp();
+        //ability to change PhyscisMaster
     }
 
     void PysicsMasterSetUp()
@@ -40,13 +40,13 @@ public class ASL_ObjectCollider : MonoBehaviour
         {
             if (!isPhysicsMaster)
             {
-                ObjectCollider.enabled = true;
+                //ObjectCollider.enabled = true;
                 isPhysicsMaster = true;
             }
         }
         else
         {
-            ObjectCollider.enabled = false;
+            //ObjectCollider.enabled = false;
         }
     }
 

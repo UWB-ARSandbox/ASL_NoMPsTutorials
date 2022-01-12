@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using ASL;
 
-public class Demo_DestroyOnCollideExit : MonoBehaviour
+public class Demo_CollideCreateSphere : MonoBehaviour
 {
-    [Tooltip("The GameObject controlled by the players.")]
-    public GameObject PlayerObject;
+    public string PrefabName;
 
     ASL_ObjectCollider m_ASLObjectCollider;
     ASLObject m_ASLObject;
@@ -18,15 +17,11 @@ public class Demo_DestroyOnCollideExit : MonoBehaviour
         m_ASLObject = gameObject.GetComponent<ASLObject>();
         Debug.Assert(m_ASLObjectCollider != null);
         Debug.Assert(m_ASLObject != null);
-        Debug.Assert(PlayerObject != null);
-        m_ASLObjectCollider.ASL_OnCollisionExit(DestroyObjectOnExit);
+        m_ASLObjectCollider.ASL_OnCollisionEnter(createSphereOnCollitionEnter);
     }
 
-    void DestroyObjectOnExit(Collision collision)
+    void createSphereOnCollitionEnter(Collision collision)
     {
-        if (collision.gameObject == PlayerObject)
-        {
-            Destroy(this.gameObject);
-        }
+        ASL.ASLHelper.InstantiateASLObject(PrefabName, new Vector3(0,5,0), Quaternion.identity);
     }
 }

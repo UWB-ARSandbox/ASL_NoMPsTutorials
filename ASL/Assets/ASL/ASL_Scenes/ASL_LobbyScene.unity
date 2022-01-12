@@ -3315,9 +3315,7 @@ MonoBehaviour:
     m_Options:
     - m_Text: Demo
       m_Image: {fileID: 0}
-    - m_Text: ARObjectSync_Example
-      m_Image: {fileID: 0}
-    - m_Text: ASL_OnCollisionEnter
+    - m_Text: OnCollisionEnterScene
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
