@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6583809669079875538}
   - component: {fileID: 6583809669079875537}
   - component: {fileID: 6583809669079875536}
-  - component: {fileID: 6583809669079875543}
+  - component: {fileID: 2474745060371634298}
   m_Layer: 0
   m_Name: PlayerCube
   m_TagString: Untagged
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c58412da33e154692db87cbf8c6ff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6583809669079875543
+--- !u!114 &2474745060371634298
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6583809669079875542}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dd98c77d91f64b4db3ee74fd996e1f8, type: 3}
+  m_Script: {fileID: 11500000, guid: 49977f233840ea84899e994e30d8ab0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 3

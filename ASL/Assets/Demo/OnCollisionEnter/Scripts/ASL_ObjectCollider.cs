@@ -5,20 +5,28 @@ using ASL;
 
 public class ASL_ObjectCollider : MonoBehaviour
 {
-    /// <summary>Delegate for the ASL_OnCollisionEnter to call </summary>
+    /// <summary>Delegate for the ASL_OnCollision functions to call </summary>
     public delegate void OnCollisionCallback(Collision collision);
+
+    /// <summary>Delegate for the ASL_OnTrigger functions to call </summary>
+    public delegate void OnTriggerCallback(Collider other);
 
     /// <summary>Callback to be executed on OnCollisionEnter</summary>
     public OnCollisionCallback m_OnCollisionEnterCallback { get; private set; }
 
     /// <summary>Callback to be executed on OnCollisionExit</summary>
     public OnCollisionCallback m_OnCollisionExitCallback { get; private set; }
+    
+    /// <summary>Callback to be executed on OnTriggerEnter</summary>
+    public OnTriggerCallback m_OnTriggerEnterCallback { get; private set; }
 
-    /// <summary>Callback to be executed on OnCollisionStay</summary>
-    public OnCollisionCallback m_OnCollisionStayCallback { get; private set; }
+    /// <summary>Callback to be executed on OnTriggerEnter</summary>
+    public OnTriggerCallback m_OnTriggerExitCallback { get; private set; }
+
+    /// <summary>Callback to be executed on OnTriggerEnter</summary>
+    public OnTriggerCallback m_OnTriggerStayCallback { get; private set; }
 
     public Collider ObjectCollider;
-
     bool isPhysicsMaster = false;
 
     // Start is called before the first frame update
@@ -40,13 +48,8 @@ public class ASL_ObjectCollider : MonoBehaviour
         {
             if (!isPhysicsMaster)
             {
-                //ObjectCollider.enabled = true;
                 isPhysicsMaster = true;
             }
-        }
-        else
-        {
-            //ObjectCollider.enabled = false;
         }
     }
 
@@ -55,10 +58,16 @@ public class ASL_ObjectCollider : MonoBehaviour
         if (isPhysicsMaster && m_OnCollisionEnterCallback != null)
         {
             ASLObject m_ASLObject = collision.gameObject.GetComponent<ASLObject>();
-            m_ASLObject.SendAndSetClaim(() =>
-            {
-                m_OnCollisionEnterCallback.Invoke(collision);
-            });
+            m_OnCollisionEnterCallback.Invoke(collision);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (isPhysicsMaster && m_OnTriggerEnterCallback != null)
+        {
+            ASLObject m_ASLObject = other.gameObject.GetComponent<ASLObject>();
+            m_OnTriggerEnterCallback.Invoke(other);
         }
     }
 
@@ -67,22 +76,24 @@ public class ASL_ObjectCollider : MonoBehaviour
         if (isPhysicsMaster && m_OnCollisionExitCallback != null)
         {
             ASLObject m_ASLObject = collision.gameObject.GetComponent<ASLObject>();
-            m_ASLObject.SendAndSetClaim(() =>
-            {
-                m_OnCollisionExitCallback.Invoke(collision);
-            });
+            m_OnCollisionExitCallback.Invoke(collision);
         }
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (isPhysicsMaster && m_OnCollisionStayCallback != null)
+        if (isPhysicsMaster && m_OnTriggerExitCallback != null)
         {
-            ASLObject m_ASLObject = collision.gameObject.GetComponent<ASLObject>();
-            m_ASLObject.SendAndSetClaim(() =>
-            {
-                m_OnCollisionStayCallback.Invoke(collision);
-            });
+            ASLObject m_ASLObject = other.gameObject.GetComponent<ASLObject>();
+            m_OnTriggerExitCallback.Invoke(other);
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (isPhysicsMaster && m_OnTriggerStayCallback != null)
+        {
+            ASLObject m_ASLObject = other.gameObject.GetComponent<ASLObject>();
+            m_OnTriggerStayCallback.Invoke(other);
         }
     }
 
@@ -108,11 +119,33 @@ public class ASL_ObjectCollider : MonoBehaviour
         return false;
     }
 
-    public bool ASL_OnCollisionStay(OnCollisionCallback onCollisionCallback)
+    public bool ASL_OnTriggerEnter(OnTriggerCallback onTriggerCallback)
     {
         if (isPhysicsMaster)
         {
-            m_OnCollisionStayCallback = onCollisionCallback;
+            m_OnTriggerEnterCallback = onTriggerCallback;
+            return true;
+        }
+        Debug.LogWarning("You are not the physicsMaster of this object.");
+        return false;
+    }
+
+    public bool ASL_OnTriggerExit(OnTriggerCallback onTriggerCallback)
+    {
+        if (isPhysicsMaster)
+        {
+            m_OnTriggerExitCallback = onTriggerCallback;
+            return true;
+        }
+        Debug.LogWarning("You are not the physicsMaster of this object.");
+        return false;
+    }
+
+    public bool ASL_OnTriggerStay(OnTriggerCallback onTriggerCallback)
+    {
+        if (isPhysicsMaster)
+        {
+            m_OnTriggerStayCallback = onTriggerCallback;
             return true;
         }
         Debug.LogWarning("You are not the physicsMaster of this object.");

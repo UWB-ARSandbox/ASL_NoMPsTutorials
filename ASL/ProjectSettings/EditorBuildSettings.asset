@@ -17,6 +17,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Demo/OnCollisionEnter/OnCollisionEnterScene.unity
     guid: 64e257aee54ab004681d4c07f4dac195
+  - enabled: 1
+    path: Assets/Demo/OnCollisionExit/OnCollisionExitScene.unity
+    guid: 3dcb8549e5bd03541ae711806d38b017
+  - enabled: 1
+    path: Assets/Demo/OnTriggerEnter/OnTriggerEnterScene.unity
+    guid: 778bfde729e67e34b9f15d8ba7258f2f
+  - enabled: 1
+    path: Assets/Demo/OnTriggerExit/OnTriggerExitScene.unity
+    guid: 2d5b8c6ab8aeca3418720f300582cf21
+  - enabled: 1
+    path: Assets/Demo/OnTriggerStay/OnTriggerStayScene.unity
+    guid: 792e60316cdc1f0498d8a402dde36018
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: bf557935255407f40b56b5c173577bf9, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: b653963d314ffaf409a6357156cf5de6, type: 2}
