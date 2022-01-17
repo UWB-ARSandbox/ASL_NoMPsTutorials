@@ -62,21 +62,21 @@ public class ASL_ObjectCollider : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (isPhysicsMaster && m_OnTriggerEnterCallback != null)
-        {
-            ASLObject m_ASLObject = other.gameObject.GetComponent<ASLObject>();
-            m_OnTriggerEnterCallback.Invoke(other);
-        }
-    }
-
     private void OnCollisionExit(Collision collision)
     {
         if (isPhysicsMaster && m_OnCollisionExitCallback != null)
         {
             ASLObject m_ASLObject = collision.gameObject.GetComponent<ASLObject>();
             m_OnCollisionExitCallback.Invoke(collision);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (isPhysicsMaster && m_OnTriggerEnterCallback != null)
+        {
+            ASLObject m_ASLObject = other.gameObject.GetComponent<ASLObject>();
+            m_OnTriggerEnterCallback.Invoke(other);
         }
     }
 

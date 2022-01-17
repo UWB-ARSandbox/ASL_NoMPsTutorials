@@ -11,7 +11,7 @@ public class Demo_ChangeColorOnCollision : MonoBehaviour
     public Material PlayerOriginalColor;
 
     ASL_ObjectCollider m_ASLObjectCollider;
-    ASLObject m_ASLObject;
+    //ASLObject m_ASLObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +19,8 @@ public class Demo_ChangeColorOnCollision : MonoBehaviour
         Debug.Assert(PlayerOriginalColor != null);
         m_ASLObjectCollider = gameObject.GetComponent<ASL_ObjectCollider>();
         Debug.Assert(m_ASLObjectCollider != null);
-        m_ASLObject = gameObject.GetComponent<ASLObject>();
-        Debug.Assert(m_ASLObject != null);
+        //m_ASLObject = gameObject.GetComponent<ASLObject>();
+        //Debug.Assert(m_ASLObject != null);
         m_ASLObjectCollider.ASL_OnCollisionEnter(ChangeColorOnCollisionEnter);
         m_ASLObjectCollider.ASL_OnCollisionExit(ChangeColorOnCollisionExit);
     }
@@ -30,9 +30,9 @@ public class Demo_ChangeColorOnCollision : MonoBehaviour
         if (collision.gameObject.GetComponent<Demo_PlayerCube>() != null && 
             collision.gameObject.GetComponent<MeshRenderer>() != null)
         {
-            m_ASLObject.SendAndSetClaim(() =>
+            ASLObject aSLObject = collision.gameObject.GetComponent<ASLObject>();
+            aSLObject.SendAndSetClaim(() =>
             {
-                ASLObject aSLObject = collision.gameObject.GetComponent<ASLObject>();
                 aSLObject.SendAndSetObjectColor(Color.color, Color.color);
             });
         }
@@ -43,9 +43,9 @@ public class Demo_ChangeColorOnCollision : MonoBehaviour
         if (collision.gameObject.GetComponent<Demo_PlayerCube>() != null &&
             collision.gameObject.GetComponent<MeshRenderer>() != null)
         {
-            m_ASLObject.SendAndSetClaim(() =>
+            ASLObject aSLObject = collision.gameObject.GetComponent<ASLObject>();
+            aSLObject.SendAndSetClaim(() =>
             {
-                ASLObject aSLObject = collision.gameObject.GetComponent<ASLObject>();
                 aSLObject.SendAndSetObjectColor(PlayerOriginalColor.color, PlayerOriginalColor.color);
             });
         }

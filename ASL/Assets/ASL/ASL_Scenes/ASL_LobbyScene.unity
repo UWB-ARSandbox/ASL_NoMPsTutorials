@@ -3317,6 +3317,20 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: OnCollisionEnterScene
       m_Image: {fileID: 0}
+    - m_Text: OnCollisionExitScene
+      m_Image: {fileID: 0}
+    - m_Text: OnTriggerEnterScene
+      m_Image: {fileID: 0}
+    - m_Text: OnTriggerExitScene
+      m_Image: {fileID: 0}
+    - m_Text: OnTriggerStayScene
+      m_Image: {fileID: 0}
+    - m_Text: ASL_KinematicCollisionTestScene
+      m_Image: {fileID: 0}
+    - m_Text: ASL_RigidBodyCollisionTestScene
+      m_Image: {fileID: 0}
+    - m_Text: ASL_StaticColliderTestScene
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
