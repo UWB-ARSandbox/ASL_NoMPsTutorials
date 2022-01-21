@@ -7,14 +7,12 @@ public class Demo_PlayerCube : MonoBehaviour
 {
     public float MovementSpeed = 3.0f;
     ASLObject m_ASLObject;
-    //bool isPhysicsMaster = false;
 
     // Start is called before the first frame update
     void Start()
     {
         m_ASLObject = gameObject.GetComponent<ASLObject>();
         Debug.Assert(m_ASLObject != null);
-        //m_ASLObject._LocallySetFloatCallback(PositionFloatFunction);
     }
 
     // Update is called once per frame
@@ -28,8 +26,6 @@ public class Demo_PlayerCube : MonoBehaviour
                 {
                     Vector3 m_AdditiveMovementAmount = Vector3.forward * MovementSpeed * Time.deltaTime;
                     m_ASLObject.SendAndIncrementWorldPosition(m_AdditiveMovementAmount);
-                    //float[] pos = new float[3] { m_AdditiveMovementAmount.x, m_AdditiveMovementAmount.y, m_AdditiveMovementAmount.z };
-                    //m_ASLObject.SendFloatArray(pos);
                 });
             }
             else
@@ -38,8 +34,6 @@ public class Demo_PlayerCube : MonoBehaviour
                 {
                     Vector3 m_AdditiveMovementAmount = Vector3.back * MovementSpeed * Time.deltaTime;
                     m_ASLObject.SendAndIncrementWorldPosition(m_AdditiveMovementAmount);
-                    //float[] pos = new float[3] { m_AdditiveMovementAmount.x, m_AdditiveMovementAmount.y, m_AdditiveMovementAmount.z };
-                    //m_ASLObject.SendFloatArray(pos);
                 });
             }
         }
@@ -51,8 +45,6 @@ public class Demo_PlayerCube : MonoBehaviour
                 {
                     Vector3 m_AdditiveMovementAmount = Vector3.right * MovementSpeed * Time.deltaTime;
                     m_ASLObject.SendAndIncrementWorldPosition(m_AdditiveMovementAmount);
-                    //float[] pos = new float[3] { m_AdditiveMovementAmount.x, m_AdditiveMovementAmount.y, m_AdditiveMovementAmount.z };
-                    //m_ASLObject.SendFloatArray(pos);
                 });
             }
             else
@@ -61,32 +53,8 @@ public class Demo_PlayerCube : MonoBehaviour
                 {
                     Vector3 m_AdditiveMovementAmount = Vector3.left * MovementSpeed * Time.deltaTime;
                     m_ASLObject.SendAndIncrementWorldPosition(m_AdditiveMovementAmount);
-                    //float[] pos = new float[3] { m_AdditiveMovementAmount.x, m_AdditiveMovementAmount.y, m_AdditiveMovementAmount.z };
-                    //m_ASLObject.SendFloatArray(pos);
                 });
             }
         }
     }
-
-    /*public static void PositionFloatFunction(string _id, float[] _pos)
-    {
-        ASLObject m_ASLObject;
-        ASL.ASLHelper.m_ASLObjects.TryGetValue(_id, out m_ASLObject);
-        if (m_ASLObject != null && m_ASLObject.gameObject.GetComponent<Demo_PlayerCube>().isPhysicsMaster)
-        {
-            m_ASLObject.SendAndSetClaim(() =>
-            {
-                Rigidbody rb = m_ASLObject.GetComponent<Rigidbody>();
-                Vector3 moveToPos = new Vector3(_pos[0], _pos[1], _pos[2]);
-                //m_ASLObject.transform.position += moveToPos;
-                m_ASLObject.SendAndIncrementWorldPosition(moveToPos);
-                //Rigidbody rb = m_ASLObject.gameObject.GetComponent<Rigidbody>();
-                //rb.MovePosition(m_ASLObject.gameObject.transform.position + moveToPos);
-                //m_ASLObject.SendAndSetWorldPosition(rb.transform.position);
-                //m_ASLObject.SendAndSetWorldRotation(rb.transform.rotation);
-                //m_ASLObject.SendAndSetWorldPosition(m_ASLObject.transform.position);
-                //m_ASLObject.SendAndSetWorldRotation(m_ASLObject.transform.rotation);
-            });
-        }
-    }*/
 }

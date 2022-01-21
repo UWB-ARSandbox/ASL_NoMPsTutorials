@@ -9,15 +9,13 @@ public class Demo_OnTriggerEnterColor : MonoBehaviour
     public Material Color;
 
     ASL_ObjectCollider m_ASLObjectCollider;
-    //ASLObject m_ASLObject;
+
     // Start is called before the first frame update
     void Start()
     {
         Debug.Assert(Color != null);
         m_ASLObjectCollider = gameObject.GetComponent<ASL_ObjectCollider>();
         Debug.Assert(m_ASLObjectCollider != null);
-        //m_ASLObject = gameObject.GetComponent<ASLObject>();
-        //Debug.Assert(m_ASLObject != null);
         m_ASLObjectCollider.ASL_OnTriggerEnter(ChangeColorOnTriggerEnter);
     }
 
