@@ -5,6 +5,7 @@ using ASL;
 
 public class ASL_PhysicsMaster : MonoBehaviour
 {
+    //This is true if the local client is the PhysicsMaster
     bool isPhysicsMaster = false;
     public bool IsPhysicsMaster
     {
@@ -30,6 +31,9 @@ public class ASL_PhysicsMaster : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Determines which player will be the PhysicsMaster. For now this is the first player in the Que, usually the host.
+    /// </summary>
     public void DeterminePhysicsMaster()
     {
         if (ASL.GameLiftManager.GetInstance().AmLowestPeer())

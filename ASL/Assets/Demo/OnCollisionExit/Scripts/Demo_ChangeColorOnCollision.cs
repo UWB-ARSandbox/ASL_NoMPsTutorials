@@ -19,10 +19,13 @@ public class Demo_ChangeColorOnCollision : MonoBehaviour
         Debug.Assert(PlayerOriginalColor != null);
         m_ASLObjectCollider = gameObject.GetComponent<ASL_ObjectCollider>();
         Debug.Assert(m_ASLObjectCollider != null);
+
+        //Assigning the deligate functions to the ASL_ObjectCollider
         m_ASLObjectCollider.ASL_OnCollisionEnter(ChangeColorOnCollisionEnter);
         m_ASLObjectCollider.ASL_OnCollisionExit(ChangeColorOnCollisionExit);
     }
 
+    //Delegate function called by OnCollitionEnter by the ASL_ObjectCollider
     void ChangeColorOnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<Demo_PlayerCube>() != null && 
@@ -36,6 +39,7 @@ public class Demo_ChangeColorOnCollision : MonoBehaviour
         }
     }
 
+    //Delegate function called by OnCollitionExit by the ASL_ObjectCollider
     void ChangeColorOnCollisionExit(Collision collision)
     {
         if (collision.gameObject.GetComponent<Demo_PlayerCube>() != null &&

@@ -15,6 +15,7 @@ public class Demo_CreatedSphere : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= LifeSpan)
         {
+            //After LifeSpan seconds, the object is deleted
             Destroy(gameObject);
         }
     }

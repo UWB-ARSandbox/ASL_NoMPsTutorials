@@ -5,7 +5,9 @@ using ASL;
 
 public class Demo_PlayerCube : MonoBehaviour
 {
+    [Tooltip("This determines the speed that the PlayerCube will move.")]
     public float MovementSpeed = 3.0f;
+
     ASLObject m_ASLObject;
 
     // Start is called before the first frame update

@@ -16,9 +16,12 @@ public class Demo_OnTriggerExitColor : MonoBehaviour
         Debug.Assert(Color != null);
         m_ASLObjectCollider = gameObject.GetComponent<ASL_ObjectCollider>();
         Debug.Assert(m_ASLObjectCollider != null);
+
+        //Assigning the deligate function to the ASL_ObjectCollider
         m_ASLObjectCollider.ASL_OnTriggerExit(ChangeColorOnTriggerExit);
     }
 
+    //Delegate function called by OnCollitionExit by the ASL_ObjectCollider
     void ChangeColorOnTriggerExit(Collider other)
     {
         if (other.gameObject.GetComponent<Demo_PlayerCube>() != null &&

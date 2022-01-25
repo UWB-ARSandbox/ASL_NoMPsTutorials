@@ -14,9 +14,12 @@ public class Demo_CollideCreateSphere : MonoBehaviour
     {
         m_ASLObjectCollider = gameObject.GetComponent<ASL_ObjectCollider>();
         Debug.Assert(m_ASLObjectCollider != null);
+
+        //Assigning the deligate function to the ASL_ObjectCollider
         m_ASLObjectCollider.ASL_OnCollisionEnter(createSphereOnCollitionEnter);
     }
 
+    //Delegate function called by OnCollitionEnter by the ASL_ObjectCollider
     void createSphereOnCollitionEnter(Collision collision)
     {
         ASL.ASLHelper.InstantiateASLObject(PrefabName, new Vector3(0, 5, 0), Quaternion.identity);
