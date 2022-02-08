@@ -3331,7 +3331,15 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: ASL_StaticColliderTestScene
       m_Image: {fileID: 0}
-    - m_Text: StressTestScene2
+    - m_Text: StressTest_OnTriggerEnter
+      m_Image: {fileID: 0}
+    - m_Text: StressTestOnTriggerExit
+      m_Image: {fileID: 0}
+    - m_Text: StressTestOnTriggerStay
+      m_Image: {fileID: 0}
+    - m_Text: SimplePlatformerTutorial
+      m_Image: {fileID: 0}
+    - m_Text: ComplexPlatformerScene
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

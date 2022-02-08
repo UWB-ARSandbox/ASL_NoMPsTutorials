@@ -39,8 +39,20 @@ EditorBuildSettings:
     path: Assets/Demo/ColliderTests/Scenes/ASL_StaticColliderTestScene.unity
     guid: 714d2d1758d92034ea0bd8b69731acc4
   - enabled: 1
-    path: Assets/Demo/StressTest/StressTestScene2.unity
-    guid: 5f6238377a41d954b8c47f480e97657a
+    path: Assets/Demo/StressTest/StressTest_OnTriggerEnter.unity
+    guid: d448f7f74621a8b48adb7251d2b62afe
+  - enabled: 1
+    path: Assets/Demo/StressTest/StressTestOnTriggerExit.unity
+    guid: 9479503c268ba6542941184a369e5173
+  - enabled: 1
+    path: Assets/Demo/StressTest/StressTestOnTriggerStay.unity
+    guid: 666e354c17e043648be47b031ca1c2a8
+  - enabled: 1
+    path: Assets/Demo/Tutorials/Simple Platformer/SimplePlatformerTutorial.unity
+    guid: 5abbca6c3b6f641489af1861900f4c16
+  - enabled: 1
+    path: Assets/Demo/Tutorials/Simple Platformer/ComplexPlatformerScene.unity
+    guid: 7c11a3bd60de474459f232a3d011fe3c
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: bf557935255407f40b56b5c173577bf9, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: b653963d314ffaf409a6357156cf5de6, type: 2}

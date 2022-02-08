@@ -30,12 +30,17 @@ public class ASL_ObjectCollider : MonoBehaviour
     public Collider ObjectCollider;
 
     /// <summary>Reference to the PhysicsMaster in the scene. There should never be more than one PhysicsMaster per client</summary>
-    ASL_PhysicsMaster physicsMaster;
+    //ASL_PhysicsMaster physicsMaster;
+    ASL_PhysicsMasterSingleton physicsMaster;
 
-    private void Start()
+    private void Start()//awake
     {
-        physicsMaster = FindObjectOfType<ASL_PhysicsMaster>();
+        //physicsMaster = FindObjectOfType<ASL_PhysicsMaster>();
+
+        physicsMaster = ASL_PhysicsMasterSingleton.Instance;
+
         Debug.Assert(physicsMaster != null);
+        Debug.Log(physicsMaster != null);
         if (ObjectCollider == null)
         {
             ObjectCollider = GetComponent<Collider>();
@@ -111,16 +116,9 @@ public class ASL_ObjectCollider : MonoBehaviour
     /// </summary>
     /// <param name="onCollisionCallback">Function to be called OnCollisionEnter for this ASL_ObjectCollider. This must be a void
     /// function that takes a Collision as a paramater.</param>
-    /// <returns>Returns true if the client is the PhysicsMaster. Otherwise returns false and prints a warning to the log.</returns>
-    public bool ASL_OnCollisionEnter(OnCollisionCallback onCollisionCallback)
+    public void ASL_OnCollisionEnter(OnCollisionCallback onCollisionCallback)
     {
-        if (physicsMaster.IsPhysicsMaster)
-        {
-            m_OnCollisionEnterCallback = onCollisionCallback;
-            return true;
-        }
-        Debug.LogWarning("You are not the physicsMaster of this object.");
-        return false;
+        m_OnCollisionEnterCallback = onCollisionCallback;
     }
 
     /// <summary>
@@ -129,16 +127,9 @@ public class ASL_ObjectCollider : MonoBehaviour
     /// </summary>
     /// <param name="onCollisionCallback">Function to be called OnCollisionExit for this ASL_ObjectCollider. This must be a void
     /// function that takes a Collision as a paramater.</param>
-    /// <returns>Returns true if the client is the PhysicsMaster. Otherwise returns false and prints a warning to the log.</returns>
-    public bool ASL_OnCollisionExit(OnCollisionCallback onCollisionCallback)
+    public void ASL_OnCollisionExit(OnCollisionCallback onCollisionCallback)
     {
-        if (physicsMaster.IsPhysicsMaster)
-        {
-            m_OnCollisionExitCallback = onCollisionCallback;
-            return true;
-        }
-        Debug.LogWarning("You are not the physicsMaster of this object.");
-        return false;
+        m_OnCollisionExitCallback = onCollisionCallback;
     }
 
     /// <summary>
@@ -147,16 +138,9 @@ public class ASL_ObjectCollider : MonoBehaviour
     /// </summary>
     /// <param name="onTriggerCallback">Function to be called OnTriggerEnter for this ASL_ObjectCollider. This must be a void
     /// function that takes a Collider as a paramater.</param>
-    /// <returns>Returns true if the client is the PhysicsMaster. Otherwise returns false and prints a warning to the log.</returns>
-    public bool ASL_OnTriggerEnter(OnTriggerCallback onTriggerCallback)
+    public void ASL_OnTriggerEnter(OnTriggerCallback onTriggerCallback)
     {
-        if (physicsMaster.IsPhysicsMaster)
-        {
-            m_OnTriggerEnterCallback = onTriggerCallback;
-            return true;
-        }
-        Debug.LogWarning("You are not the physicsMaster of this object.");
-        return false;
+        m_OnTriggerEnterCallback = onTriggerCallback;
     }
 
     /// <summary>
@@ -165,16 +149,9 @@ public class ASL_ObjectCollider : MonoBehaviour
     /// </summary>
     /// <param name="onTriggerCallback">Function to be called OnTriggerExit for this ASL_ObjectCollider. This must be a void
     /// function that takes a Collider as a paramater.</param>
-    /// <returns>Returns true if the client is the PhysicsMaster. Otherwise returns false and prints a warning to the log.</returns>
-    public bool ASL_OnTriggerExit(OnTriggerCallback onTriggerCallback)
+    public void ASL_OnTriggerExit(OnTriggerCallback onTriggerCallback)
     {
-        if (physicsMaster.IsPhysicsMaster)
-        {
-            m_OnTriggerExitCallback = onTriggerCallback;
-            return true;
-        }
-        Debug.LogWarning("You are not the physicsMaster of this object.");
-        return false;
+        m_OnTriggerExitCallback = onTriggerCallback;
     }
 
 
@@ -184,15 +161,8 @@ public class ASL_ObjectCollider : MonoBehaviour
     /// </summary>
     /// <param name="onTriggerCallback">Function to be called OnTriggerStay for this ASL_ObjectCollider. This must be a void
     /// function that takes a Collider as a paramater.</param>
-    /// <returns>Returns true if the client is the PhysicsMaster. Otherwise returns false and prints a warning to the log.</returns>
-    public bool ASL_OnTriggerStay(OnTriggerCallback onTriggerCallback)
+    public void ASL_OnTriggerStay(OnTriggerCallback onTriggerCallback)
     {
-        if (physicsMaster.IsPhysicsMaster)
-        {
-            m_OnTriggerStayCallback = onTriggerCallback;
-            return true;
-        }
-        Debug.LogWarning("You are not the physicsMaster of this object.");
-        return false;
+        m_OnTriggerStayCallback = onTriggerCallback;
     }
 }

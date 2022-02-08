@@ -1801,6 +1801,7 @@ GameObject:
   m_Component:
   - component: {fileID: 929941907}
   - component: {fileID: 929941906}
+  - component: {fileID: 929941908}
   m_Layer: 0
   m_Name: PhysicsMaster
   m_TagString: Untagged
@@ -1815,7 +1816,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 929941905}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9328ba7b12e378a4e81f972d83ca2980, type: 3}
   m_Name: 
@@ -1834,6 +1835,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &929941908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929941905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe7e4e27f9289a7418a298e260bba638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &931632755
 GameObject:
   m_ObjectHideFlags: 0

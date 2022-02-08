@@ -12,13 +12,9 @@ public class ASL_PhysicsMaster : MonoBehaviour
         get { return isPhysicsMaster; }
     }
 
-    void Awake()
-    {
-        DeterminePhysicsMaster();
-    }
-
     private void Start()
     {
+        DeterminePhysicsMaster();
         ASL_PhysicsMaster[] physicsMasters = FindObjectsOfType<ASL_PhysicsMaster>();
         if (physicsMasters.Length != 1)
         {
@@ -36,10 +32,7 @@ public class ASL_PhysicsMaster : MonoBehaviour
     /// </summary>
     public void DeterminePhysicsMaster()
     {
-        if (ASL.GameLiftManager.GetInstance().AmLowestPeer())
-        {
-            isPhysicsMaster = true;
-        }
+        isPhysicsMaster = ASL.GameLiftManager.GetInstance().AmLowestPeer();
     }
 
     public void UpdatePhysicsMaster()
