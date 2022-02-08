@@ -93,6 +93,9 @@ Packages->ARCore Extensions->Editor->Scripts->Internal->Analytics->Google.Protob
 					</li>
 				</ul>
 			</p>
+			<h3>Realtime Script/AWS Related:</h3>
+			<p>https://docs.google.com/document/d/1pVMVDpXlJm7dZuT_uABLvtaG-ltwAfDeL0yAUoPS-JU/edit?usp=sharing
+			</p>
 	</body>
 </html>
 
