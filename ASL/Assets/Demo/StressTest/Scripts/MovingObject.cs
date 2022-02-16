@@ -45,19 +45,19 @@ public class MovingObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_ASLObject.SendAndSetClaim(() =>
-        {
-            if (transform.position.magnitude >= MaxDistance)
-            {
-                dir = -transform.position.normalized;
-            }
-            else
-            {
-                dir = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
-            }
-            Vector3 m_AdditiveMovementAmount = dir * MovementSpeed * Time.deltaTime;
-            m_ASLObject.SendAndIncrementWorldPosition(m_AdditiveMovementAmount);
-        });
+         m_ASLObject.SendAndSetClaim(() =>
+         {
+             if (transform.position.magnitude >= MaxDistance)
+             {
+                 dir = -transform.position.normalized;
+             }
+             else
+             {
+                 dir = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
+             }
+             Vector3 m_AdditiveMovementAmount = dir * MovementSpeed * Time.deltaTime;
+             m_ASLObject.SendAndIncrementWorldPosition(m_AdditiveMovementAmount);
+         });
     }
 
     void UpdateCounterOnCollision(Collider other)

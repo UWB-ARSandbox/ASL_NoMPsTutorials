@@ -10,36 +10,39 @@ public class Platformer_CameraMove : MonoBehaviour
     public float BottomBound;
     public float CameraMoveSpeed = 10f;
 
-    public Platformer_Player player;
+    Platformer_Player player;
     Vector3 offset;
 
     // Start is called before the first frame update
     void Start()
     {
-        offset = transform.position - player.transform.position;
+        //offset = transform.position - player.transform.position;
     }
 
     private void FixedUpdate()
     {
-        Vector3 startPos = transform.position;
-        Vector3 endPos = player.transform.position;
+        if (player != null)
+        {
+            Vector3 startPos = transform.position;
+            Vector3 endPos = player.transform.position;
 
-        endPos.x += offset.x;
-        endPos.y += offset.y;
-        endPos.z = -10;
-        transform.position = Vector3.Lerp(startPos, endPos, CameraMoveSpeed * Time.fixedDeltaTime);
+            endPos.x += offset.x;
+            endPos.y += offset.y;
+            endPos.z = -10;
+            transform.position = Vector3.Lerp(startPos, endPos, CameraMoveSpeed * Time.fixedDeltaTime);
 
-        transform.position = new Vector3
-            (
-                Mathf.Clamp(transform.position.x, LeftBound, RightBound),
-                Mathf.Clamp(transform.position.y, BottomBound, TopBound),
-                transform.position.z
-            );
+            transform.position = new Vector3
+                (
+                    Mathf.Clamp(transform.position.x, LeftBound, RightBound),
+                    Mathf.Clamp(transform.position.y, BottomBound, TopBound),
+                    transform.position.z
+                );
+        }
     }
 
     public void SetUpCamera(Platformer_Player _player)
     {
-        //player = _player;
-        //offset = transform.position - player.transform.position;
+        player = _player;
+        offset = transform.position - player.transform.position;
     }
 }

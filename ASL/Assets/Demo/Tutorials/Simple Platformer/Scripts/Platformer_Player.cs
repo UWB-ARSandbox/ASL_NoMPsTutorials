@@ -20,7 +20,7 @@ public class Platformer_Player : MonoBehaviour
     bool rightCollision = false;
     bool jumpRecharged = true;
     int coinsCollected = 0;
-    float floor, leftWall, rightWall;
+    float floor, leftWall, rightWall; //these need to reset on triggerExit
     int ownerID;
 
     ASLObject m_ASLObject;
@@ -32,6 +32,7 @@ public class Platformer_Player : MonoBehaviour
         Debug.Assert(m_ASLObject != null);
         CoinCount = FindObjectOfType<Platformer_GameManager>().CoinCount;
         WinText = FindObjectOfType<Platformer_GameManager>().WinText;
+        Camera.main.GetComponent<Platformer_CameraMove>().SetUpCamera(this);
     }
 
     private void Update()
@@ -40,12 +41,14 @@ public class Platformer_Player : MonoBehaviour
         {
             jumpRecharged = false;
             velocity.y += JumpVelocity;
+
+            Debug.Log("playerID: " + ownerID + " actual id: " + ASL.GameLiftManager.GetInstance().m_PeerId);
         }
     }
 
     private void FixedUpdate()
     {
-        if (ASL.GameLiftManager.GetInstance().AmLowestPeer())//(ASL.GameLiftManager.GetInstance().m_PeerId == ownerID)
+        if (ASL.GameLiftManager.GetInstance().m_PeerId == ownerID)
         {
 
             bool hitGround = false;
@@ -108,11 +111,11 @@ public class Platformer_Player : MonoBehaviour
         }
     }
 
-    public void SetUpPlayer(int _owenerID, Vector3 respawnPoint)
-    {
-        ownerID = _owenerID;
-        RespawnPoint = respawnPoint;
-    }
+    //public void SetUpPlayer(int _owenerID, Vector3 respawnPoint)
+    //{
+    //    ownerID = _owenerID;
+    //    RespawnPoint = respawnPoint;
+    //}
 
     public void PlatformCollisionEnter(Platformer_Collider.CollisionSide side, float collisionPoint)
     {
@@ -206,5 +209,13 @@ public class Platformer_Player : MonoBehaviour
     {
         WinText.gameObject.SetActive(true);
         WinText.text = "Player 1 Wins!!!";
+    }
+    public static void MyFloatsFunction(string _id, float[] _myFloats)
+    {
+        ASLObject aSLObject;
+        ASL.ASLHelper.m_ASLObjects.TryGetValue(_id, out aSLObject);
+        Platformer_Player player = aSLObject.gameObject.GetComponent<Platformer_Player>();
+        player.ownerID = (int)_myFloats[0];
+        player.RespawnPoint = new Vector3(_myFloats[1], _myFloats[2], _myFloats[3]);
     }
 }

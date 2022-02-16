@@ -40,7 +40,6 @@ public class ASL_ObjectCollider : MonoBehaviour
         physicsMaster = ASL_PhysicsMasterSingleton.Instance;
 
         Debug.Assert(physicsMaster != null);
-        Debug.Log(physicsMaster != null);
         if (ObjectCollider == null)
         {
             ObjectCollider = GetComponent<Collider>();

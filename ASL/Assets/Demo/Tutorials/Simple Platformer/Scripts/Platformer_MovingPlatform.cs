@@ -5,6 +5,8 @@ using UnityEngine;
 public class Platformer_MovingPlatform : Platformer_Collider
 {
     ASL_ObjectCollider m_ASLObjectCollider;
+    ASL_AutonomousObjectHandler autonomousObjectHandler;
+    int autonomousObjectIndex;
 
     // Start is called before the first frame update
     void Start()

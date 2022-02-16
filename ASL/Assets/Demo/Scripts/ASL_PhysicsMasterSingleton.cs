@@ -24,6 +24,16 @@ public class ASL_PhysicsMasterSingleton : MonoBehaviour
         {
             _instance = this;
         }
+    }
+
+    private void Start()
+    {
+        isPhysicsMaster = ASL.GameLiftManager.GetInstance().AmLowestPeer();
+        DontDestroyOnLoad(gameObject);
+    }
+
+    public void SetUpPhysicsMaster()
+    {
         isPhysicsMaster = ASL.GameLiftManager.GetInstance().AmLowestPeer();
     }
 }
