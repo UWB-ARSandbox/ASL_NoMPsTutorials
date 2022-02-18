@@ -117,6 +117,11 @@ namespace ASL
         public DataReceivedEventArgs m_Packet { get; private set; }
 
         /// <summary>
+        /// The peer id of the current selected physics master
+        /// </summary>
+        private int m_PhysicsMasterId;
+
+        /// <summary>
         /// Can be any positive number, but must be matched with the OpCodes in the RealTime script.
         /// </summary>
         public enum OpCode
@@ -589,7 +594,8 @@ namespace ASL
         }
 
         /// <summary>
-        /// Removes a player from the player list for this session. Happens when a player disconnects
+        /// Removes a player from the player list for this session. Happens when a player disconnects.
+        /// It calls reassign function to reassign the physics master for the game if the leaving player was the master.
         /// </summary>
         /// <param name="_packet">The packet that was received from the server</param>
         private void RemovePlayerFromList(DataReceivedEventArgs _packet)
@@ -597,6 +603,19 @@ namespace ASL
             string data = Encoding.Default.GetString(_packet.Data);
             m_Players.Remove(int.Parse(data));
             m_LobbyManager?.UpdateLobbyScreen();
+            if (m_PhysicsMasterId == int.Parse(data))
+            {
+                ASL_PhysicsMasterSingleton.Instance.ReassignPhysicsMaster();
+            }
+        }
+
+        /// <summary>
+        /// Assigns the given peer id to physics master's id.
+        /// </summary>
+        /// <param name="id">Peer id</param>
+        public void SetPhysicsMasterId(int id)
+        {
+            m_PhysicsMasterId = id;
         }
 
         /// <summary>
@@ -1035,6 +1054,57 @@ namespace ASL
         {
             int currentLowest = GetLowestPeerId();
             if (currentLowest == m_PeerId)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Returns true if the caller is the lowest peer id user in the match. This is a good way to assign a "Host" player if desired.
+        /// Though do keep in mind that ASL is a P2P network.
+        /// </summary>
+        /// <returns>True if caller has the lowest peer id</returns>
+        public int GetHighestPeerId()
+        {
+            int highestPeerId = int.MinValue;
+            foreach (KeyValuePair<int, string> _aPlayer in m_Players)
+            {
+                if (highestPeerId < _aPlayer.Key)
+                {
+                    highestPeerId = _aPlayer.Key;
+                }
+            }
+            return highestPeerId;
+        }
+
+        public bool AmHighestPeer()
+        {
+            int currentHighest = GetHighestPeerId();
+            if (currentHighest == m_PeerId)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public int GetRandomPeerId()
+        {
+            int[] playerId = new int[m_Players.Count];
+            int index = 0;
+            foreach (KeyValuePair<int, string> _aPlayer in m_Players)
+            {
+                playerId[index++] = _aPlayer.Key;
+            }
+            System.Random rnd = new System.Random();
+            int rndIndex = rnd.Next(m_Players.Count);
+
+            return playerId[rndIndex];
+        }
+
+        public bool AmITheOne(int id)
+        {
+            if (id == m_PeerId)
             {
                 return true;
             }

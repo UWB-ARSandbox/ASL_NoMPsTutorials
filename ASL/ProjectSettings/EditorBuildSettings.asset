@@ -53,6 +53,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Demo/Tutorials/Simple Platformer/ComplexPlatformerScene.unity
     guid: 7c11a3bd60de474459f232a3d011fe3c
+  - enabled: 1
+    path: Assets/Demo/Tutorials/PhysicsMasterOrdering/PhysicsMasterOrdering.unity
+    guid: 46b6213dcd6f9f2419bbf96ff6634a42
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: bf557935255407f40b56b5c173577bf9, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: b653963d314ffaf409a6357156cf5de6, type: 2}
