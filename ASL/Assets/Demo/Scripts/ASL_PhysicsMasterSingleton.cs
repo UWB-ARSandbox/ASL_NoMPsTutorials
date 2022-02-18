@@ -9,9 +9,12 @@ public class ASL_PhysicsMasterSingleton : MonoBehaviour
 {
     private static ASL_PhysicsMasterSingleton _instance;
 
+    /// <summary>A callback function contains a user-defined algorithm determining the physics master</summary>
     public delegate void DefinePhysicsMasterCallback();
 
+    /// <summary>A callback function contains a user-defined algorithm determining the physics master but return the peer id</summary>
     public delegate int DefinePhysicsMasterIdCallback();
+
     public static ASL_PhysicsMasterSingleton Instance { get { return _instance; } }
 
     private bool isPhysicsMaster = false;

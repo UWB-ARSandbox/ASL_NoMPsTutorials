@@ -1060,11 +1060,9 @@ namespace ASL
             return false;
         }
 
-        /// <summary>
-        /// Returns true if the caller is the lowest peer id user in the match. This is a good way to assign a "Host" player if desired.
-        /// Though do keep in mind that ASL is a P2P network.
-        /// </summary>
-        /// <returns>True if caller has the lowest peer id</returns>
+
+        /// <summary>Returns the current highest peerID value out of all the currently connected players</summary>
+        /// <returns>The highest peer id of all the users in this match</returns>
         public int GetHighestPeerId()
         {
             int highestPeerId = int.MinValue;
@@ -1078,6 +1076,11 @@ namespace ASL
             return highestPeerId;
         }
 
+        /// <summary>
+        /// Returns true if the caller is the highest peer id user in the match. This is a good way to assign a "Host" player if desired.
+        /// Though do keep in mind that ASL is a P2P network.
+        /// </summary>
+        /// <returns>True if caller has the highest peer id</returns>
         public bool AmHighestPeer()
         {
             int currentHighest = GetHighestPeerId();
@@ -1087,29 +1090,5 @@ namespace ASL
             }
             return false;
         }
-
-        public int GetRandomPeerId()
-        {
-            int[] playerId = new int[m_Players.Count];
-            int index = 0;
-            foreach (KeyValuePair<int, string> _aPlayer in m_Players)
-            {
-                playerId[index++] = _aPlayer.Key;
-            }
-            System.Random rnd = new System.Random();
-            int rndIndex = rnd.Next(m_Players.Count);
-
-            return playerId[rndIndex];
-        }
-
-        public bool AmITheOne(int id)
-        {
-            if (id == m_PeerId)
-            {
-                return true;
-            }
-            return false;
-        }
-
     }
 }
