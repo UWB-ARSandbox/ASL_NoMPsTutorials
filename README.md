@@ -20,6 +20,9 @@ Packages->ARCore Extensions->Editor->Scripts->Internal->Analytics->Google.Protob
 					<li>
 						<p><strong>Using ASL</strong> - You are now ready to begin programming a multi-user interactive experience! Refer to the documentation  if you are having trouble with any function, but in general, make sure to claim your object before doing anything with it and even then, the stuff you do with it should be ASL related only if you want others to see your changes. Note that any and all ASL tutorials should work without any setup.</p>
 					</li>
+					<li>
+						<p><strong>ASL Performance</strong> - </p>
+					</li>
 				</ul>
 			</p>				
 			<h2>Adding documentation</h2>
