@@ -18,7 +18,22 @@ Packages->ARCore Extensions->Editor->Scripts->Internal->Analytics->Google.Protob
 						<p><strong>Connect to other users</strong> - First and very importantly, you must always build these scenes: <strong>ASL_LobbyScene</strong> and <strong>ASL_SceneLoader</strong>. You will not be able to connect to others and will receive  errors if you do not have these scenes in your Unity build settings. Now, with that out of the way, there are two ways in which you can connect players to each other for either testing your application or using it. The first is through the use of the provided ASL_LobbyScene. If you use this method, you must ensure you always launch from this scene and include the name of the scene you want to launch to in its "AvailableScenes" dropdown UI object. The second method allows you to connect from whatever scene you want and is generally recommended as it involves less user steps. To use this method, you must attach the "QuickConnect" script to an empty GameObject and place that empty GameObject in the Unity Hierarchy window of your desired first scene at the very top so it execute first. You can see examples of this in all of the Simple Tutorials. You must also pick a unique room name and the starting scene for players to transition to after connecting and readying up with each other, the starting would ideally be the scene the QuickConnect script is located in, but does not have to be. If your room name is not unique, then you will join another ASL user's room. The starting scene can be the name of the scene you are currently working in. If you do use this method, you must still build the ASL_LobbyScene and ASL_SceneLoader scenes, though they no longer have to be built first.</p>
 					</li>
 					<li>
-						<p><strong>ASL Performance</strong> - </p>
+						<p><strong>ASL Performance</strong> - The current AWS GameLift server (C5.Large) is of modest performance. By default ASL limits FPS to 40 (this is done in <strong>WHICH FILE</strong>, <strong>WHICH FUNCTION</strong>). If we use “autonomously moving object” to describe a Unity GameObject with a script that updates the Transform continuously in the Update() function, e.g., a projectile, or a ball after being kicked, etc. then, given <br>
+<ul>
+	<li>
+	<strong>n</strong>: number of players (or peers) in your game
+	</li>
+	<li>
+	<strong>m</strong>: number of autonomously moving objects
+	</li>
+</ul>
+To maintain smooth real time updates,
+<ul>
+	<li>
+	<strong>n x m < 60</strong>
+	</li>
+</ul>
+For example, if there are 3 players (<strong>n</strong>=3), then in order to maintain smooth updates, your game should have less than 20 (<strong>m</strong>=20) autonomously moving objects. Note that <strong>m</strong> only refers to objects that are updated continuously by game logic and does not include other stationary objects that you can manipulate. The point is that performance is a function of the number of network packets sent, and, network packets are only required for objects that are changing.</p>
 					</li>
 					<li>
 						<p><strong>Using ASL</strong> - You are now ready to begin programming a multi-user interactive experience! Refer to the documentation  if you are having trouble with any function, but in general, make sure to claim your object before doing anything with it and even then, the stuff you do with it should be ASL related only if you want others to see your changes. Note that any and all ASL tutorials should work without any setup.</p>
@@ -98,9 +113,6 @@ Packages->ARCore Extensions->Editor->Scripts->Internal->Analytics->Google.Protob
 			</p>
 			<h3>Realtime Script/AWS Related:</h3>
 			<p>https://docs.google.com/document/d/1pVMVDpXlJm7dZuT_uABLvtaG-ltwAfDeL0yAUoPS-JU/edit?usp=sharing
-			</p>
-			<h3>40 FPS Limitation:</h3>
-			<p> number of gameobjects x number of players < 60
 			</p>
 	</body>
 </html>
