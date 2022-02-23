@@ -26,8 +26,15 @@ public class ASL_PhysicsMasterSingleton : MonoBehaviour
         get { return isPhysicsMaster; }
     }
 
+    /// <summary>
+    /// Used to return a single instance
+    /// and set application frame rate to 40 as default.
+    /// </summary>
     private void Awake()
     {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 40;
+
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
