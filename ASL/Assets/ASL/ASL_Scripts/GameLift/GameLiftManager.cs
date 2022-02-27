@@ -117,6 +117,10 @@ namespace ASL
         public DataReceivedEventArgs m_Packet { get; private set; }
 
         /// <summary>
+        /// The peer id of the current selected physics master
+        /// </summary>
+        private int m_PhysicsMasterId;
+
         /// Pre-defined callback function for a specific OpFunction
         /// </summary>
         public delegate void OpFunctionCallback();
@@ -600,7 +604,8 @@ namespace ASL
         }
 
         /// <summary>
-        /// Removes a player from the player list for this session. Happens when a player disconnects
+        /// Removes a player from the player list for this session. Happens when a player disconnects.
+        /// It calls reassign function to reassign the physics master for the game if the leaving player was the master.
         /// </summary>
         /// <param name="_packet">The packet that was received from the server</param>
         private void RemovePlayerFromList(DataReceivedEventArgs _packet)
@@ -608,6 +613,19 @@ namespace ASL
             string data = Encoding.Default.GetString(_packet.Data);
             m_Players.Remove(int.Parse(data));
             m_LobbyManager?.UpdateLobbyScreen();
+            if (m_PhysicsMasterId == int.Parse(data))
+            {
+                ASL_PhysicsMasterSingleton.Instance.ReassignPhysicsMaster();
+            }
+        }
+
+        /// <summary>
+        /// Assigns the given peer id to physics master's id.
+        /// </summary>
+        /// <param name="id">Peer id</param>
+        public void SetPhysicsMasterId(int id)
+        {
+            m_PhysicsMasterId = id;
         }
 
         /// <summary>
@@ -1052,6 +1070,38 @@ namespace ASL
             return false;
         }
 
+
+
+        /// <summary>Returns the current highest peerID value out of all the currently connected players</summary>
+        /// <returns>The highest peer id of all the users in this match</returns>
+        public int GetHighestPeerId()
+        {
+            int highestPeerId = int.MinValue;
+            foreach (KeyValuePair<int, string> _aPlayer in m_Players)
+            {
+                if (highestPeerId < _aPlayer.Key)
+                {
+                    highestPeerId = _aPlayer.Key;
+                }
+            }
+            return highestPeerId;
+        }
+
+        /// <summary>
+        /// Returns true if the caller is the highest peer id user in the match. This is a good way to assign a "Host" player if desired.
+        /// Though do keep in mind that ASL is a P2P network.
+        /// </summary>
+        /// <returns>True if caller has the highest peer id</returns>
+        public bool AmHighestPeer()
+        {
+            int currentHighest = GetHighestPeerId();
+            if (currentHighest == m_PeerId)
+            {
+                return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Adds the given callback function with the given OpCode as the key into the dictionary
         /// </summary>
@@ -1078,6 +1128,5 @@ namespace ASL
             }
             return;
         }
-
     }
 }
