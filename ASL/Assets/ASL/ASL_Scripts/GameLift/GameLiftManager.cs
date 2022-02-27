@@ -117,6 +117,16 @@ namespace ASL
         public DataReceivedEventArgs m_Packet { get; private set; }
 
         /// <summary>
+        /// Pre-defined callback function for a specific OpFunction
+        /// </summary>
+        public delegate void OpFunctionCallback();
+
+        /// <summary>
+        /// Dictionary containing the all callbacks that are connected OpFunction's OpCode
+        /// </summary>
+        public Dictionary<int, OpFunctionCallback> OpFunctionCallbacks = new Dictionary<int, OpFunctionCallback>();
+
+        /// <summary>
         /// Can be any positive number, but must be matched with the OpCodes in the RealTime script.
         /// </summary>
         public enum OpCode
@@ -382,6 +392,7 @@ namespace ASL
             if(OpCodeFunctions[_packet.OpCode] != null)     // Check that a function exists for the OpCode
             {
                 OpCodeFunctions[_packet.OpCode].Invoke();   // Valid OpCode, invoke corresponding function
+                QForMainThread(DoOpFunctionCallback, _packet.OpCode);
             }
         }
 
@@ -1039,6 +1050,33 @@ namespace ASL
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// Adds the given callback function with the given OpCode as the key into the dictionary
+        /// </summary>
+        /// <param name="callback">pre-defined callback function</param>
+        /// <param name="opCode">OpFunction's associated OpCode</param>
+        public void SetOpFunctionCallback(OpFunctionCallback callback, OpCode opCode)
+        {
+            int opCodeInInt = (int)opCode;
+            OpFunctionCallbacks.Add(opCodeInInt, callback);
+        }
+
+        /// <summary>
+        /// Gets the corresponding callback function with the given OpCode from the dictionary.
+        /// Removes the callback function after it has been invoked.
+        /// </summary>
+        /// <param name="opCode">OpFunction's associated OpCode</param>
+        public void DoOpFunctionCallback(int opCode)
+        {
+            if (OpFunctionCallbacks.ContainsKey(opCode))
+            {
+                OpFunctionCallback callback = OpFunctionCallbacks[opCode];
+                OpFunctionCallbacks.Remove(opCode);
+                callback.Invoke();
+            }
+            return;
         }
 
     }
