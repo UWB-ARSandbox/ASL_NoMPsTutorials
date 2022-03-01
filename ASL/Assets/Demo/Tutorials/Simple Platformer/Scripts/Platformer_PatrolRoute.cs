@@ -58,7 +58,7 @@ public class Platformer_PatrolRoute : MonoBehaviour
             //{
             //    m_ASLObject.SendAndIncrementWorldPosition(m_AdditiveMovementAmount);
             //});
-            autonomousObjectHandler.IncrementWorldPossision(autonomousObjectIndex, m_AdditiveMovementAmount);
+            autonomousObjectHandler.IncrementWorldPosition(autonomousObjectIndex, m_AdditiveMovementAmount);
         }
         else firstUpdate = false;
     }

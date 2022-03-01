@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: -5751358944237261842}
   - component: {fileID: -3895281302963929499}
   - component: {fileID: -4708650960374827216}
+  - component: {fileID: 6381543773101473536}
   m_Layer: 0
   m_Name: Demo_Coin
   m_TagString: Untagged
@@ -126,7 +127,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1387072037482820139}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 23, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.01, z: 0.5}
   m_Children:
   - {fileID: 1387072037007735212}
@@ -208,6 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2607774a29e674f928f93867495706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RotationSpeed: 100
 --- !u!114 &-3895281302963929499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +235,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectCollider: {fileID: 1387072037482820138}
+--- !u!114 &6381543773101473536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387072037482820139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd571df496455f4396ec35d4294e7e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Owner: 0
 --- !u!1 &1387072038284643878
 GameObject:
   m_ObjectHideFlags: 0

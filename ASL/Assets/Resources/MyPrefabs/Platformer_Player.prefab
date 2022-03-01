@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 3
-  FallVelocity: 0
+  FallVelocity: 0.3
   JumpVelocity: 10
   RespawnPoint: {x: 0, y: 0, z: 0}
   CoinCount: {fileID: 0}

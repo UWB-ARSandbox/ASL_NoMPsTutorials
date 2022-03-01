@@ -44,10 +44,6 @@ public class Platformer_Player : MonoBehaviour
 
             Debug.Log("playerID: " + ownerID + " actual id: " + ASL.GameLiftManager.GetInstance().m_PeerId);
         }
-    }
-
-    private void FixedUpdate()
-    {
         if (ASL.GameLiftManager.GetInstance().m_PeerId == ownerID)
         {
 
