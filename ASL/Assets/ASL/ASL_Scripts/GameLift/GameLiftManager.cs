@@ -128,7 +128,7 @@ namespace ASL
         /// <summary>
         /// Dictionary containing the all callbacks that are connected OpFunction's OpCode
         /// </summary>
-        public Dictionary<int, OpFunctionCallback> OpFunctionCallbacks = new Dictionary<int, OpFunctionCallback>();
+        public Dictionary<string, OpFunctionCallback> OpFunctionCallbacks = new Dictionary<string, OpFunctionCallback>();
 
         /// <summary>
         /// Can be any positive number, but must be matched with the OpCodes in the RealTime script.
@@ -396,7 +396,7 @@ namespace ASL
             if(OpCodeFunctions[_packet.OpCode] != null)     // Check that a function exists for the OpCode
             {
                 OpCodeFunctions[_packet.OpCode].Invoke();   // Valid OpCode, invoke corresponding function
-                QForMainThread(DoOpFunctionCallback, _packet.OpCode);
+                QForMainThread(DoOpFunctionCallback, _packet);
             }
         }
 
@@ -1107,10 +1107,9 @@ namespace ASL
         /// </summary>
         /// <param name="callback">pre-defined callback function</param>
         /// <param name="opCode">OpFunction's associated OpCode</param>
-        public void SetOpFunctionCallback(OpFunctionCallback callback, OpCode opCode)
+        public void SetOpFunctionCallback(OpFunctionCallback callback, string key)
         {
-            int opCodeInInt = (int)opCode;
-            OpFunctionCallbacks.Add(opCodeInInt, callback);
+            OpFunctionCallbacks.Add(key, callback);
         }
 
         /// <summary>
@@ -1118,15 +1117,42 @@ namespace ASL
         /// Removes the callback function after it has been invoked.
         /// </summary>
         /// <param name="opCode">OpFunction's associated OpCode</param>
-        public void DoOpFunctionCallback(int opCode)
+        public void DoOpFunctionCallback(DataReceivedEventArgs args)
         {
-            if (OpFunctionCallbacks.ContainsKey(opCode))
+            byte[] rawData = args.Data;
+            int opCode = args.OpCode;
+
+            // check if the current op function has callback functionality enabled
+            bool isCallbackEnable = OpCodeToCallbackIndexMapping._CallbackIndex.ContainsKey(opCode);
+            if (!isCallbackEnable) return;
+            int callbackArgIndex = OpCodeToCallbackIndexMapping._CallbackIndex[opCode];
+
+            // get callback key from the data base on the index we got
+            (int[] startLocation, int[] dataLength) = m_GameController.DataLengthsAndStartLocations(rawData);
+            string opCodeKey = m_GameController.ConvertByteArrayIntoString(rawData, startLocation[callbackArgIndex], dataLength[callbackArgIndex]);
+            Debug.Log("color key extracted from the server data: " + opCodeKey);
+
+            //get callback function base on key, if key = "0", no callback assigned
+            if (opCodeKey.Equals("0")) return;
+            if (OpFunctionCallbacks.ContainsKey(opCodeKey))
             {
-                OpFunctionCallback callback = OpFunctionCallbacks[opCode];
-                OpFunctionCallbacks.Remove(opCode);
+                OpFunctionCallback callback = OpFunctionCallbacks[opCodeKey];
+                OpFunctionCallbacks.Remove(opCodeKey);
                 callback.Invoke();
             }
             return;
         }
+
+        public string GenerateOpFunctionCallbackKey(string objectId, OpCode opCode)
+        {
+            Guid guid = new Guid(objectId);
+            string opCodeInString = ((int)opCode).ToString();
+            string timeStamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+            string guidInString = guid.ToString();
+            string callbackId = guidInString + "_" + opCodeInString + "_" + timeStamp;
+            Debug.Log("set color key: " + callbackId);
+            return callbackId;
+        }
+
     }
 }
