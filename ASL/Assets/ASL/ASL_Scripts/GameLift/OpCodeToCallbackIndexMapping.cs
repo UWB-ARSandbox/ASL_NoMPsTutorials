@@ -4,14 +4,19 @@ using UnityEngine;
 
 namespace ASL
 {
+    /*
+     * Temporary file for maintaining un-fixed op functions to have no error.
+     * The op code list below are the one fixed already.
+     * TODO: Remove this file once the callback functionality has been added to all op functions.
+     */
     public static class OpCodeToCallbackIndexMapping
     {
-        public static Dictionary<int, int> _CallbackIndex = new Dictionary<int, int>
-    {
-        {15, 4}, //"SetObjectColor":15,
-        {24, 2}, //"IncrementWorldPosition":24,
-        {26, 2}, //"IncrementWorldRotation":26,
-        {28, 2},//"IncrementWorldScale":28,
-    };
+        public static HashSet<int> _CallbackIndex = new HashSet<int>
+        {
+            15, //"SetObjectColor":15,
+            24, //"IncrementWorldPosition":24,
+            26, //"IncrementWorldRotation":26,
+            28,//"IncrementWorldScale":28,
+        };
     }
 }

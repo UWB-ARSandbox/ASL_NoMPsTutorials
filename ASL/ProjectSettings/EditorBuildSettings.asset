@@ -59,6 +59,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Demo/AutonomousObjectDemo/AutonomousObjectTestScene.unity
     guid: efde5e2cab4cd1946987c755379d73e4
+  - enabled: 1
+    path: Assets/ASL/ASL_Tutorials/Simple/ColorObject/ColorObject_Example.unity
+    guid: 2b8574c3056aadb4b9f1f4b71885434b
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: bf557935255407f40b56b5c173577bf9, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: b653963d314ffaf409a6357156cf5de6, type: 2}

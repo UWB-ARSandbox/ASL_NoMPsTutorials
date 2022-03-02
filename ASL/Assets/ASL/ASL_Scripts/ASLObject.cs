@@ -89,6 +89,9 @@ namespace ASL
         /// <summary>The number of outstanding claims for this object. </summary>
         public int m_OutstandingClaimCallbackCount { get; set; }
 
+        /// <summary>A value for callback id when the given null as callback. </summary>
+        public static string m_NullCallbackId = "0";
+
         /// <summary>
         /// Claims an object for the user until someone steals it or the passed in claim time is reached. Changing the time you hold onto an object and 
         /// deciding to reset or not the current amount of time you have held it is generally not recommended, but does have occasional applications
@@ -210,27 +213,28 @@ namespace ASL
         ///     });
         /// }
         /// </code></example>
-        public void SendAndSetObjectColor(Color _myColor, Color _opponentsColor, string callbackKey)
+        public void SendAndSetObjectColor(Color _myColor, Color _opponentsColor, GameLiftManager.OpFunctionCallback callback)
         {
             if (m_Mine)
             {
+                string callbackId = SetOpFunctionCallback(callback, GameLiftManager.OpCode.SetObjectColor);
+
+                byte[] callbackKeyInByte = Encoding.ASCII.GetBytes(callbackId);
                 byte[] id = Encoding.ASCII.GetBytes(m_Id);
                 byte[] myColor = GameLiftManager.GetInstance().ConvertVector4ToByteArray(_myColor);
                 byte[] opponentsColor = GameLiftManager.GetInstance().ConvertVector4ToByteArray(_opponentsColor);
                 byte[] sender = GameLiftManager.GetInstance().ConvertIntToByteArray(GameLiftManager.GetInstance().m_PeerId);
-                byte[] callbackKeyInByte = Encoding.ASCII.GetBytes(callbackKey);
-                byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, myColor, opponentsColor, sender, callbackKeyInByte);
+                byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(callbackKeyInByte, id, myColor, opponentsColor, sender);
 
                 RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.SetObjectColor, payload);
                 GameLiftManager.GetInstance().m_Client.SendMessage(message);
-                Debug.Log("color sent from the client with callback : " + callbackKey.Equals("0"));
 
             }
         }
 
         public void SendAndSetObjectColor(Color _myColor, Color _opponentsColor)
         {
-            SendAndSetObjectColor(_myColor, _opponentsColor, "0");
+            SendAndSetObjectColor(_myColor, _opponentsColor, null);
         }
 
         /// <summary>
@@ -563,16 +567,18 @@ namespace ASL
         ///     });
         /// }
         /// </code></example>
-        public void SendAndIncrementWorldPosition(Vector3? _position, string callbackKey)
+        public void SendAndIncrementWorldPosition(Vector3? _position, GameLiftManager.OpFunctionCallback callback)
         {
             if (m_Mine) //Can only send a transform if we own the object
             {
+                string callbackId = SetOpFunctionCallback(callback, GameLiftManager.OpCode.IncrementWorldPosition);
+                byte[] callbackKeyInByte = Encoding.ASCII.GetBytes(callbackId);
+
                 if (_position.HasValue)
                 {
                     byte[] id = Encoding.ASCII.GetBytes(m_Id);
                     byte[] position = GameLiftManager.GetInstance().ConvertVector3ToByteArray(new Vector3(_position.Value.x, _position.Value.y, _position.Value.z));
-                    byte[] callbackKeyInByte = Encoding.ASCII.GetBytes(callbackKey);
-                    byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, position, callbackKeyInByte);
+                    byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(callbackKeyInByte, id, position);
 
                     RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.IncrementWorldPosition, payload);
                     GameLiftManager.GetInstance().m_Client.SendMessage(message);
@@ -582,8 +588,7 @@ namespace ASL
                 {
                     byte[] id = Encoding.ASCII.GetBytes(m_Id);
                     byte[] position = GameLiftManager.GetInstance().ConvertVector3ToByteArray(new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z));
-                    byte[] callbackKeyInByte = Encoding.ASCII.GetBytes(callbackKey);
-                    byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, position, callbackKeyInByte);
+                    byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(callbackKeyInByte, id, position);
 
                     RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.IncrementWorldPosition, payload);
                     GameLiftManager.GetInstance().m_Client.SendMessage(message);
@@ -593,7 +598,7 @@ namespace ASL
 
         public void SendAndIncrementWorldPosition(Vector3? _position)
         {
-            SendAndIncrementWorldPosition(_position, "0");
+            SendAndIncrementWorldPosition(_position, null);
         }
 
         /// <summary>
@@ -652,14 +657,16 @@ namespace ASL
         ///     });
         /// }
         /// </code></example>
-        public void SendAndIncrementWorldRotation(Quaternion? _rotation, string callbackKey)
+        public void SendAndIncrementWorldRotation(Quaternion? _rotation, GameLiftManager.OpFunctionCallback callback)
         {
+            string callbackId = SetOpFunctionCallback(callback, GameLiftManager.OpCode.IncrementWorldRotation);
+            byte[] callbackKeyInByte = Encoding.ASCII.GetBytes(callbackId);
+
             if (_rotation.HasValue)
             {
                 byte[] id = Encoding.ASCII.GetBytes(m_Id);
                 byte[] rotation = GameLiftManager.GetInstance().ConvertVector4ToByteArray(new Vector4(_rotation.Value.x, _rotation.Value.y, _rotation.Value.z, _rotation.Value.w));
-                byte[] callbackKeyInByte = Encoding.ASCII.GetBytes(callbackKey);
-                byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, rotation, callbackKeyInByte);
+                byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(callbackKeyInByte, id, rotation);
 
                 RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.IncrementWorldRotation, payload);
                 GameLiftManager.GetInstance().m_Client.SendMessage(message);
@@ -669,8 +676,7 @@ namespace ASL
             {
                 byte[] id = Encoding.ASCII.GetBytes(m_Id);
                 byte[] rotation = GameLiftManager.GetInstance().ConvertVector4ToByteArray(new Vector4(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w));
-                byte[] callbackKeyInByte = Encoding.ASCII.GetBytes(callbackKey);
-                byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, rotation, callbackKeyInByte);
+                byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(callbackKeyInByte, id, rotation);
 
                 RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.IncrementWorldRotation, payload);
                 GameLiftManager.GetInstance().m_Client.SendMessage(message);
@@ -679,7 +685,7 @@ namespace ASL
 
         public void SendAndIncrementWorldRotation(Quaternion? _rotation)
         {
-            SendAndIncrementWorldRotation(_rotation, "0");
+            SendAndIncrementWorldRotation(_rotation, null);
         }
 
         /// <summary>
@@ -745,14 +751,16 @@ namespace ASL
         ///     });
         /// }
         /// </code></example>
-        public void SendAndIncrementWorldScale(Vector3? _scale, string callbackKey)
+       public void SendAndIncrementWorldScale(Vector3? _scale, GameLiftManager.OpFunctionCallback callback)
         {
+            string callbackId = SetOpFunctionCallback(callback, GameLiftManager.OpCode.IncrementWorldScale);
+            byte[] callbackKeyInByte = Encoding.ASCII.GetBytes(callbackId);
+
             if (_scale.HasValue)
             {
                 byte[] id = Encoding.ASCII.GetBytes(m_Id);
                 byte[] scale = GameLiftManager.GetInstance().ConvertVector3ToByteArray(new Vector3(_scale.Value.x, _scale.Value.y, _scale.Value.z));
-                byte[] callbackKeyInByte = Encoding.ASCII.GetBytes(callbackKey);
-                byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, scale, callbackKeyInByte);
+                byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(callbackKeyInByte, id, scale);
 
                 RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.IncrementWorldScale, payload);
                 GameLiftManager.GetInstance().m_Client.SendMessage(message);
@@ -766,8 +774,7 @@ namespace ASL
                 gameObject.transform.parent = null;
                 byte[] scale = GameLiftManager.GetInstance().ConvertVector3ToByteArray(new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z));
                 gameObject.transform.parent = parent;
-                byte[] callbackKeyInByte = Encoding.ASCII.GetBytes(callbackKey);
-                byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, scale, callbackKeyInByte);
+                byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(callbackKeyInByte, id, scale);
 
                 RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.IncrementWorldScale, payload);
                 GameLiftManager.GetInstance().m_Client.SendMessage(message);
@@ -776,7 +783,7 @@ namespace ASL
 
         public void SendAndIncrementWorldScale(Vector3? _scale)
         {
-            SendAndIncrementWorldScale(_scale, "0");
+            SendAndIncrementWorldScale(_scale, null);
         }
 
         /// <summary>
@@ -1172,6 +1179,22 @@ namespace ASL
                 ASLHelper.m_CloudAnchors.Remove(m_AnchorID);
             }
 
+        }
+
+        /// <summary>
+        /// Generate callback id with given information.
+        /// save the callback with generated id as the key into dictionary
+        /// </summary>
+        /// <param name="callback">user pre-defined callback function</param>
+        /// <param name="opCode">op code for the given function</param>
+        private string SetOpFunctionCallback(GameLiftManager.OpFunctionCallback callback, GameLiftManager.OpCode opCode)
+        {
+            if (callback == null) return m_NullCallbackId;
+            string callbackId = GameLiftManager.GetInstance().GenerateOpFunctionCallbackKey(
+                    m_Id,
+                    opCode);
+            GameLiftManager.GetInstance().SetOpFunctionCallback(callback, callbackId);
+            return callbackId;
         }
     }
 }

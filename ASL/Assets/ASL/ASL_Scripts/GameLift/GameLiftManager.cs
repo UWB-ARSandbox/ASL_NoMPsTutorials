@@ -63,17 +63,17 @@ namespace ASL
         /// The singleton instance for this class
         /// </summary>
         private static GameLiftManager m_Instance;
-        
+
         /// <summary>
         /// Internal class used to setup and connect users to each other
         /// </summary>
         private LobbyManager m_LobbyManager;
-        
+
         /// <summary>
         /// Internal class used to load scenes for all users
         /// </summary>
         private SceneLoader m_SceneLoader;
-        
+
         /// <summary>
         /// Internal class used to decoded packets received from the AWS
         /// </summary>
@@ -130,6 +130,11 @@ namespace ASL
         /// </summary>
         public Dictionary<string, OpFunctionCallback> OpFunctionCallbacks = new Dictionary<string, OpFunctionCallback>();
 
+        /// <summary>A value for callback id when the given null as callback. </summary>
+        public static string m_NullCallbackId = "0";
+
+        /// <summary>The index value for callback id in data payload. </summary>
+        public static int m_callbackIdIndex = 0;
         /// <summary>
         /// Can be any positive number, but must be matched with the OpCodes in the RealTime script.
         /// </summary>
@@ -1106,9 +1111,10 @@ namespace ASL
         /// Adds the given callback function with the given OpCode as the key into the dictionary
         /// </summary>
         /// <param name="callback">pre-defined callback function</param>
-        /// <param name="opCode">OpFunction's associated OpCode</param>
+        /// <param name="key">callback id</param>
         public void SetOpFunctionCallback(OpFunctionCallback callback, string key)
         {
+            if (OpFunctionCallbacks.ContainsKey(key)) return;
             OpFunctionCallbacks.Add(key, callback);
         }
 
@@ -1116,24 +1122,23 @@ namespace ASL
         /// Gets the corresponding callback function with the given OpCode from the dictionary.
         /// Removes the callback function after it has been invoked.
         /// </summary>
-        /// <param name="opCode">OpFunction's associated OpCode</param>
+        /// <param name="args">args from the server, contains data and opcode</param>
         public void DoOpFunctionCallback(DataReceivedEventArgs args)
         {
             byte[] rawData = args.Data;
             int opCode = args.OpCode;
 
+            // TODO: Remove the below two lines once the callback functionality has been added to all op functions.
             // check if the current op function has callback functionality enabled
-            bool isCallbackEnable = OpCodeToCallbackIndexMapping._CallbackIndex.ContainsKey(opCode);
+            bool isCallbackEnable = OpCodeToCallbackIndexMapping._CallbackIndex.Contains(opCode);
             if (!isCallbackEnable) return;
-            int callbackArgIndex = OpCodeToCallbackIndexMapping._CallbackIndex[opCode];
 
             // get callback key from the data base on the index we got
             (int[] startLocation, int[] dataLength) = m_GameController.DataLengthsAndStartLocations(rawData);
-            string opCodeKey = m_GameController.ConvertByteArrayIntoString(rawData, startLocation[callbackArgIndex], dataLength[callbackArgIndex]);
-            Debug.Log("color key extracted from the server data: " + opCodeKey);
+            string opCodeKey = m_GameController.ConvertByteArrayIntoString(rawData, startLocation[m_callbackIdIndex], dataLength[m_callbackIdIndex]);
 
             //get callback function base on key, if key = "0", no callback assigned
-            if (opCodeKey.Equals("0")) return;
+            if (opCodeKey.Equals(m_NullCallbackId)) return;
             if (OpFunctionCallbacks.ContainsKey(opCodeKey))
             {
                 OpFunctionCallback callback = OpFunctionCallbacks[opCodeKey];
@@ -1145,12 +1150,11 @@ namespace ASL
 
         public string GenerateOpFunctionCallbackKey(string objectId, OpCode opCode)
         {
-            Guid guid = new Guid(objectId);
+            Guid guid = Guid.NewGuid();
+            string guidInString = guid.ToString();
             string opCodeInString = ((int)opCode).ToString();
             string timeStamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
-            string guidInString = guid.ToString();
-            string callbackId = guidInString + "_" + opCodeInString + "_" + timeStamp;
-            Debug.Log("set color key: " + callbackId);
+            string callbackId = guidInString + "_" + opCodeInString + "_" + objectId + "_" + timeStamp;
             return callbackId;
         }
 
