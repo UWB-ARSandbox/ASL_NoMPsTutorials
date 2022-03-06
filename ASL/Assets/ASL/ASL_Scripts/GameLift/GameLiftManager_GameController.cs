@@ -328,18 +328,18 @@ namespace ASL
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
                 
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
-                int sender = ConvertByteArrayIntoInt(_packet.Data, startLocation[3], dataLength[3]);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
+                int sender = ConvertByteArrayIntoInt(_packet.Data, startLocation[4], dataLength[4]);
 
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
                     if (GetInstance().m_PeerId == sender)
                     {
-                        myObject.GetComponent<Renderer>().material.color = ConvertByteArrayIntoVector(_packet.Data, startLocation[1], dataLength[1]);
+                        myObject.GetComponent<Renderer>().material.color = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                     }
                     else //Everyone else
                     {
-                        myObject.GetComponent<Renderer>().material.color = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
+                        myObject.GetComponent<Renderer>().material.color = ConvertByteArrayIntoVector(_packet.Data, startLocation[3], dataLength[3]);
                     }
                 }
                 
@@ -477,10 +477,10 @@ namespace ASL
             public void IncrementWorldPosition(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
-                    myObject.transform.position += (Vector3)ConvertByteArrayIntoVector(_packet.Data, startLocation[1], dataLength[1]);
+                    myObject.transform.position += (Vector3)ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                 }
             }
 
@@ -508,10 +508,10 @@ namespace ASL
             public void IncrementWorldRotation(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
-                    Vector4 quaternion = ConvertByteArrayIntoVector(_packet.Data, startLocation[1], dataLength[1]);
+                    Vector4 quaternion = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                     myObject.transform.rotation *= new Quaternion(quaternion.x, quaternion.y, quaternion.z, quaternion.w);
                 }
             }
@@ -546,12 +546,12 @@ namespace ASL
             public void IncrementWorldScale(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
                     var parent = myObject.transform.parent;
                     myObject.transform.parent = null;
-                    myObject.transform.localScale += (Vector3)ConvertByteArrayIntoVector(_packet.Data, startLocation[1], dataLength[1]);
+                    myObject.transform.localScale += (Vector3)ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                     myObject.transform.parent = parent;
                 }
             }
@@ -1208,7 +1208,7 @@ namespace ASL
             /// <param name="_stringStartLocation">The start location of the string in the byte array</param>
             /// <param name="_stringLength">The length of the string </param>
             /// <returns>A string</returns>
-            private string ConvertByteArrayIntoString(byte[] _payload, int _stringStartLocation, int _stringLength)
+            public string ConvertByteArrayIntoString(byte[] _payload, int _stringStartLocation, int _stringLength)
             {
                 byte[] stringPortion = new byte[_stringLength];
                 Buffer.BlockCopy(_payload, _stringStartLocation, stringPortion, 0, _stringLength);
@@ -1262,7 +1262,7 @@ namespace ASL
             /// </summary>
             /// <param name="_payload">The byte array</param>
             /// <returns>The start location of the different data pieces inside the byte array and the length of each data piece</returns>
-            private (int[] startLocation, int[] dataLength) DataLengthsAndStartLocations(byte[] _payload)
+            public (int[] startLocation, int[] dataLength) DataLengthsAndStartLocations(byte[] _payload)
             {
                 int dataCount = GetDataCount(_payload);
                 int[] dataLengths = GetDataLengths(_payload, dataCount);

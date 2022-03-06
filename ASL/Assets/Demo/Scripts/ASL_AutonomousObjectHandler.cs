@@ -185,8 +185,8 @@ public int AddAutonomousObject(ASLObject aSLObject)
             ASLObject aSLObject = autonomousObjects[index];
             aSLObject.SendAndSetClaim(() =>
             {
-                ASL.GameLiftManager.GetInstance().SetOpFunctionCallback(callback, GameLiftManager.OpCode.IncrementWorldPosition);
-                aSLObject.SendAndIncrementWorldPosition(m_AdditiveMovementAmount);
+                // Edited by Liwen due to new updates on callback design, this comment can be removed anytime
+                aSLObject.SendAndIncrementWorldPosition(m_AdditiveMovementAmount, callback);
             });
         }
     }
