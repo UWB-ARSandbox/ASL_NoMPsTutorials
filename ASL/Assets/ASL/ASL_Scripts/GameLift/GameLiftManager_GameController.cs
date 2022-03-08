@@ -223,10 +223,11 @@ namespace ASL
             {
                 string data = Encoding.Default.GetString(_packet.Data);
                 string[] dataParts = data.Split(':');
+                string callbackId = dataParts[0];
 
-                if (ASLHelper.m_ASLObjects.TryGetValue(dataParts[0] ?? string.Empty, out ASLObject myObject))
+                if (ASLHelper.m_ASLObjects.TryGetValue(dataParts[1] ?? string.Empty, out ASLObject myObject))
                 {
-                    if (int.TryParse(dataParts[1], out int sentPeerId))
+                    if (int.TryParse(dataParts[2], out int sentPeerId))
                     {
                         if (sentPeerId == GetInstance().m_PeerId) //If this is the player who sent the claim
                         {
@@ -242,6 +243,7 @@ namespace ASL
                         }
                     }
                 }
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -253,10 +255,11 @@ namespace ASL
             {
                 string data = Encoding.Default.GetString(_packet.Data);
                 string[] dataParts = data.Split(':');
+                string callbackId = dataParts[0];
 
-                if (ASLHelper.m_ASLObjects.TryGetValue(dataParts[0] ?? string.Empty, out ASLObject myObject))
+                if (ASLHelper.m_ASLObjects.TryGetValue(dataParts[1] ?? string.Empty, out ASLObject myObject))
                 {
-                    if (int.TryParse(dataParts[1], out int sentPeerId))
+                    if (int.TryParse(dataParts[2], out int sentPeerId))
                     {
                         if (sentPeerId == GetInstance().m_PeerId) //If this is the current owner
                         {
@@ -266,13 +269,12 @@ namespace ASL
                             myObject._LocallySetClaim(false);
                             myObject._LocallyRemoveClaimCallbacks();
 
-
-                            string newData = dataParts[0] + ":" + dataParts[2];
+                            string newData = dataParts[0] + ":" + dataParts[1] + ":" + dataParts[3];
                             RTMessage message = GetInstance().CreateRTMessage(OpCode.ClaimFromPlayer, Encoding.ASCII.GetBytes(newData));
                             GetInstance().m_Client.SendMessage(message);
-
                         }
                     }
+
                 }
             }
 
@@ -285,7 +287,8 @@ namespace ASL
             {
                 string data = Encoding.Default.GetString(_packet.Data);
                 string[] dataParts = data.Split(':');
-                if (ASLHelper.m_ASLObjects.TryGetValue(dataParts[0] ?? string.Empty, out ASLObject myObject))
+                string callbackId = dataParts[0];
+                if (ASLHelper.m_ASLObjects.TryGetValue(dataParts[1] ?? string.Empty, out ASLObject myObject))
                 {
                     myObject._LocallySetClaim(true);
                     //Call the function the user passed into original claim as they now have "complete control" over the object
@@ -293,6 +296,7 @@ namespace ASL
                     myObject.m_OutstandingClaimCallbackCount = 0;
                     myObject._LocallyRemoveClaimCallbacks();
                 }
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -302,8 +306,12 @@ namespace ASL
             public void RejectClaim(DataReceivedEventArgs _packet)
             {
                 string data = Encoding.Default.GetString(_packet.Data);
-                Debug.LogWarning("Claim Rejected id: " + data);
-                if (ASLHelper.m_ASLObjects.TryGetValue(data ?? string.Empty, out ASLObject myObject))
+                string[] dataParts = data.Split(':');
+                string callbackId = dataParts[0];
+                string id = dataParts[1];
+
+                Debug.LogWarning("Claim Rejected id: " + id);
+                if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
                     Debug.LogWarning("Claim Rejected");
                     //Remove all callbacks created as our claim was rejected
@@ -317,6 +325,7 @@ namespace ASL
                     }
                     myObject._LocallyRemoveClaimCallbacks();
                 }
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -327,7 +336,8 @@ namespace ASL
             public void SetObjectColor(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                
+
+                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
                 string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                 int sender = ConvertByteArrayIntoInt(_packet.Data, startLocation[4], dataLength[4]);
 
@@ -342,7 +352,8 @@ namespace ASL
                         myObject.GetComponent<Renderer>().material.color = ConvertByteArrayIntoVector(_packet.Data, startLocation[3], dataLength[3]);
                     }
                 }
-                
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+
             }
 
             /// <summary>
@@ -350,13 +361,22 @@ namespace ASL
             /// </summary>
             /// <param name="_packet">The packet from the relay server containing the ID of what ASL Object to delete</param>
             public void DeleteObject(DataReceivedEventArgs _packet)
-            {                
-                string id = Encoding.Default.GetString(_packet.Data);
+            {
+                /*string id = Encoding.Default.GetString(_packet.Data);
+                if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
+                {
+                    ASLHelper.m_ASLObjects.Remove(id);
+                    Destroy(myObject.gameObject);
+                }*/
+                (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
+                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
                     ASLHelper.m_ASLObjects.Remove(id);
                     Destroy(myObject.gameObject);
                 }
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -367,11 +387,13 @@ namespace ASL
             public void SetLocalPosition(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
-                    myObject.transform.localPosition = ConvertByteArrayIntoVector(_packet.Data, startLocation[1], dataLength[1]);
+                    myObject.transform.localPosition = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                 }
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -383,11 +405,13 @@ namespace ASL
             public void IncrementLocalPosition(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
-                    myObject.transform.localPosition += (Vector3)ConvertByteArrayIntoVector(_packet.Data, startLocation[1], dataLength[1]);
+                    myObject.transform.localPosition += (Vector3)ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                 }
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -398,12 +422,14 @@ namespace ASL
             public void SetLocalRotation(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
-                    Vector4 quaternion = ConvertByteArrayIntoVector(_packet.Data, startLocation[1], dataLength[1]);
+                    Vector4 quaternion = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                     myObject.transform.localRotation = new Quaternion(quaternion.x, quaternion.y, quaternion.z, quaternion.w);
                 }
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -414,12 +440,14 @@ namespace ASL
             public void IncrementLocalRotation(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
-                    Vector4 quaternion = ConvertByteArrayIntoVector(_packet.Data, startLocation[1], dataLength[1]);
+                    Vector4 quaternion = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                     myObject.transform.localRotation *= new Quaternion(quaternion.x, quaternion.y, quaternion.z, quaternion.w);
                 }
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -430,11 +458,13 @@ namespace ASL
             public void SetLocalScale(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
-                    myObject.transform.localScale = ConvertByteArrayIntoVector(_packet.Data, startLocation[1], dataLength[1]);
+                    myObject.transform.localScale = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                 }
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -446,11 +476,13 @@ namespace ASL
             public void IncrementLocalScale(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
-                    myObject.transform.localScale += (Vector3)ConvertByteArrayIntoVector(_packet.Data, startLocation[1], dataLength[1]);
+                    myObject.transform.localScale += (Vector3)ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                 }
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -461,11 +493,13 @@ namespace ASL
             public void SetWorldPosition(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
-                    myObject.transform.position = ConvertByteArrayIntoVector(_packet.Data, startLocation[1], dataLength[1]);
+                    myObject.transform.position = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                 }
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -477,11 +511,13 @@ namespace ASL
             public void IncrementWorldPosition(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
+                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
                 string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
                     myObject.transform.position += (Vector3)ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                 }
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -492,12 +528,14 @@ namespace ASL
             public void SetWorldRotation(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
-                    Vector4 quaternion = ConvertByteArrayIntoVector(_packet.Data, startLocation[1], dataLength[1]);
+                    Vector4 quaternion = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                     myObject.transform.rotation = new Quaternion(quaternion.x, quaternion.y, quaternion.z, quaternion.w);
                 }
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -508,12 +546,14 @@ namespace ASL
             public void IncrementWorldRotation(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
+                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
                 string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
                     Vector4 quaternion = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                     myObject.transform.rotation *= new Quaternion(quaternion.x, quaternion.y, quaternion.z, quaternion.w);
                 }
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -526,14 +566,16 @@ namespace ASL
             public void SetWorldScale(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
                     var parent = myObject.transform.parent;
                     myObject.transform.parent = null;
-                    myObject.transform.localScale = ConvertByteArrayIntoVector(_packet.Data, startLocation[1], dataLength[1]);
+                    myObject.transform.localScale = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                     myObject.transform.parent = parent;
                 }
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -546,6 +588,7 @@ namespace ASL
             public void IncrementWorldScale(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
+                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
                 string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
@@ -554,6 +597,7 @@ namespace ASL
                     myObject.transform.localScale += (Vector3)ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                     myObject.transform.parent = parent;
                 }
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -565,10 +609,11 @@ namespace ASL
             public void SentFloats(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
-                    float[] myFloats = ConvertByteArrayIntoFloatArray(_packet.Data, startLocation[1], dataLength[1]);
+                    float[] myFloats = ConvertByteArrayIntoFloatArray(_packet.Data, startLocation[2], dataLength[2]);
 
                     //Sliders are  updated through SendFloat, so check here if this is a slider.
                     //By doing this on the ASL side, users don't have to worry about forgetting to update the slider themselves
@@ -580,6 +625,7 @@ namespace ASL
 
                     myObject.m_FloatCallback?.Invoke(id, myFloats);
                 }
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -642,18 +688,19 @@ namespace ASL
             public void RecieveTexture2D(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
-                int positionFlag = ConvertByteArrayIntoInt(_packet.Data, startLocation[1], dataLength[1]);
+                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
+                int positionFlag = ConvertByteArrayIntoInt(_packet.Data, startLocation[2], dataLength[2]);
 
                 if (positionFlag == 1) //if first texture packet - create dictionary value that other packets will add to
                 {
-                    byte[] texture = GetPartOfByteArray(_packet.Data, startLocation[2], dataLength[2]);
-                    ReceivedTexture2Ds.Add(id + ConvertByteArrayIntoString(_packet.Data, startLocation[3], dataLength[3]), texture);
+                    byte[] texture = GetPartOfByteArray(_packet.Data, startLocation[3], dataLength[3]);
+                    ReceivedTexture2Ds.Add(id + ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]), texture);
                 }
                 else if (positionFlag == 2) //if packet just contains just needed texture info - add to texture with 
                 {
-                    string key = id + ConvertByteArrayIntoString(_packet.Data, startLocation[3], dataLength[3]);
-                    byte[] texture = GetPartOfByteArray(_packet.Data, startLocation[2], dataLength[2]);
+                    string key = id + ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]);
+                    byte[] texture = GetPartOfByteArray(_packet.Data, startLocation[3], dataLength[3]);
                     if (ReceivedTexture2Ds.TryGetValue(key ?? string.Empty, out byte[] textureSoFar))
                     {
                         ReceivedTexture2Ds[key] = GetInstance().CombineByteArrayWithoutLengths(textureSoFar, texture);
@@ -661,8 +708,8 @@ namespace ASL
                 }
                 else //if we have the last texture packet - finalize the image and then transform byte[] into the image and call the function attached to it
                 {
-                    string key = id + ConvertByteArrayIntoString(_packet.Data, startLocation[3], dataLength[3]);
-                    byte[] texture = GetPartOfByteArray(_packet.Data, startLocation[2], dataLength[2]);
+                    string key = id + ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]);
+                    byte[] texture = GetPartOfByteArray(_packet.Data, startLocation[3], dataLength[3]);
                     if (ReceivedTexture2Ds.TryGetValue(key ?? string.Empty, out byte[] textureSoFar))
                     {
                         ReceivedTexture2Ds[key] = GetInstance().CombineByteArrayWithoutLengths(textureSoFar, texture);
@@ -677,8 +724,8 @@ namespace ASL
                         //Get Texture2D
                         Texture2D dummyTexture = new Texture2D(1, 1); //Size doesn't matter
                         dummyTexture.LoadImage(ReceivedTexture2Ds[key]);
-                        dummyTexture.name = ConvertByteArrayIntoString(_packet.Data, startLocation[3], dataLength[3]);
-                        string postDownloadFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]);
+                        dummyTexture.name = ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]);
+                        string postDownloadFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[5], dataLength[5]);
                         //Call PostDownloadFunction
                         var functionName = Regex.Match(postDownloadFunction, @"(\w+)$");
                         functionName.Value.Replace(" ", "");
@@ -692,6 +739,7 @@ namespace ASL
                         ReceivedTexture2Ds.Remove(key); //remove texture from dictionary as we have successfully built it and called the function attached to it
                     }
                 }
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
 
             }
 
@@ -838,12 +886,14 @@ namespace ASL
             public void SetObjectTag(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
-                string tag = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
+                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
+                string tag = ConvertByteArrayIntoString(_packet.Data, startLocation[2], dataLength[2]);
                 if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
                 {
                     myObject.tag = tag;
                 }
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -855,30 +905,34 @@ namespace ASL
             public void SpawnPrefab(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                //[0] = id 
-                //[1] = position
-                //[2] = rotation
-                //[3] = prefabName
-                //[4] = parentId
-                //[5] = component name/type
-                //[6] = class of function to call upon instantiation
-                //[7] = function to call upon instantiation
-                //[8] = claim recovery class 
-                //[9] = claim recovery function
-                //[10] = send float class
-                //[11] = send float function
-                //[12] = creator peerId
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                //[0] = callbackId
+                //[1] = id 
+                //[2] = position
+                //[3] = rotation
+                //[4] = prefabName
+                //[5] = parentId
+                //[6] = component name/type
+                //[7] = class of function to call upon instantiation
+                //[8] = function to call upon instantiation
+                //[9] = claim recovery class 
+                //[10] = claim recovery function
+                //[11] = send float class
+                //[12] = send float function
+                //[13] = creator peerId
+
+                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                 
                 // Set up a child ASLObject (if this is the ID for a child of a prefab)
-                if (ConvertByteArrayIntoString(_packet.Data, startLocation[3], dataLength[3]).Equals("CHILD_OF_PREFAB"))
+                if (ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]).Equals("CHILD_OF_PREFAB"))
                 {
-                    string rootGUIDString = ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]);
+                    string rootGUIDString = ConvertByteArrayIntoString(_packet.Data, startLocation[5], dataLength[5]);
                     Guid rootGUID = new Guid(rootGUIDString);
                     Guid childGuid = new Guid(id);
 
                     if (!awaitingInstantiation.ContainsKey(rootGUID))
                     {
+                        GameLiftManager.GetInstance().RemoveOpFunctionCallbackByCallbackId(callbackId);
                         return; // ignore unexpected IDs
                     }
 
@@ -887,6 +941,7 @@ namespace ASL
                     if (childASLObj == null)
                     {
                         // If this happens we've recieved an extra ID somehow
+                        GameLiftManager.GetInstance().RemoveOpFunctionCallbackByCallbackId(callbackId);
                         return;
                     }
 
@@ -902,10 +957,11 @@ namespace ASL
                         }
                         awaitingInstantiation.Remove(rootGUID);
                     }
+                    GameLiftManager.GetInstance().RemoveOpFunctionCallbackByCallbackId(callbackId);
                     return;
                 }
 
-                GameObject newASLObject = Instantiate(Resources.Load(@"MyPrefabs\" + ConvertByteArrayIntoString(_packet.Data, startLocation[3], dataLength[3]))) as GameObject;
+                GameObject newASLObject = Instantiate(Resources.Load(@"MyPrefabs\" + ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]))) as GameObject;
 
                 // We need to wait to activate until all child ASLObjects have IDs in case any
                 // scripts execute immediately and expect a child ASLObject to be ready.
@@ -928,14 +984,14 @@ namespace ASL
                 }
                 
                 //Do we need to set the parent?
-                string parent = ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]);
+                string parent = ConvertByteArrayIntoString(_packet.Data, startLocation[5], dataLength[5]);
                 if (parent != string.Empty || parent != null)
                 {
                     SetParent(newASLObject, parent);
                 }
 
-                newASLObject.transform.localPosition = ConvertByteArrayIntoVector(_packet.Data, startLocation[1], dataLength[1]);
-                Vector4 rotation = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
+                newASLObject.transform.localPosition = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
+                Vector4 rotation = ConvertByteArrayIntoVector(_packet.Data, startLocation[3], dataLength[3]);
                 newASLObject.transform.localRotation = new Quaternion(rotation.x, rotation.y, rotation.z, rotation.w);
 
                 if (newASLObject.GetComponent<ASLObject>() != null)
@@ -948,7 +1004,7 @@ namespace ASL
                 }
 
                 //Add any components if needed
-                string componentName = ConvertByteArrayIntoString(_packet.Data, startLocation[5], dataLength[5]);
+                string componentName = ConvertByteArrayIntoString(_packet.Data, startLocation[6], dataLength[6]);
                 if (componentName != string.Empty && componentName != null)
                 {
                     Type component = Type.GetType(componentName);
@@ -956,8 +1012,8 @@ namespace ASL
                 }
 
                 //If we have the means to set up the recovery callback function - then do it
-                string claimRecoveryClass = ConvertByteArrayIntoString(_packet.Data, startLocation[8], dataLength[8]);
-                string claimRecoveryFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[9], dataLength[9]);
+                string claimRecoveryClass = ConvertByteArrayIntoString(_packet.Data, startLocation[9], dataLength[9]);
+                string claimRecoveryFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[10], dataLength[10]);
                 if (claimRecoveryClass != string.Empty && claimRecoveryClass != null &&
                     claimRecoveryFunction != string.Empty && claimRecoveryFunction != null)
                 {
@@ -968,8 +1024,8 @@ namespace ASL
                 }
 
                 //If we have the means to set up the SendFloat callback function - then do it
-                string floatClass = ConvertByteArrayIntoString(_packet.Data, startLocation[10], dataLength[10]);
-                string floatFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[11], dataLength[11]);
+                string floatClass = ConvertByteArrayIntoString(_packet.Data, startLocation[11], dataLength[11]);
+                string floatFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[12], dataLength[12]);
 
                 if (floatClass != string.Empty && floatClass != null &&
                     floatFunction != string.Empty && floatFunction != null)
@@ -984,10 +1040,10 @@ namespace ASL
                 ASLHelper.m_ASLObjects.Add(id, newASLObject.GetComponent<ASLObject>());
 
                 //If this client is the creator of this object, then call the ASLGameObjectCreatedCallback if it exists for this object
-                if (ConvertByteArrayIntoString(_packet.Data, startLocation[12], dataLength[12]) == GetInstance().m_PeerId.ToString())
+                if (ConvertByteArrayIntoString(_packet.Data, startLocation[13], dataLength[13]) == GetInstance().m_PeerId.ToString())
                 {
-                    string instantiationClass = ConvertByteArrayIntoString(_packet.Data, startLocation[6], dataLength[6]);
-                    string instantiationFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[7], dataLength[7]);
+                    string instantiationClass = ConvertByteArrayIntoString(_packet.Data, startLocation[7], dataLength[7]);
+                    string instantiationFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[8], dataLength[8]);
                     if (instantiationClass != string.Empty && instantiationClass != null && instantiationFunction != string.Empty && instantiationFunction != null)
                     {
                         //Find Callback function
@@ -1005,6 +1061,8 @@ namespace ASL
                         }
                     }
                 }
+
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -1016,22 +1074,24 @@ namespace ASL
             public void SpawnPrimitive(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                //[0] = id 
-                //[1] = position
-                //[2] = rotation
-                //[3] = primitive type
-                //[4] = parentId
-                //[5] = component name/type
-                //[6] = class of function to call upon instantiation
-                //[7] = function to call upon instantiation
-                //[8] = claim recovery class 
-                //[9] = claim recovery function
-                //[10] = send float class
-                //[11] = send float function
-                //[12] = creator peerId
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                //[0] = callbackId
+                //[1] = id 
+                //[2] = position
+                //[3] = rotation
+                //[4] = primitive type
+                //[5] = parentId
+                //[6] = component name/type
+                //[7] = class of function to call upon instantiation
+                //[8] = function to call upon instantiation
+                //[9] = claim recovery class 
+                //[10] = claim recovery function
+                //[11] = send float class
+                //[12] = send float function
+                //[13] = creator peerId
+                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
                 GameObject newASLObject;
-                object primitiveType = (PrimitiveType)ConvertByteArrayIntoInt(_packet.Data, startLocation[3], dataLength[3]);
+                object primitiveType = (PrimitiveType)ConvertByteArrayIntoInt(_packet.Data, startLocation[4], dataLength[4]);
                 if (Enum.IsDefined(typeof(PrimitiveType), primitiveType))
                 {
                     newASLObject = GameObject.CreatePrimitive((PrimitiveType)primitiveType);
@@ -1039,24 +1099,25 @@ namespace ASL
                 else
                 {
                     Debug.LogError("Could not parse primitive type when spawning primitive object. Primitive Type given: " + primitiveType.ToString());
+                    GameLiftManager.GetInstance().RemoveOpFunctionCallbackByCallbackId(callbackId);
                     return;
                 }
                 //Do we need to set the parent?
-                string parent = ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]);
+                string parent = ConvertByteArrayIntoString(_packet.Data, startLocation[5], dataLength[5]);
                 if (parent != string.Empty || parent != null)
                 {
                     SetParent(newASLObject, parent);
                 }
 
-                newASLObject.transform.localPosition = ConvertByteArrayIntoVector(_packet.Data, startLocation[1], dataLength[1]);
-                Vector4 rotation = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
+                newASLObject.transform.localPosition = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
+                Vector4 rotation = ConvertByteArrayIntoVector(_packet.Data, startLocation[3], dataLength[3]);
                 newASLObject.transform.localRotation = new Quaternion(rotation.x, rotation.y, rotation.z, rotation.w);
 
                 //Set ID
                 newASLObject.AddComponent<ASLObject>()._LocallySetID(id);
 
                 //Add any components if needed
-                string componentName = ConvertByteArrayIntoString(_packet.Data, startLocation[5], dataLength[5]);
+                string componentName = ConvertByteArrayIntoString(_packet.Data, startLocation[6], dataLength[6]);
                 if (componentName != string.Empty && componentName != null)
                 {
                     Type component = Type.GetType(componentName);
@@ -1064,8 +1125,8 @@ namespace ASL
                 }
 
                 //If we have the means to set up the recovery callback function - then do it
-                string claimRecoveryClass = ConvertByteArrayIntoString(_packet.Data, startLocation[8], dataLength[8]);
-                string claimRecoveryFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[9], dataLength[9]);
+                string claimRecoveryClass = ConvertByteArrayIntoString(_packet.Data, startLocation[9], dataLength[9]);
+                string claimRecoveryFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[10], dataLength[10]);
                 if (claimRecoveryClass != string.Empty && claimRecoveryClass != null &&
                     claimRecoveryFunction != string.Empty && claimRecoveryFunction != null)
                 {
@@ -1076,8 +1137,8 @@ namespace ASL
                 }
 
                 //If we have the means to set up the SendFloat callback function - then do it
-                string floatClass = ConvertByteArrayIntoString(_packet.Data, startLocation[10], dataLength[10]);
-                string floatFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[11], dataLength[11]);
+                string floatClass = ConvertByteArrayIntoString(_packet.Data, startLocation[11], dataLength[11]);
+                string floatFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[12], dataLength[12]);
                 if (floatClass != string.Empty && floatClass != null &&
                     floatFunction != string.Empty && floatFunction != null)
                 {
@@ -1091,10 +1152,10 @@ namespace ASL
                 ASLHelper.m_ASLObjects.Add(id, newASLObject.GetComponent<ASLObject>());
 
                 //If this client is the creator of this object, then call the ASLGameObjectCreatedCallback if it exists for this object
-                if (ConvertByteArrayIntoString(_packet.Data, startLocation[12], dataLength[12]) == GetInstance().m_PeerId.ToString())
+                if (ConvertByteArrayIntoString(_packet.Data, startLocation[13], dataLength[13]) == GetInstance().m_PeerId.ToString())
                 {
-                    string instantiationClass = ConvertByteArrayIntoString(_packet.Data, startLocation[6], dataLength[6]);
-                    string instantiationFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[7], dataLength[7]);
+                    string instantiationClass = ConvertByteArrayIntoString(_packet.Data, startLocation[7], dataLength[7]);
+                    string instantiationFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[8], dataLength[8]);
                     if (instantiationClass != string.Empty && instantiationClass != null && instantiationFunction != string.Empty && instantiationFunction != null)
                     {
                         //Find Callback function
@@ -1106,6 +1167,9 @@ namespace ASL
                         newASLObject.GetComponent<ASLObject>().m_ASLGameObjectCreatedCallback.Invoke(newASLObject);
                     }
                 }
+
+                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+
             }
             
             /// <summary>

@@ -131,7 +131,9 @@ namespace ASL
         public Dictionary<string, OpFunctionCallback> OpFunctionCallbacks = new Dictionary<string, OpFunctionCallback>();
 
         /// <summary>A value for callback id when the given null as callback. </summary>
-        public static string m_NullCallbackId = "0";
+        public static byte[] m_NullCallbackId = new byte[55];
+
+        public static string m_NullCallbackIdInString = System.Text.Encoding.Default.GetString(m_NullCallbackId);
 
         /// <summary>The index value for callback id in data payload. </summary>
         public static int m_callbackIdIndex = 0;
@@ -401,7 +403,6 @@ namespace ASL
             if(OpCodeFunctions[_packet.OpCode] != null)     // Check that a function exists for the OpCode
             {
                 OpCodeFunctions[_packet.OpCode].Invoke();   // Valid OpCode, invoke corresponding function
-                QForMainThread(DoOpFunctionCallback, _packet);
             }
         }
 
@@ -1123,10 +1124,10 @@ namespace ASL
         /// Removes the callback function after it has been invoked.
         /// </summary>
         /// <param name="args">args from the server, contains data and opcode</param>
-        public void DoOpFunctionCallback(DataReceivedEventArgs args)
+        public void DoOpFunctionCallback(int opCode, string callbackId)
         {
-            byte[] rawData = args.Data;
-            int opCode = args.OpCode;
+            //byte[] rawData = args.Data;
+            //int opCode = args.OpCode;
 
             // TODO: Remove the below two lines once the callback functionality has been added to all op functions.
             // check if the current op function has callback functionality enabled
@@ -1134,27 +1135,55 @@ namespace ASL
             if (!isCallbackEnable) return;
 
             // get callback key from the data base on the index we got
-            (int[] startLocation, int[] dataLength) = m_GameController.DataLengthsAndStartLocations(rawData);
-            string opCodeKey = m_GameController.ConvertByteArrayIntoString(rawData, startLocation[m_callbackIdIndex], dataLength[m_callbackIdIndex]);
+            //(int[] startLocation, int[] dataLength) = m_GameController.DataLengthsAndStartLocations(rawData);
+            //string callbackId = m_GameController.ConvertByteArrayIntoString(rawData, startLocation[m_callbackIdIndex], dataLength[m_callbackIdIndex]);
 
             //get callback function base on key, if key = "0", no callback assigned
-            if (opCodeKey.Equals(m_NullCallbackId)) return;
-            if (OpFunctionCallbacks.ContainsKey(opCodeKey))
+            if (callbackId.Equals(m_NullCallbackIdInString)) return;
+            if (OpFunctionCallbacks.ContainsKey(callbackId))
             {
-                OpFunctionCallback callback = OpFunctionCallbacks[opCodeKey];
-                OpFunctionCallbacks.Remove(opCodeKey);
+                OpFunctionCallback callback = OpFunctionCallbacks[callbackId];
+                OpFunctionCallbacks.Remove(callbackId);
                 callback.Invoke();
             }
             return;
         }
 
-        public string GenerateOpFunctionCallbackKey(string objectId, OpCode opCode)
+        public void RemoveOpFunctionCallbackByCallbackId(string callbackId)
+        {
+            if (OpFunctionCallbacks.ContainsKey(callbackId))
+            {
+                OpFunctionCallbacks.Remove(callbackId);
+            }
+        }
+
+        public string GenerateOpFunctionCallbackKey()
         {
             Guid guid = Guid.NewGuid();
             string guidInString = guid.ToString();
-            string opCodeInString = ((int)opCode).ToString();
             string timeStamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
-            string callbackId = guidInString + "_" + opCodeInString + "_" + objectId + "_" + timeStamp;
+            string callbackId = guidInString + "_" + timeStamp;
+            return callbackId;
+        }
+
+        /// <summary>
+        /// Generate callback id with given information.
+        /// save the callback with generated id as the key into dictionary
+        /// </summary>
+        /// <param name="callback">user pre-defined callback function</param>
+        /// <param name="opCode">op code for the given function</param>
+        public byte[] SetOpFunctionCallback(GameLiftManager.OpFunctionCallback callback)
+        {
+            if (callback == null) return m_NullCallbackId;
+            string callbackId = SetOpFunctionCallbackString(callback);
+            return Encoding.ASCII.GetBytes(callbackId);
+        }
+
+        public string SetOpFunctionCallbackString(GameLiftManager.OpFunctionCallback callback)
+        {
+            if (callback == null) return m_NullCallbackIdInString;
+            string callbackId = GameLiftManager.GetInstance().GenerateOpFunctionCallbackKey();
+            GameLiftManager.GetInstance().SetOpFunctionCallback(callback, callbackId);
             return callbackId;
         }
 

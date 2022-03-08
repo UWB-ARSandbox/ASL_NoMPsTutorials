@@ -72,9 +72,9 @@ namespace ASL
         ///     ASL.ASLHelper.InstantiateASLObject(PrimitiveType.Cube, new Vector3(0, 0, 0), Quaternion.identity);
         /// }
         /// </code></example>
-        static public void InstantiateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation)
+        static public void InstantiateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, GameLiftManager.OpFunctionCallback _callback = null)
         {
-            SendSpawnPrimitive(_type, _position, _rotation);
+            SendSpawnPrimitive(_type, _position, _rotation, _callback);
         }
 
         /// <summary>
@@ -106,9 +106,9 @@ namespace ASL
         ///     //but it is the only way to assign a non-ASL Object as a parent to an ASL Object for all users
         /// }
         /// </code></example>
-        static public void InstantiateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID)
+        static public void InstantiateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID, GameLiftManager.OpFunctionCallback _callback = null)
         {
-            SendSpawnPrimitive(_type, _position, _rotation, _parentID ?? "");
+            SendSpawnPrimitive(_type, _position, _rotation, _callback, _parentID ?? "");
         }
 
         /// <summary>
@@ -133,9 +133,9 @@ namespace ASL
         /// }
         /// </code>
         ///</example>
-        static public void InstantiateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName)
+        static public void InstantiateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName, GameLiftManager.OpFunctionCallback _callback = null)
         {
-            SendSpawnPrimitive(_type, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "");
+            SendSpawnPrimitive(_type, _position, _rotation, _callback, _parentID ?? "", _componentAssemblyQualifiedName ?? "");
         }
 
         /// <summary>
@@ -162,9 +162,9 @@ namespace ASL
         /// 
         /// </code></example>
         static public void InstantiateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
-            ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo)
+            ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo, GameLiftManager.OpFunctionCallback _callback = null)
         {
-            SendSpawnPrimitive(_type, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "", 
+            SendSpawnPrimitive(_type, _position, _rotation, _callback, _parentID ?? "", _componentAssemblyQualifiedName ?? "", 
                 _aslGameObjectCreatedCallbackInfo?.Method?.ReflectedType?.ToString() ?? "", _aslGameObjectCreatedCallbackInfo?.Method?.Name ?? "");
         }
 
@@ -200,9 +200,9 @@ namespace ASL
         /// </code></example>
         static public void InstantiateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
             ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo,
-            ASLObject.ClaimCancelledRecoveryCallback _aslClaimCancelledRecoveryFunctionInfo)
+            ASLObject.ClaimCancelledRecoveryCallback _aslClaimCancelledRecoveryFunctionInfo, GameLiftManager.OpFunctionCallback _callback = null)
         {
-            SendSpawnPrimitive(_type, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "",
+            SendSpawnPrimitive(_type, _position, _rotation, _callback, _parentID ?? "", _componentAssemblyQualifiedName ?? "",
                 _aslGameObjectCreatedCallbackInfo?.Method?.ReflectedType?.ToString() ?? "", _aslGameObjectCreatedCallbackInfo?.Method?.Name ?? "",
                 _aslClaimCancelledRecoveryFunctionInfo?.Method?.ReflectedType?.ToString() ?? "", _aslClaimCancelledRecoveryFunctionInfo?.Method?.Name ?? "");
         }
@@ -255,9 +255,9 @@ namespace ASL
         static public void InstantiateASLObject(PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
             ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo,
             ASLObject.ClaimCancelledRecoveryCallback _aslClaimCancelledRecoveryFunctionInfo,
-            ASLObject.FloatCallback _aslFloatFunctionInfo)
+            ASLObject.FloatCallback _aslFloatFunctionInfo, GameLiftManager.OpFunctionCallback _callback = null)
         {
-            SendSpawnPrimitive(_type, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "", 
+            SendSpawnPrimitive(_type, _position, _rotation, _callback, _parentID ?? "", _componentAssemblyQualifiedName ?? "", 
                 _aslGameObjectCreatedCallbackInfo?.Method?.ReflectedType.ToString() ?? "", _aslGameObjectCreatedCallbackInfo?.Method?.Name ?? "",
                 _aslClaimCancelledRecoveryFunctionInfo?.Method?.ReflectedType?.ToString() ?? "", _aslClaimCancelledRecoveryFunctionInfo?.Method?.Name ?? "",
                 _aslFloatFunctionInfo?.Method?.ReflectedType?.ToString() ?? "", _aslFloatFunctionInfo?.Method?.Name ?? "");
@@ -280,9 +280,9 @@ namespace ASL
         ///     ASL.ASLHelper.InstantiateASLObject("MyPrefab", new Vector3(0, 0, 0), Quaternion.identity);
         /// }
         /// </code></example>
-        static public void InstantiateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation)
+        static public void InstantiateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, GameLiftManager.OpFunctionCallback _callback = null)
         {
-            SendSpawnPrefab(_prefabName, _position, _rotation);
+            SendSpawnPrefab(_prefabName, _position, _rotation, _callback);
         }
 
         /// <summary>
@@ -312,9 +312,9 @@ namespace ASL
         ///     //but it is the only way to assign a non-ASL Object as a parent to an ASL Object for all users
         /// }
         /// </code></example>
-        static public void InstantiateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID)
+        static public void InstantiateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID, GameLiftManager.OpFunctionCallback _callback = null)
         {
-            SendSpawnPrefab(_prefabName, _position, _rotation, _parentID ?? "");
+            SendSpawnPrefab(_prefabName, _position, _rotation, _callback, _parentID ?? "");
         }
 
         /// <summary>
@@ -341,9 +341,9 @@ namespace ASL
         /// }
         /// </code>
         ///</example>
-        static public void InstantiateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName)
+        static public void InstantiateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName, GameLiftManager.OpFunctionCallback _callback = null)
         {
-            SendSpawnPrefab(_prefabName, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "");
+            SendSpawnPrefab(_prefabName, _position, _rotation, _callback, _parentID ?? "", _componentAssemblyQualifiedName ?? "");
         }
 
         /// <summary>
@@ -371,9 +371,9 @@ namespace ASL
         /// 
         /// </code></example>
         static public void InstantiateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
-            ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo)
+            ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo, GameLiftManager.OpFunctionCallback _callback = null)
         {
-            SendSpawnPrefab(_prefabName, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "", 
+            SendSpawnPrefab(_prefabName, _position, _rotation, _callback, _parentID ?? "", _componentAssemblyQualifiedName ?? "", 
                 _aslGameObjectCreatedCallbackInfo?.Method?.ReflectedType?.ToString() ?? "", _aslGameObjectCreatedCallbackInfo?.Method?.Name ?? "");
         }
 
@@ -411,9 +411,9 @@ namespace ASL
         /// </code></example>
         static public void InstantiateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
             ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo,
-            ASLObject.ClaimCancelledRecoveryCallback _aslClaimCancelledRecoveryFunctionInfo)
+            ASLObject.ClaimCancelledRecoveryCallback _aslClaimCancelledRecoveryFunctionInfo, GameLiftManager.OpFunctionCallback _callback = null)
         {
-            SendSpawnPrefab(_prefabName, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "", 
+            SendSpawnPrefab(_prefabName, _position, _rotation, _callback, _parentID ?? "", _componentAssemblyQualifiedName ?? "", 
                 _aslGameObjectCreatedCallbackInfo?.Method?.ReflectedType?.ToString() ?? "", _aslGameObjectCreatedCallbackInfo?.Method?.Name ?? "",
                 _aslClaimCancelledRecoveryFunctionInfo?.Method?.ReflectedType?.ToString() ?? "", _aslClaimCancelledRecoveryFunctionInfo?.Method?.Name ?? "");
         }
@@ -468,9 +468,9 @@ namespace ASL
         static public void InstantiateASLObject(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
             ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo,
             ASLObject.ClaimCancelledRecoveryCallback _aslClaimCancelledRecoveryFunctionInfo,
-            ASLObject.FloatCallback _aslFloatFunctionInfo)
+            ASLObject.FloatCallback _aslFloatFunctionInfo, GameLiftManager.OpFunctionCallback _callback = null)
         {
-            SendSpawnPrefab(_prefabName, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "", 
+            SendSpawnPrefab(_prefabName, _position, _rotation, _callback, _parentID ?? "", _componentAssemblyQualifiedName ?? "", 
                 _aslGameObjectCreatedCallbackInfo?.Method?.ReflectedType?.ToString() ?? "", _aslGameObjectCreatedCallbackInfo?.Method?.Name ?? "",
                 _aslClaimCancelledRecoveryFunctionInfo?.Method?.ReflectedType?.ToString() ?? "", _aslClaimCancelledRecoveryFunctionInfo?.Method?.Name ?? "",
                 _aslFloatFunctionInfo?.Method?.ReflectedType?.ToString() ?? "", _aslFloatFunctionInfo?.Method?.Name ?? "");
@@ -480,17 +480,18 @@ namespace ASL
 
 
 
-        static public string InstantiateASLObjectReturnID(string _prefabName, Vector3 _position, Quaternion _rotation)
+        static public string InstantiateASLObjectReturnID(string _prefabName, Vector3 _position, Quaternion _rotation, GameLiftManager.OpFunctionCallback _callback = null)
         {
-            return TestSendSpawnPrefab(_prefabName, _position, _rotation);
+            return TestSendSpawnPrefab(_prefabName, _position, _rotation, _callback);
         }
 
         static public string InstantiateASLObjectReturnID(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID, string _componentAssemblyQualifiedName,
             ASLObject.ASLGameObjectCreatedCallback _aslGameObjectCreatedCallbackInfo,
             ASLObject.ClaimCancelledRecoveryCallback _aslClaimCancelledRecoveryFunctionInfo,
-            ASLObject.FloatCallback _aslFloatFunctionInfo)
+            ASLObject.FloatCallback _aslFloatFunctionInfo,
+            GameLiftManager.OpFunctionCallback _callback = null)
         {
-            return TestSendSpawnPrefab(_prefabName, _position, _rotation, _parentID ?? "", _componentAssemblyQualifiedName ?? "",
+            return TestSendSpawnPrefab(_prefabName, _position, _rotation, _callback, _parentID ?? "", _componentAssemblyQualifiedName ?? "",
                 _aslGameObjectCreatedCallbackInfo?.Method?.ReflectedType?.ToString() ?? "", _aslGameObjectCreatedCallbackInfo?.Method?.Name ?? "",
                 _aslClaimCancelledRecoveryFunctionInfo?.Method?.ReflectedType?.ToString() ?? "", _aslClaimCancelledRecoveryFunctionInfo?.Method?.Name ?? "",
                 _aslFloatFunctionInfo?.Method?.ReflectedType?.ToString() ?? "", _aslFloatFunctionInfo?.Method?.Name ?? "");
@@ -522,11 +523,11 @@ namespace ASL
         /// <param name="_sendFloatClassName">The name of the class that contains the user provided function detailing what to do when a user calls <see cref="ASLObject.SendFloatArray(float[])"/></param>
         /// <param name="_sendFloatFunctionName">The name of the user provided function that contains the details of what to do with this object if a user calls <see cref="ASLObject.SendFloatArray(float[])"/></param>
         private static void SendSpawnPrimitive
-            (PrimitiveType _type, Vector3 _position, Quaternion _rotation, string _parentID = "", string _componentAssemblyQualifiedName = "", string _instantiatedGameObjectClassName = "", string _instantiatedGameObjectFunctionName = "", 
+            (PrimitiveType _type, Vector3 _position, Quaternion _rotation, GameLiftManager.OpFunctionCallback _callback = null, string _parentID = "", string _componentAssemblyQualifiedName = "", string _instantiatedGameObjectClassName = "", string _instantiatedGameObjectFunctionName = "", 
             string _claimRecoveryClassName = "", string _claimRecoveryFunctionName = "", string _sendFloatClassName = "", string _sendFloatFunctionName = "")
         {
             string guid = Guid.NewGuid().ToString();
-
+            byte[] callbackId = GameLiftManager.GetInstance().SetOpFunctionCallback(_callback);
             byte[] id = Encoding.ASCII.GetBytes(guid);
             byte[] position = GameLiftManager.GetInstance().ConvertVector3ToByteArray(new Vector3(_position.x, _position.y, _position.z));
             byte[] rotation = GameLiftManager.GetInstance().ConvertVector4ToByteArray(new Vector4(_rotation.x, _rotation.y, _rotation.z, _rotation.w));
@@ -542,7 +543,7 @@ namespace ASL
             byte[] peerId = Encoding.ASCII.GetBytes(GameLiftManager.GetInstance().m_PeerId.ToString());
 
 
-            byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, position, rotation, primitiveType, parentID, componentAssemblyQualifiedName, instantiatedGameObjectClassName,
+            byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(callbackId, id, position, rotation, primitiveType, parentID, componentAssemblyQualifiedName, instantiatedGameObjectClassName,
                                                          instantiatedGameObjectFunctionName, claimRecoveryClassName, claimRecoveryFunctionName, sendFloatClassName, sendFloatFunctionName, peerId);
 
 
@@ -564,7 +565,7 @@ namespace ASL
         /// <param name="_claimRecoveryFunctionName">The name of the user provided function that contains the details of what to do with this object if a claim for it is rejected</param>
         /// <param name="_sendFloatClassName">The name of the class that contains the user provided function detailing what to do when a user calls <see cref="ASLObject.SendFloatArray(float[])"/></param>
         /// <param name="_sendFloatFunctionName">The name of the user provided function that contains the details of what to do with this object if a user calls <see cref="ASLObject.SendFloatArray(float[])"/></param>
-        private static void SendSpawnPrefab(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID = "", string _componentAssemblyQualifiedName = "", string _instantiatedGameObjectClassName = "", string _instantiatedGameObjectFunctionName = "",
+        private static void SendSpawnPrefab(string _prefabName, Vector3 _position, Quaternion _rotation, GameLiftManager.OpFunctionCallback _callback = null, string _parentID = "", string _componentAssemblyQualifiedName = "", string _instantiatedGameObjectClassName = "", string _instantiatedGameObjectFunctionName = "",
             string _claimRecoveryClassName = "", string _claimRecoveryFunctionName = "", string _sendFloatClassName = "", string _sendFloatFunctionName = "")
         {
             Guid rootGUID = Guid.NewGuid();
@@ -582,6 +583,8 @@ namespace ASL
                 }
             }
 
+            byte[] callbackId = GameLiftManager.GetInstance().SetOpFunctionCallback(_callback);
+            byte[] nullCallbackIdForChildren = GameLiftManager.GetInstance().SetOpFunctionCallback(null);
             byte[] id = Encoding.ASCII.GetBytes(guid);
             byte[] position = GameLiftManager.GetInstance().ConvertVector3ToByteArray(new Vector3(_position.x, _position.y, _position.z));
             byte[] rotation = GameLiftManager.GetInstance().ConvertVector4ToByteArray(new Vector4(_rotation.x, _rotation.y, _rotation.z, _rotation.w));
@@ -596,16 +599,17 @@ namespace ASL
             byte[] sendFloatFunctionName = Encoding.ASCII.GetBytes(_sendFloatFunctionName);
             byte[] peerId = Encoding.ASCII.GetBytes(GameLiftManager.GetInstance().m_PeerId.ToString());
             
-            byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, position, rotation, prefabName, parentID, componentAssemblyQualifiedName, instantiatedGameObjectClassName,
+            byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(callbackId, id, position, rotation, prefabName, parentID, componentAssemblyQualifiedName, instantiatedGameObjectClassName,
                 instantiatedGameObjectFunctionName, claimRecoveryClassName, claimRecoveryFunctionName, sendFloatClassName, sendFloatFunctionName, peerId);
             RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.SpawnPrefab, payload);
             GameLiftManager.GetInstance().m_Client.SendMessage(message);
 
+            // user defined callback will be invoked only on the parent node
             foreach(Guid childGUID in childGUIDs)
             {
                 byte[] childGUIDBytes = Encoding.ASCII.GetBytes(childGUID.ToString());
                 byte[] childPrefabName = Encoding.ASCII.GetBytes("CHILD_OF_PREFAB");
-                byte[] childGUIDPayload = GameLiftManager.GetInstance().CombineByteArrays(childGUIDBytes, position, rotation, childPrefabName, id, componentAssemblyQualifiedName, instantiatedGameObjectClassName,
+                byte[] childGUIDPayload = GameLiftManager.GetInstance().CombineByteArrays(nullCallbackIdForChildren, childGUIDBytes, position, rotation, childPrefabName, id, componentAssemblyQualifiedName, instantiatedGameObjectClassName,
                     instantiatedGameObjectFunctionName, claimRecoveryClassName, claimRecoveryFunctionName, sendFloatClassName, sendFloatFunctionName, peerId);
                 RTMessage message2 = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.SpawnPrefab, childGUIDPayload);
                 GameLiftManager.GetInstance().m_Client.SendMessage(message2);
@@ -616,7 +620,7 @@ namespace ASL
 
 
 
-        private static string TestSendSpawnPrefab(string _prefabName, Vector3 _position, Quaternion _rotation, string _parentID = "", string _componentAssemblyQualifiedName = "", string _instantiatedGameObjectClassName = "", string _instantiatedGameObjectFunctionName = "",
+        private static string TestSendSpawnPrefab(string _prefabName, Vector3 _position, Quaternion _rotation, GameLiftManager.OpFunctionCallback _callback = null, string _parentID = "", string _componentAssemblyQualifiedName = "", string _instantiatedGameObjectClassName = "", string _instantiatedGameObjectFunctionName = "",
     string _claimRecoveryClassName = "", string _claimRecoveryFunctionName = "", string _sendFloatClassName = "", string _sendFloatFunctionName = "")
         {
             Guid rootGUID = Guid.NewGuid();
@@ -634,6 +638,8 @@ namespace ASL
                 }
             }
 
+            byte[] callbackId = GameLiftManager.GetInstance().SetOpFunctionCallback(_callback);
+            byte[] nullCallbackIdForChildren = GameLiftManager.GetInstance().SetOpFunctionCallback(null);
             byte[] id = Encoding.ASCII.GetBytes(guid);
             byte[] position = GameLiftManager.GetInstance().ConvertVector3ToByteArray(new Vector3(_position.x, _position.y, _position.z));
             byte[] rotation = GameLiftManager.GetInstance().ConvertVector4ToByteArray(new Vector4(_rotation.x, _rotation.y, _rotation.z, _rotation.w));
@@ -648,7 +654,7 @@ namespace ASL
             byte[] sendFloatFunctionName = Encoding.ASCII.GetBytes(_sendFloatFunctionName);
             byte[] peerId = Encoding.ASCII.GetBytes(GameLiftManager.GetInstance().m_PeerId.ToString());
 
-            byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, position, rotation, prefabName, parentID, componentAssemblyQualifiedName, instantiatedGameObjectClassName,
+            byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(callbackId, id, position, rotation, prefabName, parentID, componentAssemblyQualifiedName, instantiatedGameObjectClassName,
                 instantiatedGameObjectFunctionName, claimRecoveryClassName, claimRecoveryFunctionName, sendFloatClassName, sendFloatFunctionName, peerId);
             RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.SpawnPrefab, payload);
             GameLiftManager.GetInstance().m_Client.SendMessage(message);
@@ -657,7 +663,7 @@ namespace ASL
             {
                 byte[] childGUIDBytes = Encoding.ASCII.GetBytes(childGUID.ToString());
                 byte[] childPrefabName = Encoding.ASCII.GetBytes("CHILD_OF_PREFAB");
-                byte[] childGUIDPayload = GameLiftManager.GetInstance().CombineByteArrays(childGUIDBytes, position, rotation, childPrefabName, id, componentAssemblyQualifiedName, instantiatedGameObjectClassName,
+                byte[] childGUIDPayload = GameLiftManager.GetInstance().CombineByteArrays(nullCallbackIdForChildren, childGUIDBytes, position, rotation, childPrefabName, id, componentAssemblyQualifiedName, instantiatedGameObjectClassName,
                     instantiatedGameObjectFunctionName, claimRecoveryClassName, claimRecoveryFunctionName, sendFloatClassName, sendFloatFunctionName, peerId);
                 RTMessage message2 = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.SpawnPrefab, childGUIDPayload);
                 GameLiftManager.GetInstance().m_Client.SendMessage(message2);
