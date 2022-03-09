@@ -272,12 +272,9 @@ namespace ASL
             if (gameObject && m_Mine)
             {
                 byte[] callbackId = GameLiftManager.GetInstance().SetOpFunctionCallback(callback);
-                //byte[] callbackKeyInByte = Encoding.ASCII.GetBytes(callbackId);
-                Debug.Log("callback : " + callbackId.Length); 
-                byte[] id = Encoding.ASCII.GetBytes(m_Id); //36
-                Debug.Log("id : " + id.Length);
+                byte[] id = Encoding.ASCII.GetBytes(m_Id);
                 byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(callbackId, id);
-                Debug.Log("payload : " + payload.Length);
+
                 RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.DeleteObject, payload);
                 GameLiftManager.GetInstance().m_Client.SendMessage(message);
             }
