@@ -66,6 +66,7 @@ namespace ASL
         /// <param name="_type">The primitive type to be instantiated</param>
         /// <param name="_position">The position where the object will be instantiated</param>
         /// <param name="_rotation">The rotation orientation of the object to be instantiated</param>
+        /// <param name="_callback">The callback function</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -84,6 +85,7 @@ namespace ASL
         /// <param name="_position">The position where the object will be instantiated</param>
         /// <param name="_rotation">The rotation orientation of the object to be instantiated</param>
         /// <param name="_parentID">The id or name of the parent object for this instantiated object</param>
+        /// <param name="_callback">The callback function</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -119,6 +121,7 @@ namespace ASL
         /// <param name="_rotation">The rotation orientation of the object to be instantiated</param>
         /// <param name="_parentID">The id or name of the parent object for this instantiated object</param>
         /// <param name="_componentAssemblyQualifiedName">The full name of the component to be added to this object upon creation.
+        /// <param name="_callback">The callback function</param>
         /// When you use a Unity component, things are slightly different. For example, to add a Rigidbody component, you would enter this: "UnityEngine.Rigidbody,UnityEngine"
         /// In this case, the pattern is still the namespace + component, but then it is followed with by ",UnityEngine". If you need UnityEditor, try that after the comma</param>
         /// <example><code>
@@ -147,6 +150,7 @@ namespace ASL
         /// <param name="_parentID">The id or name of the parent object for this instantiated object</param>
         /// <param name="_componentAssemblyQualifiedName">The full name of the component to be added to this object upon creation.</param>
         /// <param name="_aslGameObjectCreatedCallbackInfo">This is the function that you want to be called after object creation</param>
+        /// <param name="_callback">The callback function</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -178,6 +182,7 @@ namespace ASL
         /// <param name="_componentAssemblyQualifiedName">The full name of the component to be added to this object upon creation.</param>
         /// <param name="_aslGameObjectCreatedCallbackInfo">This is the function that you want to be called after object creation</param>
         /// <param name="_aslClaimCancelledRecoveryFunctionInfo">This is the function that you want to be called whenever a claim is rejected/cancelled</param>
+        /// <param name="_callback">The callback function</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -219,6 +224,7 @@ namespace ASL
         /// <param name="_aslClaimCancelledRecoveryFunctionInfo">This is the function that you want to be called whenever a claim is rejected/cancelled</param>
         /// <param name="_aslFloatFunctionInfo">This is the name of the function that you want to be executed whenever you use the 
         /// <see cref="ASLObject.SendFloatArray(float[])"/> function.</param>
+        /// <param name="_callback">The callback function</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -274,6 +280,7 @@ namespace ASL
         /// <param name="_prefabName">The name of the prefab to be instantiated. Make sure your prefab is located in the Resources/MyPrefabs folder so it can be found</param>
         /// <param name="_position">The position where the object will be instantiated</param>
         /// <param name="_rotation">The rotation orientation of the object to be instantiated</param>
+        /// <param name="_callback">The callback function</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -293,6 +300,7 @@ namespace ASL
         /// <param name="_position">The position where the object will be instantiated</param>
         /// <param name="_rotation">The rotation orientation of the object to be instantiated</param>
         /// <param name="_parentID">The id or name of the parent object for this instantiated object</param>
+        /// <param name="_callback">The callback function</param>
         /// <example><code>
         /// //Where gameObject is the parent of the object that is being created here
         /// ASL.ASLHelper.InstantiateASLObject("MyPrefab", new Vector3(0, 0, 0), Quaternion.identity, gameobject.GetComponent&lt;ASL.ASLObject&gt;().m_Id); 
@@ -326,6 +334,7 @@ namespace ASL
         /// <param name="_rotation">The rotation orientation of the object to be instantiated</param>
         /// <param name="_parentID">The id or name of the parent object for this instantiated object</param>
         /// <param name="_componentAssemblyQualifiedName">The full name of the component to be added to this object upon creation.
+        /// <param name="_callback">The callback function</param>
         /// When you use a Unity component, things are slightly different. For example, to add a Rigidbody component, you would enter this: "UnityEngine.Rigidbody,UnityEngine"
         /// In this case, the pattern is still the namespace + component, but then it is followed with by ",UnityEngine". If you need UnityEditor, try that after the comma</param>
         /// <example><code>
@@ -356,6 +365,7 @@ namespace ASL
         /// <param name="_parentID">The id or name of the parent object for this instantiated object</param>
         /// <param name="_componentAssemblyQualifiedName">The full name of the component to be added to this object upon creation.</param>
         /// <param name="_aslGameObjectCreatedCallbackInfo">This is the function that you want to be called after object creation</param>
+        /// <param name="_callback">The callback function</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -388,6 +398,7 @@ namespace ASL
         /// <param name="_componentAssemblyQualifiedName">The full name of the component to be added to this object upon creation.</param>
         /// <param name="_aslGameObjectCreatedCallbackInfo">This is the function that you want to be called after object creation</param>
         /// <param name="_aslClaimCancelledRecoveryFunctionInfo">This is the function that you want to be called whenever a claim is rejected/cancelled</param>
+        /// <param name="_callback">The callback function</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -431,6 +442,7 @@ namespace ASL
         /// <param name="_aslClaimCancelledRecoveryFunctionInfo">This is the function that you want to be called whenever a claim is rejected/cancelled</param>
         /// <param name="_aslFloatFunctionInfo">This is the name of the function that you want to be executed whenever you use the 
         /// <see cref="ASLObject.SendFloatArray(float[])"/> function.</param>
+        /// <param name="_callback">The callback function</param>
         /// <example><code>
         /// void SomeFunction()
         /// {

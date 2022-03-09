@@ -243,7 +243,7 @@ namespace ASL
                         }
                     }
                 }
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -296,7 +296,7 @@ namespace ASL
                     myObject.m_OutstandingClaimCallbackCount = 0;
                     myObject._LocallyRemoveClaimCallbacks();
                 }
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -325,7 +325,7 @@ namespace ASL
                     }
                     myObject._LocallyRemoveClaimCallbacks();
                 }
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -352,7 +352,7 @@ namespace ASL
                         myObject.GetComponent<Renderer>().material.color = ConvertByteArrayIntoVector(_packet.Data, startLocation[3], dataLength[3]);
                     }
                 }
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
 
             }
 
@@ -362,12 +362,6 @@ namespace ASL
             /// <param name="_packet">The packet from the relay server containing the ID of what ASL Object to delete</param>
             public void DeleteObject(DataReceivedEventArgs _packet)
             {
-                /*string id = Encoding.Default.GetString(_packet.Data);
-                if (ASLHelper.m_ASLObjects.TryGetValue(id ?? string.Empty, out ASLObject myObject))
-                {
-                    ASLHelper.m_ASLObjects.Remove(id);
-                    Destroy(myObject.gameObject);
-                }*/
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
                 string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
                 string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
@@ -376,7 +370,7 @@ namespace ASL
                     ASLHelper.m_ASLObjects.Remove(id);
                     Destroy(myObject.gameObject);
                 }
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -393,7 +387,7 @@ namespace ASL
                 {
                     myObject.transform.localPosition = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                 }
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -411,7 +405,7 @@ namespace ASL
                 {
                     myObject.transform.localPosition += (Vector3)ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                 }
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -429,7 +423,7 @@ namespace ASL
                     Vector4 quaternion = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                     myObject.transform.localRotation = new Quaternion(quaternion.x, quaternion.y, quaternion.z, quaternion.w);
                 }
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -447,7 +441,7 @@ namespace ASL
                     Vector4 quaternion = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                     myObject.transform.localRotation *= new Quaternion(quaternion.x, quaternion.y, quaternion.z, quaternion.w);
                 }
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -464,7 +458,7 @@ namespace ASL
                 {
                     myObject.transform.localScale = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                 }
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -482,7 +476,7 @@ namespace ASL
                 {
                     myObject.transform.localScale += (Vector3)ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                 }
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -499,7 +493,7 @@ namespace ASL
                 {
                     myObject.transform.position = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                 }
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -517,7 +511,7 @@ namespace ASL
                 {
                     myObject.transform.position += (Vector3)ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                 }
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -535,7 +529,7 @@ namespace ASL
                     Vector4 quaternion = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                     myObject.transform.rotation = new Quaternion(quaternion.x, quaternion.y, quaternion.z, quaternion.w);
                 }
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -553,7 +547,7 @@ namespace ASL
                     Vector4 quaternion = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                     myObject.transform.rotation *= new Quaternion(quaternion.x, quaternion.y, quaternion.z, quaternion.w);
                 }
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -575,7 +569,7 @@ namespace ASL
                     myObject.transform.localScale = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                     myObject.transform.parent = parent;
                 }
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -597,7 +591,7 @@ namespace ASL
                     myObject.transform.localScale += (Vector3)ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                     myObject.transform.parent = parent;
                 }
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -625,7 +619,7 @@ namespace ASL
 
                     myObject.m_FloatCallback?.Invoke(id, myFloats);
                 }
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -739,7 +733,7 @@ namespace ASL
                         ReceivedTexture2Ds.Remove(key); //remove texture from dictionary as we have successfully built it and called the function attached to it
                     }
                 }
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
 
             }
 
@@ -893,7 +887,7 @@ namespace ASL
                 {
                     myObject.tag = tag;
                 }
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -932,7 +926,7 @@ namespace ASL
 
                     if (!awaitingInstantiation.ContainsKey(rootGUID))
                     {
-                        GameLiftManager.GetInstance().RemoveOpFunctionCallbackByCallbackId(callbackId);
+                        GetInstance().RemoveOpFunctionCallbackByCallbackId(callbackId);
                         return; // ignore unexpected IDs
                     }
 
@@ -941,7 +935,7 @@ namespace ASL
                     if (childASLObj == null)
                     {
                         // If this happens we've recieved an extra ID somehow
-                        GameLiftManager.GetInstance().RemoveOpFunctionCallbackByCallbackId(callbackId);
+                        GetInstance().RemoveOpFunctionCallbackByCallbackId(callbackId);
                         return;
                     }
 
@@ -957,7 +951,7 @@ namespace ASL
                         }
                         awaitingInstantiation.Remove(rootGUID);
                     }
-                    GameLiftManager.GetInstance().RemoveOpFunctionCallbackByCallbackId(callbackId);
+                    GetInstance().RemoveOpFunctionCallbackByCallbackId(callbackId);
                     return;
                 }
 
@@ -1062,7 +1056,7 @@ namespace ASL
                     }
                 }
 
-                GameLiftManager.GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
+                GetInstance().DoOpFunctionCallback(_packet.OpCode, callbackId);
             }
 
             /// <summary>
@@ -1099,7 +1093,7 @@ namespace ASL
                 else
                 {
                     Debug.LogError("Could not parse primitive type when spawning primitive object. Primitive Type given: " + primitiveType.ToString());
-                    GameLiftManager.GetInstance().RemoveOpFunctionCallbackByCallbackId(callbackId);
+                    GetInstance().RemoveOpFunctionCallbackByCallbackId(callbackId);
                     return;
                 }
                 //Do we need to set the parent?

@@ -57,6 +57,8 @@ namespace ASL
             /// Asynchronously loads a scene and once loaded, informs everyone else that this user is ready to go into the newly loaded scene
             /// </summary>
             /// <param name="_sceneName">The name of the scene to be loaded</param>
+            /// <param name="_callbackId">The callback id for a specific OpFunction callback</param>
+            /// <param name="_opCode">The OpCode</param>
             /// <returns>Null while loading</returns>
             private IEnumerator AsyncSceneLoader(string _sceneName, string _callbackId, int _opCode)
             {

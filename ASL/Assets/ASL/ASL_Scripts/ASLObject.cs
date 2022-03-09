@@ -96,7 +96,8 @@ namespace ASL
         /// <param name="callback">The callback to be called when the claim is approved by the server</param>
         /// <param name="claimTimeOut">The amount of time in milliseconds the user will own this object. If set to less than 0,
         /// then the user will own the object until it gets stolen.</param>
-        /// /// <param name="resetClaimTimeout">Flag indicating whether or not a claim should reset the claim timer for this object</param>
+        /// <param name="resetClaimTimeout">Flag indicating whether or not a claim should reset the claim timer for this object</param>
+        /// <param name="opCallback">The optional callback function for OpFunction</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -196,11 +197,22 @@ namespace ASL
             }
         }
 
+        /// <summary>
+        /// Claims an object for the user until someone steals it or the passed in claim time is reached. Changing the time you hold onto an object and 
+        /// deciding to reset or not the current amount of time you have held it is generally not recommended, but does have occasional applications
+        /// </summary>
+        /// <param name="callback">The callback to be called when the claim is approved by the server</param>
+        /// <param name="opCallback">The optional callback function for OpFunction</param>
         public void SendAndSetClaim(ClaimCallback callback, GameLiftManager.OpFunctionCallback opCallback = null)
         {
             SendAndSetClaim(callback, 1000, true, opCallback);
         }
 
+        /// <summary>
+        /// Claims an object for the user until someone steals it or the passed in claim time is reached. Changing the time you hold onto an object and 
+        /// deciding to reset or not the current amount of time you have held it is generally not recommended, but does have occasional applications
+        /// </summary>
+        /// <param name="callback">The callback to be called when the claim is approved by the server</param>
         public void SendAndSetClaim(ClaimCallback callback)
         {
             SendAndSetClaim(callback, 1000, true, null);
@@ -211,6 +223,7 @@ namespace ASL
         /// </summary>
         /// <param name="_myColor">The color to be set for the user who called this function</param>
         /// <param name="_opponentsColor">The color to be set for everyone who did not call this function (everyone else)</param>
+        /// <param name="callback">The optional callback function for OpFunction</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -242,6 +255,7 @@ namespace ASL
         /// <summary>
         /// Deletes this object for all users
         /// </summary>
+        /// <param name="callback">The optional callback function for OpFunction</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -273,6 +287,7 @@ namespace ASL
         /// Sends and sets the local transform for this object for all users
         /// </summary>
         /// <param name="_localPosition">The new local position for this object</param>
+        /// <param name="callback">The optional callback function for OpFunction</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -316,6 +331,7 @@ namespace ASL
         /// Sends and adds to the local transform of this object for all users
         /// </summary>
         /// <param name="_localPosition">The value to be added to the local position of this object</param>
+        /// <param name="callback">The optional callback function for OpFunction</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -359,6 +375,7 @@ namespace ASL
         /// Sends and sets the local rotation for this object for all users
         /// </summary>
         /// <param name="_localRotation">The new local rotation for this object.</param>
+        /// <param name="callback">The optional callback function for OpFunction</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -400,6 +417,7 @@ namespace ASL
         /// Sends and adds to the local rotation of this object for all users
         /// </summary>
         /// <param name="_localRotation">The value that will be added to rotation of this object.</param>
+        /// <param name="callback">The optional callback function for OpFunction</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -441,6 +459,7 @@ namespace ASL
         /// Send and set the local scale for this object for all users
         /// </summary>
         /// <param name="_localScale">The new local scale for this object</param>
+        /// <param name="callback">The optional callback function for OpFunction</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -484,6 +503,7 @@ namespace ASL
         /// Send and add to the local scale of this object for all users
         /// </summary>
         /// <param name="_localScale">The value that will be added to local scale of this object</param>
+        /// <param name="callback">The optional callback function for OpFunction</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -524,6 +544,7 @@ namespace ASL
         /// Sends and sets the world position for this object for all users
         /// </summary>
         /// <param name="_position">The new world position for this object</param>
+        /// <param name="callback">The optional callback function for OpFunction</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -570,6 +591,7 @@ namespace ASL
         /// Sends and adds to the world transform of this object for all users
         /// </summary>
         /// <param name="_position">The value to be added to the world position of this object</param>
+        /// <param name="callback">The optional callback function for OpFunction</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -614,6 +636,7 @@ namespace ASL
         /// Sends and sets the world rotation for this object for all users
         /// </summary>
         /// <param name="_rotation">The new world rotation for this object.</param>
+        /// <param name="callback">The optional callback function for OpFunction</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -655,6 +678,7 @@ namespace ASL
         /// Sends and adds to the world rotation of this object for all users
         /// </summary>
         /// <param name="_rotation">The value that will be added to world rotation of this object.</param>
+        /// <param name="callback">The optional callback function for OpFunction</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -698,6 +722,7 @@ namespace ASL
         /// when the parent object is rotated, can cause strange, though correct, behavior.
         /// </summary>
         /// <param name="_scale">The new world scale for this object</param>
+        /// <param name="callback">The optional callback function for OpFunction</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -744,6 +769,7 @@ namespace ASL
         /// when the parent object is rotated, can cause strange, though correct, behavior.
         /// </summary>
         /// <param name="_scale">The value that will be added to world scale of this object</param>
+        /// <param name="callback">The optional callback function for OpFunction</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -756,7 +782,7 @@ namespace ASL
         ///     });
         /// }
         /// </code></example>
-       public void SendAndIncrementWorldScale(Vector3? _scale, GameLiftManager.OpFunctionCallback callback = null)
+        public void SendAndIncrementWorldScale(Vector3? _scale, GameLiftManager.OpFunctionCallback callback = null)
         {
             byte[] callbackId = GameLiftManager.GetInstance().SetOpFunctionCallback(callback);
 
@@ -818,6 +844,7 @@ namespace ASL
         /// Send and set the tag for this object for all users. As Unity does not all users to create tags at runtime, all players must have this tag defined
         /// </summary>
         /// <param name="_tag">The tag for this object to get</param>
+        /// <param name="_callback">The optional callback function for OpFunction</param>
         /// <example><code>
         /// void SomeFunction()
         /// {
@@ -848,6 +875,7 @@ namespace ASL
         /// then a switch statement is a good way to implement what you need.
         /// </summary>
         /// <param name="_f">The float value to be passed to all users</param>
+        /// <param name="_callback">The optional callback function for OpFunction</param>
         /// <example>
         /// <code>
         /// void SomeFunction()
@@ -993,6 +1021,7 @@ namespace ASL
         /// <param name="_myTexture2D">The Texture2D to be uploaded and sent to others</param>
         /// <param name="_myPostDownloadFunction">The function to be called after the Texture2D is downloaded</param>
         /// <param name="_uploadAsPNG">Optional parameter allowing the user to upload the image as a PNG. The default is JPG.</param>
+        /// <param name="_callback">The optional callback function for OpFunction</param>
         /// <example><code>
         /// An example of how to send a Texture2D.
         /// Optional parameters include to send it as a PNG (larger file, but allows for transparent pixels, default is JPG),

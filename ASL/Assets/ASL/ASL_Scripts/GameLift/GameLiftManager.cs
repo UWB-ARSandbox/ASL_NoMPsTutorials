@@ -133,6 +133,7 @@ namespace ASL
         /// <summary>A value for callback id when the given null as callback. </summary>
         public static byte[] m_NullCallbackId = new byte[55];
 
+        /// <summary>A value for callback id in string format when the given null as callback. </summary>
         public string m_NullCallbackIdInString { get; } = System.Text.Encoding.Default.GetString(m_NullCallbackId);
 
         /// <summary>The index value for callback id in data payload. </summary>
@@ -1120,24 +1121,13 @@ namespace ASL
         }
 
         /// <summary>
-        /// Gets the corresponding callback function with the given OpCode from the dictionary.
+        /// Gets the corresponding callback function with the given OpCode and callback id from the dictionary.
         /// Removes the callback function after it has been invoked.
         /// </summary>
-        /// <param name="args">args from the server, contains data and opcode</param>
+        /// <param name="opCode">The OpCode</param>
+        /// <param name="callbackId">The OpCode function's callback id</param>
         public void DoOpFunctionCallback(int opCode, string callbackId)
         {
-            //byte[] rawData = args.Data;
-            //int opCode = args.OpCode;
-
-            // TODO: Remove the below two lines once the callback functionality has been added to all op functions.
-            // check if the current op function has callback functionality enabled
-            //bool isCallbackEnable = OpCodeToCallbackIndexMapping._CallbackIndex.Contains(opCode);
-            //if (!isCallbackEnable) return;
-
-            // get callback key from the data base on the index we got
-            //(int[] startLocation, int[] dataLength) = m_GameController.DataLengthsAndStartLocations(rawData);
-            //string callbackId = m_GameController.ConvertByteArrayIntoString(rawData, startLocation[m_callbackIdIndex], dataLength[m_callbackIdIndex]);
-
             //get callback function base on key, if key = "0", no callback assigned
             if (callbackId.Equals(m_NullCallbackIdInString)) return;
             if (OpFunctionCallbacks.ContainsKey(callbackId))
@@ -1149,6 +1139,10 @@ namespace ASL
             return;
         }
 
+        /// <summary>
+        /// Removes the corresponding callback function by the given callback id from the dictionary.
+        /// </summary>
+        /// <param name="callbackId">The OpCode function's callback id</param>
         public void RemoveOpFunctionCallbackByCallbackId(string callbackId)
         {
             if (OpFunctionCallbacks.ContainsKey(callbackId))
@@ -1157,6 +1151,10 @@ namespace ASL
             }
         }
 
+        /// <summary>
+        /// Generates a unique callback id for a callback function.
+        /// </summary>
+        /// <returns>A unique callback id in string</returns>
         public string GenerateOpFunctionCallbackKey()
         {
             Guid guid = Guid.NewGuid();
@@ -1171,19 +1169,25 @@ namespace ASL
         /// save the callback with generated id as the key into dictionary
         /// </summary>
         /// <param name="callback">user pre-defined callback function</param>
-        /// <param name="opCode">op code for the given function</param>
-        public byte[] SetOpFunctionCallback(GameLiftManager.OpFunctionCallback callback)
+        /// <returns>A unique callback id in byte array</returns>
+        public byte[] SetOpFunctionCallback(OpFunctionCallback callback)
         {
             if (callback == null) return m_NullCallbackId;
             string callbackId = SetOpFunctionCallbackString(callback);
             return Encoding.ASCII.GetBytes(callbackId);
         }
 
-        public string SetOpFunctionCallbackString(GameLiftManager.OpFunctionCallback callback)
+        /// <summary>
+        /// Generate callback id with given information.
+        /// save the callback with generated id as the key into dictionary
+        /// </summary>
+        /// <param name="callback">user pre-defined callback function</param>
+        /// <returns>A unique callback id in string</returns>
+        public string SetOpFunctionCallbackString(OpFunctionCallback callback)
         {
             if (callback == null) return m_NullCallbackIdInString;
-            string callbackId = GameLiftManager.GetInstance().GenerateOpFunctionCallbackKey();
-            GameLiftManager.GetInstance().SetOpFunctionCallback(callback, callbackId);
+            string callbackId = GetInstance().GenerateOpFunctionCallbackKey();
+            GetInstance().SetOpFunctionCallback(callback, callbackId);
             return callbackId;
         }
 
