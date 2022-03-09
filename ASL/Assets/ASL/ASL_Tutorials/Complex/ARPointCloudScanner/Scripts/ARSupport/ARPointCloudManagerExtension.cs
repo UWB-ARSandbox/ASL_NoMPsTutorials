@@ -109,6 +109,16 @@ public class ARPointCloudManagerExtension : MonoBehaviour
         }
     }
 
+    //private void Update()
+    //{
+    //    if (transform.hasChanged)
+    //    {
+    //        Debug.Log("ARSessionOrigin transform changed");
+    //        TheWorld.transform.position = transform.position;
+    //        TheWorld.transform.rotation = transform.rotation;
+    //    }
+    //}
+
     /// <summary>
     /// Enables or disables the filter sphere.  Enabling the filter sphere will result in only capturing points inside or touching the filtersphere.
     /// </summary>
@@ -248,7 +258,7 @@ public class ARPointCloudManagerExtension : MonoBehaviour
     }
 
     /// <summary>
-    /// Helper method to create the filtered particle list    
+    /// Helper method to create the filtered particle list in world space   
     /// </summary>
     /// <param name="pointCloudList">The raw ARCore pointcloud list.</param>
     /// <returns>A tuple list of Vector3 position and Color colors.</returns>
@@ -275,15 +285,15 @@ public class ARPointCloudManagerExtension : MonoBehaviour
                         !_previousIdsHashSet.Contains(ids[i]))
                     {
                         _previousIdsHashSet.Add(ids[i]);
-
+                        
                         if (UseBackgroundPointColor)
                         {
                             Vector3 screenPos = _ARCamera.GetComponent<Camera>().WorldToScreenPoint(positions[i]);
-                            particles.Add((positions[i], _screenTexture.GetPixel((int)screenPos.x, (int)screenPos.y)));
+                            particles.Add((transform.TransformPoint(positions[i]), _screenTexture.GetPixel((int)screenPos.x, (int)screenPos.y)));
                         }
                         else
-                        {
-                            particles.Add((positions[i], Color.black));
+                        {                            
+                            particles.Add((transform.TransformPoint(positions[i]), Color.black));
                         }
                     }
                 }

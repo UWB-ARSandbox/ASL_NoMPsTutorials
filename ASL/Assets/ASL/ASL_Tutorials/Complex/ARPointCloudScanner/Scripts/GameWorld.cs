@@ -3,7 +3,7 @@ using ASL;
 
 /// <summary>World model for the ASL_ARCorePointCloud tutorial.</summary>
 public class GameWorld : MonoBehaviour
-{
+{  
     /// <summary>The root object tree representing ARCore player objects and components including the AR Camera and AR Session Origin</summary>
     public GameObject AndroidARRoot;
 
@@ -15,6 +15,13 @@ public class GameWorld : MonoBehaviour
 
     /// <summary>The ASL ParticleSystem extension object specilizing in point cloud data</summary>
     public ASLParticleSystem ASLPointCloudMgr;
+
+    /// <summary> Gets the hit position where the user touched the screen to help record where the object is verses where the user tapped</summary>
+    private Pose? m_LastValidPose;
+
+    /// <summary>Static hack for this class so that functions can be called after objects and cloud anchors are created using the same parameter they were created with</summary>
+    private static GameWorld m_This;
+
 
     /// <summary>
     /// Startup initialization for the point cloud game world
@@ -28,13 +35,7 @@ public class GameWorld : MonoBehaviour
         ARPointCloudMgr ??= FindObjectOfType<ARPointCloudManagerExtension>();
         ASLPointCloudMgr ??= FindObjectOfType<ASLParticleSystem>();
 
-        ARPointCloudMgr.ListGenerated += processARParticleList;
-
-        // Set world origin anchor point
-        if (GameLiftManager.GetInstance().AmLowestPeer())
-        {
-            ASLHelper.InstantiateASLObject("SimpleDemoPrefabs/WorldOriginCloudAnchorObject", Vector3.zero, Quaternion.identity, string.Empty, string.Empty, SpawnWorldOrigin);
-        }
+        ARPointCloudMgr.ListGenerated += processARParticleList;        
     }
 
     /// <summary>
@@ -46,20 +47,57 @@ public class GameWorld : MonoBehaviour
     }
 
     /// <summary>
+    /// Instantiates and sets the world origin cloud anchor at the origin point
+    /// </summary>
+    public void SetWorldOriginCloudAnchor()
+    {
+        ASLHelper.InstantiateASLObject("SimpleDemoPrefabs/WorldOriginCloudAnchorObject", Vector3.zero, Quaternion.identity, string.Empty, string.Empty, SpawnWorldOrigin);
+    }
+
+    /// <summary>
+    /// Instantiates and sets a normal cloud anchor based on a Pose.  May throw NullReferenceException while cloud anchor is initializing.
+    /// </summary>
+    /// <param name="touchPose">Pose object containing position and rotation of touch selection on an ARPlane</param>
+    public void SetCloudAnchor(Pose? touchPose)
+    {
+
+        if (touchPose == null)
+        {
+            Debug.LogWarning("Invalid Pose.  Pose is null.");
+            return;
+        }
+        m_LastValidPose = touchPose;
+        ASLHelper.InstantiateASLObject("SimpleDemoPrefabs/NormalCloudAnchorObject", touchPose.Value.position, touchPose.Value.rotation, string.Empty, string.Empty, SpawnNormalCloudAnchor);
+
+    }
+
+    /// <summary>
+    /// Spawns a normal cloud anchor now that the cloud anchor visualization object has been created (red cylinder)
+    /// </summary>
+    /// <param name="normalCloudAnchorVisualizationObject">The game object that will represent a normal cloud anchor</param>
+    public static void SpawnNormalCloudAnchor(GameObject normalCloudAnchorVisualizationObject)
+    {
+        if (m_This.m_LastValidPose == null)
+        {
+            Debug.LogWarning("Invalid Pose.  Pose is null.");
+            return;
+        }
+        normalCloudAnchorVisualizationObject.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
+        {
+            //_worldOriginVisualizationObject will be parented to the cloud anchor which is the world origin, thus showing where the world origin is
+            //ASLHelper.CreateARCoreCloudAnchor(m_This.m_LastValidPose, normalCloudAnchorVisualizationObject.GetComponent<ASL.ASLObject>(), null, true, false);
+            ASLHelper.CreateARCoreCloudAnchor(m_This.m_LastValidPose, normalCloudAnchorVisualizationObject.GetComponent<ASL.ASLObject>(), null, true, false);
+        });
+    }
+
+    /// <summary>
     /// Spawns the world origin cloud anchor after the world origin object visualizer has been created (blue cube)
     /// </summary>
     /// <param name="_worldOriginVisualizationObject">The game object that represents the world origin</param>
     private static void SpawnWorldOrigin(GameObject _worldOriginVisualizationObject)
     {
         _worldOriginVisualizationObject.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
-        {
-            // Bugged as of 2020.3.22f1.  Getting Null Reference exceptions with 
-            // ARWorldOriginHelper.GetInstance().m_ARAnchorManager.AddAnchor((Pose)_hitResults);
-            // and 
-            // unable to host cloud anchor exceptions with m_ARCloudAnchor = ARWorldOriginHelper.GetInstance().m_ARAnchorManager.HostCloudAnchor(localAnchor);
-            // AddAnchor is also deprecated.
-            // Using AddComponent<ARAnchor>() to create anchors will need an overhaul of ARWorldOriginHelper and ASLHelper's Anchor methods
-            // Repos with all other ASL ARCloudAnchor example scenes.
+        {            
             ASLHelper.CreateARCoreCloudAnchor(Pose.identity, _worldOriginVisualizationObject.GetComponent<ASL.ASLObject>(), null, true, true);
         });
     }
