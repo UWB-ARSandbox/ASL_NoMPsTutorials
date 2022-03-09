@@ -133,7 +133,7 @@ namespace ASL
         /// <summary>A value for callback id when the given null as callback. </summary>
         public static byte[] m_NullCallbackId = new byte[55];
 
-        public static string m_NullCallbackIdInString = System.Text.Encoding.Default.GetString(m_NullCallbackId);
+        public string m_NullCallbackIdInString { get; } = System.Text.Encoding.Default.GetString(m_NullCallbackId);
 
         /// <summary>The index value for callback id in data payload. </summary>
         public static int m_callbackIdIndex = 0;
@@ -1131,8 +1131,8 @@ namespace ASL
 
             // TODO: Remove the below two lines once the callback functionality has been added to all op functions.
             // check if the current op function has callback functionality enabled
-            bool isCallbackEnable = OpCodeToCallbackIndexMapping._CallbackIndex.Contains(opCode);
-            if (!isCallbackEnable) return;
+            //bool isCallbackEnable = OpCodeToCallbackIndexMapping._CallbackIndex.Contains(opCode);
+            //if (!isCallbackEnable) return;
 
             // get callback key from the data base on the index we got
             //(int[] startLocation, int[] dataLength) = m_GameController.DataLengthsAndStartLocations(rawData);

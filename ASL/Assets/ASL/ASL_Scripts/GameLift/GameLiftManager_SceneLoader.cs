@@ -6,6 +6,7 @@ using System.Collections;
 using Aws.GameLift.Realtime.Command;
 using Aws.GameLift.Realtime.Types;
 using UnityEngine.SceneManagement;
+using System;
 
 namespace ASL
 {
@@ -37,9 +38,19 @@ namespace ASL
             /// <param name="_packet"></param>
             public void LoadScene(DataReceivedEventArgs _packet)
             {
-                string data = Encoding.Default.GetString(_packet.Data);
+                string sceneName;
+                string callbackId = GetInstance().m_NullCallbackIdInString;
+                try
+                {
+                    (int[] startLocation, int[] dataLength) = GetInstance().m_GameController.DataLengthsAndStartLocations(_packet.Data);
+                    callbackId = GetInstance().m_GameController.ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                    sceneName = GetInstance().m_GameController.ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
+                } catch (OutOfMemoryException oe)
+                {
+                    sceneName = Encoding.Default.GetString(_packet.Data);
+                }
                 SceneManager.LoadScene("ASL_SceneLoader");
-                GetInstance().StartCoroutine(AsyncSceneLoader(data));
+                GetInstance().StartCoroutine(AsyncSceneLoader(sceneName, callbackId, _packet.OpCode));
             }
 
             /// <summary>
@@ -47,7 +58,7 @@ namespace ASL
             /// </summary>
             /// <param name="_sceneName">The name of the scene to be loaded</param>
             /// <returns>Null while loading</returns>
-            private IEnumerator AsyncSceneLoader(string _sceneName)
+            private IEnumerator AsyncSceneLoader(string _sceneName, string _callbackId, int _opCode)
             {
                 while (SceneManager.GetActiveScene().name != "ASL_SceneLoader")
                 {
@@ -84,6 +95,8 @@ namespace ASL
                     }
                     yield return null;
                 }
+
+                GetInstance().DoOpFunctionCallback(_opCode, _callbackId);
             }
 
 
