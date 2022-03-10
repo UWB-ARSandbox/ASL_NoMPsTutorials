@@ -243,7 +243,8 @@ namespace ASL
                         }
                     }
                 }
-                GetInstance().DoOpFunctionCallback(callbackId, myObject.gameObject);
+                // callback only invoked on other situations: RejectClaim/ReleaseClaimedObject/ObjectClaimReceived
+                GetInstance().RemoveOpFunctionCallbackByCallbackId(callbackId);
             }
 
             /// <summary>
