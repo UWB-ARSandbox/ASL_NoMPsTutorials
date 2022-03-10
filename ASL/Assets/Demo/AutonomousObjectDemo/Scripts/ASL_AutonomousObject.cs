@@ -120,7 +120,7 @@ public class ASL_AutonomousObject : MonoBehaviour
         autonomousObjectIndex = index;
     }
 
-    void nextTransform()
+    void nextTransform(GameObject obj)
     {
         if (transformationQueue.Count > 0)
         {

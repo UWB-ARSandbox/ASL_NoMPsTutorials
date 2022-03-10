@@ -123,7 +123,7 @@ namespace ASL
 
         /// Pre-defined callback function for a specific OpFunction
         /// </summary>
-        public delegate void OpFunctionCallback();
+        public delegate void OpFunctionCallback(GameObject m_object);
 
         /// <summary>
         /// Dictionary containing the all callbacks that are connected OpFunction's OpCode
@@ -1124,9 +1124,9 @@ namespace ASL
         /// Gets the corresponding callback function with the given OpCode and callback id from the dictionary.
         /// Removes the callback function after it has been invoked.
         /// </summary>
-        /// <param name="opCode">The OpCode</param>
         /// <param name="callbackId">The OpCode function's callback id</param>
-        public void DoOpFunctionCallback(int opCode, string callbackId)
+        /// <param name="obj">The game object processed</param>
+        public void DoOpFunctionCallback(string callbackId, GameObject obj)
         {
             //get callback function base on key, if key = "0", no callback assigned
             if (callbackId.Equals(m_NullCallbackIdInString)) return;
@@ -1134,7 +1134,8 @@ namespace ASL
             {
                 OpFunctionCallback callback = OpFunctionCallbacks[callbackId];
                 OpFunctionCallbacks.Remove(callbackId);
-                callback.Invoke();
+                callback.Invoke(obj);
+               
             }
             return;
         }

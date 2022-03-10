@@ -98,7 +98,7 @@ namespace ASL
                     yield return null;
                 }
 
-                GetInstance().DoOpFunctionCallback(_opCode, _callbackId);
+                GetInstance().DoOpFunctionCallback(_callbackId, null);
             }
 
 
