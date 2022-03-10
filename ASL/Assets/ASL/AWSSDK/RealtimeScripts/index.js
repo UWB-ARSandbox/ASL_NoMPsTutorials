@@ -131,7 +131,7 @@ var ASLObjectSyncHolder = [];
 const ID_LENGTH = 36;
 const CALLBACK_ID_LENGTH = 55; // CallbackId always at index 0
 const CALLBACK_ID_START_LOCATION_WHEN_DELETE_OBJECT = 3*4; //3 numbers appear before the [CallbackId + ID] appears in packet, 4 is the size of an int
-const ID_START_LOCATION_WHEN_CREATED_BY_USER = 15*4; //15 numbers appear before the [CallbackId + ID] appears in packet, 4 is the size of an int
+const ID_START_LOCATION_WHEN_CREATED_BY_USER = 14*4; //14 numbers appear before the ID appears in packet, 4 is the size of an int
 const ID_START_LOCATION_WHEN_CREATED_FOR_CLOUD_ANCHOR = 6*4 //6 numbers appear before the [CallbackId + ID] appears in the packet, 4 is the size of an int
 var MatchStarted = false;
 var InitialScene = "";
@@ -489,10 +489,12 @@ function SpawnPrefab(gameMessage)
 	var decodedMessage = UnpackPayload(gameMessage.payload);
 	//Get ID and new owner from payload
 	var id = "";
-  for (let i = CALLBACK_ID_LENGTH + ID_START_LOCATION_WHEN_CREATED_BY_USER; i < ID_LENGTH + CALLBACK_ID_LENGTH + ID_START_LOCATION_WHEN_CREATED_BY_USER; i++)
+	//split on ':' to find id and newOwner
+	for (let i = ID_START_LOCATION_WHEN_CREATED_BY_USER; i < ID_LENGTH + ID_START_LOCATION_WHEN_CREATED_BY_USER; i++)
 	{
 		id += decodedMessage.charAt(i);
 	}
+
 	ASLObjects[id] = new ASLObject(id, "server", "0");
 	const outMessage = session.newTextGameMessage(OpCode.SpawnPrefab, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
@@ -503,10 +505,12 @@ function SpawnPrimitive(gameMessage)
 	var decodedMessage = UnpackPayload(gameMessage.payload);
 	//Get ID and new owner from payload
 	var id = "";
-  for (let i = CALLBACK_ID_LENGTH + ID_START_LOCATION_WHEN_CREATED_BY_USER; i < ID_LENGTH + CALLBACK_ID_LENGTH + ID_START_LOCATION_WHEN_CREATED_BY_USER; i++)
-  {
+	//split on ':' to find id and newOwner
+	for (let i = ID_START_LOCATION_WHEN_CREATED_BY_USER; i < ID_LENGTH + ID_START_LOCATION_WHEN_CREATED_BY_USER; i++)
+	{
 		id += decodedMessage.charAt(i);
 	}
+
 	ASLObjects[id] = new ASLObject(id, "server", "0");
 	const outMessage = session.newTextGameMessage(OpCode.SpawnPrimitive, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());

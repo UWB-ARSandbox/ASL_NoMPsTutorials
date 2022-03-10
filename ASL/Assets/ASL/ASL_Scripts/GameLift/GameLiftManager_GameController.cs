@@ -899,34 +899,30 @@ namespace ASL
             public void SpawnPrefab(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                //[0] = callbackId
-                //[1] = id 
-                //[2] = position
-                //[3] = rotation
-                //[4] = prefabName
-                //[5] = parentId
-                //[6] = component name/type
-                //[7] = class of function to call upon instantiation
-                //[8] = function to call upon instantiation
-                //[9] = claim recovery class 
-                //[10] = claim recovery function
-                //[11] = send float class
-                //[12] = send float function
-                //[13] = creator peerId
+                //[0] = id 
+                //[1] = position
+                //[2] = rotation
+                //[3] = prefabName
+                //[4] = parentId
+                //[5] = component name/type
+                //[6] = class of function to call upon instantiation
+                //[7] = function to call upon instantiation
+                //[8] = claim recovery class 
+                //[9] = claim recovery function
+                //[10] = send float class
+                //[11] = send float function
+                //[12] = creator peerId
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
 
-                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
-                
                 // Set up a child ASLObject (if this is the ID for a child of a prefab)
-                if (ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]).Equals("CHILD_OF_PREFAB"))
+                if (ConvertByteArrayIntoString(_packet.Data, startLocation[3], dataLength[3]).Equals("CHILD_OF_PREFAB"))
                 {
-                    string rootGUIDString = ConvertByteArrayIntoString(_packet.Data, startLocation[5], dataLength[5]);
+                    string rootGUIDString = ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]);
                     Guid rootGUID = new Guid(rootGUIDString);
                     Guid childGuid = new Guid(id);
 
                     if (!awaitingInstantiation.ContainsKey(rootGUID))
                     {
-                        GetInstance().RemoveOpFunctionCallbackByCallbackId(callbackId);
                         return; // ignore unexpected IDs
                     }
 
@@ -935,7 +931,6 @@ namespace ASL
                     if (childASLObj == null)
                     {
                         // If this happens we've recieved an extra ID somehow
-                        GetInstance().RemoveOpFunctionCallbackByCallbackId(callbackId);
                         return;
                     }
 
@@ -946,16 +941,16 @@ namespace ASL
                     {
                         // We've set the ID on all child ASLObjects, so we can now activate the prefab.
                         awaitingInstantiation[rootGUID].gameObject.SetActive(true);
-                        if (awaitingInstantiation[rootGUID].ShouldCallObjectCreatedCallback) {
+                        if (awaitingInstantiation[rootGUID].ShouldCallObjectCreatedCallback)
+                        {
                             awaitingInstantiation[rootGUID].gameObject.GetComponent<ASLObject>().m_ASLGameObjectCreatedCallback.Invoke(awaitingInstantiation[rootGUID].gameObject);
                         }
                         awaitingInstantiation.Remove(rootGUID);
                     }
-                    GetInstance().RemoveOpFunctionCallbackByCallbackId(callbackId);
                     return;
                 }
 
-                GameObject newASLObject = Instantiate(Resources.Load(@"MyPrefabs\" + ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]))) as GameObject;
+                GameObject newASLObject = Instantiate(Resources.Load(@"MyPrefabs\" + ConvertByteArrayIntoString(_packet.Data, startLocation[3], dataLength[3]))) as GameObject;
 
                 // We need to wait to activate until all child ASLObjects have IDs in case any
                 // scripts execute immediately and expect a child ASLObject to be ready.
@@ -973,19 +968,21 @@ namespace ASL
                 {
                     AwaitingInstantiation waitingToEnable = new AwaitingInstantiation(newASLObject, ASLHelper.IterateOverChildObjects(newASLObject).GetEnumerator());
                     awaitingInstantiation.Add(new Guid(id), waitingToEnable);
-                } else {
+                }
+                else
+                {
                     newASLObject.SetActive(true);
                 }
-                
+
                 //Do we need to set the parent?
-                string parent = ConvertByteArrayIntoString(_packet.Data, startLocation[5], dataLength[5]);
+                string parent = ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]);
                 if (parent != string.Empty || parent != null)
                 {
                     SetParent(newASLObject, parent);
                 }
 
-                newASLObject.transform.localPosition = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
-                Vector4 rotation = ConvertByteArrayIntoVector(_packet.Data, startLocation[3], dataLength[3]);
+                newASLObject.transform.localPosition = ConvertByteArrayIntoVector(_packet.Data, startLocation[1], dataLength[1]);
+                Vector4 rotation = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                 newASLObject.transform.localRotation = new Quaternion(rotation.x, rotation.y, rotation.z, rotation.w);
 
                 if (newASLObject.GetComponent<ASLObject>() != null)
@@ -998,7 +995,7 @@ namespace ASL
                 }
 
                 //Add any components if needed
-                string componentName = ConvertByteArrayIntoString(_packet.Data, startLocation[6], dataLength[6]);
+                string componentName = ConvertByteArrayIntoString(_packet.Data, startLocation[5], dataLength[5]);
                 if (componentName != string.Empty && componentName != null)
                 {
                     Type component = Type.GetType(componentName);
@@ -1006,8 +1003,8 @@ namespace ASL
                 }
 
                 //If we have the means to set up the recovery callback function - then do it
-                string claimRecoveryClass = ConvertByteArrayIntoString(_packet.Data, startLocation[9], dataLength[9]);
-                string claimRecoveryFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[10], dataLength[10]);
+                string claimRecoveryClass = ConvertByteArrayIntoString(_packet.Data, startLocation[8], dataLength[8]);
+                string claimRecoveryFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[9], dataLength[9]);
                 if (claimRecoveryClass != string.Empty && claimRecoveryClass != null &&
                     claimRecoveryFunction != string.Empty && claimRecoveryFunction != null)
                 {
@@ -1018,8 +1015,8 @@ namespace ASL
                 }
 
                 //If we have the means to set up the SendFloat callback function - then do it
-                string floatClass = ConvertByteArrayIntoString(_packet.Data, startLocation[11], dataLength[11]);
-                string floatFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[12], dataLength[12]);
+                string floatClass = ConvertByteArrayIntoString(_packet.Data, startLocation[10], dataLength[10]);
+                string floatFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[11], dataLength[11]);
 
                 if (floatClass != string.Empty && floatClass != null &&
                     floatFunction != string.Empty && floatFunction != null)
@@ -1034,10 +1031,10 @@ namespace ASL
                 ASLHelper.m_ASLObjects.Add(id, newASLObject.GetComponent<ASLObject>());
 
                 //If this client is the creator of this object, then call the ASLGameObjectCreatedCallback if it exists for this object
-                if (ConvertByteArrayIntoString(_packet.Data, startLocation[13], dataLength[13]) == GetInstance().m_PeerId.ToString())
+                if (ConvertByteArrayIntoString(_packet.Data, startLocation[12], dataLength[12]) == GetInstance().m_PeerId.ToString())
                 {
-                    string instantiationClass = ConvertByteArrayIntoString(_packet.Data, startLocation[7], dataLength[7]);
-                    string instantiationFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[8], dataLength[8]);
+                    string instantiationClass = ConvertByteArrayIntoString(_packet.Data, startLocation[6], dataLength[6]);
+                    string instantiationFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[7], dataLength[7]);
                     if (instantiationClass != string.Empty && instantiationClass != null && instantiationFunction != string.Empty && instantiationFunction != null)
                     {
                         //Find Callback function
@@ -1049,14 +1046,13 @@ namespace ASL
                         if (!hasChildASLObjects) // This may be delayed until all child ASL objects are initalized
                         {
                             newASLObject.GetComponent<ASLObject>().m_ASLGameObjectCreatedCallback.Invoke(newASLObject);
-                        } else
+                        }
+                        else
                         {
                             awaitingInstantiation[new Guid(id)].ShouldCallObjectCreatedCallback = true;
                         }
                     }
                 }
-
-                GetInstance().DoOpFunctionCallback(callbackId, null);
             }
 
             /// <summary>
@@ -1068,24 +1064,22 @@ namespace ASL
             public void SpawnPrimitive(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                //[0] = callbackId
-                //[1] = id 
-                //[2] = position
-                //[3] = rotation
-                //[4] = primitive type
-                //[5] = parentId
-                //[6] = component name/type
-                //[7] = class of function to call upon instantiation
-                //[8] = function to call upon instantiation
-                //[9] = claim recovery class 
-                //[10] = claim recovery function
-                //[11] = send float class
-                //[12] = send float function
-                //[13] = creator peerId
-                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
+                //[0] = id 
+                //[1] = position
+                //[2] = rotation
+                //[3] = primitive type
+                //[4] = parentId
+                //[5] = component name/type
+                //[6] = class of function to call upon instantiation
+                //[7] = function to call upon instantiation
+                //[8] = claim recovery class 
+                //[9] = claim recovery function
+                //[10] = send float class
+                //[11] = send float function
+                //[12] = creator peerId
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
                 GameObject newASLObject;
-                object primitiveType = (PrimitiveType)ConvertByteArrayIntoInt(_packet.Data, startLocation[4], dataLength[4]);
+                object primitiveType = (PrimitiveType)ConvertByteArrayIntoInt(_packet.Data, startLocation[3], dataLength[3]);
                 if (Enum.IsDefined(typeof(PrimitiveType), primitiveType))
                 {
                     newASLObject = GameObject.CreatePrimitive((PrimitiveType)primitiveType);
@@ -1093,25 +1087,24 @@ namespace ASL
                 else
                 {
                     Debug.LogError("Could not parse primitive type when spawning primitive object. Primitive Type given: " + primitiveType.ToString());
-                    GetInstance().RemoveOpFunctionCallbackByCallbackId(callbackId);
                     return;
                 }
                 //Do we need to set the parent?
-                string parent = ConvertByteArrayIntoString(_packet.Data, startLocation[5], dataLength[5]);
+                string parent = ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]);
                 if (parent != string.Empty || parent != null)
                 {
                     SetParent(newASLObject, parent);
                 }
 
-                newASLObject.transform.localPosition = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
-                Vector4 rotation = ConvertByteArrayIntoVector(_packet.Data, startLocation[3], dataLength[3]);
+                newASLObject.transform.localPosition = ConvertByteArrayIntoVector(_packet.Data, startLocation[1], dataLength[1]);
+                Vector4 rotation = ConvertByteArrayIntoVector(_packet.Data, startLocation[2], dataLength[2]);
                 newASLObject.transform.localRotation = new Quaternion(rotation.x, rotation.y, rotation.z, rotation.w);
 
                 //Set ID
                 newASLObject.AddComponent<ASLObject>()._LocallySetID(id);
 
                 //Add any components if needed
-                string componentName = ConvertByteArrayIntoString(_packet.Data, startLocation[6], dataLength[6]);
+                string componentName = ConvertByteArrayIntoString(_packet.Data, startLocation[5], dataLength[5]);
                 if (componentName != string.Empty && componentName != null)
                 {
                     Type component = Type.GetType(componentName);
@@ -1119,8 +1112,8 @@ namespace ASL
                 }
 
                 //If we have the means to set up the recovery callback function - then do it
-                string claimRecoveryClass = ConvertByteArrayIntoString(_packet.Data, startLocation[9], dataLength[9]);
-                string claimRecoveryFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[10], dataLength[10]);
+                string claimRecoveryClass = ConvertByteArrayIntoString(_packet.Data, startLocation[8], dataLength[8]);
+                string claimRecoveryFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[9], dataLength[9]);
                 if (claimRecoveryClass != string.Empty && claimRecoveryClass != null &&
                     claimRecoveryFunction != string.Empty && claimRecoveryFunction != null)
                 {
@@ -1131,8 +1124,8 @@ namespace ASL
                 }
 
                 //If we have the means to set up the SendFloat callback function - then do it
-                string floatClass = ConvertByteArrayIntoString(_packet.Data, startLocation[11], dataLength[11]);
-                string floatFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[12], dataLength[12]);
+                string floatClass = ConvertByteArrayIntoString(_packet.Data, startLocation[10], dataLength[10]);
+                string floatFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[11], dataLength[11]);
                 if (floatClass != string.Empty && floatClass != null &&
                     floatFunction != string.Empty && floatFunction != null)
                 {
@@ -1146,10 +1139,10 @@ namespace ASL
                 ASLHelper.m_ASLObjects.Add(id, newASLObject.GetComponent<ASLObject>());
 
                 //If this client is the creator of this object, then call the ASLGameObjectCreatedCallback if it exists for this object
-                if (ConvertByteArrayIntoString(_packet.Data, startLocation[13], dataLength[13]) == GetInstance().m_PeerId.ToString())
+                if (ConvertByteArrayIntoString(_packet.Data, startLocation[12], dataLength[12]) == GetInstance().m_PeerId.ToString())
                 {
-                    string instantiationClass = ConvertByteArrayIntoString(_packet.Data, startLocation[7], dataLength[7]);
-                    string instantiationFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[8], dataLength[8]);
+                    string instantiationClass = ConvertByteArrayIntoString(_packet.Data, startLocation[6], dataLength[6]);
+                    string instantiationFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[7], dataLength[7]);
                     if (instantiationClass != string.Empty && instantiationClass != null && instantiationFunction != string.Empty && instantiationFunction != null)
                     {
                         //Find Callback function
@@ -1161,11 +1154,8 @@ namespace ASL
                         newASLObject.GetComponent<ASLObject>().m_ASLGameObjectCreatedCallback.Invoke(newASLObject);
                     }
                 }
-
-                GameLiftManager.GetInstance().DoOpFunctionCallback(callbackId, null);
-
             }
-            
+
             /// <summary>
             /// Sets an object's parent based upon that object's ID or name. Preferably ID as it's a lot faster
             /// </summary>
