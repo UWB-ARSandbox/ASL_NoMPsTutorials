@@ -1201,13 +1201,10 @@ namespace ASL
             return callbackId;
         }
 
-        /////////
-        ///
-
         /// <summary>
         /// Adds the given callback function without parameter with the given OpCode as the key into the dictionary
         /// </summary>
-        /// <param name="callback">pre-defined callback function</param>
+        /// <param name="callback">pre-defined callback function without parameter</param>
         /// <param name="key">callback id</param>
         public void SetOpFunctionCallback(OpFunctionCallbackNoParam callback, string key)
         {
@@ -1216,7 +1213,7 @@ namespace ASL
         }
 
         /// <summary>
-        /// Gets the corresponding callback without parameterfunction with the given OpCode and callback id from the dictionary.
+        /// Gets the corresponding callback without parameter function with the given OpCode and callback id from the dictionary.
         /// Removes the callback function after it has been invoked.
         /// </summary>
         /// <param name="callbackId">The OpCode function's callback id</param>

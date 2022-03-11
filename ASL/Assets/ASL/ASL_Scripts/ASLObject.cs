@@ -267,7 +267,7 @@ namespace ASL
         ///     });
         /// }
         /// </code></example>
-        public void DeleteObject(GameLiftManager.OpFunctionCallback callback = null)
+        public void DeleteObject(GameLiftManager.OpFunctionCallbackNoParam callback = null)
         {
             if (gameObject && m_Mine)
             {

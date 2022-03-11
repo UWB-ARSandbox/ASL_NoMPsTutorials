@@ -371,7 +371,7 @@ namespace ASL
                     ASLHelper.m_ASLObjects.Remove(id);
                     Destroy(myObject.gameObject);
                 }
-                GetInstance().DoOpFunctionCallback(callbackId, null);
+                GetInstance().DoOpFunctionCallback(callbackId);
             }
 
             /// <summary>
