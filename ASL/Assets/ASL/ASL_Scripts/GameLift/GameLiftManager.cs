@@ -705,6 +705,64 @@ namespace ASL
         }
 
         /// <summary>
+        /// Converts a float array into a Vector3 array
+        /// </summary>
+        /// <param name="_floatVectors">The float array to convert into a Vector3 array</param>
+        /// <returns>A Vector3 array representing the float array passed in</returns>
+        public static Vector3[] ConvertFloatArrayToVector3Array(float[] _floatVectors)
+        {
+            Vector3[] vectorArray = new Vector3[_floatVectors.Length / 3];
+            for (int i = 0; i < _floatVectors.Length; i += 3)
+            {
+                int index = i / 3;
+                vectorArray[index].x = _floatVectors[i];
+                vectorArray[index].y = _floatVectors[i + 1];
+                vectorArray[index].z = _floatVectors[i + 2];
+                
+            }
+            return vectorArray;
+        }
+
+        /// <summary>
+        /// Converts a Color array into a float array
+        /// </summary>
+        /// <param name="_colors">The color array to convert into a float array</param>
+        /// <returns>A float array representing the color array passed in</returns>
+        public static float[] ConvertColorArrayToFloatArray(Color[] _colors)
+        {
+            // Multiply the vector length by 3 since the float array will contain the x, y, and z positions of every point
+            float[] colorsInFloatFormat = new float[(_colors.Length * 4)];
+            for (int i = 0; i < _colors.Length; i++)
+            {
+                // Separate a single vector3 into 3 floats for the x, y, and z positions
+                colorsInFloatFormat[(i * 4)] = _colors[i].r;
+                colorsInFloatFormat[(i * 4) + 1] = _colors[i].g;
+                colorsInFloatFormat[(i * 4) + 2] = _colors[i].b;
+                colorsInFloatFormat[(i * 4) + 3] = _colors[i].a;
+            }
+            return colorsInFloatFormat;
+        }
+
+        /// <summary>
+        /// Converts a float array into a Color array
+        /// </summary>
+        /// <param name="_floatColors">The float array to convert into a Color array</param>
+        /// <returns>A Color array representing the float array passed in</returns>
+        public static Color[] ConvertFloatArrayToColorArray(float[] _floatColors)
+        {            
+            Color[] colorArray = new Color[_floatColors.Length / 4];
+            for (int i = 0; i < _floatColors.Length; i += 4)
+            {
+                int index = i / 4;
+                colorArray[index].r = _floatColors[i];
+                colorArray[index].g = _floatColors[i + 1];
+                colorArray[index].b = _floatColors[i + 2];
+                colorArray[index].a = _floatColors[i + 3];
+            }
+            return colorArray;
+        }
+
+        /// <summary>
         /// Converts a float array into a byte array
         /// </summary>
         /// <param name="_floats">The float array to convert</param>
