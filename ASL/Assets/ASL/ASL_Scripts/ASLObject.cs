@@ -1018,7 +1018,6 @@ namespace ASL
         /// <param name="_myTexture2D">The Texture2D to be uploaded and sent to others</param>
         /// <param name="_myPostDownloadFunction">The function to be called after the Texture2D is downloaded</param>
         /// <param name="_uploadAsPNG">Optional parameter allowing the user to upload the image as a PNG. The default is JPG.</param>
-        /// <param name="_callback">The optional callback function for OpFunction</param>
         /// <example><code>
         /// An example of how to send a Texture2D.
         /// Optional parameters include to send it as a PNG (larger file, but allows for transparent pixels, default is JPG),
@@ -1041,10 +1040,8 @@ namespace ASL
         ///    _myGameObject.GetComponent&lt;SpriteRenderer&gt;().sprite = newSprite;
         /// }
         /// </code></example>
-        public void SendAndSetTexture2D(Texture2D _myTexture2D, PostDownloadFunction _myPostDownloadFunction, bool _uploadAsPNG = false, GameLiftManager.OpFunctionCallback _callback = null)
+        public void SendAndSetTexture2D(Texture2D _myTexture2D, PostDownloadFunction _myPostDownloadFunction, bool _uploadAsPNG = false)
         {
-            byte[] callbackId = GameLiftManager.GetInstance().SetOpFunctionCallback(_callback);
-            byte[] nullcallbackId = GameLiftManager.GetInstance().SetOpFunctionCallback(null);
             byte[] id = Encoding.ASCII.GetBytes(m_Id);
             byte[] imageAsBytes;
             //Change Texture2D into png 
@@ -1063,7 +1060,7 @@ namespace ASL
 
             int maxPacketSize = 4072; //4096 - 24 (24 is the size of our meta data)
             //First packet:
-            int imagePacketsSent = maxPacketSize - nullcallbackId.Length - id.Length - firstPositionFlag.Length - textureName.Length;
+            int imagePacketsSent = maxPacketSize - id.Length - firstPositionFlag.Length - textureName.Length;
             byte[] firstImagePacket;
             if (imagePacketsSent < imageLength) //if we need to split, use the maximum packet size we can
             {
@@ -1074,18 +1071,18 @@ namespace ASL
                 firstImagePacket = GameLiftManager.GetInstance().SpiltByteArray(imageAsBytes, 0, imageLength);
             }
 
-            byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(nullcallbackId, id, firstPositionFlag, firstImagePacket, textureName);
+            byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(id, firstPositionFlag, firstImagePacket, textureName);
             RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.SendTexture2D, payload);
             GameLiftManager.GetInstance().m_Client.SendMessage(message);
 
             //Middle packets:
             byte[] middlePositionFlag = GameLiftManager.GetInstance().ConvertIntToByteArray(2);
             while (imagePacketsSent < imageLength)
-            {               
-                int currentImagePacketLength = maxPacketSize - nullcallbackId.Length - id.Length - middlePositionFlag.Length - textureName.Length;
+            {
+                int currentImagePacketLength = maxPacketSize - id.Length - middlePositionFlag.Length - textureName.Length;
                 byte[] nextImagePacket;
                 //if current packet size + what we've sent is less than the image length and the post download function we need to send, then we still need to break up the image into more packets
-                if (currentImagePacketLength + imagePacketsSent < imageLength + postDownloadFunction.Length) 
+                if (currentImagePacketLength + imagePacketsSent < imageLength + postDownloadFunction.Length)
                 {
                     if (currentImagePacketLength + imagePacketsSent < imageLength) //if still more image to send 
                     {
@@ -1097,12 +1094,12 @@ namespace ASL
                         nextImagePacket = GameLiftManager.GetInstance().SpiltByteArray(imageAsBytes, imagePacketsSent, imageLength - imagePacketsSent);
                         imagePacketsSent = imageLength;
                     }
-                    byte[] middlePayload = GameLiftManager.GetInstance().CombineByteArrays(nullcallbackId, id, middlePositionFlag, nextImagePacket, textureName);
+                    byte[] middlePayload = GameLiftManager.GetInstance().CombineByteArrays(id, middlePositionFlag, nextImagePacket, textureName);
                     RTMessage middleMessage = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.SendTexture2D, middlePayload);
                     GameLiftManager.GetInstance().m_Client.SendMessage(middleMessage);
                 }
                 else
-                {                    
+                {
                     break;
                 }
             }
@@ -1110,7 +1107,7 @@ namespace ASL
             //Send last packets of image (if any) and the post download function
             byte[] lastImagePacket = GameLiftManager.GetInstance().SpiltByteArray(imageAsBytes, imagePacketsSent, imageLength - imagePacketsSent);
             byte[] lastPositionFlag = GameLiftManager.GetInstance().ConvertIntToByteArray(3);
-            byte[] lastPayload = GameLiftManager.GetInstance().CombineByteArrays(callbackId, id, lastPositionFlag, lastImagePacket, textureName, postDownloadFunction);
+            byte[] lastPayload = GameLiftManager.GetInstance().CombineByteArrays(id, lastPositionFlag, lastImagePacket, textureName, postDownloadFunction);
 
             RTMessage lastMessage = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.SendTexture2D, lastPayload);
             GameLiftManager.GetInstance().m_Client.SendMessage(lastMessage);

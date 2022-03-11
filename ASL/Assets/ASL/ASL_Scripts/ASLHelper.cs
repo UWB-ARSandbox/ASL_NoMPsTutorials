@@ -682,10 +682,12 @@ namespace ASL
         ///     ASL.ASLHelper.SendAndSetNewScene("YourSceneName");
         /// }
         /// </code></example>
-        public static void SendAndSetNewScene(string _sceneName)
+        public static void SendAndSetNewScene(string _sceneName, GameLiftManager.OpFunctionCallbackNoParam callback = null)
         {
+            byte[] callbackId = GameLiftManager.GetInstance().SetOpFunctionCallback(callback);
             byte[] scene = Encoding.ASCII.GetBytes(_sceneName);
-            RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.LoadScene, scene);
+            byte[] payload = GameLiftManager.GetInstance().CombineByteArrays(callbackId, scene);
+            RTMessage message = GameLiftManager.GetInstance().CreateRTMessage(GameLiftManager.OpCode.LoadScene, payload);
             GameLiftManager.GetInstance().m_Client.SendMessage(message);
         }
 

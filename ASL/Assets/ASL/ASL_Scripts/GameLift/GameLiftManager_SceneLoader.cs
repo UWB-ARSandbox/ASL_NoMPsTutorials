@@ -50,7 +50,7 @@ namespace ASL
                     sceneName = Encoding.Default.GetString(_packet.Data);
                 }
                 SceneManager.LoadScene("ASL_SceneLoader");
-                GetInstance().StartCoroutine(AsyncSceneLoader(sceneName, callbackId, _packet.OpCode));
+                GetInstance().StartCoroutine(AsyncSceneLoader(sceneName, callbackId));
             }
 
             /// <summary>
@@ -60,7 +60,7 @@ namespace ASL
             /// <param name="_callbackId">The callback id for a specific OpFunction callback</param>
             /// <param name="_opCode">The OpCode</param>
             /// <returns>Null while loading</returns>
-            private IEnumerator AsyncSceneLoader(string _sceneName, string _callbackId, int _opCode)
+            private IEnumerator AsyncSceneLoader(string _sceneName, string _callbackId)
             {
                 while (SceneManager.GetActiveScene().name != "ASL_SceneLoader")
                 {
@@ -98,7 +98,7 @@ namespace ASL
                     yield return null;
                 }
 
-                GetInstance().DoOpFunctionCallback(_callbackId, null);
+                GetInstance().DoOpFunctionCallback(_callbackId);
             }
 
 

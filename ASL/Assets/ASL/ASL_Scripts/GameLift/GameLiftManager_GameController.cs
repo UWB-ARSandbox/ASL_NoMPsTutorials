@@ -683,19 +683,18 @@ namespace ASL
             public void RecieveTexture2D(DataReceivedEventArgs _packet)
             {
                 (int[] startLocation, int[] dataLength) = DataLengthsAndStartLocations(_packet.Data);
-                string callbackId = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
-                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[1], dataLength[1]);
-                int positionFlag = ConvertByteArrayIntoInt(_packet.Data, startLocation[2], dataLength[2]);
+                string id = ConvertByteArrayIntoString(_packet.Data, startLocation[0], dataLength[0]);
+                int positionFlag = ConvertByteArrayIntoInt(_packet.Data, startLocation[1], dataLength[1]);
 
                 if (positionFlag == 1) //if first texture packet - create dictionary value that other packets will add to
                 {
-                    byte[] texture = GetPartOfByteArray(_packet.Data, startLocation[3], dataLength[3]);
-                    ReceivedTexture2Ds.Add(id + ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]), texture);
+                    byte[] texture = GetPartOfByteArray(_packet.Data, startLocation[2], dataLength[2]);
+                    ReceivedTexture2Ds.Add(id + ConvertByteArrayIntoString(_packet.Data, startLocation[3], dataLength[3]), texture);
                 }
                 else if (positionFlag == 2) //if packet just contains just needed texture info - add to texture with 
                 {
-                    string key = id + ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]);
-                    byte[] texture = GetPartOfByteArray(_packet.Data, startLocation[3], dataLength[3]);
+                    string key = id + ConvertByteArrayIntoString(_packet.Data, startLocation[3], dataLength[3]);
+                    byte[] texture = GetPartOfByteArray(_packet.Data, startLocation[2], dataLength[2]);
                     if (ReceivedTexture2Ds.TryGetValue(key ?? string.Empty, out byte[] textureSoFar))
                     {
                         ReceivedTexture2Ds[key] = GetInstance().CombineByteArrayWithoutLengths(textureSoFar, texture);
@@ -703,8 +702,8 @@ namespace ASL
                 }
                 else //if we have the last texture packet - finalize the image and then transform byte[] into the image and call the function attached to it
                 {
-                    string key = id + ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]);
-                    byte[] texture = GetPartOfByteArray(_packet.Data, startLocation[3], dataLength[3]);
+                    string key = id + ConvertByteArrayIntoString(_packet.Data, startLocation[3], dataLength[3]);
+                    byte[] texture = GetPartOfByteArray(_packet.Data, startLocation[2], dataLength[2]);
                     if (ReceivedTexture2Ds.TryGetValue(key ?? string.Empty, out byte[] textureSoFar))
                     {
                         ReceivedTexture2Ds[key] = GetInstance().CombineByteArrayWithoutLengths(textureSoFar, texture);
@@ -719,8 +718,8 @@ namespace ASL
                         //Get Texture2D
                         Texture2D dummyTexture = new Texture2D(1, 1); //Size doesn't matter
                         dummyTexture.LoadImage(ReceivedTexture2Ds[key]);
-                        dummyTexture.name = ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]);
-                        string postDownloadFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[5], dataLength[5]);
+                        dummyTexture.name = ConvertByteArrayIntoString(_packet.Data, startLocation[3], dataLength[3]);
+                        string postDownloadFunction = ConvertByteArrayIntoString(_packet.Data, startLocation[4], dataLength[4]);
                         //Call PostDownloadFunction
                         var functionName = Regex.Match(postDownloadFunction, @"(\w+)$");
                         functionName.Value.Replace(" ", "");
@@ -734,7 +733,6 @@ namespace ASL
                         ReceivedTexture2Ds.Remove(key); //remove texture from dictionary as we have successfully built it and called the function attached to it
                     }
                 }
-                GetInstance().DoOpFunctionCallback(callbackId, null);
 
             }
 
