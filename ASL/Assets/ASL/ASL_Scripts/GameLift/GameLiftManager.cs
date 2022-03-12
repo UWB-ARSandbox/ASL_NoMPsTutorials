@@ -123,15 +123,27 @@ namespace ASL
 
         /// Pre-defined callback function for a specific OpFunction
         /// </summary>
-        public delegate void OpFunctionCallback();
+        public delegate void OpFunctionCallback(GameObject m_object);
+
+        /// Pre-defined callback function for a specific OpFunction without parameter
+        /// </summary>
+        public delegate void OpFunctionCallbackNoParam();
 
         /// <summary>
         /// Dictionary containing the all callbacks that are connected OpFunction's OpCode
         /// </summary>
         public Dictionary<string, OpFunctionCallback> OpFunctionCallbacks = new Dictionary<string, OpFunctionCallback>();
 
+        /// <summary>
+        /// Dictionary containing the all callbacks without parameter that are connected OpFunction's OpCode
+        /// </summary>
+        public Dictionary<string, OpFunctionCallbackNoParam> OpFunctionCallbacksNoParam = new Dictionary<string, OpFunctionCallbackNoParam>();
+
         /// <summary>A value for callback id when the given null as callback. </summary>
-        public static string m_NullCallbackId = "0";
+        public static byte[] m_NullCallbackId = new byte[55];
+
+        /// <summary>A value for callback id in string format when the given null as callback. </summary>
+        public string m_NullCallbackIdInString { get; } = System.Text.Encoding.Default.GetString(m_NullCallbackId);
 
         /// <summary>The index value for callback id in data payload. </summary>
         public static int m_callbackIdIndex = 0;
@@ -401,7 +413,6 @@ namespace ASL
             if(OpCodeFunctions[_packet.OpCode] != null)     // Check that a function exists for the OpCode
             {
                 OpCodeFunctions[_packet.OpCode].Invoke();   // Valid OpCode, invoke corresponding function
-                QForMainThread(DoOpFunctionCallback, _packet);
             }
         }
 
@@ -1108,6 +1119,19 @@ namespace ASL
         }
 
         /// <summary>
+        /// Generates a unique callback id for a callback function.
+        /// </summary>
+        /// <returns>A unique callback id in string</returns>
+        public string GenerateOpFunctionCallbackKey()
+        {
+            Guid guid = Guid.NewGuid();
+            string guidInString = guid.ToString();
+            string timeStamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+            string callbackId = guidInString + "_" + timeStamp;
+            return callbackId;
+        }
+
+        /// <summary>
         /// Adds the given callback function with the given OpCode as the key into the dictionary
         /// </summary>
         /// <param name="callback">pre-defined callback function</param>
@@ -1119,44 +1143,133 @@ namespace ASL
         }
 
         /// <summary>
-        /// Gets the corresponding callback function with the given OpCode from the dictionary.
+        /// Gets the corresponding callback function with the given OpCode and callback id from the dictionary.
         /// Removes the callback function after it has been invoked.
         /// </summary>
-        /// <param name="args">args from the server, contains data and opcode</param>
-        public void DoOpFunctionCallback(DataReceivedEventArgs args)
+        /// <param name="callbackId">The OpCode function's callback id</param>
+        /// <param name="obj">The game object processed</param>
+        public void DoOpFunctionCallback(string callbackId, GameObject obj)
         {
-            byte[] rawData = args.Data;
-            int opCode = args.OpCode;
-
-            // TODO: Remove the below two lines once the callback functionality has been added to all op functions.
-            // check if the current op function has callback functionality enabled
-            bool isCallbackEnable = OpCodeToCallbackIndexMapping._CallbackIndex.Contains(opCode);
-            if (!isCallbackEnable) return;
-
-            // get callback key from the data base on the index we got
-            (int[] startLocation, int[] dataLength) = m_GameController.DataLengthsAndStartLocations(rawData);
-            string opCodeKey = m_GameController.ConvertByteArrayIntoString(rawData, startLocation[m_callbackIdIndex], dataLength[m_callbackIdIndex]);
-
             //get callback function base on key, if key = "0", no callback assigned
-            if (opCodeKey.Equals(m_NullCallbackId)) return;
-            if (OpFunctionCallbacks.ContainsKey(opCodeKey))
+            if (callbackId.Equals(m_NullCallbackIdInString)) return;
+            if (OpFunctionCallbacks.ContainsKey(callbackId))
             {
-                OpFunctionCallback callback = OpFunctionCallbacks[opCodeKey];
-                OpFunctionCallbacks.Remove(opCodeKey);
-                callback.Invoke();
+                OpFunctionCallback callback = OpFunctionCallbacks[callbackId];
+                OpFunctionCallbacks.Remove(callbackId);
+                callback.Invoke(obj);
+               
             }
             return;
         }
 
-        public string GenerateOpFunctionCallbackKey(string objectId, OpCode opCode)
+        /// <summary>
+        /// Removes the corresponding callback function by the given callback id from the dictionary.
+        /// </summary>
+        /// <param name="callbackId">The OpCode function's callback id</param>
+        public void RemoveOpFunctionCallbackByCallbackId(string callbackId)
         {
-            Guid guid = Guid.NewGuid();
-            string guidInString = guid.ToString();
-            string opCodeInString = ((int)opCode).ToString();
-            string timeStamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
-            string callbackId = guidInString + "_" + opCodeInString + "_" + objectId + "_" + timeStamp;
+            if (OpFunctionCallbacks.ContainsKey(callbackId))
+            {
+                OpFunctionCallbacks.Remove(callbackId);
+            }
+        }
+
+        /// <summary>
+        /// Generate callback id with given information.
+        /// save the callback with generated id as the key into dictionary
+        /// </summary>
+        /// <param name="callback">user pre-defined callback function</param>
+        /// <returns>A unique callback id in byte array</returns>
+        public byte[] SetOpFunctionCallback(OpFunctionCallback callback)
+        {
+            if (callback == null) return m_NullCallbackId;
+            string callbackId = SetOpFunctionCallbackString(callback);
+            return Encoding.ASCII.GetBytes(callbackId);
+        }
+
+        /// <summary>
+        /// Generate callback id with given information.
+        /// save the callback with generated id as the key into dictionary
+        /// </summary>
+        /// <param name="callback">user pre-defined callback function</param>
+        /// <returns>A unique callback id in string</returns>
+        public string SetOpFunctionCallbackString(OpFunctionCallback callback)
+        {
+            if (callback == null) return m_NullCallbackIdInString;
+            string callbackId = GetInstance().GenerateOpFunctionCallbackKey();
+            GetInstance().SetOpFunctionCallback(callback, callbackId);
             return callbackId;
         }
+
+        /// <summary>
+        /// Adds the given callback function without parameter with the given OpCode as the key into the dictionary
+        /// </summary>
+        /// <param name="callback">pre-defined callback function without parameter</param>
+        /// <param name="key">callback id</param>
+        public void SetOpFunctionCallback(OpFunctionCallbackNoParam callback, string key)
+        {
+            if (OpFunctionCallbacksNoParam.ContainsKey(key)) return;
+            OpFunctionCallbacksNoParam.Add(key, callback);
+        }
+
+        /// <summary>
+        /// Gets the corresponding callback without parameter function with the given OpCode and callback id from the dictionary.
+        /// Removes the callback function after it has been invoked.
+        /// </summary>
+        /// <param name="callbackId">The OpCode function's callback id</param>
+        public void DoOpFunctionCallback(string callbackId)
+        {
+            //get callback function base on key, if key = "0", no callback assigned
+            if (callbackId.Equals(m_NullCallbackIdInString)) return;
+            if (OpFunctionCallbacksNoParam.ContainsKey(callbackId))
+            {
+                OpFunctionCallbackNoParam callback = OpFunctionCallbacksNoParam[callbackId];
+                OpFunctionCallbacksNoParam.Remove(callbackId);
+                callback.Invoke();
+
+            }
+            return;
+        }
+
+        /// <summary>
+        /// Removes the corresponding callback function without parameter by the given callback id from the dictionary.
+        /// </summary>
+        /// <param name="callbackId">The OpCode function's callback id</param>
+        public void RemoveOpFunctionCallbackNoParamByCallbackId(string callbackId)
+        {
+            if (OpFunctionCallbacksNoParam.ContainsKey(callbackId))
+            {
+                OpFunctionCallbacksNoParam.Remove(callbackId);
+            }
+        }
+
+        /// <summary>
+        /// Generate callback id with given information.
+        /// save the callback with generated id as the key into dictionary
+        /// </summary>
+        /// <param name="callback">user pre-defined callback function without parameter</param>
+        /// <returns>A unique callback id in byte array</returns>
+        public byte[] SetOpFunctionCallback(OpFunctionCallbackNoParam callback)
+        {
+            if (callback == null) return m_NullCallbackId;
+            string callbackId = SetOpFunctionCallbackString(callback);
+            return Encoding.ASCII.GetBytes(callbackId);
+        }
+
+        /// <summary>
+        /// Generate callback id with given information.
+        /// save the callback with generated id as the key into dictionary
+        /// </summary>
+        /// <param name="callback">user pre-defined callback function without parameter</param>
+        /// <returns>A unique callback id in string</returns>
+        public string SetOpFunctionCallbackString(OpFunctionCallbackNoParam callback)
+        {
+            if (callback == null) return m_NullCallbackIdInString;
+            string callbackId = GetInstance().GenerateOpFunctionCallbackKey();
+            GetInstance().SetOpFunctionCallback(callback, callbackId);
+            return callbackId;
+        }
+
 
     }
 }
