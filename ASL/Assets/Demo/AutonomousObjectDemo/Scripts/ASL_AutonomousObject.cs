@@ -8,111 +8,114 @@ public class ASL_AutonomousObject : MonoBehaviour
     public delegate void IncrementPositionDelegate(Vector3 m_AdditiveMovementAmount);
     public delegate void IncrementRotationDelegate(Quaternion m_rotationAmount);
 
-    public int Owner;
+    int owner;
+    public int Owner {
+        get { return owner; }
+        set {
+            m_ASLObject.SendAndSetClaim(() =>
+            {
+                m_ASLObject.SendFloatArray(new float[1] { (float)value });
+            });
+        }
+    }
 
-    enum transformation { translate, rotate, scale}
-    Queue<transformation> transformationQueue;
-    Queue<Vector3> translateQueue;
-    Queue<Quaternion> rotateQueue;
-    Queue<Vector3> scaleQueue;
-    bool transformationFinished = true;
+    bool translateReady = true;
+    bool rotateReady = true;
+    bool scaleReady = true;
+    Vector3 nextTranslate = Vector3.zero;
+    Quaternion nextRotate = Quaternion.identity;
+    Vector3 nextScale = Vector3.one;
 
     int autonomousObjectIndex;
     ASLObject m_ASLObject;
-    float deltaTime = 0;
-    float aslUpdateRate = 0.1f;
-    public float ASL_UpdateRate
-    {
-        get { return aslUpdateRate; }
-        set { aslUpdateRate = ASL_UpdateRate; }
-    }
-
-    bool updatePosition = false;
-    bool updateRotation = false;
-    bool updateScale = false;
 
     private void Start()
     {
         m_ASLObject = GetComponent<ASLObject>();
         Debug.Assert(m_ASLObject != null);
+        m_ASLObject._LocallySetFloatCallback(floatFunction);
+        //Owner = ASL_PhysicsMasterSingleton.Instance.PhysicsMasterPeerID;
         autonomousObjectIndex = ASL_AutonomousObjectHandler.Instance.AddAutonomousObject(m_ASLObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AutonomousIncrementWorldPosition(Vector3 m_AdditiveMovementAmount)
     {
-        deltaTime += Time.deltaTime;
-        if (deltaTime >= aslUpdateRate)
+        if (translateReady && owner == ASL.GameLiftManager.GetInstance().m_PeerId)
         {
-            deltaTime = 0;
-            if (updateRotation)
-            {
-                Quaternion currentRotation = gameObject.transform.rotation;
-                //ASL_AutonomousObjectHandler.Instance.SetWorldRotation(autonomousObjectIndex, currentRotation);
-                m_ASLObject.SendAndSetClaim(() =>
-                {
-                    m_ASLObject.SendAndSetWorldRotation(currentRotation);
-                });
-                updateRotation = false;
-                Debug.Log("Rotate Sent");
-            }
+            translateReady = false;
+            ASL_AutonomousObjectHandler.Instance.IncrementWorldPosition(autonomousObjectIndex, m_AdditiveMovementAmount, translateComplete);
+        }
+        else if (owner == ASL.GameLiftManager.GetInstance().m_PeerId)
+        {
+            nextTranslate += m_AdditiveMovementAmount;
         }
     }
 
     public void AutonomousIncrementWorldRotation(Quaternion m_RotationAmount)
     {
-        //gameObject.transform.rotation *= m_RotationAmount;
-        //updateRotation = true;
-        ASL_AutonomousObjectHandler.Instance.IncrementWorldRotation(autonomousObjectIndex, m_RotationAmount);
-        //m_ASLObject.SendAndSetClaim(() =>
-        //{
-        //    m_ASLObject.SendAndIncrementWorldRotation(m_RotationAmount);
-        //});
-    }
-
-    public void AutonomousIncrementWorldPosition(Vector3 m_AdditiveMovementAmount)
-    {
-        ASL_AutonomousObjectHandler.Instance.IncrementWorldPosition(autonomousObjectIndex, m_AdditiveMovementAmount);
-        //if (transformationFinished)
-        //{
-        //    transformationFinished = false;
-        //    ASL_AutonomousObjectHandler.Instance.IncrementWorldPosition(autonomousObjectIndex, m_AdditiveMovementAmount, nextTransform);
-        //}
-        //else
-        //{
-        //    translateQueue.Enqueue(m_AdditiveMovementAmount);
-        //    transformationQueue.Enqueue(transformation.translate);
-        //}
+        if (rotateReady && owner == ASL.GameLiftManager.GetInstance().m_PeerId)
+        {
+            rotateReady = false;
+            ASL_AutonomousObjectHandler.Instance.IncrementWorldRotation(autonomousObjectIndex, m_RotationAmount, rotateComplete);
+        }
+        else if (owner == ASL.GameLiftManager.GetInstance().m_PeerId)
+        {
+            nextRotate.eulerAngles += m_RotationAmount.eulerAngles;
+        }
     }
 
     public void AutonomousIncrementWorldScale(Vector3 m_AdditiveScaleAmount)
     {
+        if (scaleReady && owner == ASL.GameLiftManager.GetInstance().m_PeerId)
+        {
+            scaleReady = false;
+            ASL_AutonomousObjectHandler.Instance.IncrementWorldPosition(autonomousObjectIndex, m_AdditiveScaleAmount, scaleComplete);
+        }
+        else if (owner == ASL.GameLiftManager.GetInstance().m_PeerId)
+        {
+            nextScale += m_AdditiveScaleAmount;
+        }
+
         ASL_AutonomousObjectHandler.Instance.IncrementWorldScale(autonomousObjectIndex, m_AdditiveScaleAmount);
     }
 
-    public GameObject InstantiateASLObjectPrefab(GameObject prefab, Vector3 pos, Quaternion rotation)
+    void translateComplete()
     {
-        return null;
-        /*
-        guid = ASL.ASLHelper.TestInstantiateASLObject("Demo_Coin",
-                    Vector3.zero,
-                    Quaternion.identity, "", "", creationFuntion,
-                        ClaimRecoveryFunction,
-                        MyFloatsFunction);*/
+        if (nextTranslate != Vector3.zero)
+        {
+            ASL_AutonomousObjectHandler.Instance.IncrementWorldPosition(autonomousObjectIndex, nextTranslate, translateComplete);
+            nextTranslate = Vector3.zero;
+        }
+        else
+        {
+            translateReady = true;
+        }
     }
 
-    public GameObject InstantiateASLObjectPrefab(GameObject prefab, Vector3 pos, Quaternion rotation, 
-        ASLObject.ASLGameObjectCreatedCallback creationCallbackFunction, 
-        ASLObject.ClaimCancelledRecoveryCallback ClaimRecoveryFunction, 
-        ASLObject.FloatCallback FloatFunciton)
+    void rotateComplete()
     {
-        return null;
-        /*
-        guid = ASL.ASLHelper.TestInstantiateASLObject("Demo_Coin",
-                    Vector3.zero,
-                    Quaternion.identity, "", "", creationFuntion,
-                        ClaimRecoveryFunction,
-                        MyFloatsFunction);*/
+        if (nextRotate != Quaternion.identity)
+        {
+            ASL_AutonomousObjectHandler.Instance.IncrementWorldRotation(autonomousObjectIndex, nextRotate, rotateComplete);
+            nextRotate = Quaternion.identity;
+        }
+        else
+        {
+            rotateReady = true;
+        }
+    }
+
+    void scaleComplete()
+    {
+        if (nextScale != Vector3.one)
+        {
+            ASL_AutonomousObjectHandler.Instance.IncrementWorldScale(autonomousObjectIndex, nextScale, scaleComplete);
+            nextScale = Vector3.one;
+        }
+        else
+        {
+            scaleReady = true;
+        }
     }
 
     public void SetAutonomousObjectIndex(int index)
@@ -120,31 +123,8 @@ public class ASL_AutonomousObject : MonoBehaviour
         autonomousObjectIndex = index;
     }
 
-    void nextTransform()
+    void floatFunction(string _id, float[] _f)
     {
-        if (transformationQueue.Count > 0)
-        {
-            transformation transform = transformationQueue.Dequeue();
-            switch (transform)
-            {
-                case transformation.translate:
-                    Vector3 m_AdditiveMovementAmount = translateQueue.Dequeue();
-                    while (transformationQueue.Count > 0 && transformationQueue.Peek() == transformation.translate)
-                    {
-                        transformationQueue.Dequeue();
-                        m_AdditiveMovementAmount += translateQueue.Dequeue();
-                    }
-                    ASL_AutonomousObjectHandler.Instance.IncrementWorldPosition(autonomousObjectIndex, m_AdditiveMovementAmount, nextTransform);
-                    break;
-                case transformation.rotate:
-                    break;
-                case transformation.scale:
-                    break;
-            }
-        }
-        else
-        {
-            transformationFinished = true;
-        }
+        owner = (int)_f[0];
     }
 }

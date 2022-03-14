@@ -9,12 +9,10 @@ public class Platformer_Coin : MonoBehaviour
     public float RotationSpeed = 100;
 
     ASL_ObjectCollider m_ObjectCollider;
-    ASLObject m_ASLObject;
     ASL_AutonomousObject m_AutonomousObject;
 
     private void Start()
     {
-        m_ASLObject = GetComponent<ASLObject>();
         m_ObjectCollider = GetComponent<ASL_ObjectCollider>();
         m_AutonomousObject = GetComponent<ASL_AutonomousObject>();
         m_ObjectCollider.ASL_OnTriggerEnter(CollideWithPlayer);

@@ -21,6 +21,12 @@ public class ASL_PhysicsMasterSingleton : MonoBehaviour
 
     /// <summary>An action for storing user-selected mode on determining physics master</summary>
     private Action functionToCallLater;
+
+    private int physicsMasterPeerID;
+    public int PhysicsMasterPeerID
+    {
+        get { return physicsMasterPeerID; }
+    }
     public bool IsPhysicsMaster
     {
         get { return isPhysicsMaster; }
@@ -85,6 +91,7 @@ public class ASL_PhysicsMasterSingleton : MonoBehaviour
         SetPhysicsMaster(ASL.GameLiftManager.GetInstance().AmLowestPeer());
         ASL.GameLiftManager.GetInstance().SetPhysicsMasterId(ASL.GameLiftManager.GetInstance().GetLowestPeerId());
         functionToCallLater = () => SetUpPhysicsMasterByLowestPeer();
+        physicsMasterPeerID = ASL.GameLiftManager.GetInstance().GetLowestPeerId();
     }
 
     /// <summary>
@@ -97,6 +104,7 @@ public class ASL_PhysicsMasterSingleton : MonoBehaviour
         SetPhysicsMaster(ASL.GameLiftManager.GetInstance().AmHighestPeer());
         ASL.GameLiftManager.GetInstance().SetPhysicsMasterId(ASL.GameLiftManager.GetInstance().GetHighestPeerId());
         functionToCallLater = () => SetUpPhysicsMasterByHighestPeer();
+        physicsMasterPeerID = ASL.GameLiftManager.GetInstance().GetHighestPeerId();
     }
 
     /// <summary>

@@ -14,6 +14,7 @@ public class ASL_AutonomousObjectHandler : MonoBehaviour
 
     List<ASLObject> autonomousObjects = new List<ASLObject>();
     ASL_PhysicsMasterSingleton physicsMaster;
+    ASLObject m_ASLObject;
 
     Dictionary<string, ReturnInstantatedObjectCallback> instatiatedObjects = new Dictionary<string, ReturnInstantatedObjectCallback>();
     Dictionary<string, int> instatiatedObjectOwners = new Dictionary<string, int>();
@@ -34,10 +35,15 @@ public class ASL_AutonomousObjectHandler : MonoBehaviour
     void Start()
     {
         physicsMaster = ASL_PhysicsMasterSingleton.Instance;
+        //m_ASLObject = GetComponent<ASLObject>();
+        //Debug.Assert(m_ASLObject != null);
+        //m_ASLObject._LocallySetFloatCallback(floatFunction);
     }
 
     private void Update()
     {
+
+
         ASLObject aSLObject;
         List<string> objectsToRemove = new List<string>();
         foreach (string guid in instatiatedObjects.Keys)
@@ -77,40 +83,50 @@ public class ASL_AutonomousObjectHandler : MonoBehaviour
     {
         string guid = ASL.ASLHelper.InstantiateASLObjectReturnID(prefab.name, prefab.transform.position, prefab.transform.rotation);
         instatiatedObjects.Add(guid, callbackFunction);
+        instatiatedObjectOwners.Add(guid, ASL.GameLiftManager.GetInstance().m_PeerId);
     }
 
-    public GameObject InstantiateAutonomousObject(GameObject prefab, Vector3 pos, Quaternion rotation)
+    public void InstantiateAutonomousObject(GameObject prefab, Vector3 pos, Quaternion rotation)
     {
-        return null;
-        /*
-        guid = ASL.ASLHelper.TestInstantiateASLObject("Demo_Coin",
-                    Vector3.zero,
-                    Quaternion.identity, "", "", creationFuntion,
-                        ClaimRecoveryFunction,
-                        MyFloatsFunction);*/
+        string guid = ASL.ASLHelper.InstantiateASLObjectReturnID(prefab.name, pos, rotation);
+        instatiatedObjects.Add(guid, null);
+        instatiatedObjectOwners.Add(guid, ASL.GameLiftManager.GetInstance().m_PeerId);
     }
 
-    public GameObject InstantiateAutonomousObject(GameObject prefab, Vector3 pos, Quaternion rotation,
+    public void InstantiateAutonomousObject(GameObject prefab, Vector3 pos, Quaternion rotation, ReturnInstantatedObjectCallback callbackFunction)
+    {
+        string guid = ASL.ASLHelper.InstantiateASLObjectReturnID(prefab.name, pos, rotation);
+        instatiatedObjects.Add(guid, callbackFunction);
+        instatiatedObjectOwners.Add(guid, ASL.GameLiftManager.GetInstance().m_PeerId);
+    }
+
+    public void InstantiateAutonomousObject(GameObject prefab, Vector3 pos, Quaternion rotation,
         ASLObject.ASLGameObjectCreatedCallback creationCallbackFunction,
-        ASLObject.ClaimCancelledRecoveryCallback ClaimRecoveryFunction,
-        ASLObject.FloatCallback FloatFunciton)
+        ASLObject.ClaimCancelledRecoveryCallback claimRecoveryFunction,
+        ASLObject.FloatCallback floatFunciton)
     {
-        return null;
-        /*
-        guid = ASL.ASLHelper.TestInstantiateASLObject("Demo_Coin",
-                    Vector3.zero,
-                    Quaternion.identity, "", "", creationFuntion,
-                        ClaimRecoveryFunction,
-                        MyFloatsFunction);*/
+        string guid = ASL.ASLHelper.InstantiateASLObjectReturnID(prefab.name, pos, rotation, "", "", creationCallbackFunction, claimRecoveryFunction, floatFunciton);
+        instatiatedObjects.Add(guid, null);
+        instatiatedObjectOwners.Add(guid, ASL.GameLiftManager.GetInstance().m_PeerId);
+    }
+
+    public void InstantiateAutonomousObject(GameObject prefab, Vector3 pos, Quaternion rotation,
+        ASLObject.ASLGameObjectCreatedCallback creationCallbackFunction,
+        ASLObject.ClaimCancelledRecoveryCallback claimRecoveryFunction,
+        ASLObject.FloatCallback floatFunciton, ReturnInstantatedObjectCallback callbackFunction)
+    {
+        string guid = ASL.ASLHelper.InstantiateASLObjectReturnID(prefab.name, pos, rotation, "", "", creationCallbackFunction, claimRecoveryFunction, floatFunciton);
+        instatiatedObjects.Add(guid, callbackFunction);
+        instatiatedObjectOwners.Add(guid, ASL.GameLiftManager.GetInstance().m_PeerId);
     }
 
 
-/// <summary>
-/// Adds aSLObject to the list of objects to be handled by this.
-/// </summary>
-/// <param name="aSLObject">Object to be added</param>
-/// <returns>returns index of the object. Returns -1 if the object is already being handled or if not physicsMaster.</returns>
-public int AddAutonomousObject(ASLObject aSLObject)
+    /// <summary>
+    /// Adds aSLObject to the list of objects to be handled by this.
+    /// </summary>
+    /// <param name="aSLObject">Object to be added</param>
+    /// <returns>returns index of the object. Returns -1 if the object is already being handled or if not physicsMaster.</returns>
+    public int AddAutonomousObject(ASLObject aSLObject)
     {
         if (!autonomousObjects.Contains(aSLObject))
         {
@@ -128,37 +144,52 @@ public int AddAutonomousObject(ASLObject aSLObject)
         }
     }
 
-    public void IncrementWorldPosition(int index, Vector3 m_AdditiveMovementAmount)
-    {
-        if (physicsMaster.IsPhysicsMaster && index < autonomousObjects.Count)
-        {
-            ASLObject aSLObject = autonomousObjects[index];
-            if (aSLObject != null)
-            {
-                aSLObject.SendAndSetClaim(() =>
-                {
-                    aSLObject.SendAndIncrementWorldPosition(m_AdditiveMovementAmount);
-                });
-            }
-            else
-            {
-                Debug.LogError("Object does not exist in autonomousObjects");
-            }
-        }
-    }
 
     public void IncrementWorldRotation(int index, Quaternion m_RotationAmount)
     {
-        if (index < autonomousObjects.Count)
+        ASLObject aSLObject = checkIfOwnerOfObject(index);
+        if (aSLObject != null)
         {
-            ASLObject aSLObject = autonomousObjects[index];
-            if (aSLObject != null && ASL.GameLiftManager.GetInstance().m_PeerId == aSLObject.GetComponent<ASL_AutonomousObject>().Owner)
+            aSLObject.SendAndSetClaim(() =>
             {
-                aSLObject.SendAndSetClaim(() =>
-                {
-                    aSLObject.SendAndIncrementWorldRotation(m_RotationAmount);
-                });
-            }
+                aSLObject.SendAndIncrementWorldRotation(m_RotationAmount);
+            });
+        }
+    }
+
+    public void IncrementWorldRotation(int index, Quaternion m_RotationAmount, ASL.GameLiftManager.OpFunctionCallback callback)
+    {
+        ASLObject aSLObject = checkIfOwnerOfObject(index);
+        if (aSLObject != null)
+        {
+            aSLObject.SendAndSetClaim(() =>
+            {
+                aSLObject.SendAndIncrementWorldRotation(m_RotationAmount, callback);
+            });
+        }
+    }
+
+    public void IncrementWorldPosition(int index, Vector3 m_AdditiveMovementAmount)
+    {
+        ASLObject aSLObject = checkIfOwnerOfObject(index);
+        if (aSLObject != null)
+        {
+            aSLObject.SendAndSetClaim(() =>
+            {
+                aSLObject.SendAndIncrementWorldPosition(m_AdditiveMovementAmount);
+            });
+        }
+    }
+
+    public void IncrementWorldPosition(int index, Vector3 m_AdditiveMovementAmount, ASL.GameLiftManager.OpFunctionCallback callback)
+    {
+        ASLObject aSLObject = checkIfOwnerOfObject(index);
+        if (aSLObject != null)
+        {
+            aSLObject.SendAndSetClaim(() =>
+            {
+                aSLObject.SendAndIncrementWorldPosition(m_AdditiveMovementAmount, callback);
+            });
         }
     }
 
@@ -177,43 +208,64 @@ public int AddAutonomousObject(ASLObject aSLObject)
         }
     }
 
-    public void IncrementWorldPosition(int index, Vector3 m_AdditiveMovementAmount, ASL.GameLiftManager.OpFunctionCallback callback)
+    ASLObject checkIfOwnerOfObject(int index)
     {
-
-        if (physicsMaster.IsPhysicsMaster && index < autonomousObjects.Count) //this will check owner
+        if (index < autonomousObjects.Count)
         {
             ASLObject aSLObject = autonomousObjects[index];
+            if (aSLObject != null && ASL.GameLiftManager.GetInstance().m_PeerId == aSLObject.GetComponent<ASL_AutonomousObject>().Owner)
+            {
+                return aSLObject;
+            }
+        }
+        return null;
+    }
+
+    public void IncrementWorldScale(int index, Vector3 m_AdditiveScaleAmount, ASL.GameLiftManager.OpFunctionCallback callback)
+    {
+        ASLObject aSLObject = checkIfOwnerOfObject(index);
+        if (aSLObject != null)
+        {
             aSLObject.SendAndSetClaim(() =>
             {
-                // Edited by Liwen due to new updates on callback design, this comment can be removed anytime
-                aSLObject.SendAndIncrementWorldPosition(m_AdditiveMovementAmount, callback);
+                aSLObject.SendAndIncrementWorldScale(m_AdditiveScaleAmount, callback);
             });
         }
     }
 
-    public void SetWorldPosition(int index, Vector3 m_AdditiveMovementAmount)
+    public void SetWorldPosition(int index, Vector3 WorldPosition)
+    {
+        ASLObject aSLObject = checkIfOwnerOfObject(index);
+        if (aSLObject != null)
+        {
+            aSLObject.SendAndSetClaim(() =>
+            {
+                aSLObject.SendAndSetWorldPosition(WorldPosition);
+            });
+        }
+    }
+
+    public void SetWorldRotation(int index, Quaternion WorldRotation)
+    {
+        ASLObject aSLObject = checkIfOwnerOfObject(index);
+        if (aSLObject != null)
+        {
+            aSLObject.SendAndSetClaim(() =>
+            {
+                aSLObject.SendAndSetWorldRotation(WorldRotation);
+            });
+        }
+    }
+
+    public void SetWorldScale(int index, Vector3 WorldScale)
     {
         if (physicsMaster.IsPhysicsMaster && index < autonomousObjects.Count)
         {
             ASLObject aSLObject = autonomousObjects[index];
             aSLObject.SendAndSetClaim(() =>
             {
-                aSLObject.SendAndSetWorldPosition(m_AdditiveMovementAmount);
+                aSLObject.SendAndSetWorldScale(WorldScale);
             });
         }
     }
-
-    public void SetWorldRotation(int index, Quaternion m_rotationAmount)
-    {
-        if (physicsMaster.IsPhysicsMaster && index < autonomousObjects.Count)
-        {
-            ASLObject aSLObject = autonomousObjects[index];
-            aSLObject.SendAndSetClaim(() =>
-            {
-                aSLObject.SendAndSetWorldRotation(m_rotationAmount);
-            });
-        }
-    }
-
-
 }

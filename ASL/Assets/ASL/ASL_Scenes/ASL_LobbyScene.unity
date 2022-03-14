@@ -3356,7 +3356,7 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Demo
+    - m_Text: ARObjectSync_Example
       m_Image: {fileID: 0}
     - m_Text: OnCollisionEnterScene
       m_Image: {fileID: 0}
@@ -3384,7 +3384,13 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: ComplexPlatformerScene
       m_Image: {fileID: 0}
+    - m_Text: PhysicsMasterOrdering
+      m_Image: {fileID: 0}
     - m_Text: AutonomousObjectTestScene
+      m_Image: {fileID: 0}
+    - m_Text: ColorObject_Example
+      m_Image: {fileID: 0}
+    - m_Text: AutonomousObjectStressTest
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5118,7 +5124,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Demo
+  m_Text: ARObjectSync_Example
 --- !u!222 &1522670409
 CanvasRenderer:
   m_ObjectHideFlags: 0
