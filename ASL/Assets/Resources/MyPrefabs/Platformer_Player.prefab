@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1160326569361522915}
   - component: {fileID: 1160326569361522912}
   - component: {fileID: 1160326569361522913}
+  - component: {fileID: 3851551610324648844}
   - component: {fileID: 1160326569361522918}
   m_Layer: 0
   m_Name: Platformer_Player
@@ -115,6 +116,18 @@ MonoBehaviour:
   RespawnPoint: {x: 0, y: 0, z: 0}
   CoinCount: {fileID: 0}
   WinText: {fileID: 0}
+--- !u!114 &3851551610324648844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160326569361522919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d62e0bdae3093ae408e1a3c4e50c4113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &1160326569361522918
 Rigidbody:
   m_ObjectHideFlags: 0

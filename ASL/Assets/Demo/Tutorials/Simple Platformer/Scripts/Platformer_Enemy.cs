@@ -9,6 +9,12 @@ public class Platformer_Enemy : Platformer_Collider
     // Start is called before the first frame update
     void Start()
     {
+        m_ASLObjectCollider = gameObject.GetComponent<ASL_ObjectCollider>();
+        Debug.Assert(m_ASLObjectCollider != null);
+
+        //Assigning the deligate function to the ASL_ObjectCollider
+        m_ASLObjectCollider.ASL_OnTriggerEnter(CollideWithPlayerEnter);
+
         Collider collider;
         if ((collider = GetComponent<BoxCollider>()) != null)
         {
@@ -31,7 +37,7 @@ public class Platformer_Enemy : Platformer_Collider
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void CollideWithPlayerEnter(Collider other)
     {
         Platformer_Player player = other.GetComponent<Platformer_Player>();
         if (player != null)

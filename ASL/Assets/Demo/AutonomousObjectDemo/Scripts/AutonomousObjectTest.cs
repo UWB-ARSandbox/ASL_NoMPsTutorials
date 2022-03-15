@@ -40,10 +40,5 @@ public class AutonomousObjectTest : MonoBehaviour
 
         movementAmount = new Vector3(MovementSpeed * Time.deltaTime * direction, 0, 0);
         m_AutonomousObject.AutonomousIncrementWorldPosition(movementAmount);
-
-        //m_ASLObject.SendAndSetClaim(() =>
-        //{
-        //    m_ASLObject.SendAndIncrementWorldRotation(rotateAmount);
-        //});
     }
 }

@@ -7,7 +7,7 @@ public class Platformer_Collider : MonoBehaviour
     public enum CollisionSide { top, bottom, left, right, na }
     protected float x, y;
 
-    ASL_ObjectCollider m_ASLObjectCollider;
+    protected ASL_ObjectCollider m_ASLObjectCollider;
 
     // Start is called before the first frame update
     void Start()

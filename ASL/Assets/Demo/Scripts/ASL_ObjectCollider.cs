@@ -35,10 +35,7 @@ public class ASL_ObjectCollider : MonoBehaviour
 
     private void Start()//awake
     {
-        //physicsMaster = FindObjectOfType<ASL_PhysicsMaster>();
-
         physicsMaster = ASL_PhysicsMasterSingleton.Instance;
-
         Debug.Assert(physicsMaster != null);
         if (ObjectCollider == null)
         {

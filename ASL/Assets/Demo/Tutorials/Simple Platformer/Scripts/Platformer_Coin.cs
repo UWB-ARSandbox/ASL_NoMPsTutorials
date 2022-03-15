@@ -25,6 +25,11 @@ public class Platformer_Coin : MonoBehaviour
         m_AutonomousObject.AutonomousIncrementWorldRotation(rotateAmount);
     }
 
+    public void callback(GameObject obj)
+    {
+
+    }
+
     private void CollideWithPlayer(Collider other)
     {
         Platformer_Player player = other.GetComponent<Platformer_Player>();

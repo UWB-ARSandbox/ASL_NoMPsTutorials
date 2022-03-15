@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Platformer_MovingPlatform : Platformer_Collider
 {
-    ASL_ObjectCollider m_ASLObjectCollider;
     ASL_AutonomousObjectHandler autonomousObjectHandler;
     int autonomousObjectIndex;
 
     // Start is called before the first frame update
     void Start()
     {
+        m_ASLObjectCollider = gameObject.GetComponent<ASL_ObjectCollider>();
+        Debug.Assert(m_ASLObjectCollider != null);
+
+        //Assigning the deligate function to the ASL_ObjectCollider
+        m_ASLObjectCollider.ASL_OnTriggerEnter(CollideWithPlayerEnter);
+        m_ASLObjectCollider.ASL_OnTriggerExit(CollideWithPlayerExit);
+
         Collider collider;
         if ((collider = GetComponent<BoxCollider>()) != null)
         {
@@ -33,7 +39,7 @@ public class Platformer_MovingPlatform : Platformer_Collider
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void CollideWithPlayerEnter(Collider other)
     {
         Platformer_Player player = other.GetComponent<Platformer_Player>();
         if (player != null)
@@ -54,7 +60,7 @@ public class Platformer_MovingPlatform : Platformer_Collider
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void CollideWithPlayerExit(Collider other)
     {
         Platformer_Player player = other.GetComponent<Platformer_Player>();
         if (player != null)

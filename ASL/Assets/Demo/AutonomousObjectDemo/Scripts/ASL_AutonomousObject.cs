@@ -8,7 +8,7 @@ public class ASL_AutonomousObject : MonoBehaviour
     public delegate void IncrementPositionDelegate(Vector3 m_AdditiveMovementAmount);
     public delegate void IncrementRotationDelegate(Quaternion m_rotationAmount);
 
-    int owner;
+    int owner = -1;
     public int Owner {
         get { return owner; }
         set {
@@ -22,9 +22,9 @@ public class ASL_AutonomousObject : MonoBehaviour
     bool translateReady = true;
     bool rotateReady = true;
     bool scaleReady = true;
-    Vector3 nextTranslate = Vector3.zero;
-    Quaternion nextRotate = Quaternion.identity;
-    Vector3 nextScale = Vector3.one;
+    //Vector3 nextTranslate = Vector3.zero;
+    //Quaternion nextRotate = Quaternion.identity;
+    //Vector3 nextScale = Vector3.one;
 
     int autonomousObjectIndex;
     ASLObject m_ASLObject;
@@ -34,88 +34,129 @@ public class ASL_AutonomousObject : MonoBehaviour
         m_ASLObject = GetComponent<ASLObject>();
         Debug.Assert(m_ASLObject != null);
         m_ASLObject._LocallySetFloatCallback(floatFunction);
-        //Owner = ASL_PhysicsMasterSingleton.Instance.PhysicsMasterPeerID;
         autonomousObjectIndex = ASL_AutonomousObjectHandler.Instance.AddAutonomousObject(m_ASLObject);
+
+        if (owner == -1)
+        {
+            owner = ASL_PhysicsMasterSingleton.Instance.PhysicsMasterPeerID;
+        }
     }
 
     public void AutonomousIncrementWorldPosition(Vector3 m_AdditiveMovementAmount)
     {
-        if (translateReady && owner == ASL.GameLiftManager.GetInstance().m_PeerId)
+        if (Time.timeSinceLevelLoad > 0.1)
         {
-            translateReady = false;
-            ASL_AutonomousObjectHandler.Instance.IncrementWorldPosition(autonomousObjectIndex, m_AdditiveMovementAmount, translateComplete);
-        }
-        else if (owner == ASL.GameLiftManager.GetInstance().m_PeerId)
-        {
-            nextTranslate += m_AdditiveMovementAmount;
+            if (translateReady && owner == ASL.GameLiftManager.GetInstance().m_PeerId)
+            {
+                translateReady = false;
+                ASL_AutonomousObjectHandler.Instance.IncrementWorldPosition(autonomousObjectIndex, m_AdditiveMovementAmount, translateComplete);
+            }
+            //else if (owner == ASL.GameLiftManager.GetInstance().m_PeerId)
+            //{
+            //    nextTranslate += m_AdditiveMovementAmount;
+            //}
         }
     }
 
     public void AutonomousIncrementWorldRotation(Quaternion m_RotationAmount)
     {
-        if (rotateReady && owner == ASL.GameLiftManager.GetInstance().m_PeerId)
+        if (Time.timeSinceLevelLoad > 0.1)
         {
-            rotateReady = false;
-            ASL_AutonomousObjectHandler.Instance.IncrementWorldRotation(autonomousObjectIndex, m_RotationAmount, rotateComplete);
-        }
-        else if (owner == ASL.GameLiftManager.GetInstance().m_PeerId)
-        {
-            nextRotate.eulerAngles += m_RotationAmount.eulerAngles;
+            if (rotateReady && owner == ASL.GameLiftManager.GetInstance().m_PeerId)
+            {
+                rotateReady = false;
+                ASL_AutonomousObjectHandler.Instance.IncrementWorldRotation(autonomousObjectIndex, m_RotationAmount, rotateComplete);
+            }
+            //else if (owner == ASL.GameLiftManager.GetInstance().m_PeerId)
+            //{
+            //    nextRotate.eulerAngles += m_RotationAmount.eulerAngles;
+            //}
         }
     }
 
     public void AutonomousIncrementWorldScale(Vector3 m_AdditiveScaleAmount)
     {
-        if (scaleReady && owner == ASL.GameLiftManager.GetInstance().m_PeerId)
+        if (Time.timeSinceLevelLoad > 0.1)
         {
-            scaleReady = false;
-            ASL_AutonomousObjectHandler.Instance.IncrementWorldPosition(autonomousObjectIndex, m_AdditiveScaleAmount, scaleComplete);
-        }
-        else if (owner == ASL.GameLiftManager.GetInstance().m_PeerId)
-        {
-            nextScale += m_AdditiveScaleAmount;
-        }
-
-        ASL_AutonomousObjectHandler.Instance.IncrementWorldScale(autonomousObjectIndex, m_AdditiveScaleAmount);
-    }
-
-    void translateComplete()
-    {
-        if (nextTranslate != Vector3.zero)
-        {
-            ASL_AutonomousObjectHandler.Instance.IncrementWorldPosition(autonomousObjectIndex, nextTranslate, translateComplete);
-            nextTranslate = Vector3.zero;
-        }
-        else
-        {
-            translateReady = true;
+            if (scaleReady && owner == ASL.GameLiftManager.GetInstance().m_PeerId)
+            {
+                scaleReady = false;
+                ASL_AutonomousObjectHandler.Instance.IncrementWorldScale(autonomousObjectIndex, m_AdditiveScaleAmount, scaleComplete);
+            }
+            //else if (owner == ASL.GameLiftManager.GetInstance().m_PeerId)
+            //{
+            //    nextScale += m_AdditiveScaleAmount;
+            //}
         }
     }
 
-    void rotateComplete()
+    public void AutonomousSetWorldPosition(Vector3 worldPosition)
     {
-        if (nextRotate != Quaternion.identity)
+        if (owner == ASL.GameLiftManager.GetInstance().m_PeerId)
         {
-            ASL_AutonomousObjectHandler.Instance.IncrementWorldRotation(autonomousObjectIndex, nextRotate, rotateComplete);
-            nextRotate = Quaternion.identity;
-        }
-        else
-        {
-            rotateReady = true;
+            translateReady = false;
+            ASL_AutonomousObjectHandler.Instance.SetWorldPosition(autonomousObjectIndex, worldPosition, translateComplete);
         }
     }
 
-    void scaleComplete()
+    public void AutonomousSetWorldRotation(Quaternion worldRotation)
     {
-        if (nextScale != Vector3.one)
+        if (owner == ASL.GameLiftManager.GetInstance().m_PeerId)
         {
-            ASL_AutonomousObjectHandler.Instance.IncrementWorldScale(autonomousObjectIndex, nextScale, scaleComplete);
-            nextScale = Vector3.one;
+            translateReady = false;
+            ASL_AutonomousObjectHandler.Instance.SetWorldRotation(autonomousObjectIndex, worldRotation, translateComplete);
         }
-        else
+    }
+
+    public void AutonomousSetWorldScale(Vector3 worldScale)
+    {
+        if (owner == ASL.GameLiftManager.GetInstance().m_PeerId)
         {
-            scaleReady = true;
+            translateReady = false;
+            ASL_AutonomousObjectHandler.Instance.SetWorldScale(autonomousObjectIndex, worldScale, translateComplete);
         }
+    }
+
+    void translateComplete(GameObject obj)
+    {
+        translateReady = true;
+        //if (nextTranslate != Vector3.zero)
+        //{
+        //    ASL_AutonomousObjectHandler.Instance.IncrementWorldPosition(autonomousObjectIndex, nextTranslate, translateComplete);
+        //    nextTranslate = Vector3.zero;
+        //}
+        //else
+        //{
+        //    translateReady = true;
+        //}
+    }
+
+    void rotateComplete(GameObject obj)
+    {
+        rotateReady = true;
+        //if (nextRotate != Quaternion.identity)
+        //{
+        //    ASL_AutonomousObjectHandler.Instance.IncrementWorldRotation(autonomousObjectIndex, nextRotate, rotateComplete);
+        //    nextRotate = Quaternion.identity;
+        //}
+        //else
+        //{
+        //    rotateReady = true;
+        //}
+    }
+
+    void scaleComplete(GameObject obj)
+    {
+        scaleReady = true;
+        //if (nextScale != Vector3.one)
+        //{
+        //    ASL_AutonomousObjectHandler.Instance.IncrementWorldScale(autonomousObjectIndex, nextScale, scaleComplete);
+        //    nextScale = Vector3.one;
+        //}
+        //else
+        //{
+        //    scaleReady = true;
+        //}
     }
 
     public void SetAutonomousObjectIndex(int index)

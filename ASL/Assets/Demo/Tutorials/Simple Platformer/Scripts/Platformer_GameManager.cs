@@ -32,15 +32,7 @@ public class Platformer_GameManager : MonoBehaviour
         
                 ASL.ASLHelper.InstantiateASLObject("Platformer_Player",
                     new Vector3(RespawnPoint.x, RespawnPoint.y + 1, RespawnPoint.z),
-                    Quaternion.identity, "", "", playerSetUp,
-                        ClaimRecoveryFunction,
-                        Platformer_Player.MyFloatsFunction);
-                //instantiate a player
-                //assign player object a user
-                //set up camera
-                //set up refferences
-                Debug.Log("Player id: " + playerID + " Name: " + players[playerID]);
-
+                    Quaternion.identity, "", "", playerSetUp);
             }
         }
     }
@@ -52,20 +44,11 @@ public class Platformer_GameManager : MonoBehaviour
             Platformer_GameManager _this = FindObjectOfType<Platformer_GameManager>();
             int playerID = _this.playerIDs[_this.playerIndex];
             _this.playerIndex++;
-            //_gameObject.GetComponent<Platformer_Player>().SetUpPlayer(playerID, _this.RespawnPoint);
-            float[] m_floatArray = new float[4] { playerID, _this.RespawnPoint.x, _this.RespawnPoint.y, _this.RespawnPoint.z };
+            float[] m_floatArray = new float[1] { playerID };
             _gameObject.GetComponent<ASLObject>().SendAndSetClaim(() =>
             {
                 _gameObject.GetComponent<ASLObject>().SendFloatArray(m_floatArray);
             });
         }
-    }   
-    public static void ClaimRecoveryFunction(string _id, int _cancelledCallbacks)
-    {
-        //does nothing
-    }
-    public static void MyFloatsFunction(string _id, float[] _myFloats)
-    {
-        //does nothing
     }
 }

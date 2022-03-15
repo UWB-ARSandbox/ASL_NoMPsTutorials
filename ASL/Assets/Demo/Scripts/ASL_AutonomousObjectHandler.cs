@@ -14,7 +14,6 @@ public class ASL_AutonomousObjectHandler : MonoBehaviour
 
     List<ASLObject> autonomousObjects = new List<ASLObject>();
     ASL_PhysicsMasterSingleton physicsMaster;
-    ASLObject m_ASLObject;
 
     Dictionary<string, ReturnInstantatedObjectCallback> instatiatedObjects = new Dictionary<string, ReturnInstantatedObjectCallback>();
     Dictionary<string, int> instatiatedObjectOwners = new Dictionary<string, int>();
@@ -35,9 +34,13 @@ public class ASL_AutonomousObjectHandler : MonoBehaviour
     void Start()
     {
         physicsMaster = ASL_PhysicsMasterSingleton.Instance;
-        //m_ASLObject = GetComponent<ASLObject>();
-        //Debug.Assert(m_ASLObject != null);
-        //m_ASLObject._LocallySetFloatCallback(floatFunction);
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        List<ASLObject> autonomousObjects = new List<ASLObject>();
+        Dictionary<string, ReturnInstantatedObjectCallback> instatiatedObjects = new Dictionary<string, ReturnInstantatedObjectCallback>();
+        Dictionary<string, int> instatiatedObjectOwners = new Dictionary<string, int>();
     }
 
     private void Update()
@@ -195,30 +198,14 @@ public class ASL_AutonomousObjectHandler : MonoBehaviour
 
     public void IncrementWorldScale(int index, Vector3 m_AdditiveScaleAmount)
     {
-        if (physicsMaster.IsPhysicsMaster && index < autonomousObjects.Count)
+        ASLObject aSLObject = checkIfOwnerOfObject(index);
+        if (aSLObject != null)
         {
-            ASLObject aSLObject = autonomousObjects[index];
-            if (aSLObject != null)
+            aSLObject.SendAndSetClaim(() =>
             {
-                aSLObject.SendAndSetClaim(() =>
-                {
-                    aSLObject.SendAndIncrementWorldScale(m_AdditiveScaleAmount);
-                });
-            }
+                aSLObject.SendAndIncrementWorldScale(m_AdditiveScaleAmount);
+            });
         }
-    }
-
-    ASLObject checkIfOwnerOfObject(int index)
-    {
-        if (index < autonomousObjects.Count)
-        {
-            ASLObject aSLObject = autonomousObjects[index];
-            if (aSLObject != null && ASL.GameLiftManager.GetInstance().m_PeerId == aSLObject.GetComponent<ASL_AutonomousObject>().Owner)
-            {
-                return aSLObject;
-            }
-        }
-        return null;
     }
 
     public void IncrementWorldScale(int index, Vector3 m_AdditiveScaleAmount, ASL.GameLiftManager.OpFunctionCallback callback)
@@ -245,6 +232,18 @@ public class ASL_AutonomousObjectHandler : MonoBehaviour
         }
     }
 
+    public void SetWorldPosition(int index, Vector3 WorldPosition, ASL.GameLiftManager.OpFunctionCallback callback)
+    {
+        ASLObject aSLObject = checkIfOwnerOfObject(index);
+        if (aSLObject != null)
+        {
+            aSLObject.SendAndSetClaim(() =>
+            {
+                aSLObject.SendAndSetWorldPosition(WorldPosition, callback);
+            });
+        }
+    }
+
     public void SetWorldRotation(int index, Quaternion WorldRotation)
     {
         ASLObject aSLObject = checkIfOwnerOfObject(index);
@@ -253,6 +252,18 @@ public class ASL_AutonomousObjectHandler : MonoBehaviour
             aSLObject.SendAndSetClaim(() =>
             {
                 aSLObject.SendAndSetWorldRotation(WorldRotation);
+            });
+        }
+    }
+
+    public void SetWorldRotation(int index, Quaternion WorldRotation, ASL.GameLiftManager.OpFunctionCallback callback)
+    {
+        ASLObject aSLObject = checkIfOwnerOfObject(index);
+        if (aSLObject != null)
+        {
+            aSLObject.SendAndSetClaim(() =>
+            {
+                aSLObject.SendAndSetWorldRotation(WorldRotation, callback);
             });
         }
     }
@@ -267,5 +278,30 @@ public class ASL_AutonomousObjectHandler : MonoBehaviour
                 aSLObject.SendAndSetWorldScale(WorldScale);
             });
         }
+    }
+
+    public void SetWorldScale(int index, Vector3 WorldScale, ASL.GameLiftManager.OpFunctionCallback callback)
+    {
+        if (physicsMaster.IsPhysicsMaster && index < autonomousObjects.Count)
+        {
+            ASLObject aSLObject = autonomousObjects[index];
+            aSLObject.SendAndSetClaim(() =>
+            {
+                aSLObject.SendAndSetWorldScale(WorldScale, callback);
+            });
+        }
+    }
+
+    ASLObject checkIfOwnerOfObject(int index)
+    {
+        if (index < autonomousObjects.Count)
+        {
+            ASLObject aSLObject = autonomousObjects[index];
+            if (aSLObject != null && ASL.GameLiftManager.GetInstance().m_PeerId == aSLObject.GetComponent<ASL_AutonomousObject>().Owner)
+            {
+                return aSLObject;
+            }
+        }
+        return null;
     }
 }

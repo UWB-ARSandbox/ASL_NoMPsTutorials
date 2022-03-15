@@ -5,17 +5,25 @@ using ASL;
 
 public class Platformer_CoinBlock : Platformer_Collider
 {
-    public GameObject Coin;
+    public GameObject CoinPrefab;
     public Material ActivatedColor;
 
     bool coinSpawned = false;
     ASLObject m_ASLObject;
+    //ASL_ObjectCollider m_ASLObjectCollider;
 
     // Start is called before the first frame update
     void Start()
     {
         m_ASLObject = GetComponent<ASLObject>();
         Debug.Assert(m_ASLObject != null);
+        m_ASLObjectCollider = gameObject.GetComponent<ASL_ObjectCollider>();
+        Debug.Assert(m_ASLObjectCollider != null);
+
+        //Assigning the deligate function to the ASL_ObjectCollider
+        m_ASLObjectCollider.ASL_OnTriggerEnter(CollideWithPlayerEnter);
+        m_ASLObjectCollider.ASL_OnTriggerExit(CollideWithPlayerExit);
+
         Collider collider;
         if ((collider = GetComponent<BoxCollider>()) != null)
         {
@@ -38,7 +46,7 @@ public class Platformer_CoinBlock : Platformer_Collider
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void CollideWithPlayerEnter(Collider other)
     {
         Platformer_Player player = other.GetComponent<Platformer_Player>();
         if (player != null)
@@ -59,7 +67,7 @@ public class Platformer_CoinBlock : Platformer_Collider
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void CollideWithPlayerExit(Collider other)
     {
         Platformer_Player player = other.GetComponent<Platformer_Player>();
         if (player != null)
@@ -78,13 +86,9 @@ public class Platformer_CoinBlock : Platformer_Collider
 
     void spawnCoin()
     {
-        ASL.ASLHelper.InstantiateASLObject("Demo_Coin",
-            new Vector3(transform.position.x, transform.position.y + 1, transform.position.z),
-            Coin.transform.rotation);
+        ASL_AutonomousObjectHandler.Instance.InstantiateAutonomousObject(CoinPrefab, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), CoinPrefab.transform.rotation);
 
-        //Instantiate(Coin, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Coin.transform.rotation);
         coinSpawned = true;
-        //GetComponent<MeshRenderer>().material = ActivatedColor;
         m_ASLObject.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
         {
             m_ASLObject.GetComponent<ASL.ASLObject>().SendAndSetObjectColor(ActivatedColor.color, ActivatedColor.color);
