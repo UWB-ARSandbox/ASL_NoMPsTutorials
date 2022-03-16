@@ -68,6 +68,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ASL/ASL_Tutorials/Simple/TransformObjectViaWorldSpace/TransformObjectViaWorldSpace_Example.unity
     guid: 3f7d2ec93f8aa2c4099b56b39c403694
+  - enabled: 1
+    path: Assets/ASL/ASL_Tutorials/Simple/SetCallback/SetCallback_Example.unity
+    guid: a9cda04859f36a64a9943bc9970b7833
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: bf557935255407f40b56b5c173577bf9, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: b653963d314ffaf409a6357156cf5de6, type: 2}
