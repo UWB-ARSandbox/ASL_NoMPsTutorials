@@ -44,7 +44,7 @@ public class Platformer_GameManager : MonoBehaviour
             Platformer_GameManager _this = FindObjectOfType<Platformer_GameManager>();
             int playerID = _this.playerIDs[_this.playerIndex];
             _this.playerIndex++;
-            float[] m_floatArray = new float[1] { playerID };
+            float[] m_floatArray = new float[2] { 1, playerID };
             _gameObject.GetComponent<ASLObject>().SendAndSetClaim(() =>
             {
                 _gameObject.GetComponent<ASLObject>().SendFloatArray(m_floatArray);

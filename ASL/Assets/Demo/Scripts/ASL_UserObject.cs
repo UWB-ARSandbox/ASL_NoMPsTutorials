@@ -16,7 +16,7 @@ public class ASL_UserObject : MonoBehaviour
     {
         m_ASLObject = GetComponent<ASLObject>();
         Debug.Assert(m_ASLObject != null);
-        m_ASLObject._LocallySetFloatCallback(floatFunction);
+        m_ASLObject._LocallySetFloatCallback(SetOwner);
     }
 
     public bool IsOwner(int peerID)
@@ -26,10 +26,8 @@ public class ASL_UserObject : MonoBehaviour
 
     public void IncrementWorldPosition(Vector3 m_AdditiveMovementAmount)
     {
-        Debug.Log("==========Function Called==========");
         if (translateReady && ownerID == ASL.GameLiftManager.GetInstance().m_PeerId)
         {
-            Debug.Log("==========Able to perform translation==========");
             m_ASLObject.SendAndSetClaim(() =>
             {
                 m_ASLObject.SendAndIncrementWorldPosition(m_AdditiveMovementAmount, translateComplete);
@@ -59,11 +57,9 @@ public class ASL_UserObject : MonoBehaviour
         }
     } 
 
-    //set position/rotation/scale will not wait for current process to be completed.
-    //It is concidered higher priority so will not be skipped if an ASL function has not returned yet
     public void SetWorldPosition(Vector3 worldPosition)
     {
-        if (ownerID == ASL.GameLiftManager.GetInstance().m_PeerId)
+        if (translateReady && ownerID == ASL.GameLiftManager.GetInstance().m_PeerId)
         {
             m_ASLObject.SendAndSetClaim(() =>
             {
@@ -74,7 +70,7 @@ public class ASL_UserObject : MonoBehaviour
 
     public void SetWorldRotation(Quaternion worldRotation)
     {
-        if (ownerID == ASL.GameLiftManager.GetInstance().m_PeerId)
+        if (rotateReady && ownerID == ASL.GameLiftManager.GetInstance().m_PeerId)
         {
             m_ASLObject.SendAndSetClaim(() =>
             {
@@ -85,7 +81,7 @@ public class ASL_UserObject : MonoBehaviour
 
     public void SetWorldScale(Vector3 worldScale)
     {
-        if (ownerID == ASL.GameLiftManager.GetInstance().m_PeerId)
+        if (scaleReady && ownerID == ASL.GameLiftManager.GetInstance().m_PeerId)
         {
             m_ASLObject.SendAndSetClaim(() =>
             {
@@ -109,8 +105,16 @@ public class ASL_UserObject : MonoBehaviour
         scaleReady = true;
     }
 
-    void floatFunction(string _id, float[] _f)
+    public void SetOwner(string _id, float[] _f)
     {
-        ownerID = (int)_f[0];
+        Debug.Log("userObject float function");
+        if (_f[0] == 1)
+        {
+            ownerID = (int)_f[1];
+        }
+        else if (_f[0] == 2)
+        {
+            GetComponent<Platformer_Player>().floatFunction(_id, _f);
+        }
     }
 }

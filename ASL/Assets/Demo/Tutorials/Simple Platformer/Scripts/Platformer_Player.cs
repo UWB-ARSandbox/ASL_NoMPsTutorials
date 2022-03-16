@@ -39,20 +39,20 @@ public class Platformer_Player : MonoBehaviour
 
         m_UserObject = GetComponent<ASL_UserObject>();
         Debug.Assert(m_UserObject != null);
+
+        m_ASLObject._LocallySetFloatCallback(floatFunction);
     }
 
     private void Update()
     {
-        Debug.Log("==========HIT 1==========");
-        if (ASL.GameLiftManager.GetInstance().AmLowestPeer() && Input.GetKeyDown(KeyCode.Space) && jumpRecharged)
+        if (m_UserObject.IsOwner(ASL.GameLiftManager.GetInstance().m_PeerId) && Input.GetKeyDown(KeyCode.Space) && jumpRecharged)
         {
-            Debug.Log("==========HIT 2==========");
             jumpRecharged = false;
             velocity.y += JumpVelocity;
+            Debug.Log("JUMP");
         }
-        if (m_UserObject.IsOwner(ASL.GameLiftManager.GetInstance().m_PeerId))
+        if (true)//m_UserObject.IsOwner(ASL.GameLiftManager.GetInstance().m_PeerId))
         {
-            Debug.Log("==========HIT 3==========");
             bool hitGround = false;
             bool hitLeft = false;
             bool hitRight = false;
@@ -101,63 +101,65 @@ public class Platformer_Player : MonoBehaviour
                 endPos.x = rightWall;
                 m_AdditiveMovementAmount = endPos - transform.position;
             }
-
-            //m_ASLObject.SendAndSetClaim(() =>
-            //{
-            //    m_ASLObject.SendAndIncrementWorldPosition(m_AdditiveMovementAmount, moveComplete);
-            //});
-
-
             m_UserObject.IncrementWorldPosition(m_AdditiveMovementAmount);
         }
     }
 
     public void PlatformCollisionEnter(Platformer_Collider.CollisionSide side, float collisionPoint)
     {
+        float[] _f = new float[4];
+        _f[0] = 2;
         switch (side)
         {
             case Platformer_Collider.CollisionSide.top:
-                jumpRecharged = true;
-                topCollision = true;
-                floor = collisionPoint + transform.localScale.y / 2;
+                _f[1] = 0;
                 break;
             case Platformer_Collider.CollisionSide.bottom:
-                bottomCollision = true;
+                _f[1] = 1;
                 break;
             case Platformer_Collider.CollisionSide.left:
-                leftCollision = true;
-                leftWall = collisionPoint - transform.localScale.x / 2;
+                _f[1] = 2;
                 break;
             case Platformer_Collider.CollisionSide.right:
-                rightCollision = true;
-                rightWall = collisionPoint + transform.localScale.x / 2;
-                break;
-            default:
-                Debug.LogError("side was not properly defined");
+                _f[1] = 3;
                 break;
         }
+        _f[2] = 1;
+        _f[3] = collisionPoint;
+
+        m_ASLObject.SendAndSetClaim(() =>
+        {
+            m_ASLObject.SendFloatArray(_f);
+        });
     }
 
     public void PlatformCollisionExit(Platformer_Collider.CollisionSide side)
     {
+        float[] _f = new float[3];
+        _f[0] = 2;
         switch (side)
         {
             case Platformer_Collider.CollisionSide.top:
-                topCollision = false;
+                _f[1] = 0;
                 break;
             case Platformer_Collider.CollisionSide.bottom:
-                bottomCollision = false;
+                _f[1] = 1;
                 break;
             case Platformer_Collider.CollisionSide.left:
-                leftCollision = false;
+                _f[1] = 2;
                 break;
             case Platformer_Collider.CollisionSide.right:
-                rightCollision = false;
+                _f[1] = 3;
                 break;
             default:
                 Debug.LogError("side was not properly defined");
                 break;
         }
+        _f[2] = 0;
+        m_ASLObject.SendAndSetClaim(() =>
+        {
+            m_ASLObject.SendFloatArray(_f);
+        });
     }
 
     public void StayOnPlatform(Transform platform)
@@ -176,13 +178,11 @@ public class Platformer_Player : MonoBehaviour
         {
             enemy.GetComponent<ASL.ASLObject>().DeleteObject();
         });
-        //Destroy(enemy.gameObject);
         velocity.y = JumpVelocity * 0.5f;
     }
 
     public void ResetPlayer()
     {
-        //transform.position = RespawnPoint.transform.position;
         m_ASLObject.SendAndSetClaim(() =>
         {
             m_ASLObject.SendAndSetWorldPosition(RespawnPoint);
@@ -197,7 +197,6 @@ public class Platformer_Player : MonoBehaviour
         {
             coin.GetComponent<ASL.ASLObject>().DeleteObject();
         });
-        //Destroy(coin);
     }
 
     public void EnterWinZone()
@@ -205,12 +204,65 @@ public class Platformer_Player : MonoBehaviour
         WinText.gameObject.SetActive(true);
         WinText.text = "Player 1 Wins!!!";
     }
-    //public static void MyFloatsFunction(string _id, float[] _myFloats)
-    //{
-    //    ASLObject aSLObject;
-    //    ASL.ASLHelper.m_ASLObjects.TryGetValue(_id, out aSLObject);
-    //    Platformer_Player player = aSLObject.gameObject.GetComponent<Platformer_Player>();
-    //    player.ownerID = (int)_myFloats[0];
-    //    player.RespawnPoint = new Vector3(_myFloats[1], _myFloats[2], _myFloats[3]);
-    //}
+
+    //_f{opporation, side, enter/exit, collisionPoint}
+    public void floatFunction(string _id, float[] _f)
+    {
+        Debug.Log("player float function");
+        if (_f[0] == 1)
+        {
+            m_UserObject.SetOwner(_id, new float[2] { _f[0], _f[1]});
+        }
+        else if (_f[0] == 2)
+        {
+            Debug.Log("floatFunction Called");
+            float collisionSide = _f[1];
+            bool collisionEnter;
+            float collisionPoint = 0;
+            if (_f[2] == 0)
+            {
+                collisionEnter = false;
+            }
+            else
+            {
+                collisionEnter = true;
+                collisionPoint = _f[3];
+            }
+            switch (collisionSide)
+            {
+                case 0:
+                    //top
+                    topCollision = collisionEnter;
+                    if (topCollision)
+                    {
+                        jumpRecharged = true;
+                        floor = collisionPoint + transform.localScale.y / 2;
+                        Debug.Log("Hit ground");
+                    }
+                    break;
+                case 1:
+                    //bottom
+                    bottomCollision = collisionEnter;
+                    break;
+                case 2:
+                    //left
+                    leftCollision = collisionEnter;
+                    if (leftCollision)
+                    {
+                        leftWall = collisionPoint - transform.localScale.x / 2;
+                    }
+                    break;
+                case 3:
+                    //right
+                    rightCollision = collisionEnter;
+                    if (rightCollision)
+                    {
+                        rightWall = collisionPoint + transform.localScale.x / 2;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }

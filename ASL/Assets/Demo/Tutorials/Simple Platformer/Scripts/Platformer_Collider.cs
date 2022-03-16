@@ -87,10 +87,9 @@ public class Platformer_Collider : MonoBehaviour
         }
     }
 
+
     protected CollisionSide determineColissionDirection(Collider other)
     {
-        //rotation may cause issues, NEED to test
-
         Vector3 otherPos = other.gameObject.transform.position;
         Vector3 thisPos = transform.position;
         CollisionSide side = CollisionSide.na;
@@ -111,12 +110,6 @@ public class Platformer_Collider : MonoBehaviour
             //right
             if (side != CollisionSide.na)
             {
-                if (other.GetComponent<CapsuleCollider>() != null)
-                {
-                    //if the other object IS a capsule
-                    otherY *= 2;
-                    //DOES NOT WORK
-                }
                 if (otherX < otherY)
                 {
                     side = CollisionSide.right;
@@ -133,12 +126,6 @@ public class Platformer_Collider : MonoBehaviour
             //left
             if (side != CollisionSide.na)
             {
-                if (other.GetComponent<CapsuleCollider>() != null)
-                {
-                    //if the other object IS a capsule
-                    otherY *= 2;
-                    //DOES NOT WORK
-                }
                 if (otherX < otherY)
                 {
                     side = CollisionSide.left;
