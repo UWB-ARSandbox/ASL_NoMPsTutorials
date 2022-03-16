@@ -1,4 +1,6 @@
 <projectSettings>
+  <projectSetting name="com.google.external-dependency-managerAnalyticsCookie" value="3e527ab7f55c468e8069a9851a9d329a" />
+  <projectSetting name="com.google.external-dependency-managerAnalyticsEnabled" value="True" />
   <projectSetting name="Google.IOSResolver.VerboseLoggingEnabled" value="False" />
   <projectSetting name="Google.PackageManagerResolver.VerboseLoggingEnabled" value="False" />
   <projectSetting name="Google.VersionHandler.VerboseLoggingEnabled" value="False" />

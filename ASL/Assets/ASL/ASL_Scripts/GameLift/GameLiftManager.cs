@@ -63,17 +63,17 @@ namespace ASL
         /// The singleton instance for this class
         /// </summary>
         private static GameLiftManager m_Instance;
-        
+
         /// <summary>
         /// Internal class used to setup and connect users to each other
         /// </summary>
         private LobbyManager m_LobbyManager;
-        
+
         /// <summary>
         /// Internal class used to load scenes for all users
         /// </summary>
         private SceneLoader m_SceneLoader;
-        
+
         /// <summary>
         /// Internal class used to decoded packets received from the AWS
         /// </summary>
@@ -116,6 +116,37 @@ namespace ASL
 
         public DataReceivedEventArgs m_Packet { get; private set; }
 
+        /// <summary>
+        /// The peer id of the current selected physics master
+        /// </summary>
+        private int m_PhysicsMasterId;
+
+        /// Pre-defined callback function for a specific OpFunction
+        /// </summary>
+        public delegate void OpFunctionCallback(GameObject m_object);
+
+        /// Pre-defined callback function for a specific OpFunction without parameter
+        /// </summary>
+        public delegate void OpFunctionCallbackNoParam();
+
+        /// <summary>
+        /// Dictionary containing the all callbacks that are connected OpFunction's OpCode
+        /// </summary>
+        public Dictionary<string, OpFunctionCallback> OpFunctionCallbacks = new Dictionary<string, OpFunctionCallback>();
+
+        /// <summary>
+        /// Dictionary containing the all callbacks without parameter that are connected OpFunction's OpCode
+        /// </summary>
+        public Dictionary<string, OpFunctionCallbackNoParam> OpFunctionCallbacksNoParam = new Dictionary<string, OpFunctionCallbackNoParam>();
+
+        /// <summary>A value for callback id when the given null as callback. </summary>
+        public static byte[] m_NullCallbackId = new byte[55];
+
+        /// <summary>A value for callback id in string format when the given null as callback. </summary>
+        public string m_NullCallbackIdInString { get; } = System.Text.Encoding.Default.GetString(m_NullCallbackId);
+
+        /// <summary>The index value for callback id in data payload. </summary>
+        public static int m_callbackIdIndex = 0;
         /// <summary>
         /// Can be any positive number, but must be matched with the OpCodes in the RealTime script.
         /// </summary>
@@ -589,7 +620,8 @@ namespace ASL
         }
 
         /// <summary>
-        /// Removes a player from the player list for this session. Happens when a player disconnects
+        /// Removes a player from the player list for this session. Happens when a player disconnects.
+        /// It calls reassign function to reassign the physics master for the game if the leaving player was the master.
         /// </summary>
         /// <param name="_packet">The packet that was received from the server</param>
         private void RemovePlayerFromList(DataReceivedEventArgs _packet)
@@ -597,6 +629,19 @@ namespace ASL
             string data = Encoding.Default.GetString(_packet.Data);
             m_Players.Remove(int.Parse(data));
             m_LobbyManager?.UpdateLobbyScreen();
+            if (m_PhysicsMasterId == int.Parse(data))
+            {
+                ASL_PhysicsMasterSingleton.Instance.ReassignPhysicsMaster();
+            }
+        }
+
+        /// <summary>
+        /// Assigns the given peer id to physics master's id.
+        /// </summary>
+        /// <param name="id">Peer id</param>
+        public void SetPhysicsMasterId(int id)
+        {
+            m_PhysicsMasterId = id;
         }
 
         /// <summary>
@@ -1098,6 +1143,191 @@ namespace ASL
             }
             return false;
         }
+
+
+
+        /// <summary>Returns the current highest peerID value out of all the currently connected players</summary>
+        /// <returns>The highest peer id of all the users in this match</returns>
+        public int GetHighestPeerId()
+        {
+            int highestPeerId = int.MinValue;
+            foreach (KeyValuePair<int, string> _aPlayer in m_Players)
+            {
+                if (highestPeerId < _aPlayer.Key)
+                {
+                    highestPeerId = _aPlayer.Key;
+                }
+            }
+            return highestPeerId;
+        }
+
+        /// <summary>
+        /// Returns true if the caller is the highest peer id user in the match. This is a good way to assign a "Host" player if desired.
+        /// Though do keep in mind that ASL is a P2P network.
+        /// </summary>
+        /// <returns>True if caller has the highest peer id</returns>
+        public bool AmHighestPeer()
+        {
+            int currentHighest = GetHighestPeerId();
+            if (currentHighest == m_PeerId)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Generates a unique callback id for a callback function.
+        /// </summary>
+        /// <returns>A unique callback id in string</returns>
+        public string GenerateOpFunctionCallbackKey()
+        {
+            Guid guid = Guid.NewGuid();
+            string guidInString = guid.ToString();
+            string timeStamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+            string callbackId = guidInString + "_" + timeStamp;
+            return callbackId;
+        }
+
+        /// <summary>
+        /// Adds the given callback function with the given OpCode as the key into the dictionary
+        /// </summary>
+        /// <param name="callback">pre-defined callback function</param>
+        /// <param name="key">callback id</param>
+        public void SetOpFunctionCallback(OpFunctionCallback callback, string key)
+        {
+            if (OpFunctionCallbacks.ContainsKey(key)) return;
+            OpFunctionCallbacks.Add(key, callback);
+        }
+
+        /// <summary>
+        /// Gets the corresponding callback function with the given OpCode and callback id from the dictionary.
+        /// Removes the callback function after it has been invoked.
+        /// </summary>
+        /// <param name="callbackId">The OpCode function's callback id</param>
+        /// <param name="obj">The game object processed</param>
+        public void DoOpFunctionCallback(string callbackId, GameObject obj)
+        {
+            //get callback function base on key, if key = "0", no callback assigned
+            if (callbackId.Equals(m_NullCallbackIdInString)) return;
+            if (OpFunctionCallbacks.ContainsKey(callbackId))
+            {
+                OpFunctionCallback callback = OpFunctionCallbacks[callbackId];
+                OpFunctionCallbacks.Remove(callbackId);
+                callback.Invoke(obj);
+               
+            }
+            return;
+        }
+
+        /// <summary>
+        /// Removes the corresponding callback function by the given callback id from the dictionary.
+        /// </summary>
+        /// <param name="callbackId">The OpCode function's callback id</param>
+        public void RemoveOpFunctionCallbackByCallbackId(string callbackId)
+        {
+            if (OpFunctionCallbacks.ContainsKey(callbackId))
+            {
+                OpFunctionCallbacks.Remove(callbackId);
+            }
+        }
+
+        /// <summary>
+        /// Generate callback id with given information.
+        /// save the callback with generated id as the key into dictionary
+        /// </summary>
+        /// <param name="callback">user pre-defined callback function</param>
+        /// <returns>A unique callback id in byte array</returns>
+        public byte[] SetOpFunctionCallback(OpFunctionCallback callback)
+        {
+            if (callback == null) return m_NullCallbackId;
+            string callbackId = SetOpFunctionCallbackString(callback);
+            return Encoding.ASCII.GetBytes(callbackId);
+        }
+
+        /// <summary>
+        /// Generate callback id with given information.
+        /// save the callback with generated id as the key into dictionary
+        /// </summary>
+        /// <param name="callback">user pre-defined callback function</param>
+        /// <returns>A unique callback id in string</returns>
+        public string SetOpFunctionCallbackString(OpFunctionCallback callback)
+        {
+            if (callback == null) return m_NullCallbackIdInString;
+            string callbackId = GetInstance().GenerateOpFunctionCallbackKey();
+            GetInstance().SetOpFunctionCallback(callback, callbackId);
+            return callbackId;
+        }
+
+        /// <summary>
+        /// Adds the given callback function without parameter with the given OpCode as the key into the dictionary
+        /// </summary>
+        /// <param name="callback">pre-defined callback function without parameter</param>
+        /// <param name="key">callback id</param>
+        public void SetOpFunctionCallback(OpFunctionCallbackNoParam callback, string key)
+        {
+            if (OpFunctionCallbacksNoParam.ContainsKey(key)) return;
+            OpFunctionCallbacksNoParam.Add(key, callback);
+        }
+
+        /// <summary>
+        /// Gets the corresponding callback without parameter function with the given OpCode and callback id from the dictionary.
+        /// Removes the callback function after it has been invoked.
+        /// </summary>
+        /// <param name="callbackId">The OpCode function's callback id</param>
+        public void DoOpFunctionCallback(string callbackId)
+        {
+            //get callback function base on key, if key = "0", no callback assigned
+            if (callbackId.Equals(m_NullCallbackIdInString)) return;
+            if (OpFunctionCallbacksNoParam.ContainsKey(callbackId))
+            {
+                OpFunctionCallbackNoParam callback = OpFunctionCallbacksNoParam[callbackId];
+                OpFunctionCallbacksNoParam.Remove(callbackId);
+                callback.Invoke();
+
+            }
+            return;
+        }
+
+        /// <summary>
+        /// Removes the corresponding callback function without parameter by the given callback id from the dictionary.
+        /// </summary>
+        /// <param name="callbackId">The OpCode function's callback id</param>
+        public void RemoveOpFunctionCallbackNoParamByCallbackId(string callbackId)
+        {
+            if (OpFunctionCallbacksNoParam.ContainsKey(callbackId))
+            {
+                OpFunctionCallbacksNoParam.Remove(callbackId);
+            }
+        }
+
+        /// <summary>
+        /// Generate callback id with given information.
+        /// save the callback with generated id as the key into dictionary
+        /// </summary>
+        /// <param name="callback">user pre-defined callback function without parameter</param>
+        /// <returns>A unique callback id in byte array</returns>
+        public byte[] SetOpFunctionCallback(OpFunctionCallbackNoParam callback)
+        {
+            if (callback == null) return m_NullCallbackId;
+            string callbackId = SetOpFunctionCallbackString(callback);
+            return Encoding.ASCII.GetBytes(callbackId);
+        }
+
+        /// <summary>
+        /// Generate callback id with given information.
+        /// save the callback with generated id as the key into dictionary
+        /// </summary>
+        /// <param name="callback">user pre-defined callback function without parameter</param>
+        /// <returns>A unique callback id in string</returns>
+        public string SetOpFunctionCallbackString(OpFunctionCallbackNoParam callback)
+        {
+            if (callback == null) return m_NullCallbackIdInString;
+            string callbackId = GetInstance().GenerateOpFunctionCallbackKey();
+            GetInstance().SetOpFunctionCallback(callback, callbackId);
+            return callbackId;
+        }
+
 
     }
 }

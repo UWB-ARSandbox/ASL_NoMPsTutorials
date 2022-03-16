@@ -22,8 +22,8 @@ var onProcessStartedCalled = false; // Record if onProcessStarted has been calle
 // Any positive op code number can be defined here. These should match your client code.
 var OpCode = Object.freeze(
 {
-    "PlayerJoinedMatch":1, 
-    "AddPlayerToLobbyUI":2,
+  "PlayerJoinedMatch":1,
+  "AddPlayerToLobbyUI":2,
 	"PlayerDisconnected":3,
 	"AllPlayersReady": 4,
 	"PlayerDisconnectedBeforeMatchStart": 5,
@@ -63,7 +63,7 @@ var OpCode = Object.freeze(
 	"SendARPlaneAsMesh":39
 });
 
-// Array of function references corresponding to OpCodes. null entries in the array are OpCodes that currently have no 
+// Array of function references corresponding to OpCodes. null entries in the array are OpCodes that currently have no
 // action within this script when received, but may have other action elsewhere, or are automatically sent.
 var OpCodeFunctions = [
 	null,	// No function - OpCodes start at 1
@@ -129,8 +129,10 @@ var Players = [];
 var ASLObjects = {};
 var ASLObjectSyncHolder = [];
 const ID_LENGTH = 36;
+const CALLBACK_ID_LENGTH = 55; // CallbackId always at index 0
+const CALLBACK_ID_START_LOCATION_WHEN_DELETE_OBJECT = 3*4; //3 numbers appear before the [CallbackId + ID] appears in packet, 4 is the size of an int
 const ID_START_LOCATION_WHEN_CREATED_BY_USER = 14*4; //14 numbers appear before the ID appears in packet, 4 is the size of an int
-const ID_START_LOCATION_WHEN_CREATED_FOR_CLOUD_ANCHOR = 6*4 //6 numbers appear before the ID appears in the packet, 4 is the size of an int
+const ID_START_LOCATION_WHEN_CREATED_FOR_CLOUD_ANCHOR = 6*4 //6 numbers appear before the [CallbackId + ID] appears in the packet, 4 is the size of an int
 var MatchStarted = false;
 var InitialScene = "";
 var ASLObjectsSynchronizedAtSceneLoad = 0;
@@ -187,37 +189,37 @@ function onPlayerConnect(connectMsg) {
 function onPlayerAccepted(player) {
     // This player was accepted -- let's send them a message
 
-	const message = session.newTextGameMessage(OpCode.PlayerJoinedMatch, session.getServerId(), 
+	const message = session.newTextGameMessage(OpCode.PlayerJoinedMatch, session.getServerId(),
 						session.getServerId() + ":" + session.getAllPlayersGroupId() + ":" + player.peerId); //Get server Id and group Id for all users
 	session.sendReliableMessage(message, player.peerId);
     activePlayers++;
-	
-	Players.push(new Player(player.peerId, false, [], false));	
+
+	Players.push(new Player(player.peerId, false, [], false));
 }
 
 // On Player Disconnect is called when a player has left or been forcibly terminated
 // Is only called for players that actually connected to the server and not those rejected by validation
 // This is called before the player is removed from the player list
 function onPlayerDisconnect(peerId) {
-	
+
 	//Set owned objects to server before removing player
 	ReturnUsersASLObjectsToServer(peerId);
 	//Remove player from Players array
 	RemovePlayer('peerId', peerId);
-		
+
     // send a message to each remaining player letting them know about the disconnect
-   session.getPlayers().forEach((player, playerId) => 
-   {		 
-		const outMessage = session.newTextGameMessage(OpCode.PlayerDisconnected, session.getServerId(), "" + peerId); //Who disconnected	
+   session.getPlayers().forEach((player, playerId) =>
+   {
+		const outMessage = session.newTextGameMessage(OpCode.PlayerDisconnected, session.getServerId(), "" + peerId); //Who disconnected
 		const unReadyMessage = session.newTextGameMessage(OpCode.PlayerDisconnectedBeforeMatchStart, session.getServerId(), ""); //If ready, unready
-	    if (playerId != peerId) 
+	    if (playerId != peerId)
 	    {
 		    session.sendReliableMessage(outMessage, playerId);
 		    if (!MatchStarted)
-			{		
+			{
 				var user = FindPlayer('peerId', playerId);
 				if (user != null) { user.readyState = false; }
-				session.sendReliableMessage(unReadyMessage, playerId);	
+				session.sendReliableMessage(unReadyMessage, playerId);
 			}
 	    }
     });
@@ -227,8 +229,8 @@ function onPlayerDisconnect(peerId) {
 
 // Handle a message to the server
 // Directly executes the OpCode function corresponding to the OpCode number as determined by the OpCode enum
-function onMessage(gameMessage) 
-{	
+function onMessage(gameMessage)
+{
 	if(gameMessage.opCode > OpCodeFunctions.length || gameMessage.opCode < 0)	//Check for valid OpCode
 	{
 		logger.error("Unassigned OpCode received: " + (gameMessage.opCode));
@@ -241,13 +243,13 @@ function onMessage(gameMessage)
 }
 
 // OpCode Functions
-function AddPlayerToLobbyUI(gameMessage) 
+function AddPlayerToLobbyUI(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.AddPlayerToLobbyUI, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function PlayerReady(gameMessage) 
+function PlayerReady(gameMessage)
 {
 	var player = FindPlayer('peerId', gameMessage.sender);
 	if (player != null) { player.readyState = true; }
@@ -262,7 +264,7 @@ function PlayerReady(gameMessage)
 	}
 }
 
-function LaunchScene(gameMessage) 
+function LaunchScene(gameMessage)
 {
 	var player = FindPlayer('peerId', gameMessage.sender);
 	if (player != null) { player.readyState = true; }
@@ -280,13 +282,13 @@ function LaunchScene(gameMessage)
 	}
 }
 
-function LoadScene(gameMessage) 
+function LoadScene(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.LoadScene, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function ServerSetId(gameMessage) 
+function ServerSetId(gameMessage)
 {
 	//Only create guid from the "host"'s packet
 	if (gameMessage.sender == GetLowestPeerId())
@@ -311,19 +313,24 @@ function ServerSetId(gameMessage)
 	}
 }
 
-function ReleaseClaim(gameMessage) 
+function ReleaseClaim(gameMessage)
 {
 	var id = UnpackPayload(gameMessage.payload);
-	ASLObjects[id].owner = "server";	
+	ASLObjects[id].owner = "server";
 }
 
-function ClaimObject(gameMessage) 
+function ClaimObject(gameMessage)
 {
-	var id = UnpackPayload(gameMessage.payload);
+	var decodedMessage = UnpackPayload(gameMessage.payload);
+
+  const data = decodedMessage.split(":");
+  var callbackId = data[0];
+  var id = data[1];
 	//if object trying to be claimed has no id - reject
 	if (id == "")
 	{
-		const outMessage = session.newTextGameMessage(OpCode.RejectClaim, session.getServerId(), id);
+    var newPayload = callbackId + ":" + id;
+		const outMessage = session.newTextGameMessage(OpCode.RejectClaim, session.getServerId(), newPayload);
 		session.sendReliableMessage(outMessage, gameMessage.sender);
 	}
 
@@ -331,13 +338,14 @@ function ClaimObject(gameMessage)
 	if (ASLObjects[id].objectClaimer == "0")
 	{
 		ASLObjects[id].objectClaimer = gameMessage.sender + ""; //update claimer
+
 		if (ASLObjects[id].owner == "server" || ASLObjects[id].owner == gameMessage.sender + "") //if server or current claimer currently owns this object
 		{
 
 			//Update everyone of ownership
 			ASLObjects[id].owner = gameMessage.sender + "";
 			ASLObjects[id].objectClaimer = "0";
-			var newPayload = id + ":" + gameMessage.sender + "";
+			var newPayload = callbackId + ":" + id + ":" + gameMessage.sender + "";
 
 			const outMessage = session.newTextGameMessage(OpCode.ClaimObject, session.getServerId(), newPayload);
 			session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
@@ -345,36 +353,31 @@ function ClaimObject(gameMessage)
 		}
 		else //we wait for previous owner to inform us they gave up the object so we can successfully claim it
 		{
-			var newPayload = id + ":" + ASLObjects[id].owner + ":" + gameMessage.sender;
+
+			var newPayload = callbackId + ":" + id + ":" + ASLObjects[id].owner + ":" + gameMessage.sender;
 			const outMessage = session.newTextGameMessage(OpCode.ClaimObjectWithResponse, session.getServerId(), newPayload);
 			session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 		}
 	}
 	else //There is an outstanding claim -> reject new claimer
 	{
-		const outMessage = session.newTextGameMessage(OpCode.RejectClaim, session.getServerId(), id);
+    var newPayload = callbackId + ":" + id;
+		const outMessage = session.newTextGameMessage(OpCode.RejectClaim, session.getServerId(), newPayload);
 		session.sendReliableMessage(outMessage, gameMessage.sender);
 	}
 }
 
-function ClaimObjectResponse(gameMessage) 
+function ClaimObjectResponse(gameMessage)
 {
 	var decodedMessage = UnpackPayload(gameMessage.payload);
 	//Get ID and new owner from payload
 	var id = "";
 	var newOwner = ""
-	var switchToNextValue = false;
-	//split on ':' to find id and newOwner
-	for (let i = 0; i < decodedMessage.length; i++)
-	{
-		if (decodedMessage.charAt(i) == ':')
-		{
-			switchToNextValue = true;
-			continue;
-		}
-		if (!switchToNextValue) { id += decodedMessage.charAt(i); }
-		else { newOwner += decodedMessage.charAt(i); }
-	}
+
+  const data = decodedMessage.split(":");
+  var callbackId = data[0];
+  var id = data[1];
+  var newOwner = data[2];
 
 	ASLObjects[id].owner = newOwner;
 	ASLObjects[id].objectClaimer = "0";
@@ -383,96 +386,105 @@ function ClaimObjectResponse(gameMessage)
 	session.sendReliableMessage(outMessage, Number(newOwner));
 }
 
-function SetObjectColor(gameMessage) 
+function SetObjectColor(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.SetObjectColor, session.getServerId(), gameMessage.payload);
-	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());		
+	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function DeleteObject(gameMessage) 
+function DeleteObject(gameMessage)
 {
-	var id = UnpackPayload(gameMessage.payload);
+	//var id = UnpackPayload(gameMessage.payload);
+  var decodedMessage = UnpackPayload(gameMessage.payload);
+  var id = "";
+
+  for (let i = CALLBACK_ID_LENGTH + CALLBACK_ID_START_LOCATION_WHEN_DELETE_OBJECT; i < ID_LENGTH + CALLBACK_ID_LENGTH + CALLBACK_ID_START_LOCATION_WHEN_DELETE_OBJECT; i++)
+  {
+    id += decodedMessage.charAt(i);
+  }
+
 	delete ASLObjects[id].id;
 	delete ASLObjects[id].owner;
 	delete ASLObjects[id].objectClaimer;
 
-	const outMessage = session.newTextGameMessage(OpCode.DeleteObject, session.getServerId(), id);
+  // or switch to test to see id value
+	const outMessage = session.newTextGameMessage(OpCode.DeleteObject, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function SetLocalPosition(gameMessage) 
+function SetLocalPosition(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.SetLocalPosition, session.getServerId(), gameMessage.payload);
-	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());		
+	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function IncrementLocalPosition(gameMessage) 
+function IncrementLocalPosition(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.IncrementLocalPosition, session.getServerId(), gameMessage.payload);
-	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());	
+	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function SetLocalRotation(gameMessage) 
+function SetLocalRotation(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.SetLocalRotation, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function IncrementLocalRotation(gameMessage) 
+function IncrementLocalRotation(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.IncrementLocalRotation, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function SetLocalScale(gameMessage) 
+function SetLocalScale(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.SetLocalScale, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function IncrementLocalScale(gameMessage) 
+function IncrementLocalScale(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.IncrementLocalScale, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function SetWorldPosition(gameMessage) 
+function SetWorldPosition(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.SetWorldPosition, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function IncrementWorldPosition(gameMessage) 
+function IncrementWorldPosition(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.IncrementWorldPosition, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function SetWorldRotation(gameMessage) 
+function SetWorldRotation(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.SetWorldRotation, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function IncrementWorldRotation(gameMessage) 
+function IncrementWorldRotation(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.IncrementWorldRotation, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function SetWorldScale(gameMessage) 
+function SetWorldScale(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.SetWorldScale, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function IncrementWorldScale(gameMessage) 
+function IncrementWorldScale(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.IncrementWorldScale, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function SpawnPrefab(gameMessage) 
+function SpawnPrefab(gameMessage)
 {
 	var decodedMessage = UnpackPayload(gameMessage.payload);
 	//Get ID and new owner from payload
@@ -488,7 +500,7 @@ function SpawnPrefab(gameMessage)
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function SpawnPrimitive(gameMessage) 
+function SpawnPrimitive(gameMessage)
 {
 	var decodedMessage = UnpackPayload(gameMessage.payload);
 	//Get ID and new owner from payload
@@ -504,19 +516,19 @@ function SpawnPrimitive(gameMessage)
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function SendFloats(gameMessage) 
+function SendFloats(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.SendFloats, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function SendTexture2D(gameMessage) 
+function SendTexture2D(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.SendTexture2D, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function ResolveAnchorId(gameMessage) 
+function ResolveAnchorId(gameMessage)
 {
 	//Look at id of object, if we don't have id on server side, then a new obkect was created for this anchor id and we need to add its id
 	var decodedMessage = UnpackPayload(gameMessage.payload);
@@ -538,7 +550,7 @@ function ResolveAnchorId(gameMessage)
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function ResolvedCloudAnchor(gameMessage) 
+function ResolvedCloudAnchor(gameMessage)
 {
 	var decodedMessage = UnpackPayload(gameMessage.payload);
 	//Get ID and new owner from payload
@@ -563,25 +575,25 @@ function ResolvedCloudAnchor(gameMessage)
 	}
 }
 
-function AnchorIDUpdate(gameMessage) 
+function AnchorIDUpdate(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.AnchorIDUpdate, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function LobbyTextMessage(gameMessage) 
+function LobbyTextMessage(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.LobbyTextMessage, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function TagUpdate(gameMessage) 
+function TagUpdate(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.TagUpdate, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
 }
 
-function SendARPlaneAsMesh(gameMessage) 
+function SendARPlaneAsMesh(gameMessage)
 {
 	const outMessage = session.newTextGameMessage(OpCode.SendARPlaneAsMesh, session.getServerId(), gameMessage.payload);
 	session.sendReliableGroupMessage(outMessage, session.getAllPlayersGroupId());
@@ -589,26 +601,26 @@ function SendARPlaneAsMesh(gameMessage)
 
 
 // Return true if the send should be allowed
-function onSendToPlayer(gameMessage) 
+function onSendToPlayer(gameMessage)
 {
     return true;
 }
 
 // Return true if the send to group should be allowed
 // Use gameMessage.getPayloadAsText() to get the message contents
-function onSendToGroup(gameMessage) 
+function onSendToGroup(gameMessage)
 {
     return true;
 }
 
 // Return true if the player is allowed to join the group
-function onPlayerJoinGroup(groupId, peerId) 
+function onPlayerJoinGroup(groupId, peerId)
 {
     return true;
 }
 
 // Return true if the player is allowed to leave the group
-function onPlayerLeaveGroup(groupId, peerId) 
+function onPlayerLeaveGroup(groupId, peerId)
 {
     return true;
 }
@@ -621,9 +633,9 @@ async function tickLoop() {
 
     // In Tick loop - see if all players have left early after a minimum period of time has passed
     // Call processEnding() to terminate the process and quit
-    if ( (activePlayers == 0) && (elapsedTime > minimumElapsedTime)) 
+    if ( (activePlayers == 0) && (elapsedTime > minimumElapsedTime))
 	{
-        logger.info("All players disconnected. Ending game");		
+        logger.info("All players disconnected. Ending game");
         const outcome = await session.processEnding();
         logger.info("Completed process ending with: " + outcome);
         process.exit(0);
@@ -664,13 +676,13 @@ function RemovePlayer(key, value)
 }
 
 function ReturnUsersASLObjectsToServer(peerId)
-{	
+{
 	for (var key in ASLObjects)
 	{
 		if (ASLObjects[key].owner == peerId)
 		{
 			ASLObjects[key].owner = "server";
-		}			
+		}
 		if (ASLObjects[key].objectClaimer != "0")
 		{
 			ASLObjects[key].owner = ASLObjects[key].objectClaimer;
@@ -708,12 +720,12 @@ function GetLowestPeerId()
 		}
 	}
 	return lowest;
-	
+
 }
 
 //Function taken from here: https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript#comment16687461_105074
-//This may not produce an exactly random guid, but it should produce a unique enough one for our scenario. 
-function uuidv4() 
+//This may not produce an exactly random guid, but it should produce a unique enough one for our scenario.
+function uuidv4()
 {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
     var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
