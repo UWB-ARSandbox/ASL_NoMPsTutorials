@@ -34,6 +34,8 @@ namespace ASL
         bool rotateReady = true;
         bool scaleReady = true;
 
+        bool setToDestroy = false;
+
         int autonomousObjectIndex;
         ASLObject m_ASLObject;
 
@@ -50,6 +52,15 @@ namespace ASL
             }
         }
 
+        public void DestroyAutonousOject()
+        {
+            if (translateReady && rotateReady && scaleReady)
+            {
+                destroyAutonomousObject(null);
+            }
+            else setToDestroy = true;
+        }
+
         /// <summary>
         /// Increments the objects position via World Space.
         /// </summary>
@@ -58,7 +69,7 @@ namespace ASL
         {
             if (Time.timeSinceLevelLoad > 0.1)
             {
-                if (translateReady && owner == ASL.GameLiftManager.GetInstance().m_PeerId)
+                if (translateReady && owner == ASL.GameLiftManager.GetInstance().m_PeerId && !setToDestroy)
                 {
                     translateReady = false;
                     ASL_AutonomousObjectHandler.Instance.IncrementWorldPosition(autonomousObjectIndex, m_AdditiveMovementAmount, translateComplete);
@@ -78,7 +89,7 @@ namespace ASL
         {
             if (Time.timeSinceLevelLoad > 0.1)
             {
-                if (rotateReady && owner == ASL.GameLiftManager.GetInstance().m_PeerId)
+                if (rotateReady && owner == ASL.GameLiftManager.GetInstance().m_PeerId && !setToDestroy)
                 {
                     rotateReady = false;
                     ASL_AutonomousObjectHandler.Instance.IncrementWorldRotation(autonomousObjectIndex, m_RotationAmount, rotateComplete);
@@ -98,7 +109,7 @@ namespace ASL
         {
             if (Time.timeSinceLevelLoad > 0.1)
             {
-                if (scaleReady && owner == ASL.GameLiftManager.GetInstance().m_PeerId)
+                if (scaleReady && owner == ASL.GameLiftManager.GetInstance().m_PeerId && !setToDestroy)
                 {
                     scaleReady = false;
                     ASL_AutonomousObjectHandler.Instance.IncrementWorldScale(autonomousObjectIndex, m_AdditiveScaleAmount, scaleComplete);
@@ -152,6 +163,10 @@ namespace ASL
         void translateComplete(GameObject obj)
         {
             translateReady = true;
+            if (setToDestroy && rotateReady && scaleReady)
+            {
+                destroyAutonomousObject(null);
+            }
             //if (nextTranslate != Vector3.zero)
             //{
             //    ASL_AutonomousObjectHandler.Instance.IncrementWorldPosition(autonomousObjectIndex, nextTranslate, translateComplete);
@@ -166,6 +181,10 @@ namespace ASL
         void rotateComplete(GameObject obj)
         {
             rotateReady = true;
+            if (setToDestroy && translateReady && scaleReady)
+            {
+                destroyAutonomousObject(null);
+            }
             //if (nextRotate != Quaternion.identity)
             //{
             //    ASL_AutonomousObjectHandler.Instance.IncrementWorldRotation(autonomousObjectIndex, nextRotate, rotateComplete);
@@ -180,6 +199,10 @@ namespace ASL
         void scaleComplete(GameObject obj)
         {
             scaleReady = true;
+            if (setToDestroy && translateReady && rotateReady)
+            {
+                destroyAutonomousObject(null);
+            }
             //if (nextScale != Vector3.one)
             //{
             //    ASL_AutonomousObjectHandler.Instance.IncrementWorldScale(autonomousObjectIndex, nextScale, scaleComplete);
@@ -189,6 +212,14 @@ namespace ASL
             //{
             //    scaleReady = true;
             //}
+        }
+
+        void destroyAutonomousObject(GameObject ogj)
+        {
+            m_ASLObject.SendAndSetClaim(() =>
+            {
+                m_ASLObject.DeleteObject();
+            });
         }
 
         /// <summary>

@@ -46,7 +46,8 @@ public class Platformer_Enemy : Platformer_Collider
             CollisionSide side = determineColissionDirection(other);
             if (side == CollisionSide.top)
             {
-                player.KillEnemy(this);
+                player.KillEnemy();
+                GetComponent<ASL_AutonomousObject>().DestroyAutonousOject();
             }
             else
             {

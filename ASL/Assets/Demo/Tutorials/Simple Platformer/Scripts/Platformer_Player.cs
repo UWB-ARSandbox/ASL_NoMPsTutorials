@@ -172,12 +172,12 @@ public class Platformer_Player : MonoBehaviour
         transform.parent = null;
     }
 
-    public void KillEnemy(Platformer_Enemy enemy)
+    public void KillEnemy()
     {
-        enemy.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
-        {
-            enemy.GetComponent<ASL.ASLObject>().DeleteObject();
-        });
+        //enemy.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
+        //{
+        //    enemy.GetComponent<ASL.ASLObject>().DeleteObject();
+        //});
         velocity.y = JumpVelocity * 0.5f;
     }
 
