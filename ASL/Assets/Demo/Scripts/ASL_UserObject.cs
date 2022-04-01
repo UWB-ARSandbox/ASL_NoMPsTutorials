@@ -8,6 +8,8 @@ namespace ASL
     /// ASL_UserObject: ASL_UserObject handles movement, rotation and scale for user controlled objects. 
     /// If a call is made to transform this object before the current transform is complete, the new call 
     /// will be ignored. Currently this is set up to work with Platformer_Player's floatFunction.
+    /// This makes use of the float function provided by ASL to set the owner of the object, if the float
+    /// function is overriden it will not work as intended.
     /// </summary>
     public class ASL_UserObject : MonoBehaviour
     {

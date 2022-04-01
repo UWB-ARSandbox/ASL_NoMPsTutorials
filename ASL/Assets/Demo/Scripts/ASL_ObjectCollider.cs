@@ -7,8 +7,10 @@ namespace ASL
     /// <summary>
     /// ASL_ObjectCollider: ASL_ObjectCollider detects and handles collisions, via Triggers, between two ASL_Objects with ASL_ObjectColliders.
     /// Do NOT set OnTriggerEnter, OnTriggerExit, or OnTriggerStay on the object. Instead set these function by passing in callback functions
-    /// via this. Currently this only handles Triggers, but not Collisions. The objects must have a collider with IsTrigger set to true, and 
-    /// at least one object involved in the collision must have a RigidBody that with IsKinematic set to true.
+    /// via this. ASL_ObjectCollider only supports Kinematic colliders, it does NOT support RigidBody colliders. If used with RigidBody colliders
+    /// it will result in desinking of objct possition due to Unity's built in physics. Currently this only handles Triggers, but not Collisions. 
+    /// The objects must have a collider with IsTrigger set to true, and at least one object involved in the collision must have a RigidBody that 
+    /// with IsKinematic set to true.
     /// </summary>
     public class ASL_ObjectCollider : MonoBehaviour
     {

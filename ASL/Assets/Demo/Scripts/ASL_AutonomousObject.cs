@@ -9,7 +9,8 @@ namespace ASL
     /// not directly controlled by a user. Each object is given an owner, and will only listen to instructions
     /// from its owner. While the object is waiting for a tranformation to be completed, any calls to change the 
     /// transformation will be ignored. If the owner of an object leaves a session, their objects will no longer 
-    /// respond to calls (this is temperary).
+    /// respond to calls (this is temperary). This makes use of the float function provided by ASL to set the 
+    /// owner of the object, if the float function is overriden it will not work as intended.
     /// </summary>
     public class ASL_AutonomousObject : MonoBehaviour
     {
