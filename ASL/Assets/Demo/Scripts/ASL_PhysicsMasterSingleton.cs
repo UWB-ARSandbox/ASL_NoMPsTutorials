@@ -5,6 +5,10 @@ using ASL;
 using UnityEngine.SceneManagement;
 using System;
 
+/// <summary>
+/// ASL_PhysicsMasterSingleton: The ASL_PhysicsMasterSingelton detects and handles collision between ASL_ObjectColliders. One 
+/// user is designated as the PhysicsMaster, by default this is the host. Only the PhysicsMaster detects and processes collisions.
+/// </summary>
 public class ASL_PhysicsMasterSingleton : MonoBehaviour
 {
     private static ASL_PhysicsMasterSingleton _instance;
