@@ -46,6 +46,7 @@ namespace ASL
             {
                 m_ASLObject.SendAndSetClaim(() =>
                 {
+                    translateReady = false;
                     m_ASLObject.SendAndIncrementWorldPosition(m_AdditiveMovementAmount, translateComplete);
                 });
             }
@@ -61,6 +62,7 @@ namespace ASL
             {
                 m_ASLObject.SendAndSetClaim(() =>
                 {
+                    rotateReady = false;
                     m_ASLObject.SendAndIncrementWorldRotation(m_RotationAmount, rotateComplete);
                 });
             }
@@ -76,6 +78,7 @@ namespace ASL
             {
                 m_ASLObject.SendAndSetClaim(() =>
                 {
+                    scaleReady = false;
                     m_ASLObject.SendAndIncrementWorldScale(m_AdditiveScaleAmount, scaleComplete);
                 });
             }
@@ -91,6 +94,7 @@ namespace ASL
             {
                 m_ASLObject.SendAndSetClaim(() =>
                 {
+                    translateReady = false;
                     m_ASLObject.SendAndSetWorldPosition(worldPosition, translateComplete);
                 });
             }
@@ -106,6 +110,7 @@ namespace ASL
             {
                 m_ASLObject.SendAndSetClaim(() =>
                 {
+                    rotateReady = false;
                     m_ASLObject.SendAndSetWorldRotation(worldRotation, rotateComplete);
                 });
             }
@@ -121,6 +126,7 @@ namespace ASL
             {
                 m_ASLObject.SendAndSetClaim(() =>
                 {
+                    scaleReady = false;
                     m_ASLObject.SendAndSetWorldScale(worldScale, scaleComplete);
                 });
             }
