@@ -27,7 +27,8 @@
       <Argument Key="maxVersionParts" Value="" xmlns="" />
     </TransformComponentArguments>
     <DocumentationSources>
-      <DocumentationSource sourceFile="..\ASL\Assembly-CSharp.csproj" />
+      <DocumentationSource sourceFile="..\ASL\Temp\Bin\Debug\Assembly-CSharp.dll" />
+      <DocumentationSource sourceFile="..\ASL\Temp\Bin\Debug\Assembly-CSharp.xml" />
     </DocumentationSources>
     <HelpFileFormat>Website</HelpFileFormat>
     <SyntaxFilters>Standard</SyntaxFilters>

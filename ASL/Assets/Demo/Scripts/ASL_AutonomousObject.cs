@@ -27,6 +27,9 @@ namespace ASL
                 {
                     m_ASLObject.SendFloatArray(new float[1] { (float)value });
                 });
+                translateReady = true;
+                rotateReady = true;
+                scaleReady = true;
             }
         }
 
