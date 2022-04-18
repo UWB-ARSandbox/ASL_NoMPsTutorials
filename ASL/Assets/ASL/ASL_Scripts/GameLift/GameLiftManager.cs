@@ -633,6 +633,7 @@ namespace ASL
             {
                 ASL_PhysicsMasterSingleton.Instance.ReassignPhysicsMaster();
             }
+            ASL_AutonomousObjectHandler.Instance.ReasignObjects(int.Parse(data));
         }
 
         /// <summary>

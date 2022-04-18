@@ -63,6 +63,7 @@ namespace ASL
                         autonomousObject = aSLObject.gameObject.AddComponent<ASL_AutonomousObject>();
                     }
                     autonomousObject.Owner = instatiatedObjectOwners[guid];
+                    //objectsAndOwners.Add(autonomousObject, instatiatedObjectOwners[guid]);
                     if (instatiatedObjects[guid] != null)
                     {
                         instatiatedObjects[guid](aSLObject.gameObject);
@@ -74,6 +75,19 @@ namespace ASL
             {
                 instatiatedObjects.Remove(guid);
                 instatiatedObjectOwners.Remove(guid);
+            }
+        }
+
+        public void ReasignObjects(int playerID)
+        {
+            Debug.Log("PLAYER LEAVING: " + playerID);
+            int physicsMasterID = ASL_PhysicsMasterSingleton.Instance.PhysicsMasterPeerID;
+            foreach (ASLObject aSL_Object in autonomousObjects)
+            {
+                if (aSL_Object.GetComponent<ASL_AutonomousObject>().Owner == playerID)
+                {
+                    aSL_Object.GetComponent<ASL_AutonomousObject>().Owner = physicsMasterID;
+                }
             }
         }
 
