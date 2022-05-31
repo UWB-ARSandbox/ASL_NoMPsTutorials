@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shfbBuild product="Sandcastle Help File Builder and Tools" version="2022.2.6.0" projectFile="C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\ASLDocumentation.shfbproj" started="4/17/2022 2:29:19 PM">
+<shfbBuild product="Sandcastle Help File Builder and Tools" version="2022.2.6.0" projectFile="C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\ASLDocumentation.shfbproj" started="5/13/2022 2:28:22 PM">
 <buildStep step="Initializing">
 Finding tools...
 The Sandcastle tools are located in &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder&#39;
@@ -28,17 +28,17 @@ Copying XML comments files
 <buildStep step="GenerateSharedContent">
 Generating shared content files (en-US, English (United States))...
 <plugIn name="Lightweight Website Style" behavior="After" priority="1000">
-</plugIn>    Last step completed in 00:00:00.0108
+</plugIn>    Last step completed in 00:00:00.0050
 </buildStep>
 <buildStep step="GenerateApiFilter">
 Generating API filter for MRefBuilder...
-    Last step completed in 00:00:00.0043
+    Last step completed in 00:00:00.0020
 </buildStep>
 <buildStep step="GenerateReflectionInfo">
 Generating reflection information...
-[C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe - GenerateRefInfo-df5f5be3-602f-47f1-b385-2492473a58fc.proj]
-Build started 4/17/2022 2:29:22 PM.
-Project &quot;C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\GenerateRefInfo-df5f5be3-602f-47f1-b385-2492473a58fc.proj&quot; on node 1 (default targets).
+[C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe - GenerateRefInfo-d7fc3711-ad90-4c4e-bb61-4f84b84b6968.proj]
+Build started 5/13/2022 2:28:23 PM.
+Project &quot;C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\GenerateRefInfo-d7fc3711-ad90-4c4e-bb61-4f84b84b6968.proj&quot; on node 1 (default targets).
 PrepareForBuild:
   Creating directory &quot;obj\Debug\&quot;.
 GenerateBindingRedirects:
@@ -48,27 +48,27 @@ GenerateRefInfo:
   c Microsoft Corporation. All rights reserved.
   No source code context base path specified.  Source context information is unavailable.
   Loaded 1 assemblies for reflection and 1 dependency assemblies.
-  Wrote information on 3 namespaces, 62 types, and 789 members
+  Wrote information on 3 namespaces, 76 types, and 899 members
   Merging duplicate type and member information
   Merged 0 duplicate type(s) and 0 duplicate member(s)
-Done Building Project &quot;C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\GenerateRefInfo-df5f5be3-602f-47f1-b385-2492473a58fc.proj&quot; (default targets).
-    Last step completed in 00:00:00.6349
+Done Building Project &quot;C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\GenerateRefInfo-d7fc3711-ad90-4c4e-bb61-4f84b84b6968.proj&quot; (default targets).
+    Last step completed in 00:00:00.6282
 </buildStep>
 <buildStep step="ApplyDocumentModel">
 Applying document model to reflection output...
-    Last step completed in 00:00:00.0554
+    Last step completed in 00:00:00.0377
 </buildStep>
 <buildStep step="AddApiTopicFilenames">
 Adding topic filenames to API members...
-    Last step completed in 00:00:00.0302
+    Last step completed in 00:00:00.0218
 </buildStep>
 <buildStep step="GenerateApiTopicManifest">
 Generating API topic manifest...
-    Last step completed in 00:00:00.0144
+    Last step completed in 00:00:00.0218
 </buildStep>
 <buildStep step="GenerateNamespaceSummaries">
 Generating namespace summary information...
-    Last step completed in 00:00:00.0353
+    Last step completed in 00:00:00.0268
 </buildStep>
 <buildStep step="CopyConceptualContent">
 Copying conceptual content...
@@ -83,33 +83,33 @@ Generating conceptual topic files
     C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Content\VersionHistory\VersionHistory.aml -&gt; C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\ddueXml\ddf4a003-31b2-453e-a554-73459c77d4e0.xml
     Parsing topic file &#39;C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Content\VersionHistory\v1.0.0.0.aml&#39;
     C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Content\VersionHistory\v1.0.0.0.aml -&gt; C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\ddueXml\07eac861-1339-4654-a456-e1f153ef6a57.xml
-    Last step completed in 00:00:00.0367
+    Last step completed in 00:00:00.0208
 </buildStep>
 <buildStep step="CreateConceptualTopicConfigs">
 Creating conceptual topic configuration files...
     Companion files
     _ContentMetadata_.xml
     Merging topic IDs into manifest.xml
-    Last step completed in 00:00:00.0101
+    Last step completed in 00:00:00.0079
 </buildStep>
 <buildStep step="CopyAdditionalContent">
 Copying additional content files...
 C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\icons\Help.png -&gt; C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\Output\Website\icons\Help.png
-    Last step completed in 00:00:00.0058
+    Last step completed in 00:00:00.0030
 </buildStep>
 <buildStep step="MergeTablesOfContents">
 Merging conceptual and additional tables of contents...
-    Last step completed in 00:00:00.0022
+    Last step completed in 00:00:00.0000
 </buildStep>
 <buildStep step="GenerateIntermediateTableOfContents">
 Generating intermediate table of contents file for API content...
 Generating conceptual content intermediate TOC file...
-    Last step completed in 00:00:00.0310
+    Last step completed in 00:00:00.0248
 </buildStep>
 <buildStep step="CreateBuildAssemblerConfigs">
 Creating Sandcastle configuration files...
     sandcastle.config
-    Last step completed in 00:00:00.1382
+    Last step completed in 00:00:00.1111
 </buildStep>
 <buildStep step="MergeCustomConfigs">
 Merging custom build component configurations
@@ -117,12 +117,12 @@ C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working
   Updating reference topic configurations.
   Updating conceptual topic configurations.
     Removing unused ExampleComponent.
-    Last step completed in 00:00:00.0050
+    Last step completed in 00:00:00.0020
 </buildStep>
 <buildStep step="BuildTopics">
 Building help topics...
 [C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe - BuildTopics.proj]
-Build started 4/17/2022 2:29:23 PM.
+Build started 5/13/2022 2:28:24 PM.
 Project &quot;C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj&quot; on node 1 (default targets).
 BuildTopics:
   Microsoft.Build (v16.11.1+3e40a09f830fce5bb34916a4d20255c0876c9b5d)
@@ -670,6 +670,57 @@ BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.QuickConnect] 
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.QuickConnect] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.QuickConnect] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.QuickConnect] Unknown reference link target &#39;T:UnityEngine.MonoBehaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.TextureScaler] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.TextureScaler] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.TextureScaler] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.TextureScaler] Unknown reference link target &#39;T:UnityEngine.MonoBehaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.TextureScaler._gpu_scale(UnityEngine.Texture2D,System.Int32,System.Int32,UnityEngine.FilterMode)] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.TextureScaler._gpu_scale(UnityEngine.Texture2D,System.Int32,System.Int32,UnityEngine.FilterMode)] Missing &lt;param name=&quot;src&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.TextureScaler._gpu_scale(UnityEngine.Texture2D,System.Int32,System.Int32,UnityEngine.FilterMode)] Missing &lt;param name=&quot;width&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.TextureScaler._gpu_scale(UnityEngine.Texture2D,System.Int32,System.Int32,UnityEngine.FilterMode)] Missing &lt;param name=&quot;height&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.TextureScaler._gpu_scale(UnityEngine.Texture2D,System.Int32,System.Int32,UnityEngine.FilterMode)] Missing &lt;param name=&quot;fmode&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.TextureScaler._gpu_scale(UnityEngine.Texture2D,System.Int32,System.Int32,UnityEngine.FilterMode)] Unknown reference link target &#39;T:UnityEngine.Texture2D&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.TextureScaler._gpu_scale(UnityEngine.Texture2D,System.Int32,System.Int32,UnityEngine.FilterMode)] Unknown reference link target &#39;T:UnityEngine.FilterMode&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.TextureScaler.scale(UnityEngine.Texture2D,System.Int32,System.Int32,UnityEngine.FilterMode)] Unknown reference link target &#39;T:UnityEngine.Texture2D&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.TextureScaler.scale(UnityEngine.Texture2D,System.Int32,System.Int32,UnityEngine.FilterMode)] Unknown reference link target &#39;T:UnityEngine.FilterMode&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.TextureScaler.scaled(UnityEngine.Texture2D,System.Int32,System.Int32,UnityEngine.FilterMode)] Missing &lt;returns&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.TextureScaler.scaled(UnityEngine.Texture2D,System.Int32,System.Int32,UnityEngine.FilterMode)] Missing &lt;param name=&quot;src&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.TextureScaler.scaled(UnityEngine.Texture2D,System.Int32,System.Int32,UnityEngine.FilterMode)] Unknown reference link target &#39;T:UnityEngine.Texture2D&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.TextureScaler.scaled(UnityEngine.Texture2D,System.Int32,System.Int32,UnityEngine.FilterMode)] Unknown reference link target &#39;T:UnityEngine.FilterMode&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.TextureScaler.scaled(UnityEngine.Texture2D,System.Int32,System.Int32,UnityEngine.FilterMode)] Unknown reference link target &#39;T:UnityEngine.Texture2D&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.VideoStream] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.VideoStream] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.VideoStream] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:ASL.VideoStream] Unknown reference link target &#39;T:UnityEngine.MonoBehaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:ASL.VideoStream.ALLOW_REMOTE_CAMERA_ACTIVATION] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:ASL.VideoStream.aslObject] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.VideoStream.Awake] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.VideoStream.ForceGarbageCollection] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:ASL.VideoStream.FPS] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:ASL.VideoStream.GCCollectFreq] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:ASL.VideoStream.gcFrameCount] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:ASL.VideoStream.ImageHeight] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:ASL.VideoStream.ImageWidth] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:ASL.VideoStream.isMobileDevice] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:ASL.VideoStream.IsStreaming] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.VideoStream.OnFloatsReceived(System.String,System.Single[])] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.VideoStream.OnFloatsReceived(System.String,System.Single[])] Missing &lt;param name=&quot;_id&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.VideoStream.OnFloatsReceived(System.String,System.Single[])] Missing &lt;param name=&quot;floatArray&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.VideoStream.OnFrameDelivered(UnityEngine.GameObject,UnityEngine.Texture2D)] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.VideoStream.OnFrameDelivered(UnityEngine.GameObject,UnityEngine.Texture2D)] Missing &lt;param name=&quot;gObject&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.VideoStream.OnFrameDelivered(UnityEngine.GameObject,UnityEngine.Texture2D)] Missing &lt;param name=&quot;texture2D&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.VideoStream.OnFrameDelivered(UnityEngine.GameObject,UnityEngine.Texture2D)] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:ASL.VideoStream.OnFrameDelivered(UnityEngine.GameObject,UnityEngine.Texture2D)] Unknown reference link target &#39;T:UnityEngine.Texture2D&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:ASL.VideoStream.OnFrameUpdate] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [P:ASL.VideoStream.OnFrameUpdate] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [P:ASL.VideoStream.OnFrameUpdate] Unknown reference link target &#39;T:UnityEngine.Texture2D&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.VideoStream.RequestFrame] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.VideoStream.SendScreenCapture] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.VideoStream.StartStreamingCoroutine] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:ASL.VideoStream.streamingCoroutineActive] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.VideoStream.StreamVideo] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.VideoStream.StreamVideo] Missing &lt;returns&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:ASL.VideoStream.SynchronizePeers] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.ARCloudAnchor_Example] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.ARCloudAnchor_Example] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.ARCloudAnchor_Example] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
@@ -734,6 +785,12 @@ BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.ColorO
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.ColorObject_Example.m_MyColor] Unknown reference link target &#39;T:UnityEngine.Color&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.ColorObject_Example.m_MyObjectToColor] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.ColorObject_Example.m_OpponentsColor] Unknown reference link target &#39;T:UnityEngine.Color&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.CreateAutonomousObject_Example] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.CreateAutonomousObject_Example] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.CreateAutonomousObject_Example] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.CreateAutonomousObject_Example] Unknown reference link target &#39;T:UnityEngine.MonoBehaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.CreateAutonomousObject_Example.CoinPrefab] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.CreateAutonomousObject_Example.Update] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.CreateObject_Example] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.CreateObject_Example] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.CreateObject_Example] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
@@ -753,6 +810,86 @@ BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Delete
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.DeleteObject_Example] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.DeleteObject_Example] Unknown reference link target &#39;T:UnityEngine.MonoBehaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.DeleteObject_Example.m_MyObjectToDelete] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_ChangeColorOnCollision] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_ChangeColorOnCollision] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_ChangeColorOnCollision] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_ChangeColorOnCollision] Unknown reference link target &#39;T:UnityEngine.MonoBehaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.Demo_ChangeColorOnCollision.ChangeColorOnCollisionEnter(UnityEngine.Collision)] Missing &lt;param name=&quot;collision&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.Demo_ChangeColorOnCollision.ChangeColorOnCollisionEnter(UnityEngine.Collision)] Unknown reference link target &#39;T:UnityEngine.Collision&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.Demo_ChangeColorOnCollision.ChangeColorOnCollisionExit(UnityEngine.Collision)] Missing &lt;param name=&quot;collision&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.Demo_ChangeColorOnCollision.ChangeColorOnCollisionExit(UnityEngine.Collision)] Unknown reference link target &#39;T:UnityEngine.Collision&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.Demo_ChangeColorOnCollision.Color] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.Demo_ChangeColorOnCollision.Color] Unknown reference link target &#39;T:UnityEngine.Material&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.Demo_ChangeColorOnCollision.m_ASLObjectCollider] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.Demo_ChangeColorOnCollision.PlayerOriginalColor] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.Demo_ChangeColorOnCollision.PlayerOriginalColor] Unknown reference link target &#39;T:UnityEngine.Material&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.Demo_ChangeColorOnCollision.Start] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_CollideCreateSphere] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_CollideCreateSphere] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_CollideCreateSphere] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_CollideCreateSphere] Unknown reference link target &#39;T:UnityEngine.MonoBehaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.Demo_CollideCreateSphere.createSphereOnCollitionEnter(UnityEngine.Collision)] Missing &lt;param name=&quot;collision&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.Demo_CollideCreateSphere.createSphereOnCollitionEnter(UnityEngine.Collision)] Unknown reference link target &#39;T:UnityEngine.Collision&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.Demo_CollideCreateSphere.m_ASLObjectCollider] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.Demo_CollideCreateSphere.PrefabName] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.Demo_CollideCreateSphere.Start] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_CollisionTests] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_CollisionTests] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_CollisionTests] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_CollisionTests] Unknown reference link target &#39;T:UnityEngine.MonoBehaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.Demo_CollisionTests.DisplayCollision(System.String,System.Single[])] Missing &lt;param name=&quot;_id&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.Demo_CollisionTests.DisplayCollision(System.String,System.Single[])] Missing &lt;param name=&quot;_myFloats&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.Demo_CollisionTests.m_ASLObject] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.Demo_CollisionTests.m_ASLObjectCollider] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.Demo_CollisionTests.OnCollisionEnterTest(UnityEngine.Collision)] Missing &lt;param name=&quot;collision&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.Demo_CollisionTests.OnCollisionEnterTest(UnityEngine.Collision)] Unknown reference link target &#39;T:UnityEngine.Collision&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.Demo_CollisionTests.OnCollisionEnterText] Unknown reference link target &#39;T:UnityEngine.UI.Text&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.Demo_CollisionTests.OnCollisionExitTest(UnityEngine.Collision)] Missing &lt;param name=&quot;collision&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.Demo_CollisionTests.OnCollisionExitTest(UnityEngine.Collision)] Unknown reference link target &#39;T:UnityEngine.Collision&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.Demo_CollisionTests.OnCollisionExitText] Unknown reference link target &#39;T:UnityEngine.UI.Text&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.Demo_CollisionTests.OnOnTriggerStayText] Unknown reference link target &#39;T:UnityEngine.UI.Text&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.Demo_CollisionTests.OnTriggerEnterTest(UnityEngine.Collider)] Unknown reference link target &#39;T:UnityEngine.Collider&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.Demo_CollisionTests.OnTriggerEnterText] Unknown reference link target &#39;T:UnityEngine.UI.Text&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.Demo_CollisionTests.OnTriggerExitTest(UnityEngine.Collider)] Unknown reference link target &#39;T:UnityEngine.Collider&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.Demo_CollisionTests.OnTriggerExitText] Unknown reference link target &#39;T:UnityEngine.UI.Text&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.Demo_CollisionTests.OnTriggerStayTest(UnityEngine.Collider)] Unknown reference link target &#39;T:UnityEngine.Collider&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.Demo_CollisionTests.Start] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_OnTriggerEnterColor] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_OnTriggerEnterColor] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_OnTriggerEnterColor] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_OnTriggerEnterColor] Unknown reference link target &#39;T:UnityEngine.MonoBehaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.Demo_OnTriggerEnterColor.ChangeColorOnTriggerEnter(UnityEngine.Collider)] Unknown reference link target &#39;T:UnityEngine.Collider&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.Demo_OnTriggerEnterColor.Color] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.Demo_OnTriggerEnterColor.Color] Unknown reference link target &#39;T:UnityEngine.Material&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.Demo_OnTriggerEnterColor.m_ASLObjectCollider] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.Demo_OnTriggerEnterColor.Start] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_OnTriggerExitColor] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_OnTriggerExitColor] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_OnTriggerExitColor] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_OnTriggerExitColor] Unknown reference link target &#39;T:UnityEngine.MonoBehaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.Demo_OnTriggerExitColor.ChangeColorOnTriggerExit(UnityEngine.Collider)] Unknown reference link target &#39;T:UnityEngine.Collider&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.Demo_OnTriggerExitColor.Color] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.Demo_OnTriggerExitColor.Color] Unknown reference link target &#39;T:UnityEngine.Material&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.Demo_OnTriggerExitColor.m_ASLObjectCollider] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.Demo_OnTriggerExitColor.Start] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_OnTriggerStayCountDown] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_OnTriggerStayCountDown] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_OnTriggerStayCountDown] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.Demo_OnTriggerStayCountDown] Unknown reference link target &#39;T:UnityEngine.MonoBehaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.Demo_OnTriggerStayCountDown.count] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.Demo_OnTriggerStayCountDown.Counter] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.Demo_OnTriggerStayCountDown.Counter] Unknown reference link target &#39;T:UnityEngine.UI.Text&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.Demo_OnTriggerStayCountDown.countUpOnStay(UnityEngine.Collider)] Missing &lt;param name=&quot;other&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.Demo_OnTriggerStayCountDown.countUpOnStay(UnityEngine.Collider)] Unknown reference link target &#39;T:UnityEngine.Collider&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.Demo_OnTriggerStayCountDown.inTrigger] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.Demo_OnTriggerStayCountDown.m_ASLObject] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.Demo_OnTriggerStayCountDown.m_ASLObjectCollider] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.Demo_OnTriggerStayCountDown.Start] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:SimpleDemos.Demo_OnTriggerStayCountDown.stopCounter(UnityEngine.Collider)] Unknown reference link target &#39;T:UnityEngine.Collider&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.Demo_OnTriggerStayCountDown.Update] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.Demo_OnTriggerStayCountDown.updateCounter(System.String,System.Single[])] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.Demo_OnTriggerStayCountDown.updateCounter(System.String,System.Single[])] Missing &lt;param name=&quot;_id&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.Demo_OnTriggerStayCountDown.updateCounter(System.String,System.Single[])] Missing &lt;param name=&quot;count&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.LoadScene_Example] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.LoadScene_Example] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.LoadScene_Example] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
@@ -822,6 +959,16 @@ BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.Transf
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.TransformObjectViaWorldSpace_Example.m_MyCustomAxis] Unknown reference link target &#39;T:UnityEngine.Vector3&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.TransformObjectViaWorldSpace_Example.m_ObjectToManipulate] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.TransformObjectViaWorldSpace_Example.m_ScaleToAmount] Unknown reference link target &#39;T:UnityEngine.Vector3&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.VideoStream_Example] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.VideoStream_Example] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.VideoStream_Example] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:SimpleDemos.VideoStream_Example] Unknown reference link target &#39;T:UnityEngine.MonoBehaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.VideoStream_Example.m_ToggleStream] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.VideoStream_Example.m_ToggleStream] Unknown reference link target &#39;T:UnityEngine.UI.Button&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.VideoStream_Example.m_VideoDisplay] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:SimpleDemos.VideoStream_Example.m_VideoDisplay] Unknown reference link target &#39;T:UnityEngine.UI.RawImage&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:SimpleDemos.VideoStream_Example.m_VideoStream] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:SimpleDemos.VideoStream_Example.Start] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_150_ASLObjects_Controller] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_150_ASLObjects_Controller] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_150_ASLObjects_Controller] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
@@ -847,6 +994,17 @@ BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.Stre
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_150_ASLObjects_Support] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_150_ASLObjects_Support] Unknown reference link target &#39;T:UnityEngine.MonoBehaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:StressTesting.StressTest_150_ASLObjects_Support.m_MyObjectOriginalColor] Unknown reference link target &#39;T:UnityEngine.Color&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_AutonomousObjects] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_AutonomousObjects] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_AutonomousObjects] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_AutonomousObjects] Unknown reference link target &#39;T:UnityEngine.MonoBehaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:StressTesting.StressTest_AutonomousObjects.AutonomousObjectPrefab] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:StressTesting.StressTest_AutonomousObjects.AutonomousObjectPrefab] Unknown reference link target &#39;T:UnityEngine.GameObject&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:StressTesting.StressTest_AutonomousObjects.createAutonomousObjects(UnityEngine.Vector3)] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:StressTesting.StressTest_AutonomousObjects.createAutonomousObjects(UnityEngine.Vector3)] Missing &lt;param name=&quot;startPos&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:StressTesting.StressTest_AutonomousObjects.createAutonomousObjects(UnityEngine.Vector3)] Unknown reference link target &#39;T:UnityEngine.Vector3&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:StressTesting.StressTest_AutonomousObjects.OBJECTS_PER_PLAYER] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:StressTesting.StressTest_AutonomousObjects.Start] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_ButtonManager] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_ButtonManager] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_ButtonManager] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
@@ -861,6 +1019,19 @@ BuildAssembler : warning : ResolveReferenceLinksComponent: [F:StressTesting.Stre
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:StressTesting.StressTest_ButtonManager.m_Up] Unknown reference link target &#39;T:UnityEngine.UI.Button&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:StressTesting.StressTest_ButtonManager.mDeleteButton] Unknown reference link target &#39;T:UnityEngine.UI.Button&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:StressTesting.StressTest_ButtonManager.mStopAll] Unknown reference link target &#39;T:UnityEngine.UI.Button&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_CollisionCounter] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_CollisionCounter] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_CollisionCounter] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_CollisionCounter] Unknown reference link target &#39;T:UnityEngine.MonoBehaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:StressTesting.StressTest_CollisionCounter.collisionCount] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:StressTesting.StressTest_CollisionCounter.DisplayText] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:StressTesting.StressTest_CollisionCounter.DisplayText] Unknown reference link target &#39;T:UnityEngine.UI.Text&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:StressTesting.StressTest_CollisionCounter.fileName] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:StressTesting.StressTest_CollisionCounter.MovingObjects] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:StressTesting.StressTest_CollisionCounter.Start] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:StressTesting.StressTest_CollisionCounter.updateCounter(System.String,System.Single[])] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:StressTesting.StressTest_CollisionCounter.updateCounter(System.String,System.Single[])] Missing &lt;param name=&quot;_id&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:StressTesting.StressTest_CollisionCounter.updateCounter(System.String,System.Single[])] Missing &lt;param name=&quot;count&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_CreateDelete_Controller] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_CreateDelete_Controller] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_CreateDelete_Controller] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
@@ -897,23 +1068,41 @@ BuildAssembler : warning : ResolveReferenceLinksComponent: [F:StressTesting.Stre
 BuildAssembler : warning : ShowMissingComponent: [M:StressTesting.StressTest_FightOverFiveObjectsGUIController.Start] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:StressTesting.StressTest_FightOverFiveObjectsGUIController.Update] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:StressTesting.StressTest_FightOverFiveObjectsGUIController.UpdatePositionText] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
-  Processed 902 topic(s)
-  768 warning(s)
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_MoveingObject] Unknown reference link target &#39;T:UnityEngine.Object&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_MoveingObject] Unknown reference link target &#39;T:UnityEngine.Component&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_MoveingObject] Unknown reference link target &#39;T:UnityEngine.Behaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:StressTesting.StressTest_MoveingObject] Unknown reference link target &#39;T:UnityEngine.MonoBehaviour&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:StressTesting.StressTest_MoveingObject.CollisionCounter] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:StressTesting.StressTest_MoveingObject.dir] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [F:StressTesting.StressTest_MoveingObject.dir] Unknown reference link target &#39;T:UnityEngine.Vector3&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:StressTesting.StressTest_MoveingObject.m_ASLObject] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:StressTesting.StressTest_MoveingObject.m_ASLObjectCollider] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:StressTesting.StressTest_MoveingObject.MaxDistance] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:StressTesting.StressTest_MoveingObject.Mode] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:StressTesting.StressTest_MoveingObject.MovementSpeed] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:StressTesting.StressTest_MoveingObject.Start] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:StressTesting.StressTest_MoveingObject.Update] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:StressTesting.StressTest_MoveingObject.UpdateCounterOnCollision(UnityEngine.Collider)] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:StressTesting.StressTest_MoveingObject.UpdateCounterOnCollision(UnityEngine.Collider)] Missing &lt;param name=&quot;other&quot;/&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:StressTesting.StressTest_MoveingObject.UpdateCounterOnCollision(UnityEngine.Collider)] Unknown reference link target &#39;T:UnityEngine.Collider&#39;. [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:StressTesting.StressTest_MoveingObject.TestMode] Missing &lt;summary&gt; documentation [C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj]
+  Processed 1049 topic(s)
+  957 warning(s)
   CopyFromIndexComponent: &quot;metadata&quot; in-memory cache entries used: 1 of 15.
   ResolveArtLinksComponent: Copying media files...
   CopyFromIndexComponent: &quot;reflection&quot; in-memory cache entries used: 4 of 15.
   CopyFromIndexComponent: &quot;comments&quot; in-memory cache entries used: 1 of 30.
 Done Building Project &quot;C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\BuildTopics.proj&quot; (default targets).
-    Last step completed in 00:00:06.7802
+    Last step completed in 00:00:07.5460
 </buildStep>
 <buildStep step="CombiningIntermediateTocFiles">
 Combining conceptual and API intermediate TOC files...
-    Last step completed in 00:00:00.0036
+    Last step completed in 00:00:00.0040
 </buildStep>
 <buildStep step="ExtractingHtmlInfo">
 Extracting HTML info for HTML Help 1 and/or website...
 [C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe - ExtractHtmlInfo.proj]
-    Last step completed in 00:00:00.4104
+    Last step completed in 00:00:00.4494
 </buildStep>
 <buildStep step="CopyStandardHelpContent">
 Copying standard help content...
@@ -995,30 +1184,30 @@ C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\VS2013
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\VS2013\Web\scripts\branding-Website.js -&gt; C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\Output\Website\scripts\branding-Website.js
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\VS2013\Web\scripts\clipboard.min.js -&gt; C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\Output\Website\scripts\clipboard.min.js
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\VS2013\Web\scripts\jquery-3.5.1.min.js -&gt; C:\Users\cambe\Documents\GitHub\ASL_NoMPsTutorials\ASLDocumentation\Help\Working\Output\Website\scripts\jquery-3.5.1.min.js
-    Last step completed in 00:00:00.2624
+    Last step completed in 00:00:00.2560
 </buildStep>
 <buildStep step="GenerateFullTextIndex">
 Generating full-text index for the website...
 
 <plugIn name="Lightweight Website Style" behavior="After" priority="1000">
 Adding lightweight search and TOC elements to each topic...
-</plugIn>    Last step completed in 00:00:00.6552
+</plugIn>    Last step completed in 00:00:00.6883
 </buildStep>
 <buildStep step="CopyingWebsiteFiles">
 Copying website files to output folder...
 
 Copied 500 files
 Copied 1000 files
-Copied 1161 files for the website content
-    Last step completed in 00:00:01.1216
+Copied 1347 files for the website content
+    Last step completed in 00:00:01.3009
 </buildStep>
 <buildStep step="CleanIntermediates">
 Removing intermediate files...
-    Last step completed in 00:00:00.1798
+    Last step completed in 00:00:00.2144
 </buildStep>
 <buildStep step="Completed">
 
-Build completed successfully at 4/17/2022 2:29:32 PM.  Total time: 00:00:12.9352
+Build completed successfully at 5/13/2022 2:28:35 PM.  Total time: 00:00:12.1604
 
 </buildStep>
 </shfbBuild>

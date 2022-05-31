@@ -1,13 +1,62 @@
 {
-    "m_SelectedDeviceId": "",
+    "m_SelectedDeviceId": "1WMHH842UY0511",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "1WMHH842UY0511",
+        "name": "com.UW_Bothell.ASL",
+        "processId": 6453,
         "exited": false
     },
     "m_SelectedPriority": 0,
-    "m_KnownPackagesForSerialization": [],
+    "m_KnownPackagesForSerialization": [
+        {
+            "deviceId": "R5CN207F36K",
+            "name": "com.UW_Bothell.ASL",
+            "processId": 8105,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CN207F36K",
+            "name": "com.UW_Bothell.ASL",
+            "processId": 16611,
+            "exited": false
+        },
+        {
+            "deviceId": "710KPWQ0235489",
+            "name": "com.UW_Bothell.ASL",
+            "processId": 12539,
+            "exited": false
+        },
+        {
+            "deviceId": "710KPWQ0235489",
+            "name": "com.UW_Bothell.ASL",
+            "processId": 10021,
+            "exited": false
+        },
+        {
+            "deviceId": "710KPWQ0235489",
+            "name": "com.UW_Bothell.ASL",
+            "processId": 25035,
+            "exited": false
+        },
+        {
+            "deviceId": "710KPWQ0235489",
+            "name": "com.UW_Bothell.ASL",
+            "processId": 26147,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH842UY0511",
+            "name": "com.UW_Bothell.ASL",
+            "processId": 5445,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH842UY0511",
+            "name": "com.UW_Bothell.ASL",
+            "processId": 6453,
+            "exited": false
+        }
+    ],
     "m_Tags": {
         "m_Entries": [
             {
@@ -41,9 +90,20 @@
         ]
     },
     "m_MemoryViewerState": {
-        "MemoryWindowHeight": 0.0,
-        "MemoryWindowWidth": 0.0,
-        "MemoryTypeEnabled": [],
+        "MemoryWindowHeight": 300.0,
+        "MemoryWindowWidth": 170.0,
+        "MemoryTypeEnabled": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
         "MemoryGroup": 2,
         "Behavior": 0
     },

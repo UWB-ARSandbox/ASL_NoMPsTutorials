@@ -71,8 +71,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ASL/ASL_Tutorials/Simple/SetCallback/SetCallback_Example.unity
     guid: a9cda04859f36a64a9943bc9970b7833
+  - enabled: 0
+    path: Assets/ASL/ASL_Tutorials/Simple/VideoStream/VideoStreamDemo.unity
+    guid: 535c70eed97e3b441b7654de2136f67d
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: fcbaeb91d20fd7c4ca5922a7308feb30, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: bf557935255407f40b56b5c173577bf9, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: b653963d314ffaf409a6357156cf5de6, type: 2}
     com.unity.xr.management.arcore_loader: {fileID: 11400000, guid: 23a24ef9a392c0e4f95ea82d0acb26a1, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 9884d9205f7a5604c9da4d3f97b10a5e, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 9c0ebd3104fad4e4fb233b5e4a3f9660, type: 2}
