@@ -1047,6 +1047,7 @@ namespace ASL
             /// </summary>
             public void JoinSelectedMatch()
             {
+                m_JoinMatchButton.interactable = false;
                 DestroyMatchOptions();
                 JoinSession();
             }

@@ -6,7 +6,6 @@ public class Unity_PlayerCube : MonoBehaviour
 {
     public float MovementSpeed = 3.0f;
 
-
     // Update is called once per frame
     void Update()
     {
