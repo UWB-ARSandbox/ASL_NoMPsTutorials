@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Keyboard : MonoBehaviour
+public class VR_Keyboard : MonoBehaviour
 {
     public InputField m_InputField;
     public GameObject normalButtons;

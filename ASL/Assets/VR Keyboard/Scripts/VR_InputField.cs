@@ -7,13 +7,13 @@ using UnityEngine.EventSystems;
 public class VR_InputField : MonoBehaviour
 {
     InputField inputField;
-    Keyboard keyboard;
+    VR_Keyboard keyboard;
 
     // Start is called before the first frame update
     void Start()
     {
         inputField = gameObject.GetComponent<InputField>();
-        keyboard = FindObjectOfType<Keyboard>();
+        keyboard = FindObjectOfType<VR_Keyboard>();
     }
 
     private void Update()

@@ -4,14 +4,14 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class KeyboardButton : MonoBehaviour
+public class VR_KeyboardButton : MonoBehaviour
 {
-    Keyboard keyboard;
+    VR_Keyboard keyboard;
     TextMeshProUGUI buttonText;
 
     void Start()
     {
-        keyboard = GetComponentInParent<Keyboard>();
+        keyboard = GetComponentInParent<VR_Keyboard>();
         buttonText = GetComponentInChildren<TextMeshProUGUI>();
         if (buttonText.text.Length == 1)
         {
